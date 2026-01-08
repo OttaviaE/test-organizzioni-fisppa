@@ -8,8 +8,6 @@ format:
     slide-level: 3
     toc-depth: 3
     theme: Montpellier
-    monofontoptions: 
-    - Scale=0.55
     colortheme: dove
     navigation: horizontal
     highlight-style: tango
@@ -21,6 +19,7 @@ code-annotations: below
 header-includes: |
   \usepackage{graphicx}
   \usepackage{xcolor}
+  \usepackage{listings}
   \definecolor{ColPrimario}{RGB}{100,8,58}
   \definecolor{ColSecondario}{RGB}{20,143,184}
   \setbeamercolor{structure}{fg=ColPrimario}
@@ -34,6 +33,9 @@ header-includes: |
   \setbeamercolor{upper separation line head}{bg=white}
   \setbeamercolor{middle separation line head}{bg=white}
   \setbeamercolor{lower separation line head}{bg=white}
+  \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
+  \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
   \AtBeginSubsection{}
   \AtBeginDocument{\institute[]{Università di Padova} }
   \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
@@ -113,13 +115,14 @@ wrong
 
 Altrimenti si "rischia" che tutto venga trasformato a carattere.
 
-::: fragment
+### 
+
 ```{r, echo=TRUE}
 correct = c(1,2,3,NA, 4)
 class(correct) 
 correct
 ```
-:::
+
 
 ### is.\* & as.\*
 
@@ -298,6 +301,12 @@ my_fact2
 ```
 
 
+### Ora facciamo un po' di pratica! 
+
+<br/> Aprite e tenete aperto questo link:
+
+<https://etherpad.wikimedia.org/p/arca-corsoR>
+
 # Matrici
 
 Le matrici sono una struttura dati **bidimensionale** (caratterizzate da 2 dimensioni **`dim()`** ) dove il numero di righe rappresenta la dimensione 1 e il numero di colonne la dimensione 2.
@@ -452,6 +461,12 @@ my_mat%*%my_mat
 ```
 
 
+### Ora facciamo un po' di pratica! 
+
+<br/> Aprite e tenete aperto questo link:
+
+<https://etherpad.wikimedia.org/p/arca-corsoR>
+
 # Dataframe
 
 Il dataframe è la struttura più "complessa", utile e potente di R. 
@@ -473,16 +488,9 @@ my_df
 
 ### Attributi
 
-Il **`dataframe`** ha sia gli attributi della lista ovvero i ***names*** ma anche gli attributi della matrice ovvero le ***dimensioni*** (righe e colonne)
+Possiamo utlizzare le funzioni **`names()`** , **`dim()`**, **`nrow()`**, **`ncol()`**... per ottenere informazioni sulle caratteristiche del dataframe. 
 
-```{r, echo=TRUE}
-attributes(my_df)
-dim(my_df)
-```
-
-### 
-
-Possiamo utlizzare le funzioni **`names()`** , **`dim()`**, **`nrow()`**, **`ncol()`**... per ottenere informazioni sulle caratteristiche del dataframe. La funzione più utile è **`str()`** poichè ci restituisce una veloce overview della struttura del dataframe: dimensioni, tipi di variabili,...
+La funzione più utile è **`str()`** poichè ci restituisce una veloce overview della struttura del dataframe: dimensioni, tipi di variabili,...
 
 ```{r,echo=TRUE}
 str(my_df) 
@@ -499,61 +507,103 @@ my_df[1,1] #  estraggo il primo elemento della prima colonna del data.frame
 
 ### Indicizzazione `$`
 
+Estraggo la prima colonna del data.frame: 
 ```{r, echo=TRUE}
-my_df$numeri # estraggo la prima colonna del data.frame
-my_df$numeri[1] #  estraggo il primo elemento della prima colonna del data.frame
+my_df$numeri 
+```
+
+...estraggo il primo elemento della prima colonna del data.frame:
+```{r, echo=TRUE}
+my_df$numeri[1] 
 
 ```
 
-
 ### Indicizzazione - Operatori relazionali
 
-Una delle operazioni più comuni che dovrete affrontare sarà sicuramente quella di estrarre/valutare un sottoinsieme di valori presenti nel vostro dataset:
+Una delle operazioni più comuni che dovrete affrontare sarà sicuramente quella di estrarre/valutare un sottoinsieme di valori presenti nel vostro dataset
+
+###
+
+Includo solo le righe per cui alla colonna numeri i valori sono maggiori di 2
 
 ```{r, echo=TRUE}
-my_df
-
-# includo solo le righe in cui alla colonna1 i valori sono maggiori di 2
 my_df[my_df$numeri > 2, ]
 my_df[my_df[1] > 2, ] 
 ```
 
-## Esempi
+### 
 
 ```{r}
 my_df
 ```
 
-```{r, echo=TRUE,eval=FALSE}
+```{r, eval=FALSE}
 my_df[my_df$numeri > 2 & my_df$numeri < 4, ]
 ```
 
-```{r, eval=TRUE, echo=FALSE}
+### 
+
+```{r}
+my_df
+```
+
+```{r, eval=TRUE}
 my_df[my_df$numeri > 2 & my_df$numeri < 4, ]
 ```
 
-```{r, echo=TRUE,eval=FALSE}
+###
+
+```{r}
+my_df
+```
+
+```{r, echo=TRUE, eval=FALSE}
 my_df[my_df$numeri== 2,  2]
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-my_df[my_df$col1== 2,  2]
+###
+
+```{r}
+my_df
 ```
 
-```{r, echo=TRUE,eval=FALSE}
-my_df[my_df$col1== 2,  "col2"]
+```{r}
+my_df[my_df$numeri== 2,  2]
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-my_df[my_df$col1== 2,  "col2"]
+###
+
+```{r}
+my_df
+```
+
+```{r, eval=FALSE, echo=TRUE}
+my_df[my_df$numeri== 2,  "lettere"]
+```
+
+###
+
+```{r}
+my_df
+my_df[my_df$numeri== 2,  "lettere"]
 ```
 
 
 ### Indicizzazione `subset()`
 
 ```{r,echo=TRUE}
-str(iris)
-subset(iris, subset = Species == "setosa" & Petal.Length > 1.7)
+my_df = data.frame(numeri = rep(1:3,each = 3), 
+                   lettere = rep(letters[1:3],3),
+                   normale = rnorm(n = 9, mean = 0, sd = 1)) 
+
+#visualizzo le prime 5 righe attraverso il comando head
+head(my_df, n = 5)
+```
+
+### Indicizzazione `subset()`
+
+```{r,echo=TRUE}
+subset(my_df, subset = lettere == "a" & numeri > 2)
 ```
 
 ### 
@@ -562,7 +612,7 @@ Equivalente a:
 
 ```{r,echo=TRUE}
 
-iris[iris$Species == "setosa" & iris$Petal.Length > 1.7,]
+my_df[my_df$lettere == "a" & my_df$numeri > 2,]
 
 ```
 
@@ -571,12 +621,12 @@ iris[iris$Species == "setosa" & iris$Petal.Length > 1.7,]
 E' possibile anche selezionare colonne piuttosto che righe attraverso l'argomento ***`select`***:
 
 ```{r, echo=TRUE, eval=FALSE}
-subset(iris, select = c(Sepal.Length, Species))
+subset(my_df, select = c(lettere, numeri))
 ```
 
 ```{r, echo=TRUE}
-#visualizzo le prime due righe attraverso il comando head
-head(subset(iris, select = c(Sepal.Length, Species)), n = 3) 
+#visualizzo le prime tre righe attraverso il comando head
+head(subset(my_df, select = c(lettere, numeri)), n = 3) 
 ```
 
 ### `subset(df, subset = ..., select = ...)`
@@ -584,11 +634,13 @@ head(subset(iris, select = c(Sepal.Length, Species)), n = 3)
 Possiamo anche combinare le due cose:
 
 ```{r,echo=TRUE, eval=FALSE}
-subset(iris, subset = Species == "setosa" & Sepal.Length > 4, select = c(Sepal.Length, Species))
+subset(my_df, subset = lettere == "a" & numeri > 2, 
+       select = c(lettere, numeri))
 ```
 
 ```{r,echo=TRUE}
-head(subset(iris, subset = Species == "setosa" & Sepal.Length > 4, select = c(Sepal.Length, Species)), n = 3)
+head(subset(my_df, subset = lettere == "a" & numeri > 2, 
+       select = c(lettere, numeri)), n = 3)
 ```
 
 
@@ -597,25 +649,21 @@ head(subset(iris, subset = Species == "setosa" & Sepal.Length > 4, select = c(Se
 La maggiorparte delle volte vi troverete ad accedere alle variabili tramite l'operatore **`$`**. Questo comando può essere utilizzato anche per creare una nuova variabile...
 
 ```{r,echo=TRUE}
-# creo una variablie che è la somma di Length e Width
-iris$somma = iris$Sepal.Length + iris$Sepal.Width
-
-str(iris)
+# creo una variablie che è la somma di numeri e normale
+my_df$somma = my_df$numeri + my_df$normale
+str(my_df)
 ```
 
 ###
 
-Si applicano gli stessi concetti che abbiamo visto per i vettori, potete quindi sia creare che modificare variabili.
+Potete  sia creare che modificare variabili accedendo attraverso **`$`**
 
 ```{r, echo=TRUE}
-my_df = data.frame(num = 1:4, let = letters[1:4])
-my_df
-
 # Modfico la variabile num aggiungendo 1
-my_df$num = my_df$num+1
+my_df$numeri = my_df$numeri+1
 
 # Creo una terza variabile composta dalla varibile num e let
-my_df$both = paste(my_df$num,my_df$let, sep = "_") # ?paste
+my_df$both = paste(my_df$numeri,my_df$lettere, sep = "_") # ?paste
 
 str(my_df)
 ```
@@ -625,13 +673,11 @@ str(my_df)
 
 Essendo simili a delle matrici, i dataframe si possono combinare tra loro attraverso le funzioni **`rbind()`**:
 
-```{r,echo=TRUE, error=TRUE}
-# primo dataframe
-str(my_df)
-# creo un secondo dataframe
-my_df2 = data.frame(num = 4:7, lett = letters[1:4], 
-                    both = paste(4:7,letters[1:4], sep = "_"))
-
+```{r,echo=TRUE}
+my_df2 = data.frame(numero = 1:9, lettere = letters[1:9], 
+                    normale = rnorm(9,mean = 0,sd = 1),
+                    somma = my_df$somma,
+                    both = paste(1:9,letters[1:9], sep = "_"))
 str(my_df2)
 ```
 
@@ -639,16 +685,25 @@ str(my_df2)
 
 **Unisco i due dataframes**
 
--   I dataframes devono avere lo stesso numero di colonne
-
--   I nomi delle colonne devono essere identici
-
 ```{r,echo=TRUE, error=TRUE}
 my_df3 = rbind(my_df,my_df2) 
+```
 
+### 
+
+
+```{r,echo=TRUE, error=TRUE}
 str(my_df)
 str(my_df2)
 ```
+
+
+### 
+
+**Unisco i due dataframes**
+
+-   I dataframes devono avere lo stesso numero di colonne
+-   I nomi delle colonne devono essere identici
 
 ###
 
@@ -660,7 +715,13 @@ names(my_df)
 
 # voglio che i names di my_df2 corrispondano ai names di my_df
 names(my_df2) = names(my_df)
+```
 
+###
+
+**Unisco i dataframe**
+
+```{r,echo=TRUE, error=TRUE}
 my_df3 = rbind(my_df,my_df2) 
 str(my_df3)
 ```
@@ -677,7 +738,7 @@ df_rt = data.frame(subj = factor(rep(c("caio","tizio"),each = 400)),
                                      each = 200, times = 2)),
                       rt = c(rlnorm(n = 400, meanlog = -1, sdlog = .25), 
                              rlnorm(n = 400, meanlog = -.7, sdlog =.3)))
-
+str(df_rt)
 ```
 
 ###
@@ -686,18 +747,9 @@ Dataframe contente l'età:
 
 ```{r, echo=TRUE}
 df_age = data.frame(subj = factor(c("caio","tizio")), age = c(20,3))
-
+str(df_age)
 ```
 
-###
-
-```{r,echo=TRUE}
-str(df_rt) # struttura dataframe tempi di reazione
-head(df_rt)
-
-str(df_age) # struttura dataframe età
-head(df_age)
-```
 
 ###
 
@@ -709,12 +761,12 @@ str(df_all_1)
 
 ###
 
-la funzione **`_join()`**:
+oppure la funzione **`_join()`**:
 
 ```{r, echo=TRUE, message=FALSE}
 library(dplyr) # carico il pacchetto dplyr
 
-df_all_2 = left_join(x = df_rt, y = df_age, by = c("subj")) # esistono anche right_join; full_join 
+df_all_2 = left_join(x = df_rt, y = df_age, by = c("subj")) 
 str(df_all_2)
 ```
 
@@ -754,15 +806,20 @@ df_rt_impo = read_csv("data/df_rt.csv")
 
 ```{r,echo=TRUE,message=FALSE}
 str(df_rt_impo)
+```
+
+
+### Modifico il tipo di dato
+
+
+```{r,echo=TRUE,message=FALSE}
 df_rt_impo$subj = as.factor(df_rt_impo$subj)
 df_rt_impo$cond = as.factor(df_rt_impo$cond)
 str(df_rt_impo)
 ```
 
 
-
-
-## Ora però facciamo un po' di pratica! {style="text-align: center;"}
+### Ora facciamo un po' di pratica! 
 
 <br/> Aprite e tenete aperto questo link:
 
