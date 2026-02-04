@@ -6,7 +6,7 @@ date: ""
 format:
   beamer:
     slide-level: 3
-    theme: Montpellier
+    theme: Madrid
     colortheme: dove
     navigation: horizontal
     highlight-style: breeze
@@ -15,25 +15,37 @@ format:
     outertheme: miniframes
 callout-icon: false
 code-annotations: below
-header-includes: 
-   - \usepackage{graphicx}
-   - \usepackage[italian]{babel}
-   - \usepackage{xcolor}
-   - \AtBeginSubsection{}
-   - \AtBeginDocument{\institute[]{Università di Padova} }
-   - \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
-   - \AtBeginSection[]
-          {
-             \begin{frame}[plain]
-             \tableofcontents[currentsection, hideallsubsections]
-              \end{frame}
-          }
-   - \AtBeginSubsection[]
-          {
-             \begin{frame}[plain]
-             \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-             \end{frame}
-          }
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage[italian]{babel}
+  \usepackage{xcolor}
+  \usepackage{tikz}
+  \usetikzlibrary{mindmap,calc,patterns,decorations.pathmorphing,decorations.markings,arrows,shapes.arrows,shapes.geometric,backgrounds,positioning,shadows.blur}
+  \usepackage[absolute,overlay]{textpos}
+
+  \tikzstyle{latent} = [ellipse, minimum width=2.5cm, minimum height=2cm,text centered, draw=black]
+  \tikzstyle{item} = [rectangle, rounded corners, minimum width=0.5cm, minimum height=2cm, text width =1.7cm, text centered, draw=black]
+  \tikzstyle{arrow} = [thick,->,>=stealth]
+  \newcommand{\tikzoverlay}[1]{\tikz[remember picture,overlay] #1}
+
+  \AtBeginSubsection{}
+
+  \AtBeginDocument{\institute[]{Università di Padova}}
+  \AtBeginDocument{\author{\textbf{Ottavia M. Epifania}\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
+
+  \AtBeginSection[]
+  {
+    \begin{frame}[plain]
+      \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+  }
+
+  \AtBeginSubsection[]
+  {
+    \begin{frame}[plain]
+      \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+  }
 editor_options: 
   chunk_output_type: console
 execute: 
@@ -46,530 +58,186 @@ execute:
 
 ### 
 
-Lezioni: (METTIAMO I NOSTRI ORARI REALI)
+Lezioni:
 
-- Martedì: 10:30-12:30 (orario reale: 10:30 - 12:00)
-- Giovedì: 13:00-15:00 (orario reale: 13:30 - 15:00)
-- Venerdì: 10:30-12:30 (orario reale: 10:30 - 12:00)
+- Lunedì: 12:30-15:30 
+
+*Lunedì 6 aprile non ci sarà lezione*
 
 Ricevimento: su appuntamento, prevalentemente online
 
 \begin{center}
 ottavia.epifania@unipd.it \\
-margherit.calderan@unipd.it
+margherita.calderan@unipd.it
 \end{center}
 
 ## Argomenti 
 
 ### 
 
-Metterei una slide dove spieghiamo a grandi linee cosa vogliamo fare 
+Il corso prevede parti di natura teorica relativi agli aspetti della misura in psicologia (nel caso particolare dei test nel contesto organizzativo) sia da esercitazioni pratiche, dove vengono illustrate le procedure più comuni per l'analisi della dimensionalità dei test e delle loro caratteristiche in generale
 
+Alcune delle tematiche: 
 
-Ti lascio le slide seguenti perché magari ti sono utili per la parte di R (o anche solo per vedere come suo io quarto per il pdf.)
+* Misurazione, scale di misura e statistiche adeguate 
+* Rappresentazioni grafiche del dato
+* Diversi tipi di test per diversi obiettivi misurativi
+* Teoria classica dei test: Approccio esplorativo e confermativo 
+* Applicazioni in R
 
+### Esame 
 
-# Introduzione
+L'esame avrà dura di 90 minuti, sarà composto da 20 domande, di cui 12 a risposta chiusa e 8 di interpretazione di output ottenuti con R 
 
-## Evoluzione e storia di R
+Nelle domande a risposta aperta verranno valutati i seguenti criteri: 
 
-###
+* Chiarezza espositiva 
+* Conoscenza dell'argomento
+* Capacità di veicolare concetti complessi 
 
--   Discende da S e S+
--   Parte del progetto GNU
--   Software libero sotto licenza GNU GPL
--   Open Source
--   <https://www.r-project.org/COPYING>
+# La misura in psicologia
 
-## Caratteristiche di R
-
-###
+### 
 
 :::{.callout-tip}
-## Pros
+## Compito!
 
-Linguaggio object-oriented
-
-Più dimestichezza nell'analisi dei dati, più conoscenza del dato, modelli più complessi 
-
-Permette di addentrarsi sempre di più nei linguaggi di programmazione
-
+Siete responsabile HR in un'azienda e dovete scegliere un* nuov* project manager tra una rosa di candidati. Quale caratteristiche di personalità per voi sono fondamentali in un PM?
 
 :::
 
-::: {.callout-warning}
-## Cons
+. . . 
 
-Difficile da imparare (all'inizio)
+Alcune possibilità: 
 
-Non è intuitivo (all'inizio) $\rightarrow$ se non si ha già una vaga idea di dove partire non si riesce a fare nulla
+* Leadership
+* Stabilità emotiva
+*	coscienziosità
+*	teamwork
+*	resilienza
+*	assertività
 
+
+### 
+
+Cos'è la leadership? 
+
+Come si misura la leadership?
+
+
+
+### 
+
+::: {.callout-note}
+## Misura
+
+Processo di assegnazione di numeri o simboli a proprietà di oggetti, eventi o fenomeni, seguendo regole definite e condivise per rappresentarne quantitativamente le proprietà e consentirne la descrizione, il confronto e l’analisi.
 
 :::
 
-# RStudio 
 
-### 
-
-\vspace*{-0.5mm}
-
-```{r, echo = FALSE, out.width="110%", fig.align='center'}
-knitr::include_graphics("img/Rstudio.png")
-```
-
-
-### console vs. script
-
-
-:::{.callout-note}
-
-## Console
-
-I comandi nella console vengono eseguiti e non salvati
-
-Per eseguire il comando $\rightarrow$ `Invio`
-
-L'output è immediato ed appare nella console
-:::
-
-
-\pause
-
-:::{.callout-note}
-
-## Script
-
-è possibile salvare gli script con tutti i comandi salvati
-
-Per eseguire il comando $\rightarrow$ `Ctrl + Invio` (`cmd + Enter`)
-
-L'output è restituito nella console
-:::
-
-\small
-Per passare alla console $\rightarrow$ `ctrl + 2`
-
-Per passare allo script $\rightarrow$ `ctr + 1`
-
-
-
-
-
-
-# Operatori 
-
-## Matematici
-
-###
-
-| Simbolo | Significato     |
-|---------|-----------------|
-| \+      | Addizione       |
-| \-      | Sottrazione     |
-| \*      | Moltiplicazione |
-| /       | Divisione       |
-| \^      | Potenza         |
-
-**Esempio**:
-
-``` r
-(((4 * 2) - 7) + 2)^3
-```
-
-. . . 
-
-```{r}
-#| echo: false
-(((4 * 2) - 7) + 2)^3
-```
-
-
-###
-
-| Simbolo | Significato       |
-|---------|-------------------|
-| \<      | Minore            |
-| \>      | Maggiore          |
-| \<=     | Minore o uguale   |
-| \>=     | Maggiore o uguale |
-| ==      | Uguale            |
-| !=      | Diverso           |
-
-\small
-
-**Esempio**:
-
-```{r}
-#| eval: false
-(10 / 2) > 3
-```
-
-
-```{r}
-#| echo: false
-(10 / 2) > 3
-```
-
-## Insiemistici
-
-### 
-
-| Simbolo | Significato        |
-|---------|--------------------|
-| `&`       | AND (congiunzione $\land$) |
-|         |                    |
-| `!`       | NOT (negazione $\lnot$)    |
-| `|`       | OR (Disgiunzione $\lor$)
-
-**Esempio**:
-
-```{r}
-#| eval: false
-(2 > 3) & (5 < 10)
-```
-
-. . . 
-
-
-```{r}
-#| echo: false
-(2 > 3) & (5 < 10)
-```
-
-
-## Tavole di verità 
-
-
-### 
-
-```{r}
-#| echo: false
-#| label: tbl-tables
-#| tbl-cap: "Tavole di verità"
-#| tbl-subcap: 
-#|   - "Congiunzione"
-#|   - "Disgiunzione"
-#|   - "Negazione"
-#| layout-ncol: 2
-#| layout-nrow: 2 
-library(knitr)
-
-congiunzione <- data.frame(
-  a = c("V", "V", "F", "F"),
-  b = c("V", "F", "V", "F"),
-  ab = c("V", "F", "F", "F")
-)
-kable(congiunzione,
-      caption = "Congiunzione",
-      col.names = c("$a$", "$b$", "$a \\land b$"))
-
-# Tabella della disgiunzione
-disgiunzione <- data.frame(
-  a = c("V", "V", "F", "F"),
-  b = c("V", "F", "V", "F"),
-  ab = c("V", "V", "V", "F")
-)
-kable(disgiunzione,
-      caption = "Disgiunzione",
-      col.names = c("$a$", "$b$", "$a \\lor b$"))
-
-# Tabella della negazione
-negazione <- data.frame(
-  a = c("V", "F"),
-  nota = c("F", "V")
-)
-kable(negazione,
-      caption = "Negazione",
-      col.names = c("$a$", "$\\lnot a$"))
-```
-
-## Funzioni matematiche di base
-
-### 
-| Funzione | Significato        |
-|----------|--------------------|
-| `log()`    | Logaritmo naturale |
-| `exp()`    | Esponenziale       |
-| `abs()`    | Valore assoluto    |
-| `sqrt()`   | Radice quadrata    |
-| `round()`  | Arrotondamento     |
-| `mean()`   | Media              |
-| `min()`, `max()`   | Minimo, Massimo              |
-| `sd()`, `var()`   | Deviazione st., Varianza  |
-| `sum()`   | Somma  |
-
-
-**Esempio**:
-
-```{r}
-#| output: fragment
-abs(round(-1 * (10 / 3), 2))
-```
-
-
-# Oggetti 
-
-## Variabili, costanti, assegnazione in R
-
-### Assegnazione e concatenazione
-
--   Assegnazione: `<-` oppure `=`
--   Concatenazione: `c()` serve per creare vettori di valori
-
-```{r}
-c(1, 2, 25, 10)
-```
-
-
-. . . 
-
-*   Esempi di variabili: `A`, `a`, `Giorgio`, `X3`
-*   Costanti:
-    +   `pi` (3.14…)
-    +   `TRUE`, `FALSE`
-
-
-### 
-
-
-```{r}
-#| output: fragment
-A <- 12
-a = 6
-(A / a > 0) != TRUE
-```
-
-. . . 
-
-```{r}
-A <- 12.8 # variabile numerica
-nome <- "giorgio"  # variabile character
-b1 <- c(12, 0.3, 5, 778.3) # vettore numerico
-Nomi3 <- c("giorgio", "ugo", "anna") # vettore character
-```
-
-
-
-## Matrici
-
-
-###
-
-Sono dei vettori concatenati di dimensione $r$ (righe) $\times c$ (colonne)
-
-      matrix(data, nrow, ncol, byrow = FALSE)
-
-. . . 
-
-**Creazione matrice:**
-
-```{r}
-#| output: fragment
-A <- c(1, 8, 5, 0)
-M <- matrix(A, 2, 2)
-M
-```
-
-. . . 
-
-\footnotesize
-
-```{r}
-#| eval: false
-?matrix  # Accede alla documentazione della funzione
-```
-
-### Esercizio
-
--   Scaricare il file `LaboratorioRmod1_Esercizi.pdf` dalla piattaforma Moodle del corso
--   Il file contiene la traccia degli esercizi
-
-
-## Indicizzare e selezionare 
-
-    vettore[i],     matrice[r, c]
-    
-`[i]`: l'indice (la posizione) dell'oggetto che si vuole selezionare 
-
-`[r, c]`: riga, colonna (restituisce la cella specifica della matrice)
-
-:::: {.columns}
-
-:::{.column width="50%"}
+```{=tex}
+Vanno distinte le \textbf{quantità} dalle \textbf{qualità} delle unità di analisi 
+	
+\begin{columns}[T]
+\begin{column}{.50\linewidth}
+\begin{center}
+Quantità
+\end{center}
 \small 
 
-```{r}
-#| output: fragment
-peso = c(3.3, 4, 5, 6.4, 3.5, 4.2)
-peso[3]
-```
-
-```{r}
-#| output: fragment
-matrice = matrix(peso, nrow = 2)
-matrice
-```
-
-
-:::
-
-
-:::{.column width="50%"}
-
-\small 
-
-```{r}
-#| output: fragment
-
-matrice[1,]
-matrice[, 2]
-matrice[2,2]
-```
-
-
-:::
-::::
-
-
-## Dataframe 
-
-### 
-
-    data.frame(. . .)
-
-Una matrice con $r$ righe e $c$ colonne
-
-Può contenere variabili di tipo diverso 
-
-\small
-```{r}
-#| output: fragment
-
-sesso = c(rep(c("M","F"), length=length(peso)))
-data = data.frame(peso, sesso)
-data
-```
-
-
-### 
-
-    data[r, c], data$nome_variabile
-
+Si parla di \textbf{misurazione}
+			
+La \textbf{misura} esprime una manifestazione particolare della quantità
+			
+Le misure sono esprimibili con numeri che rappresentano una quantità
+			
+\begin{exampleblock}{Esempio:}
+				
+La larghezza della cattedra è una msiura della quantità ``lunghezza''
+\end{exampleblock}
+\end{column}
 \pause
-
-:::: {.columns}
-
-:::{.column width="50%"}
+\begin{column}{.50\linewidth}
+\begin{center}
+Qualità
+\end{center}
 \small
-```{r}
-data
-```
-
-:::
-
-:::{.column width="50%"}
-
-\small
-```{r}
-
-data[2, 1]
-data$peso
-data$peso[2]
-```
-:::
-
-
-::::
-
-## Liste 
-
-
-### 
-
-      list(name1 = obj1, name2 = obj2, name3 = obj3, . . .)
-      
-\small
-
-Permette di creare liste di oggetti diversi (matrici, vettori, variabli) di diverso tipo (`numeric`, `character`, `integer`)
-
-. . . 
-
-\footnotesize
-
-```{r}
-#| output: fragment
-A <- c(1,8,5,0)
-M <- matrix(A, 2, 2)
-Nomi3 <- c("giorgio", "ugo", "anna")
-LV <- c(TRUE, FALSE, TRUE, TRUE)
-OgLista <- list(a = A, Mat = M, nomi = Nomi3, X = LV)
-str(OgLista)
+			
+Si parla di \textbf{rilevazione}
+			
+Sono caratteristiche che variano da un'unità di analisi all'altra ma non sono quantità 
+			
+Le misure delle qualità si esprimono con simboli (anche numerici) ma \textbf{i numeri non esprimono misure di quantità}
+			
+\begin{exampleblock}{Esempio:}
+				
+Luogo di nascita degli studenti di questa classe
+\end{exampleblock}
+\end{column}
+\end{columns}
 ```
 
 ### 
 
-    lista[[i]], lista$nome_oggettpo
+```{=tex}
+\begin{tikzpicture}[remember picture,overlay]
 
-`[[i]]`: indice dell'oggetto all'interno della lista a cui si vuole accedere 
+\node (n1) at ([yshift=2cm]current page.center) {
+\begin{minipage}{0.7\textwidth}
+\begin{block}{}
+Sistema relazionale numerico
 
-\small
+I numeri naturali con le loro proprietà $\rightarrow$:
 
-```{r}
+\begin{itemize}
+\item Stabilire una relazione d'ordine ($>$, $<$, $=$)
+\item Operazioni
+\end{itemize}
 
-OgLista[[2]]
+\end{block}
+\end{minipage}
+};
+
+\node (n2) at ([yshift=-2cm]current page.center) {
+\begin{minipage}{0.7\textwidth}
+\begin{block}{}
+Sistema relazionale empirico
+
+Proprietà degli oggetti
+\end{block}
+\end{minipage}
+};
+
+\path [line width=0.04cm,<->] (n1.south) edge node[anchor=east] {Regola} (n2.north);
+
+\end{tikzpicture}
 ```
 
 
-`$nome_oggetto`
 
-```{r}
-#| output: fragment
-OgLista$Mat
-```
-
-# L'ambiente 
+## Un esempio 
 
 ### 
 
-Ogni variabile che viene creata viene salvata nell'ambiente di R, visibile in ogni momento:
 
-```{r}
-ls() # lista tutti gli oggetti nell'ambiente
-rm(OgLista) # rimuove OgLista dall'ambiente
-rm(list=ls()) # rimuove tutto dall'ambiente
-```
+```{=tex}
+\begin{tikzpicture}
+\draw[-,thick] (0,-6) -- (8,-6) node[right] {bastoncino $a$};
+\draw[-,thick] (0,-7) -- (4,-7) node[right] {bastoncino $b$};
+\end{tikzpicture}
 
+Il bastoncino $a$ è lungo il doppio del bastoncino $b$: 
 
-# Programmazione entry level 
+\begin{block}{Relazione numerica}
+$b = \dfrac{1}{2}a$ oppure $a = 2b$
 
-### `function()`
+\vspace{1.5mm}
+Se aggiungiamo una costante $k$ ad $a$ e $b$, il rapporto tra $a$ e $b$ non cambia
+\end{block}
 
-```{r}
-#| eval: false
+Il sistema relazionale numerico è in relazione diretta con il sistema relazione empirico
 
-funzione = function(arg1, arg2, arg3,. . .) {
-  operazione1 = codice che fa cose
-  operazione2 = altro codice che fa cose
-  output = operazione1 e operazione2 fanno cose
-  return(output)
-}
-```
-
-### Esempio 
-
-```{r}
-area = function(lato1, lato2) {
-  if (lato1 == lato2) {
-     warning("è un quadrato") 
-  }
-  area = lato1*lato2
-  return(area)
-}
-```
-
-\pause
-
-```{r}
-area(lato1 = 5, lato2 = 2)
+Le variabili psicologiche non fanno parte del sistema relazionale empirico! Come si possono quantificare? Come si possono misurare?
 ```
 
