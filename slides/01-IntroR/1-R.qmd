@@ -44,9 +44,7 @@ header-includes: |
              \begin{frame}[plain]
              \tableofcontents[currentsection, hideallsubsections]
               \end{frame}
-          }
-   \AtBeginSubsection[]
-          {
+          {}
              \begin{frame}[plain]
              \tableofcontents[currentsection,currentsubsection,hideothersubsections]
              \end{frame}
@@ -782,30 +780,45 @@ library(readr) # carico il pacchetto readr
 library(writexl) # carico il pacchetto writexl
 
 write.csv(df_rt, file = "data/df_rt.csv",row.names = FALSE)
+
+save(df_rt, file = "data/df_rt.rda") # formato R
+
 write_xlsx(df_age, path = "data/df_age.xlsx")
-save(df_age, file = "data/df_age.rda") # formato R
+
 ```
 
 ### Importo
 
 ```{r, echo=TRUE, eval=FALSE}
-library(readxl) # carico il pacchetto readxl
-
 df_rt_impo = read_csv("data/df_rt.csv") #utilizza il pacchetto readr
+
+load(file ="data/df_rt.rda") # formato R
+
+library(readxl) # carico il pacchetto readxl
 df_age_impo = read_xlsx("dat/df_age.xlsx")
-load(file ="data/df_age.rda") # formato R
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-df_rt_impo = read_csv("data/df_rt.csv") 
+rt_csv = df_rt_impo = read_csv("data/df_rt.csv") 
+load(file ="data/df_rt.rda") # formato R
 ```
 
+### Formato R
+
+E' consigliato avere una versione del dataset in formato .csv e un'altra in formato .rda (formato specifico di R)
 
 ### Controllo la struttura ed il tipo di dati
 
 
 ```{r,echo=TRUE,message=FALSE}
-str(df_rt_impo)
+str(df_rt)
+```
+
+### Controllo la struttura ed il tipo di dati
+
+
+```{r,echo=TRUE,message=FALSE}
+str(rt_csv)
 ```
 
 
@@ -813,9 +826,9 @@ str(df_rt_impo)
 
 
 ```{r,echo=TRUE,message=FALSE}
-df_rt_impo$subj = as.factor(df_rt_impo$subj)
-df_rt_impo$cond = as.factor(df_rt_impo$cond)
-str(df_rt_impo)
+rt_csv$subj = as.factor(rt_csv$subj)
+rt_csv$cond = as.factor(rt_csv$cond)
+str(rt_csv)
 ```
 
 

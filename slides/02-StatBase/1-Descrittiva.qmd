@@ -1,0 +1,369 @@
+---
+title: "Elementi di statistica descrittiva 1"
+subtitle: "Test per le organizzaioni"
+author: Ottavia M. Epifania, Margherita Calderan
+date: ""
+format:
+  beamer:
+    slide-level: 3
+    toc-depth: 3
+    theme: Montpellier
+    colortheme: dove
+    navigation: horizontal
+    highlight-style: tango
+    classoption: compress, aspectratio=149
+    innertheme: rounded
+    outertheme: miniframes
+callout-icon: false
+code-annotations: below
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage{xcolor}
+  \usepackage{fancyvrb}
+  \usepackage{listings}
+  \definecolor{ColPrimario}{RGB}{100,8,58}
+  \definecolor{ColSecondario}{RGB}{20,143,184}
+  \setbeamercolor{structure}{fg=ColPrimario}
+  \setbeamercolor{itemize item}{fg=ColPrimario}
+  \setbeamercolor{itemize subitem}{fg=ColSecondario}
+  \setbeamercolor{palette primary}{bg=ColPrimario,fg=white}
+  \setbeamercolor{palette secondary}{bg=ColSecondario,fg=white}
+  \setbeamercolor{section in head/foot}{bg=ColPrimario,fg=white}
+  \setbeamercolor{subsection in head/foot}{bg=ColSecondario,fg=white}
+  \setbeamercolor{separation line}{fg=white}
+  \setbeamercolor{upper separation line head}{bg=white}
+  \setbeamercolor{middle separation line head}{bg=white}
+  \setbeamercolor{lower separation line head}{bg=white}
+  \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
+  \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  \AtBeginSubsection{}
+  \AtBeginDocument{\institute[]{Università di Padova} }
+  \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
+  \AtBeginSection[]
+          {
+             \begin{frame}[plain]
+             \tableofcontents[currentsection, hideallsubsections]
+              \end{frame}
+             \begin{frame}[plain]
+             \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+             \end{frame}
+          }
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+---
+
+
+# Indici di variabilità
+
+- Il concetto di variabilità si riferisce a quanto i punteggi di una
+distribuzione sono sparsi ovvero quanto siano simili o dissimili tra loro
+
+- Il ricorso ad un indice di tendenza centrale comporta una forte
+semplificazione, e da solo non fornisce informazioni esaurienti sulla
+distribuzione.
+
+- E’ fondamentale capire quanto i dati siano dispersi intorno
+all’indice di tendenza centrale.
+
+- La variabilità è una caratteristica fondamentale delle distribuzioni
+“*Variability is the essence of statistics*” (Cobb, 1992)
+
+---
+
+Consideriamo i risultati dei compiti di Psicometria ottenuti dagli
+studenti di tre diversi Professori:
+
+```{r}
+prof1 = c(18, 22, 24, 16, 19, 22 , 18, 21)
+mean(prof1)
+
+prof2 = c(10, 10, 12, 10, 30, 28 , 30, 30)
+mean(prof2)
+
+prof3 = c(20, 20, 20, 20, 20, 20 , 20, 20)
+mean(prof3)
+```
+
+In ciascun gruppo di studenti la media dei voti è pari a 20, ma è
+evidente una diversa dispersione intorno a tale valore.
+
+### Indici di variabilità o disperisione
+
+- Dobbiamo quindi considerare la la variabilità (o
+dispersione) di una distribuzione di dati.
+
+- Gli indici di variabilità possono assumere solo valori positivi
+(non ha senso parlare di dispersione negativa) o nulli
+(quando i dati osservati hanno tutti lo stesso valore).
+
+- La variabilità minima possibile è $0$ e si riferisce a distribuzioni
+in cui tutti i punteggi sono uguali e dunque non c’è variabilità
+nei dati.
+
+---
+
+Quale gruppo è più variabile? In quale gruppo le osservazioni si discostano di più dalla media?
+
+```{r, echo=FALSE, fig.width=5, fig.height=2}
+library(ggplot2)
+set_theme(theme_classic())
+data_prof = data.frame(prof = rep(c("prof1","prof2","prof3"), 
+                                  each = length(prof1)),
+                       voti = c(prof1, prof2, prof3)
+                       )
+ggplot(data = data_prof, aes(x = voti, fill = prof, color = prof))+
+  geom_histogram(show.legend = FALSE, lwd = 1,binwidth=3)+
+  facet_wrap(~prof)+scale_color_manual(values = rep("black",3))
+```
+
+## Campo di variazione
+
+Campo di variazione (o gamma) di una distribuzione di dati è la
+diﬀerenza tra il valore massimo e il valore minimo osservato:
+
+$$
+\text{gamma} = X_{max} - X_{min}
+$$
+
+```{r}
+prof1
+
+max(prof1) - min(prof1)
+```
+
+---
+
+Esempio 2:
+
+```{r}
+x1 = c(10, 10, 27, 29, 30, 28, 30, 30)
+x2 = c(10, 10, 16, 17, 30, 20, 21, 30)
+
+max(x1) - min(x1)
+max(x2) - min(x2)
+```
+
+Commenti?
+
+## La diﬀerenza interquartilica
+
+La diﬀerenza interquartilica di una distribuzione è la diﬀerenza
+tra il terzo e il primo quartile (o equivalentemente tra il
+75−esimo e il 25−esimo percentile) dei dati:
+
+$$
+Q = Q_{75} - Q_{25}
+$$
+
+Cosa vuol dire?
+
+---
+
+Immaginiamo di avere i voti di 200 studenti:
+
+```{r, echo=FALSE, fig.width=10, fig.height=5}
+
+set_theme(theme_classic(base_size = 24))
+set.seed(1)
+
+# Esempio didattico: voti uniformi tra 0 e 10
+voti=round(c(runif(150, min = 18, max = 30), runif(50, min = 27, max = 30)),2)
+
+q=quantile(voti, probs = c(.25, .50, .75))  
+
+hist(voti, breaks = 20, col = "grey80", border = "white",
+     main = "Voti", xlab = " ")
+
+abline(v = q["25%"], col = "steelblue", lwd = 4, lty = 2)
+abline(v = q["50%"], col = "firebrick", lwd = 4)
+abline(v = q["75%"], col = "steelblue", lwd = 4, lty = 2)
+
+legend("topright",
+       legend = c("Q1 (25%)", "Q2 (50%)", "Q3 (75%)"),
+       col = c("steelblue", "firebrick", "steelblue"),
+       lty = c(2, 1, 2), lwd = 4, bty = "n")
+```
+
+
+---
+
+Il quantile al $\%p$ è il valore tale che circa $\%p$ dei voti è minore o uguale a quel valore.
+
+- Q1 (25%) indica una soglia sotto cui cade circa un quarto della classe;
+- Q2 (50%) indica una soglia sotto cui cade la metà della classe; 
+- Q3 (75%) lascia sotto di sé circa tre quarti dei voti.
+
+Cos'è Q2?
+
+---
+
+
+```{r}
+head(voti, n = 6) # primi 6 voti
+
+tail(voti, n = 6) # ultimi 6 voti
+```
+
+---
+
+Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
+
+
+```{r}
+v_sorted = sort(voti) # riordino
+
+head(v_sorted, n = 6) # primi 6 voti
+tail(v_sorted, n = 6) # ultimi 6 voti
+
+```
+
+---
+
+**Obiettivo:** Trovare il valore sotto cui cade circa il 25% dei voti.
+
+```{r}
+n = length(voti) # numero di osservazioni
+
+p = 0.25 # voglio il 25° percentile
+
+k = n * p  # # quanti voti rappresentano il 25% del totale (25% di 200)
+
+Q_25 = v_sorted[k] # predo il voto in quella posizione
+
+sum(voti <= Q_25)  # quanti sono <= soglia
+```
+
+---
+
+Esempio 2:
+
+```{r}
+voti = c(21.4, 20, 30, 27.3, 26.4, 20, 18.7, 18.2, 29.4, 28.3)
+
+# riordino
+voti_sorted = sort(voti)
+
+voti_sorted
+```
+
+Qual'è il valore sotto cui cade il 50% dei voti?
+
+
+---
+
+Qual'è il valore sotto cui cade il 50%  e il 75% dei voti?
+
+```{r}
+n = length(voti) # numero di osservazioni
+p = .50 # che percentile voglio
+p50 = n*p # il 50% di 10 
+
+voti_sorted[p50]
+
+p = .75 # che percentile voglio
+p75 = n*p # il 75% di 10 
+
+# ?ceiling computa il numero intero più grande vicino al valore (7.5)
+ceiling(p75)
+voti_sorted[ceiling(p75)]
+```
+
+
+---
+
+Fortunatamente esiste la funzione `quantile()` che permette di calcolare i quantili:
+
+```{r}
+# probs specifica che quantili vogliamo
+
+quantile(voti, probs = c(0.25,0.50,0.75))
+
+```
+
+---
+
+
+La diﬀerenza interquartilica è un indice di variabilità robusto,
+risente cioè poco della presenza di valori anomali (outliers)
+nei dati.
+
+```{r}
+q75 = quantile(voti, probs = 0.75)
+q25 = quantile(voti, probs = 0.25)
+
+q75-q25
+
+IQR(voti) # funzione per il calcolo automatico
+```
+
+
+### Boxplot
+
+```{r, fig.height=4, fig.width=8, echo=FALSE}
+set.seed(1)
+voti <- c(runif(2,   min = 18, max = 19),
+          runif(200, min = 22, max = 30),
+          runif(100, min = 27, max = 30))
+
+# Calcola stats (per riferimento)
+Q1  <- quantile(voti, 0.25)
+Q3  <- quantile(voti, 0.75)
+IQR_val <- IQR(voti)
+
+# ─── GRAFICO PULITO ────────────────────────────────────────────
+op <- par(mar = c(4.5, 2, 2.5, 1), xpd = NA)
+
+bp <- boxplot(voti,
+              horizontal = TRUE,
+              axes = FALSE,
+              main = " ",
+              xlab = "",
+              col = "red",
+              border = "black",
+              outcol = "black",
+              outpch = 1,
+              lwd = 1.5)
+
+axis(1, cex.axis = 1.0)
+mtext("Voti", side = 1, line = 2.5, cex = 1.0)
+
+# Estrai posizioni
+Q1_x  <- bp$stats[2]
+med_x <- bp$stats[3]
+Q3_x  <- bp$stats[4]
+y     <- 1
+
+# ─── ETICHETTE SOPRA (brevi) ────────────────────────────────────
+text(Q1_x,  y + 0.42, expression(Q[1]), cex = 1.1, font = 2)
+text(med_x, y + 0.42, expression(Q[2]),              cex = 1.1, font = 2)  # oppure "Med"
+text(Q3_x,  y + 0.42, expression(Q[3]), cex = 1.1, font = 2)
+
+# ─── ETICHETTA DENTRO AL BOX ────────────────────────────────────
+text((Q1_x + Q3_x)/2, y, "IQR (50%)", col = "white", cex = 1.2, font = 2)
+
+# ─── LEGENDA OUTLIER (solo se ce ne sono) ───────────────────────
+if (length(bp$out) > 0) {
+  # Metti etichetta a lato, non con freccia che attraversa tutto
+  text(par("usr")[1] + 0.5,  # vicino al margine sx
+       y + 0.45, 
+       "Outlier", 
+       cex = 0.95, 
+       adj = 0,
+       font = 3)  # corsivo
+}
+
+
+
+```
+
+### Outilier
+
+- I baffi si estendono fino all'ultimo dato entro $1.5$ volte l'IQR dai quartili. Tutto ciò che sta oltre i baffi è un outlier.
+
+- Un outlier è un valore che dista dai quartili ($Q_1$ o $Q_3$) più di $1.5$ volte la differenza interquartile (IQR).
+
+- È un outlier qualsiasi osservazione che cade fuori dall'intervallo $[Q_1 - 1.5 \times IQR \quad ; \quad Q_3 + 1.5 \times IQR]$.
+

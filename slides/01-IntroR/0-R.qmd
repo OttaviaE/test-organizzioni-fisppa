@@ -40,9 +40,8 @@ header-includes: |
              \begin{frame}[plain]
              \tableofcontents[currentsection, hideallsubsections]
               \end{frame}
-          }
-   \AtBeginSubsection[]
-          {
+          {}
+          
              \begin{frame}[plain]
              \tableofcontents[currentsection,currentsubsection,hideothersubsections]
              \end{frame}
@@ -125,7 +124,7 @@ Se non l'avete già installato, seguite la procedura spiegata a questo link: <ht
 
 Se non volete/non riuscite nell'installazione, potete accedere ad R-studio attraverso il server: <https://posit.cloud/> (collegatevi attraverso la mail unipd)
 
-## Come lavorare in R
+# Come lavorare in R
 
 ![](img/workspace.png){fig-align="left" width="400"}
 
@@ -196,10 +195,10 @@ setwd('/Users/tita/Desktop')
             |
             |-slides
                 |
-                |-00-IntroR
+                |-01-IntroR
 ```
 
-Io sto lavorando dentro la cartella `00-IntroR`.
+Io sto lavorando dentro la cartella `01-IntroR`.
 
 ###
 
@@ -238,7 +237,7 @@ Salviamo:
 :::
 :::::
 
-## Oggetti 
+# Oggetti 
 
 Tutto quello che possiamo creare in R viene definito oggetto (e.g., numeri, vettori, matrici, funzioni). 
 
@@ -356,7 +355,7 @@ Possiamo eliminare un oggetto presente nel nostro enviroment attraverso il coman
 E' possibile anche pulire completamente/svuotare il nostro enrivoment attraverso il comando **`rm(list = ls())`**.
 
 
-## Funzioni
+# Funzioni
 
 Tutto quello che facciamo in R è chiamare **funzioni** su oggetti.
 
@@ -368,7 +367,7 @@ mean(x = vettore)
 ```
 
 
-### Funzioni matematiche di base
+### Funzioni 
 
 Possiamo pensare alle funzioni in R in modo analogo alle classiche funzioni matematiche. Dati dei valori in **input**, le funzioni eseguono dei specifici calcoli e restituiscono in **output** il risultato ottenuto.
 
@@ -396,13 +395,20 @@ mean(x = myvec)
 ?mean
 ```
 
-::: fragment
+
+
+###
+
+In questo caso proviamo ad usare la funzione `mean()`:
+
+
 ```{r, echo = TRUE, warning=TRUE, error=TRUE}
 mean(x = myvec, na.rm = TRUE) # x definito, na.rm definito
 
 mean(myvec, TRUE) # cosa succede?
 ```
-:::
+
+
 
 ### Packages
 
@@ -418,7 +424,7 @@ In R è possibile installare e caricare pacchetti aggiuntivi che non fanno altro
 
 ![](img/pkg.png){fig-align="center" width="300"}
 
-## Operatori 
+# Operatori 
 
 ### Operatori Matematici
 
@@ -519,40 +525,25 @@ x
 ```
 
 ::: fragment
-```{r, echo=TRUE, eval=FALSE}
+```{r, echo=TRUE, eval=TRUE}
 x>25 & x>60
 ```
 :::
 
-::: fragment
-```{r, echo=FALSE, eval=TRUE}
-x>25 & x>60
-```
-:::
 
 ::: fragment
-```{r, echo=TRUE, eval=FALSE}
+```{r, echo=TRUE, eval=TRUE}
 x>25 | x>60
 ```
 :::
 
-::: fragment
-```{r, echo=FALSE, eval=TRUE}
-x>25 | x>60
-```
-:::
 
 ::: fragment
-```{r, echo=TRUE, eval=FALSE}
+```{r, echo=TRUE, eval=TRUE}
 !(x>18)
 ```
 :::
 
-::: fragment
-```{r, echo=FALSE, eval=TRUE}
-!(x>18)
-```
-:::
 
 
 ## R ed errori
@@ -592,7 +583,7 @@ Come risolvere?
 
 ###
 
-Facciamo un po' di pratica! {style="text-align: center;"}
+Facciamo un po' di pratica!
 
 <br/> Aprite e tenete aperto questo link: <https://etherpad.wikimedia.org/p/test-organizzazioni>
 

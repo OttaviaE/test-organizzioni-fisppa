@@ -1,0 +1,808 @@
+---
+title: "Elementi di statistica descrittiva 0"
+subtitle: "Test per le organizzaioni"
+author: Ottavia M. Epifania, Margherita Calderan
+date: ""
+format:
+  beamer:
+    slide-level: 3
+    toc-depth: 3
+    theme: Montpellier
+    colortheme: dove
+    navigation: horizontal
+    highlight-style: tango
+    classoption: compress, aspectratio=149
+    innertheme: rounded
+    outertheme: miniframes
+callout-icon: false
+code-annotations: below
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage{xcolor}
+  \usepackage{fancyvrb}
+  \usepackage{listings}
+  \definecolor{ColPrimario}{RGB}{100,8,58}
+  \definecolor{ColSecondario}{RGB}{20,143,184}
+  \setbeamercolor{structure}{fg=ColPrimario}
+  \setbeamercolor{itemize item}{fg=ColPrimario}
+  \setbeamercolor{itemize subitem}{fg=ColSecondario}
+  \setbeamercolor{palette primary}{bg=ColPrimario,fg=white}
+  \setbeamercolor{palette secondary}{bg=ColSecondario,fg=white}
+  \setbeamercolor{section in head/foot}{bg=ColPrimario,fg=white}
+  \setbeamercolor{subsection in head/foot}{bg=ColSecondario,fg=white}
+  \setbeamercolor{separation line}{fg=white}
+  \setbeamercolor{upper separation line head}{bg=white}
+  \setbeamercolor{middle separation line head}{bg=white}
+  \setbeamercolor{lower separation line head}{bg=white}
+  \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
+  \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  \AtBeginSubsection{}
+  \AtBeginDocument{\institute[]{Università di Padova} }
+  \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
+  \AtBeginSection[]
+          {
+             \begin{frame}[plain]
+             \tableofcontents[currentsection, hideallsubsections]
+              \end{frame}
+          {}
+             \begin{frame}[plain]
+             \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+             \end{frame}
+          }
+
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+---
+
+# Statistica descrittiva e inferenziale
+
+- **Statistica descrittiva**  
+  - Riassume, descrive, esplora i dati osservati  
+  - Prima fase nella valutazione delle proprietà psicometriche di uno strumento  
+
+- **Statistica inferenziale**  
+  - Usa i dati di un **campione** per fare inferenze sulla **popolazione**  
+  - Confronti tra gruppi, valutazione di interventi, validazione di test  
+
+
+## La statistica descrittiva
+
+-   È utile per controllare, descrivere ed esplorare i dati
+
+-   Serve a riassumere i dati attraverso indici statistici, tabelle e
+grafici
+
+-   **Non esiste una buona analisi statistica, senza una buona analisi descrittiva**
+
+## Tecniche
+
+-   **Distribuzione di frequenza e grafici**: procedure per descrive tutti i dati in modo conveniente
+
+-   **Indici di tendenza centrale/indici di posizione**: singoli numeri che descrivono "dove" si colloca la distribuzione dei punteggi, dove è situato il "centro di gravità" dei punteggi stessi. Nel caso dei quantili (quartili, decili, percentili) si tratta di valori che dividono un insieme di dati ordinati in intervalli uguali, e rappresentano le soglie sotto le quali cade una certa percentuale dei dati.
+
+---
+
+-   **Indici di variabilità**: singoli numeri che descrivono quanto la distribuzione dei punteggi è "sparsa" se i punteggi sono simili tra loro e tendono a variare poco o ppure si diﬀerenziano molto e tendono a variare significativamente da soggetto a soggetto.
+
+-   **Indici trasformati**: nuovi punteggi che sostituiscono le cifre originarie e permettono di capire rapidamente quanto ogni valore si possa dire buono o no rispetto a tutti gli altri
+
+-   **Aree sottese a una curva normale**: proporzioni che dicono la probabilità di ottenere casualmente un punteggio più basso o più alto di quello considerato, data una particolare distribuzione normale o gaussiana
+
+
+
+# Frequenze
+
+## Dati
+
+Indichi il suo grado di accordo con l’obbligo di installare sul computer aziendale un software di controllo che registri le ore di attività. Risponda utilizzando la seguente scala: per niente, poco, abbastanza, completamente.
+
+Il dataset raccoglie i dati rilevati su 20 intervistati sulla base della seguente codifica: 
+1= per niente, 2=poco, 3=abbastanza, 4=completamente
+
+
+---
+
+
+```{r, echo=TRUE}
+# installo
+#> install.packages("dplyr")
+# carico pacchetti
+library(dplyr)
+# carico il dataset
+load("data/data_hr.rda")
+```
+
+
+---
+
+
+```{r, echo=TRUE}
+tibble(data_hr) #visualizzo il dataset
+```
+
+
+---
+
+Verifico il tipo di dato codificato:
+
+```{r}
+str(data_hr)
+```
+
+Trasformo **id** e **reparto** a fattore, attraverso la funzione `as.factor()`
+
+```{r}
+data_hr$id = as.factor(data_hr$id)
+data_hr$reparto = as.factor(data_hr$reparto)
+```
+
+
+---
+
+Trasformo **accordo** a fattore, attribuendoci delle labels, quindi attraverso la funzione `factor()`:
+
+```{r}
+data_hr$accordo = factor(data_hr$accordo, 
+                     levels=c(1,2,3,4), 
+                     labels=c("per_niente","poco","abbastanza","molto"))
+
+data_hr$accordo
+```
+
+---
+
+```{r}
+# Controllo il tipo di dato
+str(data_hr$accordo)
+```
+
+
+---
+
+```{r}
+head(data_hr$accordo,n=4) # le prime 4 unità statistiche
+
+tail(data_hr$accordo,n=2) # le ultime 2 unità statistiche
+
+n = nrow(data_hr) # numerosità campionaria
+
+```
+
+
+
+## Notazioni fondamentali
+
+- Sia $X$ la variabile grado di accordo 
+
+- Sia $Xj$ la modalità $j$−esima di $X$, dove $j = 1 \dots 4$
+
+- Sia n il totale delle unità statistiche ($n = 20$)
+
+## Le frequenze assolute semplici
+
+- La frequenza assoluta semplice di una modalità è il numero naturale di
+unità statistiche che presentano tale modalità
+
+- La generica frequenza assoluta semplice associata alla modalità $j$ si
+indica con il simbolo $f_j$: 
+    
+    $f_j$ = numero di unità statistiche con modalità $j$
+
+
+---
+
+Ad esempio nel nostro caso, come calcolo la frequenza assoluta semplice della modalità 2 (ie. poco)? 
+
+```{r}
+# vettore di TRUE e FALSE, TRUE quando accordo è poco
+data_hr$accordo=="poco"
+```
+
+```{r, eval=TRUE}
+# Sommo tutti i TRUE, perchè TRUE = 1
+sum(data_hr$accordo=="poco")
+```
+
+$f_2 = 3$, indica che 3 rispondenti hanno
+espresso la modalità poco d’accordo.
+
+---
+
+Se vogliamo calcolare le frequenze assolute semplici per ogni modalità, possiamo utilizzare la funzione `table()`, oppure la funzione `count()`
+
+```{r, eval=TRUE}
+table(data_hr$accordo)
+
+data_hr |> count(accordo, name = "fj")
+```
+
+
+## Le frequenze assolute cumulate
+
+- La frequenza assoluta cumulata di una modalità è la somma delle
+frequenze assolute semplici delle modalità precedenti alla modalità data
+più la frequenza assoluta semplice della modalità data
+
+- La generica frequenza assoluta cumulata associata alla modalità $j$ si
+indica con il simbolo $Fj$
+
+$$
+F_j = \sum_{i \le j} f_i
+$$
+
+---
+
+Quanti hanno hanno espresso un grado di accordo inferiore o uguale a poco d’accordo?
+
+```{r, eval=TRUE}
+data_hr |> count(accordo, name = "fj")
+```
+
+
+---
+
+```{r, eval=TRUE}
+# sommo quanti hanno risposto per niente a quanti poco
+sum(data_hr$accordo=="per_niente") + sum(data_hr$accordo=="poco")
+```
+
+Ad esempio, $F_2 = 7$, indica che 7 rispondenti hanno espresso un grado di
+accordo inferiore o uguale a poco d’accordo
+
+---
+
+Attraverso la funzione `cumsum()` possiamo calcolare la somma cumulata, in questo caso le frequenze assolute cumulate
+
+```{r}
+table(data_hr$accordo)
+cumsum(table(data_hr$accordo))
+```
+
+---
+
+Attraverso la funzione `cumsum()` possiamo calcolare la somma cumulata, in questo caso le frequenze assolute cumulate
+
+```{r}
+data_hr |> count(accordo, name = "fj")
+
+data_hr |> count(accordo, name = "fj") |>
+  mutate(Fj = cumsum(fj)) #aggiungo una variabile
+```
+
+
+## Le frequenze relative semplici
+
+- La frequenza relativa semplice è data dal rapporto tra la **frequenza assoluta semplice di tale modalità** e **il numero totale** di unità statistiche
+osservate
+
+- La generica frequenza relativa semplice associata alla modalità $j$ si indica
+con il simbolo $pj$
+
+$$
+p_j = \frac{f_j}{n}
+$$
+
+---
+
+Come calcolo la frequenza assoluta semplice?
+
+```{r}
+table(data_hr$accordo)
+```
+
+
+---
+
+Qual'è il numero totale di unità statistiche?
+
+```{r}
+n
+nrow(data_hr)
+length(data_hr$accordo)
+```
+
+
+---
+
+Qual'è frequenza relativa semplice associata alla modalità 3?
+
+```{r}
+sum(data_hr$accordo=="abbastanza")/n
+```
+
+
+Ad esempio, $p_3 = 0.40$ indica che il 40% dei rispondenti ha manifestato un grado d’accordo pari a abbastanza.
+
+---
+
+Qual'è frequenza relativa semplice associata alla tutte le modilità?
+
+```{r}
+table(data_hr$accordo)/n
+```
+
+
+**Una frequenza relativa semplice varia sempre tra 0 e 1.**
+
+
+## Le frequenze relative cumulate
+
+-  La frequenza relativa cumulata di una modalità è la somma delle
+frequenze relative semplice delle modalità precedenti alla modalità data
+più la frequenza relativa semplice della modalità data
+
+- La generica frequenza relativa cumulata associata alla modalità $j$ si
+indica con il simbolo $P_j$
+
+$$
+P_j = \sum_{i \le j} p_i
+$$
+
+---
+
+Come prima, attraverso la funzione `cumsum()`, possiamo calcolare le frequenze relative **cumulate**
+
+```{r}
+# frequenze relative semplici
+table(data_hr$accordo)/n
+
+# frequenze relative cumulate
+cumsum(table(data_hr$accordo))/n
+```
+
+Ad esempio, $P_2 = 0.35$, indica che il 35% dei rispondenti ha espresso
+un grado di accordo inferiore o uguale a poco d’accordo.
+
+**Una frequenza relativa cumulata varia sempre tra 0 e 1.**
+
+---
+
+```{r, echo=FALSE}
+tabella=tibble(data_hr) |>
+  count(accordo, name = "fj") |>
+  mutate(
+    `Indice j` = row_number(),
+    `Modalità` = as.character(accordo),
+    Xj = 1:4,                 
+    Fj = cumsum(fj),
+    pj = fj / sum(fj),
+    Pj = cumsum(pj)
+  ) |>
+  select(`Indice j`, `Modalità`, Xj, fj, Fj, pj, Pj)
+
+
+knitr::kable(tabella, align = "ccccccc")
+
+```
+
+
+---
+
+1. La frequenza assoluta cumulata riferita all’ultima modalità ($j \in 1 \dots k$) è pari al numero totale delle unità statistiche:
+
+$$
+F_k = n
+$$
+
+2. La frequenza relativa cumulata riferita all’ultima modalità ($j \in 1 \dots k$) è pari 1:
+
+
+$$
+P_k = 1
+$$
+
+
+## Visualizzazione
+
+---
+
+```{r, fig.width=5,fig.height=3.5}
+barplot(table(data_hr$accordo), ylab="?", 
+         xlab="Accordo") # diagramma a barre
+```
+
+
+---
+
+```{r, fig.width=5,fig.height=3.5}
+barplot(table(data_hr$accordo)/n, ylab="?", 
+         xlab="Accordo") # diagramma a barre
+```
+
+---
+
+```{r, fig.width=5,fig.height=3.5}
+barplot(cumsum(table(data_hr$accordo)), ylab="?", 
+         xlab="Accordo") # diagramma a barre
+```
+
+
+---
+
+```{r, fig.width=5,fig.height=3.8}
+barplot(cumsum(table(data_hr$accordo))/n, ylab="?", 
+         xlab="Accordo") # diagramma a barre
+```
+
+
+# Indici di tendenza centrale
+
+Un indice di tendenza centrale è un valore che descrive e riassume
+il centro di una distribuzione di dati
+
+
+## Dati
+
+I dati che seguono rappresentano un esempio simulato di valutazioni di prestazione in un test di **problem solving** raccolte su $n=20$ dipendenti appartenenti a quattro reparti (Produzione, Commerciale, HR, IT). Il punteggio è dato dal numero di risposte corrette su 10 ed è ricondotto a quattro fasce (A,B,C,D).
+
+```{r, echo=FALSE}
+load("data/data_ps.rda")   
+
+data_ps$fascia_ps = as.factor(data_ps$fascia_ps)
+
+tab_ps <- data_ps |>
+  mutate(
+    fascia_ps = factor(
+      fascia_ps,
+      levels = c(
+        "Intervento immediato (D)",
+        "Richiesta di attenzione (C)",
+        "Sufficiente (B)",
+        "Criterio raggiunto (A)"
+      ),
+      labels = c(
+        "Intervento immediato (D)",
+        "Richiesta di attenzione (C)",
+        "Buono (B)",
+        "Ottimo (A)"
+      )
+    )
+  ) |>
+  count(fascia_ps, name = "Numero", .drop = FALSE) |>
+  mutate(`Risposte corrette` = case_when(
+    fascia_ps == "Intervento immediato (D)"    ~ "0–4",
+    fascia_ps == "Richiesta di attenzione (C)" ~ "5–6",
+    fascia_ps == "Buono (B)"             ~ "7–9",
+    fascia_ps == "Ottimo (A)"      ~ "10"
+  )) |>
+  select(Prestazione = fascia_ps, `Risposte corrette`, Numero)
+
+rownames(tab_ps) <- NULL
+knitr::kable(tab_ps, align = "ccc")
+
+```
+
+
+## La moda
+
+La moda di una distribuzione di dati rilevati sulla variabile $X$, è la
+modalità che si presenta con la massima frequenza.
+
+Ad esempio, rispetto ai dati relativi “alle capacità di problem solving”, la moda è ....
+
+```{r, echo=FALSE}
+knitr::kable(tab_ps, align = "ccccccc")
+```
+
+---
+
+La moda di una distribuzione di dati rilevati sulla variabile $X$, è la
+modalità che si presenta con la massima frequenza.
+
+Ad esempio, rispetto ai dati relativi “alle capacità di problem solving”, la moda è ....
+
+```{r, echo=FALSE}
+knitr::kable(tab_ps, align = "ccccccc")
+```
+
+la moda è la modalità "Buono" a cui è associata una frequenza di 17
+
+
+---
+
+Può accadere che data una distribuzione di dati, esista più di
+una modalità a cui è associata la massima frequenza. In
+questi casi non esiste un’unica Moda, e si parlerà a seconda
+del caso di distribuzione bi-modale (con due mode),
+tri-modale (con tre mode) ....
+
+
+---
+
+Proviamo a calcolare la moda attraverso i comandi imparati per il calcolo delle frequenze:
+
+```{r}
+# carico il data set
+load("data/data_ps.rda")  
+```
+
+Secondo voi qual'è la variabile d'interesse?
+
+Che funzione posso usare per ottenere la moda?
+
+
+---
+
+```{r}
+#visualizzo la struttura/le variabili
+str(data_ps)
+```
+
+
+---
+
+
+```{r}
+table(data_ps$fascia_ps)
+```
+
+
+
+## La media aritmetica
+
+La media aritmetica di una distribuzione di dati rilevati sulla
+variabile $X$, è data dalla somma dei dati divisa per il numero di
+unità statistiche:
+
+$$
+\bar{X} = \frac{\sum_{i=1}^{n} X_i}{n}
+$$
+
+---
+
+Di seguito viene riportato il dettaglio delle risposte corrette riportato da ciascun dipendente:
+
+```{r}
+data_ps$problem_solving_0_10
+```
+
+
+---
+
+Calcolo della media 
+$$
+\bar{X} = \frac{\sum_{i=1}^{20} X_i}{20}
+$$
+
+```{r}
+n = length(data_ps$problem_solving_0_10)
+n
+
+sum(data_ps$problem_solving_0_10)/n
+
+mean(data_ps$problem_solving_0_10)
+```
+
+
+### Proprietà della media
+
+- La media varia tra il minimo e il massimo dei dati
+osservati
+
+- La media è l’unico valore che, se sostituito a tutti i dati
+osservati, non cambia la loro somma (e quindi la loro
+media)
+
+### Proprietà della media
+
+- Aggiungendo a ciascun dato originale una costante $k$ si otterrà una media pari alla somma della media dei dati originali e la costante $k$:
+
+$$
+\overline{X} = \frac{\sum(X_i + k)}{n} = \overline{X}_{\text{dati originali}} + k
+$$
+
+```{r}
+k = 10
+x1 = data_ps$problem_solving_0_10
+media1 = mean(x1)
+  
+x2 = data_ps$problem_solving_0_10 + k
+media2 = mean(x2)
+
+media2-media1
+```
+
+
+### Proprietà della media
+
+- Moltiplicando ciascun dato per una costante $k$ si otterrà una media pari alla moltiplicazione tra la media dei dati originali e la costante $k$:
+
+$$
+\overline{X} = \frac{\sum(kX_i)}{n} = k\overline{X}_{\text{dati originali}}
+$$
+
+```{r}
+k = 10
+x1 = data_ps$problem_solving_0_10
+media1 = mean(x1)
+  
+x2 = data_ps$problem_solving_0_10 * k
+media2 = mean(x2)
+
+media2/media1
+```
+
+### Proprietà della media
+
+- La somma degli scarti tra i dati rilevati e la media è pari a 0:
+
+$$
+\overline{X} = \sum(X_i - \overline{X}) = 0
+$$
+
+```{r}
+media = mean(data_ps$problem_solving_0_10)
+
+round(sum(data_ps$problem_solving_0_10-media),10)
+```
+
+## La mediana
+
+- La mediana di una distribuzione di dati ordinati rilevati sulla
+variabile $X$, è il dato che occupa la posizione centrale rispetto
+alla distribuzione dei dati.
+
+- La mediana si indica con il simbolo **Mdn**.
+
+### Calcolo della mediana: caso n dispari
+
+- Se $n$ (la numerosità dei dati raccolti) è dispari il valore
+centrale della serie ordinata dei dati è la mediana.
+
+- La posizione $i$ del dato corrispondente alla mediana è dato
+dalla seguente formula:
+
+$$
+i = \frac{n+1}{2}
+$$
+
+
+---
+
+Siccome il nostro dataset è composto da 20 osservazioni, creiamo un dataset identico ma senza un'osservazione a caso.
+
+```{r}
+nrow(data_ps)
+
+#rimuovo un'osservazione, una riga a caso
+data_dispari = data_ps[-c(sample(1:nrow(data_hr), size = 1)),]
+
+nrow(data_dispari)
+```
+
+
+
+---
+
+Come trovo la mediana?
+
+```{r}
+n = nrow(data_dispari)
+
+i = (n+1)/2
+i
+
+# ? sort() attraverso la funzione sort si 
+# può ordinare in ordine crescente una variabile
+x_order = sort(data_dispari$problem_solving_0_10)
+x_order
+
+```
+
+
+---
+
+Come trovo la mediana?
+
+```{r}
+x_order[i] # estraggo l'elemento in posizione i
+
+median(data_dispari$problem_solving_0_10)
+
+```
+
+
+### Calcolo della mediana: caso n pari
+
+- Se $n$ è pari non esiste un valore della serie di dati che possa
+essere definito centrale.
+
+- Si potrà unicamente dire che la mediana è compresa tra i
+valori aventi le seguenti posizioni “centrali”.
+
+$$
+i_{inf} = \frac{n}{2} \quad\quad i_{sup} = \frac{n}{2} +1
+$$
+
+
+---
+
+Come trovo la mediana?
+
+```{r}
+n = nrow(data_ps)
+n
+
+i_inf = n/2
+i_inf
+i_sup = (n/2) + 1
+i_sup
+
+x_order = sort(data_ps$problem_solving_0_10)
+x_order
+```
+
+
+---
+
+Come trovo la mediana?
+
+```{r}
+# estraggo gli elementi in posizione i_inf e i_sup
+x_order[i_inf:i_sup] 
+```
+
+In questo esempio il valore in posizione $i_{inf}$ equivale al valore in posizione $i_{sup}$, quindi possiamo dire che la mediana $=8$.
+
+---
+
+Nel caso in cui ottenessimo differenti valori, concluderemmo che la mediana è compresa tra quei valori.
+
+---
+
+Nel caso in cui $n$ è pari e i dati a disposizione oltre che **ordinali**
+sono anche **continui** (o sulla base di appropriate ipotesi sono
+assunti come continui) è possibile stimare la mediana attraverso
+l’interpolazione lineare:
+
+$$
+X_{Mdn} = \frac{X_{inf} + X_{sup}}{2}
+$$
+
+---
+
+
+```{r}
+voto = c(24, 29, 30, 22, 22,26) #creo vettore voti
+n = length(voto) # quante osservazioni ho?
+voto_ordinato = sort(voto) #ordino gli elementi
+voto_ordinato
+
+voto_ordinato[n/2] # i_inf = n/2
+voto_ordinato[(n/2) + 1] # i_sup = (n/2) + 1
+
+(24+26)/2
+```
+
+Potremmo concludere che la mediana stia tra 24 e 26, e quella stimata sia 25.
+
+### Proprietà della mediana
+
+- La mediana è poco influenzata (al contrario della media) da
+valori estremamente grandi o piccoli presenti nella
+distribuzione dei dati. Per questo viene detta stimatore
+“robusto”
+
+
+## Indici di tendenza centrale e scale di misura
+
+
+```{r, echo=FALSE}
+
+tab_indici <- data.frame(
+  Indice = c("Moda", "Mediana", "Media"),
+  `Variabile nominale` = c("SI", "NO", "NO"),
+  `Variabile ordinale` = c("SI", "SI", "NO"),
+  `Variabile quantitativa` = c("SI", "SI", "SI"),
+  check.names = FALSE
+)
+
+kableExtra::kable(tab_indici,
+      format   = "latex",   # se sei in PDF/Beamer
+      booktabs = TRUE,
+      align    = c("l", "c", "c", "c"))
+```
+
