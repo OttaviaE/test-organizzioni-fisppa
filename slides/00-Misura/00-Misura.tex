@@ -1,0 +1,1083 @@
+\documentclass[compress]{beamer}
+\usetheme{Montpellier}
+\useinnertheme{rounded}
+\useoutertheme{miniframes}
+\usecolortheme{dove}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage[italian]{babel}
+\usepackage{tikzsymbols}
+\usepackage{tikz}
+\usepackage{spot}
+\usepackage{tabularx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\setbeamertemplate{caption}[numbered]
+\usetikzlibrary{mindmap,calc,patterns,decorations.pathmorphing,decorations.markings, arrows, shapes.arrows, shapes, backgrounds,positioning,shadows.blur}
+\usepackage[absolute,overlay]{textpos}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{latent} = [ellipse, minimum width=2.5cm, minimum height=2cm,text centered, draw=black]
+\tikzstyle{item} = [rectangle, rounded corners, minimum width=0.5cm, minimum height=2cm, text width =1.7cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\def\tikzoverlay{%
+	\tikz[remember picture, overlay]\node[every overlay node]
+}%
+
+\setbeamersize{text margin left=10pt, text margin right=10pt}
+\newcommand\Factor{1.2}
+
+  \AtBeginSection[]
+  {
+    \begin{frame}[plain]
+      \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+  }
+
+  \AtBeginSubsection[]
+  {
+    \begin{frame}[plain]
+      \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+  }
+  
+\setbeamertemplate{footnote}{%
+	\parindent 1em\noindent%
+	\raggedright
+	\insertfootnotetext\par%
+}
+
+  \tikzset{
+	invisible/.style={opacity=0},
+	visible on/.style={alt={#1{}{invisible}}},
+	alt/.code args={<#1>#2#3}{%
+		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+	},
+	every overlay node/.style={
+		%draw=black,fill=white,rounded corners,
+		anchor=north west, inner sep=0pt,
+	},
+}
+
+\def\tikzoverlay{%
+	\tikz[remember picture, overlay]\node[every overlay node]
+}%
+
+
+\title[Misura in $\psi$]{Modulo Didattico 1: Il concetto di Misura (in psicologia)}
+\subtitle{Test per le organizzazioni}
+\date{A.A.: 2025/2026}
+\author[Ottavia Epifania]{\texorpdfstring{Dr. Ottavia M. Epifania\newline\url{ottavia.epifania@unipd.it}}{Author}}
+\institute[]{Università di Padova}
+\author{\textbf{Ottavia M. Epifania}\\\texttt{ottavia.epifania@unipd.it}\\
+Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}
+
+\begin{document}
+
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+\section{Il corso}
+
+%------------------------------------------------
+\begin{frame}{Orari}
+
+\textbf{Lezioni:}
+\begin{itemize}
+    \item Lunedì: 12:30--15:30
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textit{Lunedì 6 aprile non ci sarà lezione}
+
+\vspace{0.5cm}
+
+\textbf{Ricevimento:} su appuntamento, prevalentemente online
+
+\vspace{0.5cm}
+
+\begin{center}
+ottavia.epifania@unipd.it \\
+margherita.calderan@unipd.it
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Argomenti}
+
+Il corso prevede parti di natura teorica relative agli aspetti della misura in psicologia (nel caso particolare dei test nel contesto organizzativo) e esercitazioni pratiche, dove vengono illustrate le procedure più comuni per l'analisi della dimensionalità dei test e delle loro caratteristiche.
+
+\vspace{0.4cm}
+
+\textbf{Alcune delle tematiche:}
+\begin{itemize}
+    \item Misurazione, scale di misura e statistiche adeguate
+    \item Rappresentazioni grafiche del dato
+    \item Diversi tipi di test per diversi obiettivi misurativi
+    \item Teoria classica dei test: approccio esplorativo e confermativo
+    \item Applicazioni in R
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Esame}
+
+L'esame avrà durata di 90 minuti e sarà composto da 20 domande:
+\begin{itemize}
+    \item 12 a risposta chiusa
+    \item 8 di interpretazione di output ottenuti con R
+\end{itemize}
+
+\vspace{0.4cm}
+
+Nelle domande a risposta aperta verranno valutati i seguenti criteri:
+
+\begin{itemize}
+    \item Chiarezza espositiva
+    \item Conoscenza dell'argomento
+    \item Capacità di veicolare concetti complessi
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\section{La misura in psicologia}
+
+%------------------------------------------------
+\begin{frame}{}
+
+\begin{block}{Compito!}
+Siete responsabili HR in un'azienda e dovete scegliere un* nuov* project manager tra una rosa di candidati. 
+
+Quali caratteristiche di personalità ritenete fondamentali in un PM?
+\end{block}
+
+\pause
+
+\textbf{Alcune possibilità:}
+\begin{itemize}
+    \item Leadership
+    \item Stabilità emotiva
+    \item Coscienziosità
+    \item Teamwork
+    \item Resilienza
+    \item Assertività
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\Large
+\centering
+Cos'è la leadership? 
+
+Come si misura la leadership? 
+
+\end{frame}
+
+
+\begin{frame}
+
+\vspace{-5mm}
+\begin{block}{Misura}
+
+Processo di assegnazione di numeri o simboli a proprietà di oggetti, eventi o fenomeni, seguendo regole definite e condivise per rappresentarne quantitativamente le proprietà e consentirne la descrizione, il confronto e l’analisi.
+
+\end{block}
+
+\vspace{-2mm}
+
+\begin{columns}[T]
+\begin{column}{.50\linewidth}
+\begin{center}
+Quantità
+\end{center}
+\small 
+
+\textbf{Misurazione}
+			
+La \textbf{misura} esprime una manifestazione particolare della quantità
+			
+Le misure sono esprimibili con numeri che rappresentano una quantità
+			
+\begin{exampleblock}{Esempio:}
+
+\small				
+La larghezza della cattedra è una misura della quantità ``lunghezza''
+\end{exampleblock}
+\end{column}
+
+\begin{column}{.50\linewidth}
+\begin{center}
+Qualità
+\end{center}
+\small
+			
+\textbf{Rilevazione}
+			
+Caratteristiche che variano da un'unità di analisi all'altra ma non sono quantità 
+			
+Le rilevazioni si esprimono con simboli (anche numerici) ma \textbf{i numeri non esprimono misure di quantità}
+			
+\begin{exampleblock}{Esempio:}
+
+\small				
+Luogo di nascita degli studenti di questa classe
+\end{exampleblock}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+	
+	\begin{tikzpicture}
+		\draw[-,thick] (0,-6) -- (8,-6) node[left, xshift =3cm] {bastoncino $a$};
+		\draw[-,thick] (0,-7) -- (4,-7) node[left, xshift =3cm] {bastoncino $b$};
+	\end{tikzpicture}
+	
+	Il bastoncino $a$ è lungo il doppio del bastoncino $b$: 
+	
+	\begin{block}%
+		
+		$b = \dfrac{1}{2}a$ \hspace{1.5mm} oppure $a = 2b$
+		
+		\vspace{1.5mm}
+		Se aggiungiamo una costante $k$ ad $a$ e $b$, il rapporto tra $a$ e $b$ non cambia
+	\end{block}
+	
+	Il sistema relazionale numerico è in relazione diretta con il sistema relazione empirico
+	
+	\pause
+	\vspace{2mm}
+	Le variabili psicologiche non fanno parte del sistema relazionale empirico! Come si possono quantificare? Come si possono misurare?
+\end{frame}
+
+
+\begin{frame}
+	\begin{center}
+		Cos'è la {\Large{leadership}}?
+		\pause
+		\\\vspace{1.5mm} Si può vedere la leadership?
+	\end{center}
+	
+	\pause
+	La leadership di per sé non si può vedere, non si può toccare, \textbf{non si può osservare direttamente} $\rightarrow$ non è nel sistema relazionale empirico
+	
+	\vspace{1.5mm}
+	
+	Quello che si può vedere direttamente sono i \textbf{comportamenti} che possono essere ricondotti alla leadership $\rightarrow$ sono nel sistema relazionale empirico e si possonono misurare 
+	
+	Si ``traduce'' la definizione teorica di una variabile/caratteristica psicologica in qualcosa di osservabile $\rightarrow$ i comportamenti (che possono anche essere le risposte a un questionario!)
+\end{frame}
+
+\begin{frame}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=.9\linewidth]{img/misura.png}
+	\end{figure}
+	
+\vskip0pt plus 1filll
+
+\color{black}\rule{0.30\linewidth}{0.5pt}\\
+\color{black}
+\scriptsize{Immagine adattata da Chiorri, C. (2023). \emph{Teoria e Tecnica Psicometrica, 2 ed.}, McGraw-Hill}
+
+\end{frame}
+
+\subsection*{Variabli osservate vs. Variabili latenti}
+
+
+\begin{frame}
+
+\begin{itemize}
+\item Variabili che \textit{non possono essere osservate direttamente} $\rightarrow$ \textbf{Variabili latenti} (es. Intelligenza)
+
+\medskip
+
+\item Inferite da indicatori osservabili direttamente $\rightarrow$ \textbf{Variabili osservate} (es. risposte alle Matrici di Raven)
+
+\end{itemize}
+\pause
+
+L'\textit{operazionalizzazione} della variabile latente è cruciale
+
+
+\end{frame}
+
+\begin{frame}
+
+Le variabili latenti devono essere collegate alle variabili osservate $\rightarrow$ modelli matematici e statistici
+
+\medskip
+
+\textbf{Assunzioni:}
+
+\begin{itemize}
+\item Le variabili latenti sono la causa sottostante delle variabili osservate
+
+\medskip
+
+\item \textit{Indipendenza locale}: la correlazione tra variabili osservate scompare dopo aver controllato l'influenza della variabile latente
+\end{itemize}
+
+\centering
+\includegraphics[width=.70\linewidth]{img/latent.png}
+
+\end{frame}
+
+
+\begin{frame}
+
+\centering
+\includegraphics[width=.90\linewidth]{img/mavl1.png}
+
+\end{frame}
+
+\subsection*{Operazionalizzazione}
+
+\begin{frame}
+	
+	Si tratta della ``traduzione'' in comportamenti osservabili ed oggettivi di variabili latenti psicologiche \emph{non direttamente osservabili}
+	
+	La definizione teorica del costrutto diventa di vitale importanza per la definizione dei comportamenti osservabili ad esso legati... La misurazione del costrutto dipende proprio da questi!
+	
+	\begin{block}{Dominio di contenuto}
+		
+		Universo dei possibili comportamenti che, coerentemente con la definizione, possono rappresentare le operazionalizzazioni del costrutto 
+		
+		Quando è molto ampio $\rightarrow$ \emph{facets}
+		
+	\end{block}
+\end{frame}
+
+\subsection*{Estroversione}
+\begin{frame}
+
+\textbf{Definizione}
+
+L'estroversione è un tratto di personalità caratterizzato da socievolezza, assertività, livello elevato di attività, ricerca di stimoli ed esperienza di emozioni positive 
+{\footnotesize (Costa \& McCrae, 1992)}.
+
+\begin{spacing}\Factor
+\begin{table}
+\begin{tabular}{l l}
+\hline
+Facets	&	Aggettivi prototipici	\\\hline
+Socievolezza	&	Socievole	\\
+Assertività	&	Deciso	\\
+Attività	&	Energico	\\
+Ricerca di stimoli 	&	Avventuroso	\\
+Emozioni positive	&	Entusiastico	\\
+Espansività	&	Espansivo	\\\hline
+\end{tabular}
+\end{table}
+\end{spacing}
+
+\end{frame}
+
+\begin{frame}
+	\begin{table}
+			\begin{tabular}{l l l}
+			\multicolumn{1}{c}{\textbf{Socievolezza}}	&	\multicolumn{1}{c}{\textbf{Espansività}}	&	\multicolumn{1}{c}{\textbf{Ricerca di stimoli}}	\\
+			Socievole	&	Espansivo	&	Avventuroso	\\
+			Spontaneo	&	Amichevole	&	Intrapredente	\\
+			Simpatico	&	Schietto	&	Audace	\\
+			Festaiolo	&	Sincero	&	Sfacciato	\\
+			\emph{Chiuso}	&	Aperto	&	Coraggioso	\\
+			\emph{Riservato}	&	Comunicativo	&	\emph{Fifone}	\\
+			\multicolumn{1}{c}{\textbf{Assertività}}	&	\multicolumn{1}{c}{\textbf{Emozioni positive}}	&	\multicolumn{1}{c}{\textbf{Attività}}	\\
+			Deciso	&	Entusiatsico	&	Energico	\\
+			Determinato	&	Brioso	&	Dinamico	\\
+			Sicuro di sé	&	Gioioso	&	Attivo	\\
+			Fiducioso	&	Solare	&	Vigoroso	\\
+			Risoluto	&	Spensierato	&	Rapido	\\
+			\emph{Timido}	&	\emph{Preoccupato}	&	\emph{Letargico}	\\
+			
+			
+		\end{tabular}
+	\end{table}
+
+\end{frame}
+
+\subsection*{Leadership}
+
+\begin{frame}
+
+\textbf{Definizione}
+
+La leadership è il processo attraverso cui un individuo influenza un gruppo di persone al fine di raggiungere un obiettivo comune 
+{\footnotesize (Northouse, 2021)}.
+
+\begin{spacing}\Factor
+\begin{table}
+\begin{tabular}{l l}
+\hline
+Dimensioni	&	Aggettivi prototipici	\\\hline
+Influenza sociale	&	Persuasivo	\\
+Visione	&	Ispiratore	\\
+Decisione	&	Determinato	\\
+Gestione del gruppo 	&	Coordinatore	\\
+Motivazione	&	Coinvolgente	\\
+Responsabilità	&	Affidabile	\\\hline
+\end{tabular}
+\end{table}
+\end{spacing}
+
+\end{frame}
+
+\subsection*{Triade Oscura}
+
+\begin{frame}
+
+Alcuni costrutti di personalità sono concettualizzati come dimensioni relativamente unitarie, senza una struttura gerarchica stabile composta da facets.
+
+\medskip
+
+Un esempio è la \textbf{Triade Oscura della personalità}, composta da:
+
+\begin{itemize}
+\item Machiavellismo: Caratterizzato da manipolazione interpersonale, cinismo, distacco emotivo e orientamento strategico al raggiungimento dei propri obiettivi
+\item Narcisismo: Caratterizzato da grandiosità, bisogno di ammirazione, senso di superiorità e forte focalizzazione su sé stessi.
+\item Psicopatia subclinica: Caratterizzata da impulsività, ridotta empatia, scarsa ansia e tendenza a comportamenti antisociali non necessariamente clinici.
+\end{itemize}
+
+{\footnotesize (Paulhus \& Williams, 2002)}
+
+\end{frame}
+
+
+\section{Tipi di variabili}
+
+\begin{frame}
+	
+	\begin{center}
+	\Large  QUALITATIVE / CATEGORIALI
+	\end{center}
+\begin{itemize}
+	\item sconnesse: $\{a,b,c\}$
+	\item ordinate:$\{a,b,c\}$ con $a < b < c$
+\end{itemize}
+
+	\begin{center}
+	\Large  QUANTITATIVE / METRICHE
+\end{center}
+\begin{itemize}
+	\item Discrete: $\mathbb{Z}$
+	\item Continue: $\mathbb{R}$
+\end{itemize}
+\end{frame}
+
+\subsection*{Misura delle variabili}
+
+\begin{frame}{Stevens (1946)}
+	
+	\small
+	Si differenziano in base alla quantità di informazione che può essere ricavata
+	
+	\begin{itemize}
+	\item Varibaili qualitative
+	\begin{itemize}
+	\item \textbf{Nominale}: Distingue un insieme di dati in diverse categorie
+	\item \textbf{Ordinale}: Distingue un insieme di dati in diverse categorie che sono ordinabili a seconda della quantità di caratteristica posseduta 
+	\end{itemize}
+	
+	\item Variabili quantitative
+	
+	\begin{itemize}
+	\item \textbf{Intervalli equivalenti} Distingue un insieme di dati in diverse categorie ordinabili. La distanza tra le categorie è nota perché c'è un'unità di misura
+	\item \textbf{A rapporti equivalenti}: Come la scala ad intervalli...ma lo 0 indica assenza di caratteristica (non è arbitrario ma è assoluto) 
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection*{Scala nominale}
+\begin{frame}
+\small
+Comune di residenza, genere, patologia clinica ecc. Vale solo l'equivalenza ($=$ o $\neq$)
+
+\begin{center}
+	\includegraphics[width=.20\linewidth]{img/nominale.png}
+\end{center}
+
+Al posto di ``A'', ``B'', ``C'' si poteva scrivere $\alpha$, $\beta$ $\gamma$, 1,2,3 (ma i numeri valgono solo come etichette!)
+
+Caratteristiche: 
+
+\begin{itemize}
+	\item  Categorie \textbf{distintive}: gli elementi che appartengono a categorie differenti vengono considerati di tipo diverso
+	\item Categorie \textbf{mutualmente escludentesi}: ogni elemento può rientrare in una ed una sola categoria
+	\item Categorie \textbf{Collettivamente esaustive}: tutti gli elementi vengono classificati nelle categorie della variabile, nessuno escluso
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.4\linewidth]{img/regioni}
+		\caption{Regione di nascita}
+	\end{figure}
+\end{frame}
+
+
+\subsection*{Scala ordinale}
+\begin{frame}
+
+Titolo di studio, gradimento di un prodotto, valutazione di una malattia (e.g., alto, medio, basso) ecc. Vale sia l'equivalenza ($=$ o $\neq$) sia l'ordinamento ($<$ o $>$)
+	
+	\begin{center}
+		\includegraphics[width=.20\linewidth]{img/ordinale.png}
+	\end{center}
+	
+	Le etichette numeriche valgono per il loro ordine (non ha senso compiere operazioni tra di loro)
+\end{frame}
+
+\begin{frame}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{img/ordinle}
+		\caption{La staffetta 100$\times$4}
+	\end{figure}
+	
+\end{frame}
+\subsection*{Scala a intervalli equivalenti}
+\begin{frame}
+	
+	Lo $0$ è arbitrario, ma c'è un'\emph{unita di misura} per cui le categorie si trovano alla stessa distanza. Temperatura in Celsius, Q.I., scale di atteggiamento ecc. Vale equivalenza ($=$ o $\neq$), ordinamento ($<$ o $>$) e differenza ($+$ o $-$): 
+	\begin{center}
+		\includegraphics[width=0.5\linewidth]{img/intervalli.png}
+	\end{center}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{img/termometroMulti.jpg}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	\begin{columns}[T]
+		\begin{column}{.50\linewidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{img/termometri}
+		\end{figure}
+		\end{column}
+		
+			\begin{column}{.50\linewidth}
+Se ci sono 0°C, non vuol dire che non c'è calore! \\
+Se ieri c'erano 5°C e oggi ce ne sono 10°C, possiamo dire che oggi fa più caldo di ieri e che ci sono 5°C più di ieri\\
+Il fatto che lo 0 non sia arbitrario non ci permette di dire che oggi c'è il doppio del caldo di ieri! \\
+Trasformando le due temperature in Fahrenheit si ottiene 41°F e 50°F... e la seconda non è più il doppio della prima!
+		\end{column}
+	\end{columns}
+
+\end{frame}
+
+
+\subsection{Scala a rapporti equivalenti}
+\begin{frame}
+	Lo 0 è assoluto, indica assenza del fenomeno. Peso, altezza, valori diagnostici. Vale equivalenza ($=$ o $\neq$),  ordinamento ($<$ o $>$), differenza ($+$ o $-$) e rapporto ($\times$ o $\div$)
+	
+	\begin{center}
+		\includegraphics[width=0.40\linewidth]{img/rapporti.png}
+	\end{center}
+	
+	
+	% TODO: \usepackage{graphicx} required
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.4\linewidth]{img/bilancia}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	% TODO: \usepackage{graphicx} required
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{img/scale1}
+	\end{figure}
+\end{frame}
+
+
+\section[Frequenze]{Il dato elementare: Le Frequenze}
+
+\subsection*{Frequenze}
+
+\begin{frame}
+
+		\begin{table}
+				\centering
+				\begin{tabular}{|c | c | c |}
+				\hline
+				modalità $x_i$ & $f_i$ & 	$f_i\% = (f_i/n) \cdot 100$ \\
+				\hline
+				$x_1$ & $f_1$ & $f_1\%$ \\
+				$x_2$ & $f_2$ & $f_2\%$ \\
+				$\vdots$ & $\vdots$ & $\vdots\%$ \\
+				$x_k$ & $f_k$ & $f_k\%$ \\
+				\hline
+			   & $n$ & $100$ \\
+			   \hline
+				\end{tabular}
+			\end{table}
+			
+\vspace{3mm}
+Frequenza assoluta:	$f_i \ge 0$ interi e $\sum_{i=1}^{k} f_i = n$
+
+Frequenza relativa: 	$f_i\% = \dfrac{f_i}{n} \cdot 100$ ($0 \leq f_i\% \leq 100$ e $\sum_{i=1}^{k} f_i\% = 100$)
+\end{frame}
+
+\subsection*{Frequenze Cumulate}
+\begin{frame}
+	\begin{itemize}
+			\item \textbf{frequenza cumulata}: numero/frazione di
+		unità statistiche che presentano una data caratteristica
+		``minore o uguale'' alla corrente ($F_i$ o $F_i\%$): 
+		
+		\vspace{3mm}
+		\begin{quote}
+			$F_i$ frequenze \textbf{assolute cumulate} =
+			
+						\vspace{3mm}
+			\centering
+			
+			$= f_1 + f_2 + \ldots + f_i = \sum_{j=1}^{i} = f_j$
+			
+			\vspace{3mm}
+			$F_1 = f_1$ e $F_k = n$
+		\end{quote}
+		
+		\begin{quote}
+			$F_i\% = $ frequenze \textbf{relative cumulate} = 
+			
+						\vspace{3mm}
+			\centering
+			
+			$= f_1\% + f_2\% + \ldots + f_i\% = \sum_{j=1}^{i} = f_j\%$
+			
+			\vspace{3mm}
+			$F_1\% = f_1\%$ e $F_k\% = 100$
+			
+		\end{quote}
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	La \textbf{frequenza cumulata} è una formula ricorsiva: 
+
+
+\begin{block}{}
+	
+$F_i$ = frequenze \textbf{assoulte cumulate}: 
+
+\begin{equation*}
+	F_i = F_{i-1} + f_i
+\end{equation*}
+
+
+	
+$F_i\%$ = frequenze \textbf{relative cumulate}: 
+
+\begin{equation*}
+	F_i\% = F_{i-1}\% + f_i\%
+\end{equation*}
+\end{block}
+
+
+
+
+\begin{alertblock}
+	
+N.B: le frequenze cumulate si calcolano SOLO quando i caratteri presentano un ordinamento (e quindi non si calcolano per i caratteri sconnessi!!)
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+	\begin{exampleblock}{Opinione riguardo un'affermazione}
+		\begin{spacing}\Factor
+			
+			\begin{table}
+				\centering
+				\begin{tabular}{|c | c | c| c | c|}
+					\hline
+					$x_i$ & $f_i$ & $F_i$&	$f_i\%$ & $F_i\%$ \\
+					\hline
+					Totalmente in disaccordo & $10$ & 10 & $24.4\%$ & $24.4$\%\\
+					Abbastanza in disaccordo & $8$ &18 & $19.5\%$ & $24.4\% + 19.5\% = 43.9$\%\\
+					Indifferente & $6$ &24& $ 14.6\%$ & $43.9\% + 14.6\% = 58.5$\% \\
+				Abbastanza d'accordo & $14$&38 & $34.2\%$ & $58.5\% + 34.2\% = 92.7$\%\\
+					Totalmente d'accordo & $3$ &41& $7.3\%$ & $92.7\% + 7.3\% = 100$\% \\
+
+					\hline
+					& $41$ & &$100$  \\
+					\hline
+				\end{tabular}
+			\end{table}
+		\end{spacing}
+	\end{exampleblock}
+\end{frame}
+
+\section{Indici di posizione}
+
+
+\begin{frame}
+\begin{itemize}
+	\item \textbf{indici sintetici} che evidenziano le caratteristiche essenziali della distribuzione della variabile
+	
+	\vspace{3mm}
+	\begin{quote}
+		
+		Sono migliori gli studenti maschi o le femmine ?
+		
+		Hanno un’autostima più alta gli studenti di economia o di psicologia?
+	\end{quote}
+\vspace{3mm} 
+
+\item Si confrontano categorie che rappresentano i livelli o valori tipici
+
+\item Consentono di sintetizzare un insieme di misure tramite un unico valore ``rappresentativo'' $\rightarrow$ indice che riassume o descrive i dati e dipende dalla scala di misura dei dati in oggetto
+\end{itemize}
+
+\end{frame}
+
+\subsection{Indici di posizione tipici}
+
+\begin{frame}
+
+\begin{itemize}
+	\item moda
+	\item mediana
+	\item quartili/percentili
+	\item media aritmetica
+\end{itemize}
+
+	Ogni variabile statistica ha l’indice di posizione adeguato: non tutti gli indici si possono calcolare per ogni carattere $\rightarrow$ \textbf{indice di posizione adeguato}
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{columns}
+\begin{column}{.30\linewidth}
+
+Variabile misurata su \textbf{scala nominale}
+
+	\vspace{3mm}
+
+Variabile misurata su \textbf{scala ordinale}
+		\vspace{3mm}
+Variabile quantitativa
+	\end{column}
+
+\begin{column}{.10\linewidth}
+	$\rightarrow$
+	
+		\vspace{3mm}
+	$\rightarrow$ 
+	
+		\vspace{3mm}
+	$\rightarrow$  
+\end{column}
+
+\begin{column}{.30\linewidth}
+	MODA
+	
+		\vspace{3mm}
+	MEDIANA
+	
+		\vspace{3mm}
+	MEDIA 	o MEDIANA
+\end{column}
+
+
+	\end{columns}
+
+\end{frame}
+
+\subsection*{Scala nominale}
+
+\begin{frame}
+	Categoria che presenta la massima frequenza
+	
+	\vspace{3mm}
+	
+	\begin{center}
+		$Mo(X) = max(f_i)$ \\ (categoria con massimo valore di $f_i$)
+	\end{center}
+	
+	
+	\vspace{3mm}
+	\begin{alertblock}
+		
+		N.B: Si può calcolare per le variabili misurate a qualsiasi livello, anche se di fatto viene calcolata solo per le variabile categoriali, in quanto per altri livelli di misurazione si
+		possono calcolare altri indici più informativi
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\begin{columns}[T]
+\begin{column}{.50\linewidth}
+\begin{exampleblock}{Esempio 1}
+		\begin{table}
+			\centering
+		
+			\begin{tabular}{|c | c |}
+				\hline
+				 & $f_i$\\
+				\hline
+				\textbf{idoneo}  & $\mathbf{19}$ \\
+				II scelta & 11\\
+				difettoso & 4 \\
+				scarto & 2\\
+				\hline
+				& 26 \\
+				\hline
+			\end{tabular}
+		\end{table}
+
+\vspace{3mm}
+\centering
+$max(f_i) =19$  $\Longrightarrow$ moda $=Mo(X)$=idoneo
+	
+	\end{exampleblock}
+\end{column}
+
+\begin{column}{.50\linewidth}
+	\begin{exampleblock}{Esempio 2}
+			
+			\begin{table}
+				\centering
+				\begin{tabular}{|c | c |}
+					\hline
+					Stato civile & $f_i$\\
+					\hline
+						Celibe/Nubile & 141\\
+					Coniugat*  & 200 \\
+					\textbf{Divorziat*} & $\mathbf{249}$\\
+					Vedov* & 115 \\
+					\hline
+					& 695 \\
+					\hline
+				\end{tabular}
+			\end{table}
+
+		\vspace{3mm}
+		
+		$max(f_i) =249$  $\Longrightarrow$ moda $=Mo(X)$=Divorziato
+		
+	\end{exampleblock}
+\end{column}
+
+\end{columns}
+	
+\end{frame}
+
+\subsection*{Scala Ordinale}
+
+\begin{frame}
+Categoria/valore che occupa la posizione centrale o mediana ($Pos_{Me}$) nella distribuzione ordinata dei dati
+	
+	\begin{itemize}
+		\item preceduta da almeno 50\% dei casi
+		\item superata da almeno 50\% dei casi
+	\end{itemize}
+
+\begin{columns}
+	
+	\begin{column}{.50\linewidth}
+		
+		Numero dati dispari
+		
+		\includegraphics[width=\linewidth]{img/medianaDispari.png}
+	\end{column}
+
+	\begin{column}{.50\linewidth}
+		Numero dati pari
+		
+	\includegraphics[width=\linewidth]{img/medianaPari.png}
+\end{column}
+\end{columns}
+
+\begin{equation*}
+		Pos_{Me} = \dfrac{(n+1)}{2}
+	\end{equation*}
+
+
+Come si individua sulla distribuzione di frequenza la posizione $\dfrac{(n+1)}{2}$?
+
+Nella distribuzione delle \underline{ FREQUENZE CUMULATE}:  si individua la prima frequenza cumulata maggiore o uguale della posizione cercata
+\end{frame}
+
+
+\begin{frame}
+	\begin{exampleblock}{ESEMPIO 1: livello di Istruzione di un
+			campione di 203 soggetti}
+		
+	\begin{columns}
+		\begin{column}{.50\linewidth}
+			\begin{spacing}\Factor
+				\begin{table}
+					\centering
+					\begin{tabular}{|c|c|c|}
+						\hline
+					Istruzione	& $f_i$ & $F_i$ \\
+					\hline
+						Elementari & 12 & 12 \\
+						Scuole Medie & 17 & 29 \\
+						Scuole superiori & 123 & 152 \\
+						Laurea & 51 & 203 \\
+						\hline
+						Totale ($n$) & 203 & \\
+						\hline
+					\end{tabular}
+				\end{table}
+			\end{spacing}
+		\end{column}
+	
+\begin{column}{.50\linewidth}
+	$Pos_{Me} = \dfrac{(n+1)}{2} = \dfrac{203+1}{2} = Pos_{Me} = 102$
+	
+	\vspace{5mm}
+	
+	Si deve andare a cercare la $F_i$ subito superiore a $102$. In questo caso corrisponde alla Scuola superiore, la cui $F_i = 152$. 
+\end{column}
+
+	\end{columns}
+		\vspace{5mm}
+		\centering
+		$Me(X) = X_{(n+1)/2} = X_{102} =$ \emph{Scuole Superiori}
+	\end{exampleblock}
+\end{frame}
+
+\subsection*{Variabili quantititive: Percentili}
+\begin{frame}{Percentili}
+	Categorie/valori che dividono la
+	distribuzione di frequenza
+	\underline{ordinata} in più parti.
+\begin{quote}
+	Qual è il reddito familiare che divide il 25\% dei più poveri dal restante 75\% ?
+	
+	Qual è la soglia di reddito oltre cui sta la fascia dei più
+	abbienti ?
+	
+	Quali sono le persone che hanno performato al meglio nell'ultimo semestre?
+\end{quote}
+	
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.20\linewidth}
+		\textbf{quartili}
+	
+		
+		\textbf{decili}
+		
+		\textbf{percentili}
+		\end{column}
+	
+	\begin{column}{.10\linewidth}
+		$\rightarrow$
+	
+		$\rightarrow$
+	
+		$\rightarrow$
+		
+	\end{column}
+
+\begin{column}{.50\linewidth}
+	dividono in \textbf{4} parti la distribuzione
+	
+	
+	dividono in \textbf{10} parti la distribuzione
+	
+	dividono in \textbf{100} parti la distribuzione 
+\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	Il percentile $x_p$ di ordine $p$ è
+	quella categoria/valore che è:
+	
+	\begin{itemize}
+	\item preceduta da almeno $p$\% dei casi
+	\item superata da almeno $(1-p)$\% dei casi
+	\end{itemize}
+
+	\begin{columns}
+	\begin{column}{.20\linewidth}
+		\textbf{quartili}
+
+		
+		\textbf{decili}
+		
+		\textbf{percentili}
+	\end{column}
+	
+	\begin{column}{.10\linewidth}
+		$\rightarrow$
+		
+		$\rightarrow$
+		
+		$\rightarrow$
+		
+	\end{column}
+	
+	\begin{column}{.50\linewidth}
+		percentili di ordine 25 - 50 - 75
+		
+		
+	percentili di ordine 10 - 20 - $\ldots$ - 90
+		
+			percentili di ordine 1 - 2 - $\ldots$ - 98 - 99
+	\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+	Per il calcolo di quartili, decili e percentili il procedimento è
+	analogo a quello della Mediana, che di fatto è un caso
+	particolare di questi indici.
+	
+	\vspace{3mm}
+	L’unica differenza riguarda il calcolo della \textbf{Posizione} ($Pos$)
+	
+	In generale la Posizione di ordine $p$ (in centesimi) si ottiene:
+	
+	\begin{equation*}
+		Pos_p = \dfrac{n+1}{100}\cdot p
+	\end{equation*}
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}
+		
+		15 soggetti hanno espresso il loro grado di
+		soddisfazione (punteggio da 1 a 7)
+		relativamente all’erograzione di un servizio.
+		I risultati sono:
+		\begin{tabular}{c c c c c c c c c c c c c c c}
+				1 & 5& 4& 6& 7& 2& 5 &6 &3 &1 & 2& 4& 4& 7& 7\\
+		\end{tabular}
+
+		Costruire la tabella delle frequenze (assolute e cumulate) e trovare il 1°, 2° e 3° quartile
+	\end{exampleblock}
+
+\end{frame}
+
+\end{document}

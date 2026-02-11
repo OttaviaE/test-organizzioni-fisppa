@@ -1,0 +1,9 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\beamer@sectionintoc {1}{Il corso}{2}{0}{1}
+\beamer@sectionintoc {2}{La misura in psicologia}{6}{0}{2}
+\beamer@sectionintoc {3}{Tipi di variabili}{26}{0}{3}
+\beamer@subsectionintoc {3}{5}{Scala a rapporti equivalenti}{35}{0}{3}
+\beamer@sectionintoc {4}{Il dato elementare: Le Frequenze}{38}{0}{4}
+\beamer@sectionintoc {5}{Indici di posizione}{43}{0}{5}
+\beamer@subsectionintoc {5}{1}{Indici di posizione tipici}{45}{0}{5}
