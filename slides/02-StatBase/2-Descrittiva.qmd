@@ -1,0 +1,77 @@
+---
+title: "Indici di Forma, Punteggi Standardizzati, Covarinza e Correlazione"
+subtitle: "Test per le organizzaioni"
+author: Ottavia M. Epifania, Margherita Calderan
+date: ""
+format:
+  beamer:
+    slide-level: 3
+    toc-depth: 3
+    theme: Montpellier
+    colortheme: dove
+    navigation: horizontal
+    highlight-style: tango
+    classoption: compress, aspectratio=149
+    innertheme: rounded
+    outertheme: miniframes
+callout-icon: false
+code-annotations: below
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage{xcolor}
+  \usepackage{fancyvrb}
+  \usepackage{listings}
+  \definecolor{ColPrimario}{RGB}{100,8,58}
+  \definecolor{ColSecondario}{RGB}{20,143,184}
+  \setbeamercolor{structure}{fg=ColPrimario}
+  \setbeamercolor{itemize item}{fg=ColPrimario}
+  \setbeamercolor{itemize subitem}{fg=ColSecondario}
+  \setbeamercolor{palette primary}{bg=ColPrimario,fg=white}
+  \setbeamercolor{palette secondary}{bg=ColSecondario,fg=white}
+  \setbeamercolor{section in head/foot}{bg=ColPrimario,fg=white}
+  \setbeamercolor{subsection in head/foot}{bg=ColSecondario,fg=white}
+  \setbeamercolor{separation line}{fg=white}
+  \setbeamercolor{upper separation line head}{bg=white}
+  \setbeamercolor{middle separation line head}{bg=white}
+  \setbeamercolor{lower separation line head}{bg=white}
+  \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
+  \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  \AtBeginSubsection{}
+  \AtBeginDocument{\institute[]{Università di Padova} }
+  \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
+  \AtBeginSection[]
+          {
+             \begin{frame}[plain]
+             \tableofcontents[currentsection, hideallsubsections]
+              \end{frame}
+          }
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+---
+
+
+### Meglio la media e la deviazione standard, o i percentili?
+
+- Il ricorso alla media e alla deviazione standard è tanto più
+vantaggioso e utile quando la distribuzione della variabile di
+interesse nel campione di riferimento (che deve essere
+rappresentata graficamente nel manuale!) è approssimativamente
+normale.
+
+- Negli altri casi (distribuzioni fortemente asimmetriche) è più
+conveniente utilizzare i percentili. Tali indici sono infatti definiti
+“robusti” perchè risentono meno delle caratteristiche della
+distribuzione della variabile oggetto di studio.
+
+- Spesso nei manuali dei test vengono forniti sia media e deviazione
+standard che i percentili, in modo da poter garantire una
+valutazione delle performance il più completa possibile.
+
+# Indici di forma
+
+# Punteggi standardizzati 
+
+# Covarianza e correlazione

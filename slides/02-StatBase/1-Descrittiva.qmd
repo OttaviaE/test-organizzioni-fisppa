@@ -1,5 +1,5 @@
 ---
-title: "Elementi di statistica descrittiva 1"
+title: "Indici di Variabilità e di Posizione"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: ""
@@ -105,7 +105,7 @@ nei dati.
 
 ---
 
-Quale gruppo è più variabile? In quale gruppo le osservazioni si discostano di più dalla media?
+Quale gruppo è più variabile? 
 
 ```{r, echo=FALSE, fig.width=5, fig.height=2}
 library(ggplot2)
@@ -114,9 +114,11 @@ data_prof = data.frame(prof = rep(c("prof1","prof2","prof3"),
                                   each = length(prof1)),
                        voti = c(prof1, prof2, prof3)
                        )
-ggplot(data = data_prof, aes(x = voti, fill = prof, color = prof))+
+pprof = ggplot(data = data_prof, aes(x = voti, fill = prof, color = prof))+
   geom_histogram(show.legend = FALSE, lwd = 1,binwidth=3)+
   facet_wrap(~prof)+scale_color_manual(values = rep("black",3))
+
+pprof
 ```
 
 ## Campo di variazione
@@ -148,14 +150,240 @@ max(x2) - min(x2)
 
 Commenti?
 
-## La diﬀerenza interquartilica
+## La varianza
+
+- La varianza $\sigma^2$ di un insieme di dati è la media degli scarti al
+quadrato tra i dati e la media dei dati stessi:
+
+$$
+\sigma^2 = \frac{\sum_i^n (X_i - \bar{X})^2}{n}
+$$
+
+La varianza assume valore minimo $0$ quando
+tutti i dati sono uguali tra loro e aumenta all’aumentare della
+dispersione dei dati rispetto alla media:
+
+$$
+\sigma^2 \geq 0
+$$
+
+---
+
+Qual'è la varianza maggiore? Quant'è la varianza di prof3?
+
+```{r, echo=FALSE, fig.width=5, fig.height=2}
+pprof
+```
+
+### Calcolo della varianza
+
+$$\sigma^2 = \frac{\sum_i^n (X_i - \bar{X})^2}{n}$$
+
+```{r}
+prof1
+```
+
+
+Il divisore è il numero di osservazioni: $n = 8$
+
+```{r}
+divisore = length(prof1) # numero di osservazioni
+```
+
+$$\sigma^2 = \frac{\sum_i^8 (X_i - \bar{X})^2}{8}$$
+
+---
+
+Calcoliamo la **media** $\bar{X}$
+
+```{r}
+media = mean(prof1)
+media
+```
+
+$$\sigma^2 = \frac{\sum_i^8 (X_i - 20)^2}{8}$$
+
+---
+
+Il dividendo è dato dalla **somma dei quadrati degli scarti dalla media** aritmetica:
+
+$(18-20)^2 + (22-20)^2 + (24-20)^2 + (16-20)^2 + (19-20)^2 + (22-20)^2 + (18-20)^2 + (21-20)^2$
+
+
+```{r}
+prof1
+media
+```
+
+
+```{r}
+# ad ogni elemento di prof1 viene sottrata la media
+(prof1-media)^2
+
+dividendo = sum((prof1-media)^2) 
+```
+
+
+----
+
+La varianza è la **media dei quadrati degli scarti dalla media** aritmetica:
+
+```{r}
+dividendo # 4 + 4 + 16 + 16 + 1 + 4 + 4 + 1
+divisore 
+
+varianza = dividendo/divisore # varianza descrittiva
+```
+
+$$\sigma^2 = \frac{\sum_i^8 (X_i - 20)^2}{8}$$
+
+### Varianza descrittiva vs. inferenziale
+
+- **Descrittiva**: descrive la dispersione dei dati osservati (come se fossero la popolazione).
+
+- **Inferenziale**: stima la varianza della popolazione a partire da un campione.
+
+
+----
+
+#### Varianza Descrittiva (Popolazione)
+
+Se i tuoi dati rappresentano *tutta* la popolazione (o vuoi solo descriverli):
+
+$$
+\sigma^2 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})^2}{n}
+$$
+
+- Denominatore: **n** (tutti i dati)
+- Obiettivo: descrivere la dispersione osservata
+
+
+----
+
+#### Varianza Inferenziale (Campione)
+
+Se hai un campione e vuoi stimare la varianza della popolazione:
+
+$$
+s^2 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})^2}{n-1}
+$$
+
+- Denominatore: **n - 1** (correzione di Bessel)
+- Obiettivo: stima non distorta della varianza di popolazione
+
+----
+
+#### Perché $n-1$? 
+
+Per definizione, la somma degli scarti dalla media è sempre zero:
+
+$$
+\sum_{i=1}^{n} (X_i - \bar{X}) = 0
+$$
+
+Se conosci **n - 1** scarti, l'ultimo è automaticamente determinato (deve far sommare tutto a zero).
+
+----
+
+#### Perché n - 1 corregge il bias
+
+Quando usi $\bar{X}$ invece della "vera" media $\mu$:
+
+- $\bar{X}$ è "ottimizzata" per i tuoi dati specifici, è la media del campione non della popolazione ($\mu$)
+- Gli scarti $(X_i - \bar{X})$ sono più piccoli di quelli che otterresti con $\mu$
+- Dividere per **n** sottostima la vera varianza
+- Dividere per **n - 1** (numero più piccolo) aumenta il risultato 
+
+----
+
+```{r}
+x = c(2, 4, 4, 4, 5, 5, 7, 9)
+```
+
+
+**Usa $\sigma^2$ (n) quando:**
+
+- Fai solo descrizione/esplorazione
+
+```{r}
+# Varianza campionaria (n-1) - default
+var(x)
+```
+
+
+**Usa $s^2$ (n - 1) quando:**
+
+- Hai un campione
+- Vuoi stimare parametri della popolazione o fare test statistici
+
+```{r}
+# Varianza descrittiva (n) - manuale
+sum((x - mean(x))^2) / length(x)
+```
+
+
+## La deviazione standard
+
+La deviazione standard (o scarto quadratico medio) è la radice
+della varianza:
+
+$$\sigma = \sqrt{\sigma^2}$$
+
+Riporta l'indice di varibilità sulla scala della variabile.
+
+Es. In campione di $20$ soggetti è stata rilevata la variabile peso.
+In tale campione la media è pari a $70kg$ e la deviazione standard
+è pari a $10.7$.
+Si potrà aﬀermare che i soggetti **diﬀeriscono mediamente** di
+$10.7 kg$ **dal peso medio** di  $70 kg$.
+
+## Il coefficiente di variazione
+
+Il coeﬃciente di variazione è dato dal rapporto tra la **deviazione
+standard** e il **valore assoluto della media** dei dati:
+
+$$
+CV = \frac{\sigma}{|\bar{X}|}
+$$
+
+Il **CV** è un indice di variabiltà relativa che **tiene conto**, oltre
+che della **deviazione standard** dei dati, anche della **media**.
+Per questo motivo è molto utile per eseguire dei confronti in
+termini di **variabilità tra fenomeni “diversi” tra loro**.
+
+---
+
+A un gruppo di 15 studenti viene somministrato un test che valuta le conoscenze informatiche generali (20 domande, del tipo *giusto/sbagliato*). I 15 studenti seguono un corso di informatica generale organizzato dal Comune e a fine corso viene somministrato loro un test sulle conoscenze informatiche. Il test prevede 40 domande del tipo *giusto/sbagliato*. I risultati dei due test, in termini di media e deviazione standard di risposte corrette, sono presentati nella seguente tabella:
+
+| Test | media | deviazione standard |
+|:-----:|:-----:|:-----:|
+| Pre-test | 9 | 5 |
+| Post-test | 30 | 8 |
+
+C'è più variabilità tra i soggetti al pre-test o al post-test?
+
+
+---
+
+- Naturalmente confrontare le deviazioni standard non è di grande aiuto. Esse dipendono fortemente dalle media dei dati su cui sono state calcolate.
+
+- Per poter operare un confronto sulla variabilità dei punteggi ottenuti ai due test è opportuno calcolare i rispettivi coefficienti di variazione:
+
+$$CV_{\text{pre-test}} = \frac{5}{9} = .56$$
+
+$$CV_{\text{post-test}} = \frac{8}{30} = .27$$
+
+Osservando i risultati si può concludere che le conoscenze informatiche dei soggetti sono più omogenee al post-test.
+
+
+## La diﬀerenza interquartilica 
 
 La diﬀerenza interquartilica di una distribuzione è la diﬀerenza
 tra il terzo e il primo quartile (o equivalentemente tra il
 75−esimo e il 25−esimo percentile) dei dati:
 
 $$
-Q = Q_{75} - Q_{25}
+IQR = Q_{75} - Q_{25}
 $$
 
 Cosa vuol dire?
@@ -190,7 +418,6 @@ legend("topright",
 
 ---
 
-Il quantile al $\%p$ è il valore tale che circa $\%p$ dei voti è minore o uguale a quel valore.
 
 - Q1 (25%) indica una soglia sotto cui cade circa un quarto della classe;
 - Q2 (50%) indica una soglia sotto cui cade la metà della classe; 
@@ -198,109 +425,47 @@ Il quantile al $\%p$ è il valore tale che circa $\%p$ dei voti è minore o ugua
 
 Cos'è Q2?
 
----
+
+# Gli indici di posizione
+
+## I quantili
+
+Data una distribuzione di dati, si definisce come **Quantile di indice p** e si indica con $Q_p$ , il dato al di sotto del quale si
+situa una percentuale **p** di dati.
 
 
-```{r}
-head(voti, n = 6) # primi 6 voti
-
-tail(voti, n = 6) # ultimi 6 voti
-```
-
----
-
-Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
-
-
-```{r}
-v_sorted = sort(voti) # riordino
-
-head(v_sorted, n = 6) # primi 6 voti
-tail(v_sorted, n = 6) # ultimi 6 voti
-
-```
+Ad esempio, la mediana può essere considerata come il
+quantile $Q_{50}$, e cioè il dato al di sotto del quale si situa il
+**50%** dei dati.
 
 ---
 
-**Obiettivo:** Trovare il valore sotto cui cade circa il 25% dei voti.
+-  Esistono diverse tipologie di quantili.
 
-```{r}
-n = length(voti) # numero di osservazioni
-
-p = 0.25 # voglio il 25° percentile
-
-k = n * p  # # quanti voti rappresentano il 25% del totale (25% di 200)
-
-Q_25 = v_sorted[k] # predo il voto in quella posizione
-
-sum(voti <= Q_25)  # quanti sono <= soglia
-```
-
----
-
-Esempio 2:
-
-```{r}
-voti = c(21.4, 20, 30, 27.3, 26.4, 20, 18.7, 18.2, 29.4, 28.3)
-
-# riordino
-voti_sorted = sort(voti)
-
-voti_sorted
-```
-
-Qual'è il valore sotto cui cade il 50% dei voti?
+-  Rispetto all’utilizzo nelle applicazioni in psicologia, i più
+importanti sono i **Quartili** e i **Percentili**.
 
 
----
+### I quartili 
 
-Qual'è il valore sotto cui cade il 50%  e il 75% dei voti?
+I quartili dividono in 4 parti uguali la distribuzione dei dati. Essi
+sono:
 
-```{r}
-n = length(voti) # numero di osservazioni
-p = .50 # che percentile voglio
-p50 = n*p # il 50% di 10 
+- Il primo quartile $Q_{25}$: il dato al di sotto del quale si situa il
+**25%** dei dati.
 
-voti_sorted[p50]
+- Il secondo quartile (o mediana) $Q_{50}$: il dato al di sotto del
+quale si situa il **50%** dei dati.
 
-p = .75 # che percentile voglio
-p75 = n*p # il 75% di 10 
+- Il terzo quartile $Q_{75}$: il dato al di sotto del quale si situa il
+**75%** dei dati.
 
-# ?ceiling computa il numero intero più grande vicino al valore (7.5)
-ceiling(p75)
-voti_sorted[ceiling(p75)]
-```
+I quartili vengono rappresentati all’interno di un grafico molto
+utile per descrivere i dati detto diagramma a scatola (boxplot).
 
+----
 
----
-
-Fortunatamente esiste la funzione `quantile()` che permette di calcolare i quantili:
-
-```{r}
-# probs specifica che quantili vogliamo
-
-quantile(voti, probs = c(0.25,0.50,0.75))
-
-```
-
----
-
-
-La diﬀerenza interquartilica è un indice di variabilità robusto,
-risente cioè poco della presenza di valori anomali (outliers)
-nei dati.
-
-```{r}
-q75 = quantile(voti, probs = 0.75)
-q25 = quantile(voti, probs = 0.25)
-
-q75-q25
-
-IQR(voti) # funzione per il calcolo automatico
-```
-
-
-### Boxplot
+#### Boxplot
 
 ```{r, fig.height=4, fig.width=8, echo=FALSE}
 set.seed(1)
@@ -337,19 +502,26 @@ Q3_x  <- bp$stats[4]
 y     <- 1
 
 # ─── ETICHETTE SOPRA (brevi) ────────────────────────────────────
-text(Q1_x,  y + 0.42, expression(Q[1]), cex = 1.1, font = 2)
-text(med_x, y + 0.42, expression(Q[2]),              cex = 1.1, font = 2)  # oppure "Med"
-text(Q3_x,  y + 0.42, expression(Q[3]), cex = 1.1, font = 2)
+text(Q1_x,  y + 0.42, expression(Q[25]), cex = 1.1, font = 2)
+text(med_x, y + 0.42, expression(Q[50]),              cex = 1.1, font = 2)  # oppure "Med"
+text(Q3_x,  y + 0.42, expression(Q[75]), cex = 1.1, font = 2)
 
 # ─── ETICHETTA DENTRO AL BOX ────────────────────────────────────
-text((Q1_x + Q3_x)/2, y, "IQR (50%)", col = "white", cex = 1.2, font = 2)
+text(((Q1_x + Q3_x)/2)-0.4, y, "25%", col = "white", cex = 1.2, font = 2)
+
+text(((Q1_x + Q3_x)/2)+1.1, y, "25%", col = "white", cex = 1.2, font = 2)
+
+text((Q1_x + Q3_x)/2, y - 0.42, "il 50% dei dati sta tra il primo e il terzo quartile", col = "black", cex = 1.2, font = 2)
 
 # ─── LEGENDA OUTLIER (solo se ce ne sono) ───────────────────────
 if (length(bp$out) > 0) {
   # Metti etichetta a lato, non con freccia che attraversa tutto
   text(par("usr")[1] + 0.5,  # vicino al margine sx
        y + 0.45, 
-       "Outlier", 
+       "Outlier: valori che distano da Q25\n
+       più di una volta e mezzo\n
+       la distanza tra Q75-Q25\n
+       (ie., la differenza interquartilica)", 
        cex = 0.95, 
        adj = 0,
        font = 3)  # corsivo
@@ -359,11 +531,235 @@ if (length(bp$out) > 0) {
 
 ```
 
-### Outilier
+
+----
+
+#### La diﬀerenza interquartilica
+
+La differenza interquartilica (IQR) misura la dispersione del 50% centrale dei dati (tra primo e terzo quartile), quindi i valori estremi incidono poco o per nulla sul suo valore. Per questo è chiamato un indice di variabilità robusto.
+
+```{r}
+IQR(voti) # funzione per il calcolo automatico
+```
+
+----
+
+#### Outilier
 
 - I baffi si estendono fino all'ultimo dato entro $1.5$ volte l'IQR dai quartili. Tutto ciò che sta oltre i baffi è un outlier.
 
 - Un outlier è un valore che dista dai quartili ($Q_1$ o $Q_3$) più di $1.5$ volte la differenza interquartile (IQR).
 
 - È un outlier qualsiasi osservazione che cade fuori dall'intervallo $[Q_1 - 1.5 \times IQR \quad ; \quad Q_3 + 1.5 \times IQR]$.
+
+
+### I percentili
+
+I percentili, spesso indicati con la lettera maiuscola **P**, dividono in
+**cento parti** la distribuzione dei dati.
+
+Alcuni percentili molto importanti, sia dal punto di vista statistico
+che rispetto alle applicazioni in psicologia, sono:
+
+$P_5 \quad P_{25} \quad P_{50} \quad P_{75} \quad P_{95}$
+
+
+---
+
+Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
+
+```{r, echo=FALSE}
+voti=round(c(runif(150, min = 18, max = 30), runif(50, min = 27, max = 30)),2)
+```
+
+```{r}
+head(voti, n = 6) # primi 6 voti
+
+tail(voti, n = 6) # ultimi 6 voti
+```
+
+---
+
+Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
+
+```{r}
+v_sorted = sort(voti) # riordino ?sort
+
+head(v_sorted, n = 6) # primi 6 voti
+tail(v_sorted, n = 6) # ultimi 6 voti
+```
+
+
+---
+
+Trovare il valore sotto cui cade circa il 25% dei voti.
+
+```{r}
+n = length(voti) # numero di osservazioni
+
+p = 0.25 # voglio il 25° percentile
+
+k = n * p  # quanti voti rappresentano il 25% del totale
+#(25% di 200 = 50)
+
+Q_25 = v_sorted[k] # predo il voto in quella posizione
+Q_25
+
+sum(voti <= Q_25)  # quanti sono <= soglia
+```
+
+---
+
+Fortunatamente esiste la funzione `quantile()` che permette di calcolare i quantili:
+
+```{r}
+# probs specifica che quantili vogliamo
+
+quantile(voti, probs = c(0.05, 0.25,0.50,0.75, 0.95))
+
+```
+
+
+----
+
+#### Esempio: Workaholism (dipendenza da lavoro)
+
+A 6 lavoratori adulti è stato somministrato un test standardizzato a livello nazionale sul workaholism (punteggio totale).
+Il punteggio di ciascun partecipante è riportato nella tabella seguente:
+
+| Codice partecipante | 1  | 2  | 3  | 4  | 5  | 6  |
+|:---|:---:|:---:|:---:|:---:|:---:|:--:|
+| Punteggio (totale)  | 40 | 50 | 30 | 80 | 23 | 42 |
+
+Valutare le prestazioni dei 6 partecipanti alla luce dei valori normativi del test:
+
+| Percentile | P5 | P25 | P50 | P75 | P95 |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Punteggio | 31 | 42  | 51  | 68  | 78  |
+
+
+## Rango percentile
+
+Il **Rango percentile** ($Rp$) indica la **percentuale di casi** che hanno un **valore uguale o inferiore** a un particolare punteggio $X_i$
+
+
+
+---
+
+Supponiamo di disporre di un test, che misura la comprensione del testo nei bambini. Il punteggio di un soggetto al test è ottenuto come la somma di risposte corrette a 20 domande.
+
+Per i bambini di 9 anni, al punteggio $15$ è associato il rango percentile di $60$ ($Rp_{15} = 60$).
+
+Il **60%** dei bambini italiani di 9 anni ottiene un punteggio al test inferiore o uguale a 15.
+
+---
+
+Supponiamo di aver somministrato il test ad un bambino di 9 anni e di
+aver verificato sul manuale che il suo punteggio equivale a un rango
+percentile pari a 5. 
+
+Come interpretare la sua performance?
+
+----
+
+#### Calcolo dei ranghi percentili
+
+Per calcolare un rango percentile, basta seguire questi semplici step:
+
+1. Determinare quanti casi sono nel gruppo.
+
+2. Determinare quanti casi cadono "sotto" o al punteggio di interesse
+
+3. Dividere il numero di casi ottenuti allo step 2 per il numero totale di casi nel gruppo (step 1)
+
+4. Moltiplicare il risultato dello step 3 per 100
+
+---
+
+
+$$
+P_r = \frac{B}{N}\times 100 = \text{rango percentile di } X_i
+$$
+
+- $X_i$ = punteggio di interesse
+- $N$ = numero totale di casi
+- $B$ = numero di casi  $\leq X_i$
+- $P_r$ = rango percentile
+
+---
+
+Il file `data_work.rda` contiene il numero di lavoratori che, su 1.000, subiscono un infortunio sul lavoro.
+
+```{r}
+load("data/data_work.rda")
+data_work
+```
+
+---
+
+Supponiamo che il nostro caso di interesse siano gli Stati Uniti. Prima di
+tutto riordiniamo i dati in ordine crescente.
+
+```{r}
+data_sorted=data_work[order(data_work$Infortuni_ogni_1000_lavoratori), ]
+data_sorted
+```
+
+---
+
+Determiniamo il numero di casi con tassi inferiori o uguali al nostro
+caso di interesse.
+
+Il numero di casi con un tasso di infortuni inferiore a quello degli Stati
+Uniti (tasso migliore) sono 7 paesi: Marocco, Australia, Turchia, Spagna, Giappone, Cina, Singapore - hanno tassi inferiori a 12.68
+
+```{r}
+data_sorted[data_sorted$Infortuni_ogni_1000_lavoratori <= 12.68,]
+
+```
+
+---
+
+Calcoliamo il rango percentile:
+
+$$
+P_r = \frac{B}{N}\times 100 = \text{rango percentile di } X_i
+$$
+
+```{r}
+# numero di casi minori o uguali al punteggio degli stati uniti
+(B = sum(data_sorted$Infortuni_ogni_1000_lavoratori <= 12.68))
+
+#numero di casi totali
+(N = nrow(data_sorted))
+
+(P = (B/N) * 100)
+
+```
+
+Il 57.14286% per cento di casi ha valori uguali o inferiori agli Stati Uniti.
+
+---
+
+In R è possibile utilizzare direttamente la funzione `rank()` per ottenere l'inidice di posizione per ciascun valore, e poi dividere per il numero totale per ottenere il rango percentile per ogni valore
+
+```{r}
+data_work$Infortuni_ogni_1000_lavoratori
+
+rango = rank(data_work$Infortuni_ogni_1000_lavoratori)
+rango # indica l'ordine crescente 
+
+(N = nrow(data_work)) # quante osservazioni totali
+```
+
+
+---
+
+```{r}
+# aggiungo la variabile Pr al dataset
+data_work$Pr = rango/N #divido l'indice di posizione per il valore totale
+
+data_work
+```
+
 

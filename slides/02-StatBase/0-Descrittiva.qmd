@@ -1,5 +1,5 @@
 ---
-title: "Elementi di statistica descrittiva 0"
+title: "Frequenze e Indici di Tendenza Centrale"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: ""
