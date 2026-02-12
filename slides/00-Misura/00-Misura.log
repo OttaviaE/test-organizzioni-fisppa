@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  11 FEB 2026 17:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  12 FEB 2026 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1488,7 +1488,7 @@ thkerncmss.
 [15
 
 ]
-<img/misura.png, id=1942, 913.011pt x 337.479pt>
+<img/misura.png, id=1998, 913.011pt x 337.479pt>
 File: img/misura.png Graphic file (type png)
 <use img/misura.png>
 Package pdftex.def Info: img/misura.png  used on input line 294.
@@ -1506,7 +1506,7 @@ Package pdftex.def Info: img/misura.png  used on input line 294.
 [18
 
 ]
-<img/latent.png, id=2298, 900.747pt x 396.39pt>
+<img/latent.png, id=2364, 900.747pt x 396.39pt>
 File: img/latent.png Graphic file (type png)
 <use img/latent.png>
 Package pdftex.def Info: img/latent.png  used on input line 335.
@@ -1516,7 +1516,7 @@ Package pdftex.def Info: img/latent.png  used on input line 335.
 [19
 
  <./img/latent.png>]
-<img/mavl1.png, id=2437, 889.14pt x 480.267pt>
+<img/mavl1.png, id=2507, 889.14pt x 480.267pt>
 File: img/mavl1.png Graphic file (type png)
 <use img/mavl1.png>
 Package pdftex.def Info: img/mavl1.png  used on input line 343.
@@ -1558,7 +1558,7 @@ Package pdftex.def Info: img/mavl1.png  used on input line 343.
 [28
 
 ]
-<img/nominale.png, id=3615, 419.604pt x 252.945pt>
+<img/nominale.png, id=3719, 419.604pt x 252.945pt>
 File: img/nominale.png Graphic file (type png)
 <use img/nominale.png>
 Package pdftex.def Info: img/nominale.png  used on input line 521.
@@ -1568,7 +1568,7 @@ Package pdftex.def Info: img/nominale.png  used on input line 521.
 [29
 
  <./img/nominale.png>]
-<img/regioni.jpg, id=3753, 450.68375pt x 562.1pt>
+<img/regioni.jpg, id=3861, 450.68375pt x 562.1pt>
 File: img/regioni.jpg Graphic file (type jpg)
 <use img/regioni.jpg>
 Package pdftex.def Info: img/regioni.jpg  used on input line 529.
@@ -1578,7 +1578,7 @@ Package pdftex.def Info: img/regioni.jpg  used on input line 529.
 [30
 
  <./img/regioni.jpg>]
-<img/ordinale.png, id=3890, 400.77pt x 187.902pt>
+<img/ordinale.png, id=4002, 400.77pt x 187.902pt>
 File: img/ordinale.png Graphic file (type png)
 <use img/ordinale.png>
 Package pdftex.def Info: img/ordinale.png  used on input line 542.
@@ -1588,7 +1588,7 @@ Package pdftex.def Info: img/ordinale.png  used on input line 542.
 [31
 
  <./img/ordinale.png>]
-<img/ordinle.jpg, id=4029, 658.46pt x 493.845pt>
+<img/ordinle.jpg, id=4145, 658.46pt x 493.845pt>
 File: img/ordinle.jpg Graphic file (type jpg)
 <use img/ordinle.jpg>
 Package pdftex.def Info: img/ordinle.jpg  used on input line 552.
@@ -1598,12 +1598,12 @@ Package pdftex.def Info: img/ordinle.jpg  used on input line 552.
 [32
 
  <./img/ordinle.jpg>]
-<img/intervalli.png, id=4166, 733.431pt x 106.653pt>
+<img/intervalli.png, id=4286, 733.431pt x 106.653pt>
 File: img/intervalli.png Graphic file (type png)
 <use img/intervalli.png>
 Package pdftex.def Info: img/intervalli.png  used on input line 566.
 (pdftex.def)             Requested size: 172.09767pt x 25.02602pt.
-<img/termometroMulti.jpg, id=4167, 325.215pt x 240.14719pt>
+<img/termometroMulti.jpg, id=4287, 325.215pt x 240.14719pt>
 File: img/termometroMulti.jpg Graphic file (type jpg)
 <use img/termometroMulti.jpg>
 Package pdftex.def Info: img/termometroMulti.jpg  used on input line 566.
@@ -1617,7 +1617,7 @@ Overfull \vbox (4.708pt too high) detected at line 566
 [33
 
  <./img/intervalli.png> <./img/termometroMulti.jpg>]
-<img/termometri.png, id=4305, 217.81375pt x 232.87pt>
+<img/termometri.png, id=4429, 217.81375pt x 232.87pt>
 File: img/termometri.png Graphic file (type png)
 <use img/termometri.png>
 Package pdftex.def Info: img/termometri.png  used on input line 585.
@@ -1631,12 +1631,12 @@ Package pdftex.def Info: img/termometri.png  used on input line 585.
 [35
 
 ]
-<img/rapporti.png, id=4530, 418.509pt x 106.653pt>
+<img/rapporti.png, id=4660, 418.509pt x 106.653pt>
 File: img/rapporti.png Graphic file (type png)
 <use img/rapporti.png>
 Package pdftex.def Info: img/rapporti.png  used on input line 603.
 (pdftex.def)             Requested size: 137.67604pt x 35.08493pt.
-<img/bilancia.jpg, id=4531, 225.84375pt x 225.84375pt>
+<img/bilancia.jpg, id=4661, 225.84375pt x 225.84375pt>
 File: img/bilancia.jpg Graphic file (type jpg)
 <use img/bilancia.jpg>
 Package pdftex.def Info: img/bilancia.jpg  used on input line 603.
@@ -1646,7 +1646,7 @@ Package pdftex.def Info: img/bilancia.jpg  used on input line 603.
 [36
 
  <./img/rapporti.png> <./img/bilancia.jpg>]
-<img/scale1.jpg, id=4669, 642.4pt x 750.805pt>
+<img/scale1.jpg, id=4803, 642.4pt x 750.805pt>
 File: img/scale1.jpg Graphic file (type jpg)
 <use img/scale1.jpg>
 Package pdftex.def Info: img/scale1.jpg  used on input line 611.
@@ -1730,12 +1730,12 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
 [49
 
 ]
-<img/medianaDispari.png, id=6288, 256.23pt x 77.526pt>
+<img/medianaDispari.png, id=6468, 256.23pt x 77.526pt>
 File: img/medianaDispari.png Graphic file (type png)
 <use img/medianaDispari.png>
 Package pdftex.def Info: img/medianaDispari.png  used on input line 922.
 (pdftex.def)             Requested size: 172.09767pt x 52.07227pt.
-<img/medianaPari.png, id=6289, 297.402pt x 74.022pt>
+<img/medianaPari.png, id=6469, 297.402pt x 74.022pt>
 File: img/medianaPari.png Graphic file (type png)
 <use img/medianaPari.png>
 Package pdftex.def Info: img/medianaPari.png  used on input line 922.
@@ -1769,6 +1769,29 @@ Package pdftex.def Info: img/medianaPari.png  used on input line 922.
 [56
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1122
+.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1122
+.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1122
+.
+
+
+[57
+
+]
+Overfull \hbox (5.43309pt too wide) in paragraph at lines 1172--1172
+ [][] 
+ []
+
+
+
+[58
+
+]
 \tf@nav=\write6
 \openout6 = `00-Misura.nav'.
 
@@ -1788,14 +1811,14 @@ L3 programming layer <2024-11-02>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `00-Misura.out' has not changed.
-(rerunfilecheck)             Checksum: 9962A1EDB74A3661C400832EB20F3387;3350.
+(rerunfilecheck)             Checksum: 588150C6C22AE7871619E1282526870D;3522.
  ) 
 Here is how much of TeX's memory you used:
- 31288 strings out of 473650
- 666435 string characters out of 5716970
- 1147737 words of memory out of 5000000
- 53588 multiletter control sequences out of 15000+600000
- 571916 words of font info for 85 fonts, out of 8000000 for 9000
+ 31356 strings out of 473650
+ 667581 string characters out of 5716970
+ 1153810 words of memory out of 5000000
+ 53651 multiletter control sequences out of 15000+600000
+ 572504 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,123p,408b,810s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Ottavia\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
@@ -1816,9 +1839,9 @@ ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Ottavia
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Us
 ers/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on 00-Misura.pdf (56 pages, 1997224 bytes).
+Output written on 00-Misura.pdf (58 pages, 2057354 bytes).
 PDF statistics:
- 7288 PDF objects out of 7423 (max. 8388607)
- 134 named destinations out of 1000 (max. 500000)
- 424 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 7775 PDF objects out of 8907 (max. 8388607)
+ 139 named destinations out of 1000 (max. 500000)
+ 432 words of extra memory for PDF output out of 10000 (max. 10000000)
 

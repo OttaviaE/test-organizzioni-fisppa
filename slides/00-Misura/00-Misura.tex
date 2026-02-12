@@ -1080,4 +1080,95 @@ Nella distribuzione delle \underline{ FREQUENZE CUMULATE}:  si individua la prim
 
 \end{frame}
 
+\subsection*{Variabili Quantitative}
+
+\begin{frame}
+
+La media è una sorta di baricentro della distribuzione dei dati. Data una variabile $X$ composta da $n$ valori:  
+
+\begin{equation*}
+\bar{X} = \dfrac{\sum_{i = 1}^{n}x_i}{n}
+\end{equation*}
+
+\vspace{1.5mm}
+
+\centering
+\begin{tikzpicture}[scale=1.2]
+
+\def\data{0.8,1.2,1.6,2.4,2.7,3.3,3.6,4.5,5.2}
+\def\mean{2.81}
+
+% Tavola
+\draw[line width=2pt] (0.5,0.3) -- (6.5,0.3);
+
+% Fulcro
+\draw[fill=gray!40]
+(\mean,0) -- ++(-0.35,-0.7) -- ++(0.7,0) -- cycle;
+\node[below] at (\mean,-0.7) {Media};
+
+% Puntini = osservazioni
+\foreach \x in \data {
+    \fill[blue!60] (\x,0.45) circle (0.12);
+}
+
+% Asse
+\draw[->, thin, gray] (0,0) -- (7,0) node[right] {Valori};
+
+\end{tikzpicture}
+
+\flushleft 
+\small 
+I dati: $X = (0.8,1.2,1.6,2.4,2.7,3.3,3.6,4.5,5.2)$, la media $\bar{X} = 2.811$
+\end{frame}
+
+
+
+\begin{frame}
+\centering
+\scalebox{.80}{
+\begin{tikzpicture}[scale=0.9]
+
+\def\data{1.18,1.02,1.10,1.16,1.01,1.10,1.05,1.12,1.45,1.52,1.54,1.55,10.06,14.46}
+\def\mean{2.809}
+\def\angle{8}
+
+% ---- calcolo minimo e massimo ----
+\pgfmathsetmacro{\xmin}{1.01}
+\pgfmathsetmacro{\xmax}{14.46}
+
+% piccolo margine estetico
+\pgfmathsetmacro{\leftend}{\xmin - 0.5}
+\pgfmathsetmacro{\rightend}{\xmax + 0.5}
+
+% Fulcro
+\draw[fill=gray!40]
+(\mean,0) -- ++(-0.4,-0.7) -- ++(0.8,0) -- cycle;
+\node[below] at (\mean,-0.7) {Media};
+
+% Tavola + dati ruotati attorno al fulcro
+\begin{scope}[rotate around={-\angle:(\mean,0.3)}]
+
+    % Tavola che copre TUTTI i dati
+    \draw[line width=2pt] (\leftend,0.3) -- (\rightend,0.3);
+
+    % Puntini
+    \foreach \x in \data {
+        \fill[blue!60] (\x,0.45) circle (0.12);
+    }
+
+\end{scope}
+
+% Asse
+\draw[->, thin, gray] (\leftend-0.5,0) -- (\rightend+0.5,0) node[right] {Valori};
+
+\end{tikzpicture}
+}
+
+\flushleft 
+\small 
+
+I dati: $X = (1.18,1.02,1.10,1.16,1.01,1.10,1.05,1.12,1.45,1.52,1.54,1.55,10.06,14.46)$, la media $\bar{X} = 2.809$
+
+\end{frame}
+
 \end{document}
