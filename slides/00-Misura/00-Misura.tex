@@ -23,6 +23,11 @@
 \tikzstyle{latent} = [ellipse, minimum width=2.5cm, minimum height=2cm,text centered, draw=black]
 \tikzstyle{item} = [rectangle, rounded corners, minimum width=0.5cm, minimum height=2cm, text width =1.7cm, text centered, draw=black]
 \tikzstyle{arrow} = [thick,->,>=stealth]
+\definecolor{unipd}{RGB}{155, 0, 20}
+\definecolor{grigioPantano}{RGB}{72,79,89}
+\definecolor{blu}{rgb}{0.0, 0.33, 0.71}
+\setbeamerfont{block title}{family=\bfseries}
+\setbeamercolor{block title}{use=structure,fg=unipd,bg=white}
 \def\tikzoverlay{%
 	\tikz[remember picture, overlay]\node[every overlay node]
 }%
@@ -208,11 +213,11 @@ La \textbf{misura} esprime una manifestazione particolare della quantità
 			
 Le misure sono esprimibili con numeri che rappresentano una quantità
 			
-\begin{exampleblock}{Esempio:}
+\begin{block}{Esempio:}
 
 \small				
 La larghezza della cattedra è una misura della quantità ``lunghezza''
-\end{exampleblock}
+\end{block}
 \end{column}
 
 \begin{column}{.50\linewidth}
@@ -227,11 +232,11 @@ Caratteristiche che variano da un'unità di analisi all'altra ma non sono quanti
 			
 Le rilevazioni si esprimono con simboli (anche numerici) ma \textbf{i numeri non esprimono misure di quantità}
 			
-\begin{exampleblock}{Esempio:}
+\begin{block}{Esempio:}
 
 \small				
 Luogo di nascita degli studenti di questa classe
-\end{exampleblock}
+\end{block}
 \end{column}
 \end{columns}
 \end{frame}
@@ -699,14 +704,14 @@ $F_i\%$ = frequenze \textbf{relative cumulate}:
 
 
 
-\begin{alertblock}
+\begin{block}
 	
 N.B: le frequenze cumulate si calcolano SOLO quando i caratteri presentano un ordinamento (e quindi non si calcolano per i caratteri sconnessi!!)
-\end{alertblock}
+\end{block}
 \end{frame}
 
 \begin{frame}
-	\begin{exampleblock}{Opinione riguardo un'affermazione}
+	\begin{block}{Opinione riguardo un'affermazione}
 		\begin{spacing}\Factor
 			
 			\begin{table}
@@ -727,7 +732,7 @@ N.B: le frequenze cumulate si calcolano SOLO quando i caratteri presentano un or
 				\end{tabular}
 			\end{table}
 		\end{spacing}
-	\end{exampleblock}
+	\end{block}
 \end{frame}
 
 \section{Indici di posizione}
@@ -820,17 +825,17 @@ Variabile quantitativa
 	
 	
 	\vspace{3mm}
-	\begin{alertblock}
+	\begin{block}
 		
 		N.B: Si può calcolare per le variabili misurate a qualsiasi livello, anche se di fatto viene calcolata solo per le variabile categoriali, in quanto per altri livelli di misurazione si
 		possono calcolare altri indici più informativi
-	\end{alertblock}
+	\end{block}
 \end{frame}
 
 \begin{frame}
 \begin{columns}[T]
 \begin{column}{.50\linewidth}
-\begin{exampleblock}{Esempio 1}
+\begin{block}{Esempio 1}
 		\begin{table}
 			\centering
 		
@@ -852,11 +857,11 @@ Variabile quantitativa
 \centering
 $max(f_i) =19$  $\Longrightarrow$ moda $=Mo(X)$=idoneo
 	
-	\end{exampleblock}
+	\end{block}
 \end{column}
 
 \begin{column}{.50\linewidth}
-	\begin{exampleblock}{Esempio 2}
+	\begin{block}{Esempio 2}
 			
 			\begin{table}
 				\centering
@@ -878,7 +883,7 @@ $max(f_i) =19$  $\Longrightarrow$ moda $=Mo(X)$=idoneo
 		
 		$max(f_i) =249$  $\Longrightarrow$ moda $=Mo(X)$=Divorziato
 		
-	\end{exampleblock}
+	\end{block}
 \end{column}
 
 \end{columns}
@@ -923,7 +928,7 @@ Nella distribuzione delle \underline{ FREQUENZE CUMULATE}:  si individua la prim
 
 
 \begin{frame}
-	\begin{exampleblock}{ESEMPIO 1: livello di Istruzione di un
+	\begin{block}{ESEMPIO 1: livello di Istruzione di un
 			campione di 203 soggetti}
 		
 	\begin{columns}
@@ -959,7 +964,7 @@ Nella distribuzione delle \underline{ FREQUENZE CUMULATE}:  si individua la prim
 		\vspace{5mm}
 		\centering
 		$Me(X) = X_{(n+1)/2} = X_{102} =$ \emph{Scuole Superiori}
-	\end{exampleblock}
+	\end{block}
 \end{frame}
 
 \subsection*{Variabili quantititive: Percentili}
@@ -1065,7 +1070,7 @@ Nella distribuzione delle \underline{ FREQUENZE CUMULATE}:  si individua la prim
 
 \begin{frame}
 
-\begin{exampleblock}
+\begin{block}
 		
 		15 soggetti hanno espresso il loro grado di
 		soddisfazione (punteggio da 1 a 7)
@@ -1076,7 +1081,7 @@ Nella distribuzione delle \underline{ FREQUENZE CUMULATE}:  si individua la prim
 		\end{tabular}
 
 		Costruire la tabella delle frequenze (assolute e cumulate) e trovare il 1°, 2° e 3° quartile
-	\end{exampleblock}
+	\end{block}
 
 \end{frame}
 

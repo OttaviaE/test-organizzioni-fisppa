@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  12 FEB 2026 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  12 FEB 2026 17:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./00-Misura.tex
-(00-Misura.tex
+**./03-Test.tex
+(03-Test.tex
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamer.cls
@@ -1215,37 +1215,37 @@ File: tikzlibraryshadows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 81.
+(hyperref)                removing `\\' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 81.
+(hyperref)                removing `\\' on input line 80.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 81.
+(hyperref)                removing `\\' on input line 80.
 
-(00-Misura.aux)
-\openout1 = `00-Misura.aux'.
+(03-Test.aux)
+\openout1 = `03-Test.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1315,63 +1315,63 @@ G,.JBIG2,.JB2,.eps]
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 83.
- (00-Misura.out) (00-Misura.out)
+Package hyperref Info: Link coloring OFF on input line 82.
+ (03-Test.out) (03-Test.out)
 \@outlinefile=\write5
-\openout5 = `00-Misura.out'.
+\openout5 = `03-Test.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 83.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 82.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 83.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 82.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 83.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 83.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 82.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 83.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 82.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 83.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 83.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 82.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 83.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 83.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 82.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 82.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 83.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 83.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 83.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 83.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 82.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 83.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 83.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 82.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 82.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
 (Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 8
-3.
+2.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 8
-3.
+2.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 83.
+ut line 82.
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator
 -basic-dictionary-English.dict
@@ -1397,8 +1397,8 @@ Dictionary: translator-numbers-dictionary, Language: English
 -theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \it@ocap on input line 83.
-LaTeX Info: Redefining \it@ccap on input line 83.
+LaTeX Info: Redefining \it@ocap on input line 82.
+LaTeX Info: Redefining \it@ccap on input line 82.
 
 
 File italian.ldf warning: 
@@ -1406,14 +1406,14 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting
-italian.ldf    on input line 83.
+italian.ldf    on input line 82.
 
-(00-Misura.nav)
+(03-Test.nav)
 
 [1
 
 {C:/Users/Ottavia/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(00-Misura.toc)
+(03-Test.toc)
 
 [2
 
@@ -1429,11 +1429,29 @@ italian.ldf    on input line 83.
 
 [5
 
-] (00-Misura.toc)
+]
 
 [6
 
 ]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 156
+.
+ (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 156
+.
+(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
+ut line 156.
+
+(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mat
+hkerncmss.fd
+File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
+thkerncmss.
+)
 
 [7
 
@@ -1442,90 +1460,89 @@ italian.ldf    on input line 83.
 [8
 
 ]
+<img/accordo.png, id=513, 792.123pt x 40.734pt>
+File: img/accordo.png Graphic file (type png)
+<use img/accordo.png>
+Package pdftex.def Info: img/accordo.png  used on input line 175.
+(pdftex.def)             Requested size: 309.77371pt x 15.92969pt.
+
 
 [9
 
-]
+ <./img/accordo.png>]
+File: img/accordo.png Graphic file (type png)
+<use img/accordo.png>
+Package pdftex.def Info: img/accordo.png  used on input line 175.
+(pdftex.def)             Requested size: 309.77371pt x 15.92969pt.
+
 
 [10
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 266
-.
- (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 266
-.
- (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 266.
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 201--201
+[]|\OT1/cmss/m/n/10.95 Completamente| 
+ []
 
-(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mat
-hkerncmss.fd
-File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
-thkerncmss.
-)
+
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 201--201
+[]|\OT1/cmss/m/n/10.95 Completamente| 
+ []
+
+
 
 [11
 
 ]
+<img/vas.png, id=680, 338.76563pt x 84.315pt>
+File: img/vas.png Graphic file (type png)
+<use img/vas.png>
+Package pdftex.def Info: img/vas.png  used on input line 212.
+(pdftex.def)             Requested size: 240.9357pt x 59.96826pt.
+
 
 [12
 
-]
+ <./img/vas.png>]
 
 [13
 
 ]
+Overfull \vbox (33.10864pt too high) detected at line 287
+ []
+
+
 
 [14
 
 ]
+Overfull \vbox (33.10864pt too high) detected at line 287
+ []
+
+
 
 [15
 
 ]
-<img/misura.png, id=1998, 913.011pt x 337.479pt>
-File: img/misura.png Graphic file (type png)
-<use img/misura.png>
-Package pdftex.def Info: img/misura.png  used on input line 299.
-(pdftex.def)             Requested size: 309.77371pt x 114.4993pt.
-
 
 [16
 
- <./img/misura.png>]
+]
 
 [17
 
-]
+] (03-Test.toc)
 
 [18
 
 ]
-<img/latent.png, id=2364, 900.747pt x 396.39pt>
-File: img/latent.png Graphic file (type png)
-<use img/latent.png>
-Package pdftex.def Info: img/latent.png  used on input line 340.
-(pdftex.def)             Requested size: 240.9357pt x 106.02873pt.
-
 
 [19
 
- <./img/latent.png>]
-<img/mavl1.png, id=2507, 889.14pt x 480.267pt>
-File: img/mavl1.png Graphic file (type png)
-<use img/mavl1.png>
-Package pdftex.def Info: img/mavl1.png  used on input line 348.
-(pdftex.def)             Requested size: 309.77371pt x 167.31917pt.
-
+]
 
 [20
 
- <./img/mavl1.png>]
+]
 
 [21
 
@@ -1545,303 +1562,47 @@ Package pdftex.def Info: img/mavl1.png  used on input line 348.
 
 [25
 
-] (00-Misura.toc)
-
-[26
-
-]
-
-[27
-
-]
-
-[28
-
-]
-<img/nominale.png, id=3719, 419.604pt x 252.945pt>
-File: img/nominale.png Graphic file (type png)
-<use img/nominale.png>
-Package pdftex.def Info: img/nominale.png  used on input line 526.
-(pdftex.def)             Requested size: 68.83801pt x 41.49483pt.
-
-
-[29
-
- <./img/nominale.png>]
-<img/regioni.jpg, id=3861, 450.68375pt x 562.1pt>
-File: img/regioni.jpg Graphic file (type jpg)
-<use img/regioni.jpg>
-Package pdftex.def Info: img/regioni.jpg  used on input line 534.
-(pdftex.def)             Requested size: 137.67604pt x 171.71042pt.
-
-
-[30
-
- <./img/regioni.jpg>]
-<img/ordinale.png, id=4002, 400.77pt x 187.902pt>
-File: img/ordinale.png Graphic file (type png)
-<use img/ordinale.png>
-Package pdftex.def Info: img/ordinale.png  used on input line 547.
-(pdftex.def)             Requested size: 68.83801pt x 32.27263pt.
-
-
-[31
-
- <./img/ordinale.png>]
-<img/ordinle.jpg, id=4145, 658.46pt x 493.845pt>
-File: img/ordinle.jpg Graphic file (type jpg)
-<use img/ordinle.jpg>
-Package pdftex.def Info: img/ordinle.jpg  used on input line 557.
-(pdftex.def)             Requested size: 172.09767pt x 129.06732pt.
-
-
-[32
-
- <./img/ordinle.jpg>]
-<img/intervalli.png, id=4286, 733.431pt x 106.653pt>
-File: img/intervalli.png Graphic file (type png)
-<use img/intervalli.png>
-Package pdftex.def Info: img/intervalli.png  used on input line 571.
-(pdftex.def)             Requested size: 172.09767pt x 25.02602pt.
-<img/termometroMulti.jpg, id=4287, 325.215pt x 240.14719pt>
-File: img/termometroMulti.jpg Graphic file (type jpg)
-<use img/termometroMulti.jpg>
-Package pdftex.def Info: img/termometroMulti.jpg  used on input line 571.
-(pdftex.def)             Requested size: 206.5193pt x 152.50275pt.
-
-Overfull \vbox (4.708pt too high) detected at line 571
- []
-
-
-
-[33
-
- <./img/intervalli.png> <./img/termometroMulti.jpg>]
-<img/termometri.png, id=4429, 217.81375pt x 232.87pt>
-File: img/termometri.png Graphic file (type png)
-<use img/termometri.png>
-Package pdftex.def Info: img/termometri.png  used on input line 590.
-(pdftex.def)             Requested size: 172.09767pt x 183.9937pt.
-
-
-[34
-
- <./img/termometri.png>] (00-Misura.toc)
-
-[35
-
-]
-<img/rapporti.png, id=4660, 418.509pt x 106.653pt>
-File: img/rapporti.png Graphic file (type png)
-<use img/rapporti.png>
-Package pdftex.def Info: img/rapporti.png  used on input line 608.
-(pdftex.def)             Requested size: 137.67604pt x 35.08493pt.
-<img/bilancia.jpg, id=4661, 225.84375pt x 225.84375pt>
-File: img/bilancia.jpg Graphic file (type jpg)
-<use img/bilancia.jpg>
-Package pdftex.def Info: img/bilancia.jpg  used on input line 608.
-(pdftex.def)             Requested size: 137.67604pt x 137.68521pt.
-
-
-[36
-
- <./img/rapporti.png> <./img/bilancia.jpg>]
-<img/scale1.jpg, id=4803, 642.4pt x 750.805pt>
-File: img/scale1.jpg Graphic file (type jpg)
-<use img/scale1.jpg>
-Package pdftex.def Info: img/scale1.jpg  used on input line 616.
-(pdftex.def)             Requested size: 172.09767pt x 201.13908pt.
-
-
-[37
-
- <./img/scale1.jpg>] (00-Misura.toc)
-
-[38
-
-]
-
-[39
-
-]
-
-LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/b/it' instead on input line 681.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/it' undefined
-(Font)              using `OT1/cmss/b/n' instead on input line 681.
-
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 681.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/b/it' instead on input line 681.
-
-LaTeX Font Info:    Font shape `OT1/cmss/b/it' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 681.
-
-
-
-[40
-
-]
-
-[41
-
-]
-
-[42
-
-] (00-Misura.toc)
-
-[43
-
-]
-
-[44
-
-] (00-Misura.toc)
-
-[45
-
-]
-
-[46
-
-]
-
-[47
-
-]
-
-[48
-
-]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 891.
-
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 891.
-
-
-
-[49
-
-]
-<img/medianaDispari.png, id=6468, 256.23pt x 77.526pt>
-File: img/medianaDispari.png Graphic file (type png)
-<use img/medianaDispari.png>
-Package pdftex.def Info: img/medianaDispari.png  used on input line 927.
-(pdftex.def)             Requested size: 172.09767pt x 52.07227pt.
-<img/medianaPari.png, id=6469, 297.402pt x 74.022pt>
-File: img/medianaPari.png Graphic file (type png)
-<use img/medianaPari.png>
-Package pdftex.def Info: img/medianaPari.png  used on input line 927.
-(pdftex.def)             Requested size: 172.09767pt x 42.83563pt.
-
-
-[50
-
- <./img/medianaDispari.png> <./img/medianaPari.png>]
-
-[51
-
-]
-
-[52
-
-]
-
-[53
-
-]
-
-[54
-
-]
-
-[55
-
-]
-
-[56
-
-]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1127
-.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1127
-.
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1127
-.
-
-
-[57
-
-]
-Overfull \hbox (5.43309pt too wide) in paragraph at lines 1177--1177
- [][] 
- []
-
-
-
-[58
-
 ]
 \tf@nav=\write6
-\openout6 = `00-Misura.nav'.
+\openout6 = `03-Test.nav'.
 
 \tf@toc=\write7
-\openout7 = `00-Misura.toc'.
+\openout7 = `03-Test.toc'.
 
 \tf@snm=\write8
-\openout8 = `00-Misura.snm'.
+\openout8 = `03-Test.snm'.
 
- (00-Misura.aux)
+ (03-Test.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
  ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-Package rerunfilecheck Info: File `00-Misura.out' has not changed.
-(rerunfilecheck)             Checksum: 588150C6C22AE7871619E1282526870D;3522.
+Package rerunfilecheck Info: File `03-Test.out' has not changed.
+(rerunfilecheck)             Checksum: FD1F5891B74005470CE41ED53C318C0B;380.
  ) 
 Here is how much of TeX's memory you used:
- 31320 strings out of 473650
- 666347 string characters out of 5716970
- 1154057 words of memory out of 5000000
- 53615 multiletter control sequences out of 15000+600000
- 572504 words of font info for 87 fonts, out of 8000000 for 9000
+ 30860 strings out of 473650
+ 658201 string characters out of 5716970
+ 1115087 words of memory out of 5000000
+ 53251 multiletter control sequences out of 15000+600000
+ 572344 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,19n,123p,408b,794s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Ottavia\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
-ss1095.pk><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmex10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Ottavia/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/Ottavia/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/Ottav
-ia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/U
-sers/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9
-.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmssbx10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmssi10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/Ottavia/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ottavia/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Ottavia
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Us
-ers/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
-sbm10.pfb>
-Output written on 00-Misura.pdf (58 pages, 2057323 bytes).
+ 128i,19n,123p,406b,876s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmss10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmss12.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/Ottavia/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/Ottavia/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/O
+ttavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb
+><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmtt10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/symbols/msam10.pfb>
+Output written on 03-Test.pdf (25 pages, 411915 bytes).
 PDF statistics:
- 7775 PDF objects out of 8907 (max. 8388607)
- 139 named destinations out of 1000 (max. 500000)
- 432 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1483 PDF objects out of 1728 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
+ 201 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,420 @@
+\documentclass[compress]{beamer}
+\usetheme{Montpellier}
+\useinnertheme{rounded}
+\useoutertheme{miniframes}
+\usecolortheme{dove}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage[italian]{babel}
+\usepackage{tikzsymbols}
+\usepackage{tikz}
+\usepackage{spot}
+\usepackage{tabularx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\setbeamertemplate{caption}[numbered]
+\usetikzlibrary{mindmap,calc,patterns,decorations.pathmorphing,decorations.markings, arrows, shapes.arrows, shapes, backgrounds,positioning,shadows.blur}
+\usepackage[absolute,overlay]{textpos}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{latent} = [ellipse, minimum width=2.5cm, minimum height=2cm,text centered, draw=black]
+\tikzstyle{item} = [rectangle, rounded corners, minimum width=0.5cm, minimum height=2cm, text width =1.7cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\def\tikzoverlay{%
+	\tikz[remember picture, overlay]\node[every overlay node]
+}%
+
+\setbeamersize{text margin left=10pt, text margin right=10pt}
+\newcommand\Factor{1.2}
+\definecolor{unipd}{RGB}{155, 0, 20}
+\definecolor{grigioPantano}{RGB}{72,79,89}
+\definecolor{blu}{rgb}{0.0, 0.33, 0.71}
+\setbeamerfont{block title}{family=\bfseries}
+\setbeamercolor{block title}{use=structure,fg=unipd,bg=white}
+  \AtBeginSection[]
+  {
+    \begin{frame}[plain]
+      \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+  }
+
+  \AtBeginSubsection[]
+  {
+    \begin{frame}[plain]
+      \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+  }
+  
+\setbeamertemplate{footnote}{%
+	\parindent 1em\noindent%
+	\raggedright
+	\insertfootnotetext\par%
+}
+
+  \tikzset{
+	invisible/.style={opacity=0},
+	visible on/.style={alt={#1{}{invisible}}},
+	alt/.code args={<#1>#2#3}{%
+		\alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+	},
+	every overlay node/.style={
+		%draw=black,fill=white,rounded corners,
+		anchor=north west, inner sep=0pt,
+	},
+}
+
+\def\tikzoverlay{%
+	\tikz[remember picture, overlay]\node[every overlay node]
+}%
+
+
+\title[Misura in $\psi$]{Modulo Didattico 3: Test, scale di risposta, validità e attendibilità}
+\subtitle{Test per le organizzazioni}
+\date{A.A.: 2025/2026}
+\author[Ottavia Epifania]{\texorpdfstring{Dr. Ottavia M. Epifania\newline\url{ottavia.epifania@unipd.it}}{Author}}
+\institute[]{Università di Padova}
+\author{\textbf{Ottavia M. Epifania}\\\texttt{ottavia.epifania@unipd.it}\\
+Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}
+
+\begin{document}
+
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+\section[Scale di Risposta]{Scale di Risposta}
+
+\begin{frame}{Item Vero/Falso}
+	Sono item formulati in modo che l'unica possibile risposta possa essere Sì/No o Vero/Falso 
+	
+	\begin{quote}{Esempio}
+		
+		Mi commuovo quando vedo un film drammatico.
+		\begin{itemize}
+			\item Sì
+			\item No
+		\end{itemize}
+	\end{quote}
+	
+	\begin{block}{Vantaggi}
+		
+		Sono estremamente facili da comprendere per chiunque 
+	\end{block}
+	
+	\begin{block}{Svantaggi}
+		
+		La scala di risposta potrebbe essere troppa riduttiva e particolarmente complessa per certe tipologie di persone
+	\end{block}
+\end{frame}
+
+\begin{frame}{Item a scelta multipla forzata}
+	
+	\begin{quote}
+		
+		Preferisco un lavoro nel quale: 
+		
+		\begin{enumerate}
+			\item Posso crescere come persona
+			\item Posso guadagnare bene
+			\item Posso imparare cose nuove
+		\end{enumerate}
+	\end{quote}
+	
+		
+	\vspace{2.5mm}
+	Le opzioni di risposta sono realmente ordinabili? Sono anche solo comparabili?
+	
+	\pause
+	\begin{block}{Narcissistic Personality Inventory}
+		
+		\pause
+		\begin{enumerate}
+			\item non sono né meglio né peggio di altre persone
+			\item penso di essere una persona speciale 
+		\end{enumerate}
+		
+		Una persona con un alto livello di narcisismo ha più probabilità di scegliere la seconda opzione
+	\end{block}
+\end{frame}
+
+\begin{frame}{Rating scales}
+	
+	L'evoluzione delle scale con item Sì/No o Vero/Falso $\rightarrow$ aggiunta di livelli intermedi
+	
+	\emph{Summating rating scales:} Scale composte da diverse domande (\textbf{item}) il cui punteggio totale è ottenuto attraverso la somma dei punteggi alle valutazioni fornite ad ogni item
+	
+	\pause
+	\begin{block}{Assunzione}
+		
+		Il costrutto latente si muove lungo un continuum sottostante alle opzioni di risposte, ovvero è possibile dare una quantità alla variabile psicologica misurata a seconda dell'opzione di risposta scelta. 
+		\end{block}
+		
+
+\end{frame}
+
+\begin{frame}
+
+		
+		Esprimere il proprio livello di accordo con l'affermazione ``Sono una persona organizzata'' secondo le seguenti opzioni di risposta: 
+		
+		\begin{center}
+			Per niente d'accordo:	$\square$ \hspace{2mm} $\square$ \hspace{2mm} $\square$ \hspace{2mm} $\square$ \hspace{2mm} $\square$: Completamente d'accordo
+		\end{center}
+
+L'assunzione è che il livello di accordo con l'affermazione vari lungo un continuum e che questo continuum sia delimitato dagli ancoraggi ``Per niente d'accordo'' e ``Completamente d'accordo'': 
+
+\pause
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/accordo}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{``Sono una persona organizzata''}{Indicare il grado di accordo con l'affermazione}
+	
+	\begin{block}{Barrare il valore numerico corrispondente}
+		
+		\begin{tabular}{p{2cm} p{2cm}  p{2cm}  p{2cm}  p{2cm} }
+			Per niente & & & & Completamente \\
+			1 & 2 & 3 & 4& 5 \\
+		\end{tabular}
+	\end{block}
+	
+		\begin{block}{Barrare la casella}
+			
+		\begin{tabular}{p{2cm} p{2cm}  p{2cm}  p{2cm}  p{2cm} }
+			Per niente & & & & Completamente \\
+			$\square$ & $\square$ & $\square$ & $\square$& $\square$ \\
+		\end{tabular}
+	\end{block}
+	
+\begin{block}{Segnare il numero}
+	
+	``Sono una persona organizzata'': \hspace{2cm} \large $\square$
+\end{block}
+
+	
+\end{frame}
+
+\begin{frame}{Visual Analougue Scale}
+
+Molto utilizzate anche in psicologia dello sviluppo 
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{img/vas}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Domini}
+	
+	\begin{block}{Accordo}
+		
+		Indicare il grado di accordo con un'affermazione
+		
+		Ad esempio:\\
+	\emph{Sono una persona organizzata} 
+	\begin{center}
+		Per niente d'accordo:	$\square$ \hspace{1.5mm} $\square$ \hspace{1.5mm} $\square$ \hspace{1.5mm} $\square$ \hspace{1.5mm} $\square$: Completamente d'accordo
+	\end{center}
+	\end{block}
+	
+		\begin{block}{Intensità}
+		
+	Dare una valutazione vera e propria rispetto a un argomento in termini di buono/cattivo, insufficiente/sufficiente, importante/non importante, eccetera. 
+	
+	Ad esempio: \\
+	\emph{Indicare il proprio livello di competenze informatiche}
+	\begin{center}
+		5 $=$ alto; \hspace{1.5mm} 4 $=$ medio-alto; \hspace{1.5mm} 3 $=$ medio; \hspace{1.5mm} 2 $=$ medio-basso; \hspace{1.5mm} 1 $=$ basso
+	\end{center}
+	\end{block}
+	
+
+\end{frame}
+
+\begin{frame}
+	\small
+		\begin{block}{Frequenza}
+		
+		Indicare la frequenza con cui vengono messi in atto i comportamenti o vengono sperimentati i vissuti descritti dall'item
+		
+		Ad esempio: \\
+		\emph{Nell'ultimo anno, mi sono sentito ansioso:}
+		\begin{center}
+	Mai	$\square$ \hspace{1.5mm} Raramente $\square$ \hspace{1.5mm} Qualche volta $\square$ \hspace{1.5mm} Spesso $\square$ \hspace{1.5mm} Sempre $\square$
+		\end{center}
+	\end{block}
+	
+	\pause
+	\begin{center}
+		Attenzione!
+	\end{center}
+	
+	Cosa vuole dire ``Spesso''? E ``Qualche volta''? Vogliono dire la stessa cosa per tutt*?
+	
+	\begin{columns}[T]
+		\begin{column}{.50\linewidth}
+			\begin{center}
+				Bassa frequenza
+			\end{center}
+			\begin{enumerate}
+				\item Mai 
+				\item Circa una volta l'anno
+				\item Circa due volte l'anno
+				\item Due volte al mese 
+				\item Più di due volte al mese
+			\end{enumerate}
+		\end{column}
+		\begin{column}{.50\linewidth}
+					\begin{center}
+			Alta frequenza
+		\end{center}
+		\begin{enumerate}
+			\item Due volte al mese o meno 
+			\item Una volta a settimana
+			\item Due volte a settimana
+			\item Tutti i giorni 
+			\item Diverse volte al giorno
+		\end{enumerate}
+		\end{column}
+	\end{columns} 
+\end{frame}
+
+\begin{frame}{Quanti punti?}
+	Come regola generale, più è alto il numero di punti della scala, maggiore è poi l'attendibilità della misura
+	
+	Solitamente si considerano scale con un numero di punti tra 4 e 7 $\rightarrow$ Più di 7 punti sono ``Inutili''
+	
+	Numero dispari o numero pari di punti? 
+	
+	Un numero dispari di punti permette l'alternativa neutra: 
+	
+	\begin{itemize}
+		\item Ci sono dei casi (e.g., valutazione di soddisfazione per un servizio) dove ha senso avere un'alternativa neutra 
+		\item In altri casi (e.g., valutazione degli atteggiamenti verso un gruppo sociale) l'alternativa neutra funge da ``rifugio'' per non sbilanciarsi
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Criticità}
+	\begin{block}{Acquiescienza}
+		
+		Essere sistematicamente d'accordo con le affermazioni proposte dagli item
+	\end{block}
+	
+\begin{block}{Estremismo}
+	
+	Scegliere sempre le risposte estreme
+\end{block}
+
+\begin{block}{Evasività}
+	
+	Scegliere sempre i punti centrali della scala o le risposte ``Non so''
+\end{block}
+
+\begin{block}{Desiderabilità sociale}
+	
+Rispondere in modo da mostrarsi delle belle persone sempre e comunque	
+\end{block}
+
+\end{frame}
+
+\section[Validità]{Validità e attendibilità delle misure}
+
+\begin{frame}{Attendibilità}
+	
+	Grado in cui una procedura di misurazione produce lo stesso risultato in prove ripetute
+	
+	\begin{equation*}
+		X = V + E
+	\end{equation*}
+	dove: \\
+	$X$: misura rilevata\\
+	$V$: parte vera\\
+	$E$: errore: fluttuazioni casuali oppure costante e sistematico
+	
+	\pause
+	L'attendibilità di una misura è la proporzione di $X$ che non riflette l'errore di misurazione: 
+	\begin{equation*}
+		\rho = \dfrac{V}{V + E}
+	\end{equation*}
+	
+\end{frame}
+
+\begin{frame}{Una nota sull'errore}
+	\begin{block}{Errore casuale}
+		
+		Tutti quei fattori casuali che confondono la misurazione di qualunque fenomeno. \\
+		Caratteristiche: 
+		\begin{itemize}
+			\item Ha media zero
+		\item 	La correlazione fra punteggio vero ed errore è zero
+			\item La correlazione fra errore e punteggio vero alla misurazione successiva è zero
+			\item La correlazione fra errori di misurazioni diverse è zero
+			
+		\end{itemize}
+		
+	\end{block}
+	
+		\begin{block}{Errore sistematico (bias)}
+		
+		Effetto distorcente non casuale, sistematico
+	\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Validità di costrutto}
+	
+	Quello che si sta misurando... è proprio quello che si voleva misurare e non altro!
+	
+	(Alcuni) Elementi utili per la \underline{validità di costrutto}:
+	\begin{itemize}
+		\item Chiara definizione del costrutto teorico
+		\item Misurare il costrutto con metodi differenti
+	\end{itemize} 
+\end{block}	
+
+\pause
+\begin{block}{Validità statistica}
+	
+	Quello che stiamo iferendo a partire dalle analisi ha senso perché le analisi hanno senso! 
+	
+	(Alcuni) Elementi utili per la \underline{validità statistica}:
+	\begin{itemize}
+		\item Appropriatezza dei metodi statistici utilizzati sulla base delle variabili misurate
+		\item Adeguatezza dell'ampiezza campionaria
+	\end{itemize} 
+	
+\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Validità esterna}
+		
+		Il grado in cui i risultati sono \emph{rappresentativi} della popolazione di interesse e il grado in cui sono \emph{replicabili}
+		
+			(Alcuni) Elementi utili per la \underline{validità esterna}:
+		\begin{itemize}
+			\item Il campione è rappresentativo della popolazione target
+			\item La validità ecologica
+		\end{itemize} 
+	\end{block}
+	
+	\pause
+		\begin{block}{Validità ecologica}
+		
+		Rappresenta la generalizzabilità dei risultati di una ricerca a quella che è la vita quotidiana 
+		
+		I dati raccolti devono essere rappresentativi del comportamento dell’individuo nella sua realtà abituale
+		
+	\end{block}
+\end{frame}
+
+\end{document}
