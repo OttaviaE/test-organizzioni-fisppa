@@ -75,3 +75,14 @@ valutazione delle performance il più completa possibile.
 # Punteggi standardizzati 
 
 # Covarianza e correlazione
+
+
+# Credits
+
+Altoè, G. (2022). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2022/23
+
+Marci, M. (2025). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2025/26

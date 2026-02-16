@@ -89,7 +89,6 @@ grafici
 
 -   **Indici trasformati**: nuovi punteggi che sostituiscono le cifre originarie e permettono di capire rapidamente quanto ogni valore si possa dire buono o no rispetto a tutti gli altri
 
--   **Aree sottese a una curva normale**: proporzioni che dicono la probabilità di ottenere casualmente un punteggio più basso o più alto di quello considerato, data una particolare distribuzione normale o gaussiana
 
 
 
@@ -806,3 +805,13 @@ kableExtra::kable(tab_indici,
       align    = c("l", "c", "c", "c"))
 ```
 
+
+# Credits
+
+Altoè, G. (2022). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2022/23
+
+Marci, M. (2025). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2025/26

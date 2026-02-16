@@ -314,7 +314,7 @@ var(x)
 **Usa $s^2$ (n - 1) quando:**
 
 - Hai un campione
-- Vuoi stimare parametri della popolazione o fare test statistici
+- Vuoi stimare parametri della popolazione
 
 ```{r}
 # Varianza descrittiva (n) - manuale
@@ -405,9 +405,9 @@ q=quantile(voti, probs = c(.25, .50, .75))
 hist(voti, breaks = 20, col = "grey80", border = "white",
      main = "Voti", xlab = " ")
 
-abline(v = q["25%"], col = "steelblue", lwd = 4, lty = 2)
-abline(v = q["50%"], col = "firebrick", lwd = 4)
-abline(v = q["75%"], col = "steelblue", lwd = 4, lty = 2)
+abline(v = q["25%"], col = "steelblue", lwd = 10, lty = 2)
+abline(v = q["50%"], col = "firebrick", lwd = 10)
+abline(v = q["75%"], col = "steelblue", lwd = 10, lty = 2)
 
 legend("topright",
        legend = c("Q1 (25%)", "Q2 (50%)", "Q3 (75%)"),
@@ -451,13 +451,13 @@ importanti sono i **Quartili** e i **Percentili**.
 I quartili dividono in 4 parti uguali la distribuzione dei dati. Essi
 sono:
 
-- Il primo quartile $Q_{25}$: il dato al di sotto del quale si situa il
+- Il primo quartile $Q_{25}$ (o $Q_1$) : il dato al di sotto del quale si situa il
 **25%** dei dati.
 
-- Il secondo quartile (o mediana) $Q_{50}$: il dato al di sotto del
+- Il secondo quartile (o mediana) $Q_{50}$ (o $Q_2$): il dato al di sotto del
 quale si situa il **50%** dei dati.
 
-- Il terzo quartile $Q_{75}$: il dato al di sotto del quale si situa il
+- Il terzo quartile $Q_{75}$ (o $Q_3$): il dato al di sotto del quale si situa il
 **75%** dei dati.
 
 I quartili vengono rappresentati all’interno di un grafico molto
@@ -569,6 +569,7 @@ $P_5 \quad P_{25} \quad P_{50} \quad P_{75} \quad P_{95}$
 Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
 
 ```{r, echo=FALSE}
+set.seed(11)
 voti=round(c(runif(150, min = 18, max = 30), runif(50, min = 27, max = 30)),2)
 ```
 
@@ -646,17 +647,16 @@ Il **Rango percentile** ($Rp$) indica la **percentuale di casi** che hanno un **
 
 ---
 
-Supponiamo di disporre di un test, che misura la comprensione del testo nei bambini. Il punteggio di un soggetto al test è ottenuto come la somma di risposte corrette a 20 domande.
+Supponiamo di disporre di un test che misura il **ragionamento numerico** in candidati per posizioni amministrative.  
+Il punteggio di un soggetto al test è ottenuto come la somma di risposte corrette a 20 domande.
 
-Per i bambini di 9 anni, al punteggio $15$ è associato il rango percentile di $60$ ($Rp_{15} = 60$).
+Per i candidati con diploma di scuola superiore, al punteggio 15 è associato il rango percentile di 60 ($Rp_{15} = 60$).
 
-Il **60%** dei bambini italiani di 9 anni ottiene un punteggio al test inferiore o uguale a 15.
+Il **60%** dei candidati italiani con diploma di scuola superiore ottiene un punteggio al test inferiore o uguale a 15.
 
 ---
 
-Supponiamo di aver somministrato il test ad un bambino di 9 anni e di
-aver verificato sul manuale che il suo punteggio equivale a un rango
-percentile pari a 5. 
+Supponiamo di aver somministrato il test a un candidato con diploma e di aver verificato sul manuale che il suo punteggio equivale a un rango percentile pari a 5.
 
 Come interpretare la sua performance?
 
@@ -763,3 +763,12 @@ data_work
 ```
 
 
+# Credits
+
+Altoè, G. (2022). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2022/23
+
+Marci, M. (2025). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2025/26
