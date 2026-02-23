@@ -7,3 +7,4 @@
 \beamer@sectionintoc {4}{Il dato elementare: Le Frequenze}{38}{0}{4}
 \beamer@sectionintoc {5}{Indici di posizione}{43}{0}{5}
 \beamer@subsectionintoc {5}{1}{Indici di posizione tipici}{45}{0}{5}
+\beamer@sectionintoc {6}{Una giornata in HR}{59}{0}{6}

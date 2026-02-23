@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  12 FEB 2026 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  23 FEB 2026 09:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1450,18 +1450,18 @@ italian.ldf    on input line 83.
 [10
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 266
+LaTeX Font Info:    Trying to load font information for U+msa on input line 269
 .
  (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 266
+LaTeX Font Info:    Trying to load font information for U+msb on input line 269
 .
  (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 266.
+ut line 269.
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mat
 hkerncmss.fd
@@ -1488,10 +1488,10 @@ thkerncmss.
 [15
 
 ]
-<img/misura.png, id=1998, 913.011pt x 337.479pt>
+<img/misura.png, id=2190, 913.011pt x 337.479pt>
 File: img/misura.png Graphic file (type png)
 <use img/misura.png>
-Package pdftex.def Info: img/misura.png  used on input line 299.
+Package pdftex.def Info: img/misura.png  used on input line 302.
 (pdftex.def)             Requested size: 309.77371pt x 114.4993pt.
 
 
@@ -1506,20 +1506,20 @@ Package pdftex.def Info: img/misura.png  used on input line 299.
 [18
 
 ]
-<img/latent.png, id=2364, 900.747pt x 396.39pt>
+<img/latent.png, id=2586, 900.747pt x 396.39pt>
 File: img/latent.png Graphic file (type png)
 <use img/latent.png>
-Package pdftex.def Info: img/latent.png  used on input line 340.
+Package pdftex.def Info: img/latent.png  used on input line 343.
 (pdftex.def)             Requested size: 240.9357pt x 106.02873pt.
 
 
 [19
 
  <./img/latent.png>]
-<img/mavl1.png, id=2507, 889.14pt x 480.267pt>
+<img/mavl1.png, id=2741, 889.14pt x 480.267pt>
 File: img/mavl1.png Graphic file (type png)
 <use img/mavl1.png>
-Package pdftex.def Info: img/mavl1.png  used on input line 348.
+Package pdftex.def Info: img/mavl1.png  used on input line 351.
 (pdftex.def)             Requested size: 309.77371pt x 167.31917pt.
 
 
@@ -1558,58 +1558,58 @@ Package pdftex.def Info: img/mavl1.png  used on input line 348.
 [28
 
 ]
-<img/nominale.png, id=3719, 419.604pt x 252.945pt>
+<img/nominale.png, id=4056, 419.604pt x 252.945pt>
 File: img/nominale.png Graphic file (type png)
 <use img/nominale.png>
-Package pdftex.def Info: img/nominale.png  used on input line 526.
+Package pdftex.def Info: img/nominale.png  used on input line 529.
 (pdftex.def)             Requested size: 68.83801pt x 41.49483pt.
 
 
 [29
 
  <./img/nominale.png>]
-<img/regioni.jpg, id=3861, 450.68375pt x 562.1pt>
+<img/regioni.jpg, id=4210, 450.68375pt x 562.1pt>
 File: img/regioni.jpg Graphic file (type jpg)
 <use img/regioni.jpg>
-Package pdftex.def Info: img/regioni.jpg  used on input line 534.
+Package pdftex.def Info: img/regioni.jpg  used on input line 537.
 (pdftex.def)             Requested size: 137.67604pt x 171.71042pt.
 
 
 [30
 
  <./img/regioni.jpg>]
-<img/ordinale.png, id=4002, 400.77pt x 187.902pt>
+<img/ordinale.png, id=4363, 400.77pt x 187.902pt>
 File: img/ordinale.png Graphic file (type png)
 <use img/ordinale.png>
-Package pdftex.def Info: img/ordinale.png  used on input line 547.
+Package pdftex.def Info: img/ordinale.png  used on input line 550.
 (pdftex.def)             Requested size: 68.83801pt x 32.27263pt.
 
 
 [31
 
  <./img/ordinale.png>]
-<img/ordinle.jpg, id=4145, 658.46pt x 493.845pt>
+<img/ordinle.jpg, id=4518, 658.46pt x 493.845pt>
 File: img/ordinle.jpg Graphic file (type jpg)
 <use img/ordinle.jpg>
-Package pdftex.def Info: img/ordinle.jpg  used on input line 557.
+Package pdftex.def Info: img/ordinle.jpg  used on input line 560.
 (pdftex.def)             Requested size: 172.09767pt x 129.06732pt.
 
 
 [32
 
  <./img/ordinle.jpg>]
-<img/intervalli.png, id=4286, 733.431pt x 106.653pt>
+<img/intervalli.png, id=4671, 733.431pt x 106.653pt>
 File: img/intervalli.png Graphic file (type png)
 <use img/intervalli.png>
-Package pdftex.def Info: img/intervalli.png  used on input line 571.
+Package pdftex.def Info: img/intervalli.png  used on input line 574.
 (pdftex.def)             Requested size: 172.09767pt x 25.02602pt.
-<img/termometroMulti.jpg, id=4287, 325.215pt x 240.14719pt>
+<img/termometroMulti.jpg, id=4672, 325.215pt x 240.14719pt>
 File: img/termometroMulti.jpg Graphic file (type jpg)
 <use img/termometroMulti.jpg>
-Package pdftex.def Info: img/termometroMulti.jpg  used on input line 571.
+Package pdftex.def Info: img/termometroMulti.jpg  used on input line 574.
 (pdftex.def)             Requested size: 206.5193pt x 152.50275pt.
 
-Overfull \vbox (4.708pt too high) detected at line 571
+Overfull \vbox (4.708pt too high) detected at line 574
  []
 
 
@@ -1617,10 +1617,10 @@ Overfull \vbox (4.708pt too high) detected at line 571
 [33
 
  <./img/intervalli.png> <./img/termometroMulti.jpg>]
-<img/termometri.png, id=4429, 217.81375pt x 232.87pt>
+<img/termometri.png, id=4826, 217.81375pt x 232.87pt>
 File: img/termometri.png Graphic file (type png)
 <use img/termometri.png>
-Package pdftex.def Info: img/termometri.png  used on input line 590.
+Package pdftex.def Info: img/termometri.png  used on input line 593.
 (pdftex.def)             Requested size: 172.09767pt x 183.9937pt.
 
 
@@ -1631,25 +1631,25 @@ Package pdftex.def Info: img/termometri.png  used on input line 590.
 [35
 
 ]
-<img/rapporti.png, id=4660, 418.509pt x 106.653pt>
+<img/rapporti.png, id=5076, 418.509pt x 106.653pt>
 File: img/rapporti.png Graphic file (type png)
 <use img/rapporti.png>
-Package pdftex.def Info: img/rapporti.png  used on input line 608.
+Package pdftex.def Info: img/rapporti.png  used on input line 611.
 (pdftex.def)             Requested size: 137.67604pt x 35.08493pt.
-<img/bilancia.jpg, id=4661, 225.84375pt x 225.84375pt>
+<img/bilancia.jpg, id=5077, 225.84375pt x 225.84375pt>
 File: img/bilancia.jpg Graphic file (type jpg)
 <use img/bilancia.jpg>
-Package pdftex.def Info: img/bilancia.jpg  used on input line 608.
+Package pdftex.def Info: img/bilancia.jpg  used on input line 611.
 (pdftex.def)             Requested size: 137.67604pt x 137.68521pt.
 
 
 [36
 
  <./img/rapporti.png> <./img/bilancia.jpg>]
-<img/scale1.jpg, id=4803, 642.4pt x 750.805pt>
+<img/scale1.jpg, id=5231, 642.4pt x 750.805pt>
 File: img/scale1.jpg Graphic file (type jpg)
 <use img/scale1.jpg>
-Package pdftex.def Info: img/scale1.jpg  used on input line 616.
+Package pdftex.def Info: img/scale1.jpg  used on input line 619.
 (pdftex.def)             Requested size: 172.09767pt x 201.13908pt.
 
 
@@ -1666,21 +1666,21 @@ Package pdftex.def Info: img/scale1.jpg  used on input line 616.
 ]
 
 LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/b/it' instead on input line 681.
+(Font)              using `OT1/cmss/b/it' instead on input line 684.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/it' undefined
-(Font)              using `OT1/cmss/b/n' instead on input line 681.
+(Font)              using `OT1/cmss/b/n' instead on input line 684.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 681.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 684.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/b/it' instead on input line 681.
+(Font)              using `OT1/cmss/b/it' instead on input line 684.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/it' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 681.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 684.
 
 
 
@@ -1720,25 +1720,25 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/it' in size <10.95> not available
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 891.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 894.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 891.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 894.
 
 
 
 [49
 
 ]
-<img/medianaDispari.png, id=6468, 256.23pt x 77.526pt>
+<img/medianaDispari.png, id=7037, 256.23pt x 77.526pt>
 File: img/medianaDispari.png Graphic file (type png)
 <use img/medianaDispari.png>
-Package pdftex.def Info: img/medianaDispari.png  used on input line 927.
+Package pdftex.def Info: img/medianaDispari.png  used on input line 930.
 (pdftex.def)             Requested size: 172.09767pt x 52.07227pt.
-<img/medianaPari.png, id=6469, 297.402pt x 74.022pt>
+<img/medianaPari.png, id=7038, 297.402pt x 74.022pt>
 File: img/medianaPari.png Graphic file (type png)
 <use img/medianaPari.png>
-Package pdftex.def Info: img/medianaPari.png  used on input line 927.
+Package pdftex.def Info: img/medianaPari.png  used on input line 930.
 (pdftex.def)             Requested size: 172.09767pt x 42.83563pt.
 
 
@@ -1770,26 +1770,54 @@ Package pdftex.def Info: img/medianaPari.png  used on input line 927.
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1127
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1130
 .
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1127
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1130
 .
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1127
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 1130
 .
 
 
 [57
 
 ]
-Overfull \hbox (5.43309pt too wide) in paragraph at lines 1177--1177
+Overfull \hbox (5.43309pt too wide) in paragraph at lines 1180--1180
  [][] 
  []
 
 
 
 [58
+
+] (00-Misura.toc)
+
+[59
+
+]
+
+LaTeX Warning: Command \textendash invalid in math mode on input line 1210.
+
+
+
+[60
+
+]
+
+[61
+
+]
+
+[62
+
+]
+
+[63
+
+]
+
+[64
 
 ]
 \tf@nav=\write6
@@ -1811,16 +1839,16 @@ L3 programming layer <2024-11-02>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `00-Misura.out' has not changed.
-(rerunfilecheck)             Checksum: 588150C6C22AE7871619E1282526870D;3522.
+(rerunfilecheck)             Checksum: 3DD359FAA6B52D5C4E3C120D73DBD8EB;4516.
  ) 
 Here is how much of TeX's memory you used:
- 31320 strings out of 473650
- 666347 string characters out of 5716970
- 1154057 words of memory out of 5000000
- 53615 multiletter control sequences out of 15000+600000
+ 31375 strings out of 473650
+ 667022 string characters out of 5716970
+ 1164206 words of memory out of 5000000
+ 53649 multiletter control sequences out of 15000+600000
  572504 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,19n,123p,408b,794s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,19n,123p,408b,811s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Ottavia\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 ss1095.pk><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmex10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type
@@ -1839,9 +1867,9 @@ ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Ottavia
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Us
 ers/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on 00-Misura.pdf (58 pages, 2057323 bytes).
+Output written on 00-Misura.pdf (64 pages, 2233775 bytes).
 PDF statistics:
- 7775 PDF objects out of 8907 (max. 8388607)
- 139 named destinations out of 1000 (max. 500000)
- 432 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 9304 PDF objects out of 10688 (max. 8388607)
+ 158 named destinations out of 1000 (max. 500000)
+ 488 words of extra memory for PDF output out of 10000 (max. 10000000)
 

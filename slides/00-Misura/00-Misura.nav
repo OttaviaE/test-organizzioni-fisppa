@@ -5,14 +5,20 @@
 \headcommand {\sectionentry {1}{Il corso}{2}{Il corso}{0}}
 \headcommand {\slideentry {1}{0}{1}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\slideentry {1}{0}{2}{3/3}{}{0}}
+\headcommand {\beamer@subsectionpages {2}{2}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{3}{Orari \& Ricevimento}}
+\headcommand {\slideentry {1}{1}{1}{3/3}{Orari \& Ricevimento}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\slideentry {1}{0}{3}{4/4}{}{0}}
+\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Argomenti}}
+\headcommand {\slideentry {1}{2}{1}{4/4}{Argomenti}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\slideentry {1}{0}{4}{5/5}{}{0}}
+\headcommand {\beamer@subsectionpages {4}{4}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{5}{Esame}}
+\headcommand {\slideentry {1}{3}{1}{5/5}{Esame}{0}}
 \headcommand {\beamer@framepages {5}{5}}
 \headcommand {\beamer@sectionpages {2}{5}}
-\headcommand {\beamer@subsectionpages {2}{5}}
+\headcommand {\beamer@subsectionpages {5}{5}}
 \headcommand {\sectionentry {2}{La misura in psicologia}{6}{La misura in psicologia}{0}}
 \headcommand {\slideentry {2}{0}{1}{6/6}{}{0}}
 \headcommand {\beamer@framepages {6}{6}}
@@ -153,8 +159,28 @@
 \headcommand {\beamer@framepages {57}{57}}
 \headcommand {\slideentry {5}{5}{2}{58/58}{Variabili Quantitative}{0}}
 \headcommand {\beamer@framepages {58}{58}}
-\headcommand {\beamer@partpages {1}{58}}
-\headcommand {\beamer@subsectionpages {57}{58}}
 \headcommand {\beamer@sectionpages {43}{58}}
-\headcommand {\beamer@documentpages {58}}
-\headcommand {\gdef \inserttotalframenumber {53}}
+\headcommand {\beamer@subsectionpages {57}{58}}
+\headcommand {\slideentry {6}{0}{1}{59/59}{}{0}}
+\headcommand {\beamer@framepages {59}{59}}
+\headcommand {\beamer@subsectionpages {59}{59}}
+\headcommand {\beamer@subsectionentry {0}{6}{1}{60}{Scenario}}
+\headcommand {\slideentry {6}{1}{1}{60/60}{Scenario}{0}}
+\headcommand {\beamer@framepages {60}{60}}
+\headcommand {\slideentry {6}{1}{2}{61/61}{Scenario}{0}}
+\headcommand {\beamer@framepages {61}{61}}
+\headcommand {\beamer@subsectionpages {60}{61}}
+\headcommand {\beamer@subsectionentry {0}{6}{2}{62}{Classificazione Alto / Medio / Basso}}
+\headcommand {\slideentry {6}{2}{1}{62/62}{Classificazione Alto / Medio / Basso}{0}}
+\headcommand {\beamer@framepages {62}{62}}
+\headcommand {\beamer@subsectionpages {62}{62}}
+\headcommand {\beamer@subsectionentry {0}{6}{3}{63}{Dopo il colloquio}}
+\headcommand {\slideentry {6}{3}{1}{63/63}{Dopo il colloquio}{0}}
+\headcommand {\beamer@framepages {63}{63}}
+\headcommand {\slideentry {6}{3}{2}{64/64}{Dopo il colloquio}{0}}
+\headcommand {\beamer@framepages {64}{64}}
+\headcommand {\beamer@partpages {1}{64}}
+\headcommand {\beamer@subsectionpages {63}{64}}
+\headcommand {\beamer@sectionpages {59}{64}}
+\headcommand {\beamer@documentpages {64}}
+\headcommand {\gdef \inserttotalframenumber {59}}
