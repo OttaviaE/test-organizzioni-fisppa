@@ -1,0 +1,26 @@
+---
+title: "Test per le organizzazioni"
+author: "Ottavia Epifania & Margherita Calderan"
+format: 
+  html: 
+   self-contained: true
+   toc: true
+   toc-location: left
+   theme: minty
+---
+
+# Modulo 0 
+
+Il concetto di misura in psicologia [slides in PDF](slides/00-Misura/00-Misura.pdf)
+
+# Modulo 1
+
+Intoduzione a R 
+
+# Modulo 2
+
+statistiche di base
+
+# Modulo 3
+
+Tipi di test 
