@@ -70,14 +70,6 @@ R è **sia open-source che gratuito** e vanta una community estremamente attiva,
 
 ###
 
-Il principale "concorrente" di R è sicuramente **Python** che offre un ambiente altrettanto potente, sviluppato e attivo.
-
-Non è facile (e forse non è possibile) capire quale sia il migliore.
-
-In ogni caso, una volta imparato R, imparare Python sarà molto semplice.
-
-###
-
 Nell'ambito della statistica ci sono vari software non open-source ed a pagamento come:
 
 -   Statistica
@@ -581,12 +573,5 @@ Come risolvere?
 
 -   Possiamo cercare su internet il nome della funzione o l'eventuale messaggio che riceviamo
 
-###
-
-Facciamo un po' di pratica!
-
-<br/> Aprite e tenete aperto questo link: <https://etherpad.wikimedia.org/p/test-organizzazioni>
-
-![](img/pad_condiviso.png){fig-align="center" width="400"}
 
 

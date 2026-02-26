@@ -64,7 +64,7 @@ I vettori sono una struttura dati unidimensionale e sono la più semplice presen
 ![](img/vettore.png){fig-align="center"}
 
 
-### Caratteristiche di un vettore
+## Caratteristiche di un vettore
 
 -   **la lunghezza**: il numero di elementi da cui è formato il vettore
 
@@ -78,7 +78,7 @@ I vettori sono una struttura dati unidimensionale e sono la più semplice presen
 
 ![](img/vettore.png){fig-align="center"}
 
-### Creare un vettore
+## Creare un vettore
 
 I vettori si possono creare attraverso il comando **`c()`**, indicando tra le parentesi i valori degli elementi nella sucessione desiderata e separati da una virgola.
 
@@ -92,7 +92,7 @@ char_vect = c("R","R","R","ok")
 ```
 :::
 
-### Tiplogia di vettore
+## Tiplogia di vettore
 
 La tipologia di dati da cui è formato il vettore.
 
@@ -192,17 +192,6 @@ my_vect[c(1,4,2,9)] # estraggo elementi a scelta
 ```
 
 
-### Inidicizzazione Negativa
-
-Allo stesso modo possiamo decidere di estrarre tutti gli elementi del vettore eccetto alcuni
-
-```{r, echo=TRUE}
-
-my_vect[-c(1)] #tutti tranne il primo elemento
-
-my_vect[-c(1:9)] #tutti tranne i primi 10
-```
-
 
 ### Indicizzazione Logica
 
@@ -242,9 +231,12 @@ I fattori sono una tipologia di dato peculiare e per quanto simile a semplici **
 
 ### Creare un fattore: `as.factor`
 
+La funzione `rep()` permette di ripetere gli elementi di un vettore, e quindi ci permette per esempio di creare un fattore a tre livelli  "hello","ciao" e "hola", e definire che per ogni livello abbiamo 2 osservazioni
+
 ```{r, echo=TRUE}
+rep(c("hello","ciao", "hola"), each = 2)
+
 char_vect = rep(c("hello","ciao", "hola"), each = 2)
-char_vect
 
 my_fact = as.factor(char_vect)
 my_fact
@@ -324,7 +316,7 @@ nrow(my_mat)
 ncol(my_mat)
 ```
 
-### Matrici - Caratteristiche
+## Caratteristiche
 
 -   Possono contenere **una sola tipologia** di dati
 
@@ -332,7 +324,7 @@ ncol(my_mat)
 
 -   Possono essere viste come un **insieme** di singoli **vettori**
 
-### Matrici - Caratteristiche
+### Caratteristiche
 
 Il numero di righe e colonne non deve essere lo stesso necessariamente (matrice quadrata) ma il numero di righe deve essere compatibile con il vettore data:
 
@@ -354,7 +346,7 @@ matrix(data = 1:2, ncol = 3, nrow = 3)
 
 **`warnings`**: la funzione ci informa di qualcosa di potenzialmente problematico, ma (circa!!) tutto liscio
 
-## Matrici - Indicizzazione
+## Indicizzazione
 
 Per identificare uno o più elementi nella matrice abbiamo bisogno di indici/e di riga e/o colonna separati da virgola, sempre con le parentesi quadre: **matrice\[riga, colonna\]**
 
@@ -377,14 +369,6 @@ my_mat[,1]
 
 ```
 
-### Indicizzazione logica 
-
-```{r, echo=TRUE}
-my_mat>2
-my_mat
-# Tutti gli elementi maggiori di due
-my_mat[my_mat>2]
-```
 
 ### Vettori e Matrici
 
@@ -430,7 +414,6 @@ rbind(my_mat1, my_mat2)
 
 ```
 
-Cosa notate di "strano"?
 
 ### Operazioni con le matrici
 
@@ -459,11 +442,6 @@ my_mat%*%my_mat
 ```
 
 
-### Ora facciamo un po' di pratica! 
-
-<br/> Aprite e tenete aperto questo link:
-
-<https://etherpad.wikimedia.org/p/arca-corsoR>
 
 # Dataframe
 
@@ -601,6 +579,8 @@ head(my_df, n = 5)
 ### Indicizzazione `subset()`
 
 ```{r,echo=TRUE}
+my_df
+
 subset(my_df, subset = lettere == "a" & numeri > 2)
 ```
 
@@ -631,15 +611,11 @@ head(subset(my_df, select = c(lettere, numeri)), n = 3)
 
 Possiamo anche combinare le due cose:
 
-```{r,echo=TRUE, eval=FALSE}
+```{r,echo=TRUE, eval=TRUE}
 subset(my_df, subset = lettere == "a" & numeri > 2, 
        select = c(lettere, numeri))
 ```
 
-```{r,echo=TRUE}
-head(subset(my_df, subset = lettere == "a" & numeri > 2, 
-       select = c(lettere, numeri)), n = 3)
-```
 
 
 ### 
@@ -667,7 +643,7 @@ str(my_df)
 ```
 
 
-## Combinare Dataframes
+## Combinare Dataframe
 
 Essendo simili a delle matrici, i dataframe si possono combinare tra loro attraverso le funzioni **`rbind()`**:
 
@@ -681,7 +657,7 @@ str(my_df2)
 
 ### 
 
-**Unisco i due dataframes**
+**Unisco i due Dataframe**
 
 ```{r,echo=TRUE, error=TRUE}
 my_df3 = rbind(my_df,my_df2) 
@@ -698,9 +674,9 @@ str(my_df2)
 
 ### 
 
-**Unisco i due dataframes**
+**Unisco i due Dataframe**
 
--   I dataframes devono avere lo stesso numero di colonne
+-   I Dataframe devono avere lo stesso numero di colonne
 -   I nomi delle colonne devono essere identici
 
 ###
@@ -757,17 +733,6 @@ df_all_1 = merge(x = df_rt, y = df_age, by="subj")
 str(df_all_1)
 ```
 
-###
-
-oppure la funzione **`_join()`**:
-
-```{r, echo=TRUE, message=FALSE}
-library(dplyr) # carico il pacchetto dplyr
-
-df_all_2 = left_join(x = df_rt, y = df_age, by = c("subj")) 
-str(df_all_2)
-```
-
 
 ## Esportazione e importazione dati
 
@@ -801,34 +766,6 @@ df_age_impo = read_xlsx("dat/df_age.xlsx")
 ```{r, echo=FALSE, eval=TRUE}
 rt_csv = df_rt_impo = read_csv("data/df_rt.csv") 
 load(file ="data/df_rt.rda") # formato R
-```
-
-### Formato R
-
-E' consigliato avere una versione del dataset in formato .csv e un'altra in formato .rda (formato specifico di R)
-
-### Controllo la struttura ed il tipo di dati
-
-
-```{r,echo=TRUE,message=FALSE}
-str(df_rt)
-```
-
-### Controllo la struttura ed il tipo di dati
-
-
-```{r,echo=TRUE,message=FALSE}
-str(rt_csv)
-```
-
-
-### Modifico il tipo di dato
-
-
-```{r,echo=TRUE,message=FALSE}
-rt_csv$subj = as.factor(rt_csv$subj)
-rt_csv$cond = as.factor(rt_csv$cond)
-str(rt_csv)
 ```
 
 

@@ -1,0 +1,32 @@
+Calcolo della media :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}
+\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}\SpecialCharTok{/}\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5.432
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5.432
+\end{verbatim}
