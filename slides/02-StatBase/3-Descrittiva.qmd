@@ -45,30 +45,12 @@ header-includes: |
              \begin{frame}[plain]
              \tableofcontents[currentsection, hideallsubsections]
               \end{frame}
-          }
 editor_options: 
   chunk_output_type: console
 execute: 
   echo: true
 ---
 
-
-### Meglio la media e la deviazione standard, o i percentili?
-
-- Il ricorso alla media e alla deviazione standard è tanto più
-vantaggioso e utile quando la distribuzione della variabile di
-interesse nel campione di riferimento (che deve essere
-rappresentata graficamente nel manuale!) è approssimativamente
-normale.
-
-- Negli altri casi (distribuzioni fortemente asimmetriche) è più
-conveniente utilizzare i percentili. Tali indici sono infatti definiti
-“robusti” perchè risentono meno delle caratteristiche della
-distribuzione della variabile oggetto di studio.
-
-- Spesso nei manuali dei test vengono forniti sia media e deviazione
-standard che i percentili, in modo da poter garantire una
-valutazione delle performance il più completa possibile.
 
 # Indici di forma
 

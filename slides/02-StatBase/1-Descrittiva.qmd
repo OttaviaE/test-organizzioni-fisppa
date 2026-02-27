@@ -58,18 +58,15 @@ execute:
 
 # Indici di variabilità
 
-- Il concetto di variabilità si riferisce a quanto i punteggi di una
-distribuzione sono sparsi ovvero quanto siano simili o dissimili tra loro
+- Il concetto di variabilità si riferisce a quanto i punteggi di una distribuzione sono sparsi ovvero quanto siano simili o dissimili tra loro,
 
 - Il ricorso ad un indice di tendenza centrale comporta una forte
-semplificazione, e da solo non fornisce informazioni esaurienti sulla
-distribuzione.
+semplificazione, e da solo non fornisce informazioni esaurienti sulla distribuzione.
 
 - E’ fondamentale capire quanto i dati siano dispersi intorno
 all’indice di tendenza centrale.
 
-- La variabilità è una caratteristica fondamentale delle distribuzioni
-“*Variability is the essence of statistics*” (Cobb, 1992)
+- La variabilità è una caratteristica fondamentale delle distribuzioni “*Variability is the essence of statistics*” (Cobb, 1992)
 
 ---
 
@@ -92,34 +89,15 @@ evidente una diversa dispersione intorno a tale valore.
 
 ### Indici di variabilità o disperisione
 
-- Dobbiamo quindi considerare la la variabilità (o
+- Dobbiamo quindi considerare la variabilità (o
 dispersione) di una distribuzione di dati.
 
 - Gli indici di variabilità possono assumere solo valori positivi
 (non ha senso parlare di dispersione negativa) o nulli
 (quando i dati osservati hanno tutti lo stesso valore).
 
-- La variabilità minima possibile è $0$ e si riferisce a distribuzioni
-in cui tutti i punteggi sono uguali e dunque non c’è variabilità
-nei dati.
+- La variabilità minima possibile è $0$ e si riferisce a distribuzioni in cui tutti i punteggi sono uguali e dunque non c’è variabilità nei dati.
 
----
-
-Quale gruppo è più variabile? 
-
-```{r, echo=FALSE, fig.width=5, fig.height=2}
-library(ggplot2)
-set_theme(theme_classic())
-data_prof = data.frame(prof = rep(c("prof1","prof2","prof3"), 
-                                  each = length(prof1)),
-                       voti = c(prof1, prof2, prof3)
-                       )
-pprof = ggplot(data = data_prof, aes(x = voti, fill = prof, color = prof))+
-  geom_histogram(show.legend = FALSE, lwd = 1,binwidth=3)+
-  facet_wrap(~prof)+scale_color_manual(values = rep("black",3))
-
-pprof
-```
 
 ## Campo di variazione
 
@@ -141,20 +119,19 @@ max(prof1) - min(prof1)
 Esempio 2:
 
 ```{r}
-x1 = c(10, 10, 27, 29, 30, 28, 30, 30)
-x2 = c(10, 10, 16, 17, 30, 20, 21, 30)
+prof4 = c(10, 30, 27, 29, 30, 28, 30, 30)
+prof5 = c(10, 10, 16, 17, 30, 20, 21, 30)
 
-max(x1) - min(x1)
-max(x2) - min(x2)
+max(prof4) - min(prof5)
+max(prof4) - min(prof5)
 ```
 
 Commenti?
 
 ## La varianza
 
-- La varianza $\sigma^2$ di un insieme di dati è la media degli scarti al
-quadrato tra i dati e la media dei dati stessi:
-
+- La varianza $\sigma^2$ di un insieme di dati è la media degli scarti al quadrato tra i dati e la media dei dati stessi:
+ 
 $$
 \sigma^2 = \frac{\sum_i^n (X_i - \bar{X})^2}{n}
 $$
@@ -172,6 +149,16 @@ $$
 Qual'è la varianza maggiore? Quant'è la varianza di prof3?
 
 ```{r, echo=FALSE, fig.width=5, fig.height=2}
+library(ggplot2)
+set_theme(theme_classic())
+data_prof = data.frame(prof = rep(c("prof1","prof2","prof3"), 
+                                  each = length(prof1)),
+                       voti = c(prof1, prof2, prof3)
+                       )
+pprof = ggplot(data = data_prof, aes(x = voti, fill = prof, color = prof))+
+  geom_histogram(show.legend = FALSE, lwd = 1,binwidth=3)+
+  facet_wrap(~prof)+scale_color_manual(values = rep("black",3))
+
 pprof
 ```
 
@@ -233,93 +220,10 @@ dividendo # 4 + 4 + 16 + 16 + 1 + 4 + 4 + 1
 divisore 
 
 varianza = dividendo/divisore # varianza descrittiva
+varianza
 ```
 
 $$\sigma^2 = \frac{\sum_i^8 (X_i - 20)^2}{8}$$
-
-### Varianza descrittiva vs. inferenziale
-
-- **Descrittiva**: descrive la dispersione dei dati osservati (come se fossero la popolazione).
-
-- **Inferenziale**: stima la varianza della popolazione a partire da un campione.
-
-
-----
-
-#### Varianza Descrittiva (Popolazione)
-
-Se i tuoi dati rappresentano *tutta* la popolazione (o vuoi solo descriverli):
-
-$$
-\sigma^2 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})^2}{n}
-$$
-
-- Denominatore: **n** (tutti i dati)
-- Obiettivo: descrivere la dispersione osservata
-
-
-----
-
-#### Varianza Inferenziale (Campione)
-
-Se hai un campione e vuoi stimare la varianza della popolazione:
-
-$$
-s^2 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})^2}{n-1}
-$$
-
-- Denominatore: **n - 1** (correzione di Bessel)
-- Obiettivo: stima non distorta della varianza di popolazione
-
-----
-
-#### Perché $n-1$? 
-
-Per definizione, la somma degli scarti dalla media è sempre zero:
-
-$$
-\sum_{i=1}^{n} (X_i - \bar{X}) = 0
-$$
-
-Se conosci **n - 1** scarti, l'ultimo è automaticamente determinato (deve far sommare tutto a zero).
-
-----
-
-#### Perché n - 1 corregge il bias
-
-Quando usi $\bar{X}$ invece della "vera" media $\mu$:
-
-- $\bar{X}$ è "ottimizzata" per i tuoi dati specifici, è la media del campione non della popolazione ($\mu$)
-- Gli scarti $(X_i - \bar{X})$ sono più piccoli di quelli che otterresti con $\mu$
-- Dividere per **n** sottostima la vera varianza
-- Dividere per **n - 1** (numero più piccolo) aumenta il risultato 
-
-----
-
-```{r}
-x = c(2, 4, 4, 4, 5, 5, 7, 9)
-```
-
-
-**Usa $\sigma^2$ (n) quando:**
-
-- Fai solo descrizione/esplorazione
-
-```{r}
-# Varianza campionaria (n-1) - default
-var(x)
-```
-
-
-**Usa $s^2$ (n - 1) quando:**
-
-- Hai un campione
-- Vuoi stimare parametri della popolazione
-
-```{r}
-# Varianza descrittiva (n) - manuale
-sum((x - mean(x))^2) / length(x)
-```
 
 
 ## La deviazione standard
@@ -331,9 +235,7 @@ $$\sigma = \sqrt{\sigma^2}$$
 
 Riporta l'indice di varibilità sulla scala della variabile.
 
-Es. In campione di $20$ soggetti è stata rilevata la variabile peso.
-In tale campione la media è pari a $70kg$ e la deviazione standard
-è pari a $10.7$.
+Es. In campione di $20$ soggetti è stata rilevata la variabile peso. In tale campione la media è pari a $70kg$ e la deviazione standard è pari a $10.7$.
 Si potrà aﬀermare che i soggetti **diﬀeriscono mediamente** di
 $10.7 kg$ **dal peso medio** di  $70 kg$.
 
@@ -376,7 +278,7 @@ $$CV_{\text{post-test}} = \frac{8}{30} = .27$$
 Osservando i risultati si può concludere che le conoscenze informatiche dei soggetti sono più omogenee al post-test.
 
 
-## La diﬀerenza interquartilica 
+## I quantili e la diﬀerenza interquartilica 
 
 La diﬀerenza interquartilica di una distribuzione è la diﬀerenza
 tra il terzo e il primo quartile (o equivalentemente tra il
@@ -394,94 +296,49 @@ Immaginiamo di avere i voti di 200 studenti:
 
 ```{r, echo=FALSE, fig.width=10, fig.height=5}
 
-set_theme(theme_classic(base_size = 24))
+set_theme(theme_bw(base_size = 24))
 set.seed(1)
 
 # Esempio didattico: voti uniformi tra 0 e 10
-voti=round(c(runif(150, min = 18, max = 30), runif(50, min = 27, max = 30)),2)
+voti=round(c(runif(150, min = 18, max = 30), runif(50, min = 27, max = 30)))
 
-q=quantile(voti, probs = c(.25, .50, .75))  
+q = quantile(voti, probs = c(.25, .50, .75))  
 
-hist(voti, breaks = 20, col = "grey80", border = "white",
-     main = "Voti", xlab = " ")
+bp = barplot(table(voti), 
+             main = "Distribuzione Voti", 
+             xlab = "Voto", 
+             ylab = "Frequenza",
+             ylim = c(0, max(table(voti)) * 1.2)) # Spazio per la legenda
 
-abline(v = q["25%"], col = "steelblue", lwd = 10, lty = 2)
-abline(v = q["50%"], col = "firebrick", lwd = 10)
-abline(v = q["75%"], col = "steelblue", lwd = 10, lty = 2)
+posizioni_q = bp[match(as.character(q), names(table(voti)))]
 
-legend("topright",
-       legend = c("Q1 (25%)", "Q2 (50%)", "Q3 (75%)"),
-       col = c("steelblue", "firebrick", "steelblue"),
-       lty = c(2, 1, 2), lwd = 4, bty = "n")
+abline(v = posizioni_q[1], col = "steelblue", lwd = 6, lty = 2) # 
+abline(v = posizioni_q[2], col = "firebrick", lwd = 6)          # 
+abline(v = posizioni_q[3], col = "steelblue", lwd = 6, lty = 2) # 
+
+legend("topright", 
+       legend = c("Q1 (25%)", "Q2(50%)", "Q3 (75%)"), 
+       col = c("steelblue", "firebrick", "steelblue"), 
+       lty = c(2, 1, 2), lwd = 8, bty = "n", cex = 0.8)
 ```
 
-
----
-
-
-- Q1 (25%) indica una soglia sotto cui cade circa un quarto della classe;
-- Q2 (50%) indica una soglia sotto cui cade la metà della classe; 
-- Q3 (75%) lascia sotto di sé circa tre quarti dei voti.
-
-Cos'è Q2?
-
-
-# Gli indici di posizione
-
-## I quantili
-
-Data una distribuzione di dati, si definisce come **Quantile di indice p** e si indica con $Q_p$ , il dato al di sotto del quale si
-situa una percentuale **p** di dati.
-
-
-Ad esempio, la mediana può essere considerata come il
-quantile $Q_{50}$, e cioè il dato al di sotto del quale si situa il
-**50%** dei dati.
-
----
-
--  Esistono diverse tipologie di quantili.
-
--  Rispetto all’utilizzo nelle applicazioni in psicologia, i più
-importanti sono i **Quartili** e i **Percentili**.
-
-
-### I quartili 
-
-I quartili dividono in 4 parti uguali la distribuzione dei dati. Essi
-sono:
-
-- Il primo quartile $Q_{25}$ (o $Q_1$) : il dato al di sotto del quale si situa il
-**25%** dei dati.
-
-- Il secondo quartile (o mediana) $Q_{50}$ (o $Q_2$): il dato al di sotto del
-quale si situa il **50%** dei dati.
-
-- Il terzo quartile $Q_{75}$ (o $Q_3$): il dato al di sotto del quale si situa il
-**75%** dei dati.
-
-I quartili vengono rappresentati all’interno di un grafico molto
-utile per descrivere i dati detto diagramma a scatola (boxplot).
-
-----
-
-#### Boxplot
+### Boxplot
 
 ```{r, fig.height=4, fig.width=8, echo=FALSE}
 set.seed(1)
-voti <- c(runif(2,   min = 18, max = 19),
+voti = c(runif(2,   min = 18, max = 19),
           runif(200, min = 22, max = 30),
           runif(100, min = 27, max = 30))
 
 # Calcola stats (per riferimento)
-Q1  <- quantile(voti, 0.25)
-Q3  <- quantile(voti, 0.75)
-IQR_val <- IQR(voti)
+Q1  = quantile(voti, 0.25)
+Q3  = quantile(voti, 0.75)
+IQR_val = IQR(voti)
 
 # ─── GRAFICO PULITO ────────────────────────────────────────────
-op <- par(mar = c(4.5, 2, 2.5, 1), xpd = NA)
+op = par(mar = c(4.5, 2, 2.5, 1), xpd = NA)
 
-bp <- boxplot(voti,
+bp = boxplot(voti,
               horizontal = TRUE,
               axes = FALSE,
               main = " ",
@@ -496,10 +353,10 @@ axis(1, cex.axis = 1.0)
 mtext("Voti", side = 1, line = 2.5, cex = 1.0)
 
 # Estrai posizioni
-Q1_x  <- bp$stats[2]
-med_x <- bp$stats[3]
-Q3_x  <- bp$stats[4]
-y     <- 1
+Q1_x  = bp$stats[2]
+med_x = bp$stats[3]
+Q3_x  = bp$stats[4]
+y     = 1
 
 # ─── ETICHETTE SOPRA (brevi) ────────────────────────────────────
 text(Q1_x,  y + 0.42, expression(Q[25]), cex = 1.1, font = 2)
@@ -552,61 +409,57 @@ IQR(voti) # funzione per il calcolo automatico
 
 - È un outlier qualsiasi osservazione che cade fuori dall'intervallo $[Q_1 - 1.5 \times IQR \quad ; \quad Q_3 + 1.5 \times IQR]$.
 
+# I percentili
 
-### I percentili
+## Esempio: livelli di Soddisfazione
 
-I percentili, spesso indicati con la lettera maiuscola **P**, dividono in
-**cento parti** la distribuzione dei dati.
+Il dataset sintetico contiene dati individuali relativi a dipendenti di un'azienda e viene utilizzato per modellare il rischio di burnout e analizzare i fattori associati al benessere lavorativo. 
 
-Alcuni percentili molto importanti, sia dal punto di vista statistico
-che rispetto alle applicazioni in psicologia, sono:
+Utilizzeremo i [dati sul burnout](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/data), concentrandoci ad esempio sul livello di soddisfazione (`SatisfactionLevel`):
 
-$P_5 \quad P_{25} \quad P_{50} \quad P_{75} \quad P_{95}$
-
-
----
-
-Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
-
-```{r, echo=FALSE}
-set.seed(11)
-voti=round(c(runif(150, min = 18, max = 30), runif(50, min = 27, max = 30)),2)
-```
-
-```{r}
-head(voti, n = 6) # primi 6 voti
-
-tail(voti, n = 6) # ultimi 6 voti
+```{r, echo=TRUE}
+# Carichiamo i dati dal file fornito
+library(readr)
+burnout=read_csv("data/burnout.csv")
+soddisfazione=burnout$SatisfactionLevel
 ```
 
 ---
 
-Per parlare di percentili/quantili dobbiamo prima ordinare i voti dal più basso al più alto:
+Per parlare di percentili/quantili dobbiamo prima ordinare i dati dal più basso al più alto.
 
 ```{r}
-v_sorted = sort(voti) # riordino ?sort
+head(soddisfazione, n = 6) # prime 6 risposte
+tail(soddisfazione, n = 6) # ultime 6 risposte
+```
 
-head(v_sorted, n = 6) # primi 6 voti
-tail(v_sorted, n = 6) # ultimi 6 voti
+---
+
+Per parlare di percentili/quantili dobbiamo prima ordinare i livelli di soddisfazione dal più basso al più alto:
+
+```{r}
+s_sorted = sort(soddisfazione) # riordino ?sort
+
+head(s_sorted, n = 6) # primi 6 valori
+tail(s_sorted, n = 6) # ultimi 6 valori
 ```
 
 
 ---
 
-Trovare il valore sotto cui cade circa il 25% dei voti.
+Trovare il valore sotto cui cade circa il 25% dei punteggi di soddisfazione.
+
+$$Pos_p = \frac{n+1}{100} \cdot p$$
 
 ```{r}
-n = length(voti) # numero di osservazioni
+n = length(soddisfazione) # numero di osservazioni
 
-p = 0.25 # voglio il 25° percentile
+p = 25 # voglio il 25° percentile
 
-k = n * p  # quanti voti rappresentano il 25% del totale
-#(25% di 200 = 50)
+pos_p = ((n+1)/100) * p  #Posizione di ordine p
 
-Q_25 = v_sorted[k] # predo il voto in quella posizione
-Q_25
-
-sum(voti <= Q_25)  # quanti sono <= soglia
+p_25 = s_sorted[pos_p] # prendo il valore in quella posizione
+p_25
 ```
 
 ---
@@ -615,28 +468,26 @@ Fortunatamente esiste la funzione `quantile()` che permette di calcolare i quant
 
 ```{r}
 # probs specifica che quantili vogliamo
-
-quantile(voti, probs = c(0.05, 0.25,0.50,0.75, 0.95))
+quantile(soddisfazione, probs = c(0.05, 0.25,0.50,0.75, 0.95))
 
 ```
 
 
 ----
 
-#### Esempio: Workaholism (dipendenza da lavoro)
+#### Esempio
 
-A 6 lavoratori adulti è stato somministrato un test standardizzato a livello nazionale sul workaholism (punteggio totale).
-Il punteggio di ciascun partecipante è riportato nella tabella seguente:
+Il livello di soddisfazione di 6 lavoratori è riportato nella tabella seguente:
 
 | Codice partecipante | 1  | 2  | 3  | 4  | 5  | 6  |
 |:---|:---:|:---:|:---:|:---:|:---:|:--:|
-| Punteggio (totale)  | 40 | 50 | 30 | 80 | 23 | 42 |
+| Punteggio | 3.65 | 4.90 | 1.06 | 2.93 | 3.10 | 4.97 |
 
-Valutare le prestazioni dei 6 partecipanti alla luce dei valori normativi del test:
+Valutare i livelli di soddisfazione dei 6 dipendenti alla luce dei valori del campione:
 
 | Percentile | P5 | P25 | P50 | P75 | P95 |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| Punteggio | 31 | 42  | 51  | 68  | 78  |
+| Punteggio | 1.210 | 2.000  | 3.025  | 4.000  | 4.7905 |
 
 
 ## Rango percentile
@@ -647,18 +498,15 @@ Il **Rango percentile** ($Rp$) indica la **percentuale di casi** che hanno un **
 
 ---
 
-Supponiamo di disporre di un test che misura il **ragionamento numerico** in candidati per posizioni amministrative.  
-Il punteggio di un soggetto al test è ottenuto come la somma di risposte corrette a 20 domande.
+Per i dipendenti del reparto `Sales`, a 39 ore di lavoro settimanali è associato il rango percentile di 25 ($Rp_{39} = 50$).
 
-Per i candidati con diploma di scuola superiore, al punteggio 15 è associato il rango percentile di 60 ($Rp_{15} = 60$).
-
-Il **60%** dei candidati italiani con diploma di scuola superiore ottiene un punteggio al test inferiore o uguale a 15.
+Il **50%** dei dipendenti del reparto `Sales` lavora un numero di ore settimanali inferiore o uguale a 39.
 
 ---
 
-Supponiamo di aver somministrato il test a un candidato con diploma e di aver verificato sul manuale che il suo punteggio equivale a un rango percentile pari a 5.
+Supponiamo di aver intervistato un dipendente e di aver verificato che il suo numero di ore lavorative equivale a un rango percentile pari a 5.
 
-Come interpretare la sua performance?
+Come interpretare il suo carico di lavoro?
 
 ----
 
@@ -668,7 +516,7 @@ Per calcolare un rango percentile, basta seguire questi semplici step:
 
 1. Determinare quanti casi sono nel gruppo.
 
-2. Determinare quanti casi cadono "sotto" o al punteggio di interesse
+2. Determinare quanti casi cadono "sotto" o al punteggio di interesse.
 
 3. Dividere il numero di casi ottenuti allo step 2 per il numero totale di casi nel gruppo (step 1)
 
@@ -688,68 +536,56 @@ $$
 
 ---
 
-Il file `data_work.rda` contiene il numero di lavoratori che, su 1.000, subiscono un infortunio sul lavoro.
+Utilizziamo i dati del file `burnout.csv` per analizzare le ore di lavoro settimanali (`WorkHoursPerWeek`).
 
 ```{r}
-load("data/data_work.rda")
-data_work
+# Visualizziamo le prime righe del dataset relative a questa variabile
+head(burnout$WorkHoursPerWeek)
 ```
 
 ---
 
-Supponiamo che il nostro caso di interesse siano gli Stati Uniti. Prima di
-tutto riordiniamo i dati in ordine crescente.
+Supponiamo che il nostro caso di interesse sia un dipendente che lavora 47 ore a settimana (es. Max Wang dalla seconda riga del file). Prima di tutto riordiniamo i dati in ordine crescente.
 
 ```{r}
-data_sorted=data_work[order(data_work$Infortuni_ogni_1000_lavoratori), ]
-data_sorted
+burnout_sorted = sort(burnout$WorkHoursPerWeek)
+```
+
+```{r}
+head(burnout$WorkHoursPerWeek) #prima
+head(burnout_sorted) #dopo
 ```
 
 ---
 
-Determiniamo il numero di casi con tassi inferiori o uguali al nostro
-caso di interesse.
-
-Il numero di casi con un tasso di infortuni inferiore a quello degli Stati
-Uniti (tasso migliore) sono 7 paesi: Marocco, Australia, Turchia, Spagna, Giappone, Cina, Singapore - hanno tassi inferiori a 12.68
-
-```{r}
-data_sorted[data_sorted$Infortuni_ogni_1000_lavoratori <= 12.68,]
-
-```
-
----
-
-Calcoliamo il rango percentile:
+Calcoliamo il rango percentile per il dipendente che lavora 47 ore settimanali:
 
 $$
 P_r = \frac{B}{N}\times 100 = \text{rango percentile di } X_i
 $$
 
 ```{r}
-# numero di casi minori o uguali al punteggio degli stati uniti
-(B = sum(data_sorted$Infortuni_ogni_1000_lavoratori <= 12.68))
+# numero di casi minori o uguali a 47 ore
+(B = sum(burnout_sorted <= 47))
 
-#numero di casi totali
-(N = nrow(data_sorted))
+# numero di casi totali
+(N = length(burnout_sorted))
 
 (P = (B/N) * 100)
 
 ```
 
-Il 57.14286% per cento di casi ha valori uguali o inferiori agli Stati Uniti.
+Il `r round(P, 2)`% per cento dei dipendenti lavora un numero di ore pari o inferiore a 47.
 
 ---
 
-In R è possibile utilizzare direttamente la funzione `rank()` per ottenere l'inidice di posizione per ciascun valore, e poi dividere per il numero totale per ottenere il rango percentile per ogni valore
+In R è possibile utilizzare direttamente la funzione `rank()`: *"Qual è il **rango** (la posizione relativa) di ciascun candidato rispetto al resto del gruppo?"*
 
 ```{r}
-data_work$Infortuni_ogni_1000_lavoratori
+rango = rank(burnout$WorkHoursPerWeek)
+head(rango) # indica l'ordine crescente (mostriamo i primi 6) 
 
-rango = rank(data_work$Infortuni_ogni_1000_lavoratori)
-rango # indica l'ordine crescente 
-
-(N = nrow(data_work)) # quante osservazioni totali
+(N = nrow(burnout)) # quante osservazioni totali
 ```
 
 
@@ -757,9 +593,130 @@ rango # indica l'ordine crescente
 
 ```{r}
 # aggiungo la variabile Pr al dataset
-data_work$Pr = rango/N #divido l'indice di posizione per il valore totale
+burnout$Pr_WorkHours = rango / N 
+# divido l'indice di posizione per il valore totale
 
-data_work
+head(burnout[, c("Name", "WorkHoursPerWeek", "Pr_WorkHours")])
+```
+
+## Qual è la differenza tra `rank()` e `order()`?
+
+Entrambe le funzioni riguardano l'ordinamento, ma rispondono a due domande diverse in fase di analisi dei dati:
+
+- **`order()`** risponde a: *"Quali **indici di riga** del dataset devo selezionare, e in che sequenza, per ordinare i punteggi dal più basso al più alto?"*
+
+- **`rank()`** risponde a: *"Qual è il **rango** (la posizione relativa) di ciascun candidato rispetto al resto del gruppo?"*
+
+---
+
+```{r, echo=TRUE}
+# Punteggi di tre candidati a un test attitudinale
+punteggi = c(30, 18, 25)
+
+# order: per ordinare il vettore, devo prendere prima 
+# il 2° valore (18), poi il 3° (25), e infine il 1° (30)
+order(punteggi) 
+
+# rank: il primo candidato (30) ha il rango più alto (3), 
+# il secondo (18) ha il rango più basso (1), 
+# il terzo (25) ha rango 2
+rank(punteggi)
+```
+
+---
+
+I decimali compaiono in `rank()` quando ci sono dei punteggi identici.
+
+Se due candidati ottengono lo stesso punteggio al test, la funzione risolve la parità calcolando la media dei ranghi che i due punteggi avrebbero occupato.
+
+```{r}
+# Due candidati ottengono 25 (occupano il 2° e 3° rango teorico)
+punteggi_simili = c(18, 25, 25, 30)
+
+# (2 + 3) / 2 = 2.5. 
+# Entrambi i candidati con 25 ottengono il rango 2.5
+rank(punteggi_simili)
+```
+
+---
+
+`order()` restituisce gli indici necessari a riordinare fisicamente un dataset. Poiché non si può chiedere a R di estrarre la "riga 2.5" di un dataframe, `order()` restituisce solo numeri interi (quando ci sono punteggi identici, li ordina semplicemente in base a chi compare per primo nel file).
+
+---
+
+# Meglio la media e la deviazione standard, o i percentili?
+
+- Il ricorso alla media e alla deviazione standard è tanto più
+vantaggioso e utile quando la distribuzione della variabile di
+interesse nel campione di riferimento (che deve essere
+rappresentata graficamente nel manuale!) è approssimativamente
+normale.
+
+- Negli altri casi (distribuzioni fortemente asimmetriche) è più
+conveniente utilizzare i percentili. Tali indici sono infatti definiti
+“robusti” perchè risentono meno delle caratteristiche della
+distribuzione della variabile oggetto di studio.
+
+- Spesso nei manuali dei test vengono forniti sia media e deviazione
+standard che i percentili, in modo da poter garantire una
+valutazione delle performance il più completa possibile.
+
+## Media e mediana
+
+Per capire perché i percentili sono "robusti", calcoliamo la media e la mediana (il 50° percentile) del livello di Experience.
+
+```{r}
+media = mean(burnout$Experience)
+mediana = median(burnout$Experience)
+
+cat("Media:", round(media, 2), "\n")
+cat("Mediana:", mediana, "\n")
+```
+
+---
+```{r, echo=FALSE}
+# Creazione dell'istogramma
+hist(burnout$Experience, 
+     main = "Distribuzione delgli anni di esperienza", 
+     xlab = "Anni di esperienza", 
+     ylab = "Frequenza",
+     col = "lightblue", 
+     border = "white")
+
+# Aggiungiamo le linee per media e mediana
+# Media in rosso tratteggiato
+abline(v = media, col = "red", lwd = 3, lty = 2)  
+# Mediana in blu continuo
+abline(v = mediana, col = "blue", lwd = 3)  
+
+# Aggiungiamo una legenda
+legend("topright", 
+       legend = c(paste("Media:", round(media, 1)), 
+                  paste("Mediana:", mediana)),
+       col = c("red", "blue"), lty = c(2, 1), lwd = 3)
+```
+
+---
+```{r, echo=TRUE, eval=FALSE}
+# Creazione dell'istogramma
+hist(burnout$Experience, 
+     main = "Distribuzione delgli anni di esperienza", 
+     xlab = "Anni di esperienza", 
+     ylab = "Frequenza",
+     col = "lightblue", 
+     border = "white")
+
+# Aggiungiamo le linee per media e mediana
+# Media in rosso tratteggiato
+abline(v = media, col = "red", lwd = 3, lty = 2)  
+# Mediana in blu continuo
+abline(v = mediana, col = "blue", lwd = 3)  
+
+# Aggiungiamo una legenda
+legend("topright", 
+       legend = c(paste("Media:", round(media, 1)), 
+                  paste("Mediana:", mediana)),
+       col = c("red", "blue"), lty = c(2, 1), lwd = 3)
 ```
 
 
@@ -772,3 +729,6 @@ interpersonali, A.A. 2022/23
 Marci, M. (2025). Corso di Testing Psicologico, Scienze
 psicologiche dello sviluppo, della personalità e delle relazioni
 interpersonali, A.A. 2025/26
+
+[Fonte
+dati](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/data)

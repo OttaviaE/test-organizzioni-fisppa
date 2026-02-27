@@ -1,0 +1,16 @@
+\beamer@sectionintoc {1}{Statistica descrittiva e inferenziale}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{La statistica descrittiva}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{Tecniche}{6}{0}{1}
+\beamer@sectionintoc {2}{Dati}{7}{0}{2}
+\beamer@sectionintoc {3}{Frequenze}{15}{0}{3}
+\beamer@subsectionintoc {3}{1}{Notazioni fondamentali}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{Le frequenze assolute semplici}{18}{0}{3}
+\beamer@subsectionintoc {3}{3}{Le frequenze assolute cumulate}{19}{0}{3}
+\beamer@subsectionintoc {3}{4}{Le frequenze relative semplici}{21}{0}{3}
+\beamer@subsectionintoc {3}{5}{Le frequenze relative cumulate}{23}{0}{3}
+\beamer@subsectionintoc {3}{6}{Visualizzazione}{25}{0}{3}
+\beamer@sectionintoc {4}{Indici di tendenza centrale}{29}{0}{4}
+\beamer@subsectionintoc {4}{1}{La moda}{32}{0}{4}
+\beamer@subsectionintoc {4}{2}{La mediana}{34}{0}{4}
+\beamer@subsectionintoc {4}{3}{La media aritmetica}{38}{0}{4}
+\beamer@sectionintoc {5}{Credits}{40}{0}{5}

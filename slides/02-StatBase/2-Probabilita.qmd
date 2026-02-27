@@ -1,0 +1,167 @@
+---
+title: "Probabilità, distribuzioni di probabilità, la distribuzione Normale e i test psicologici"
+subtitle: "Test per le organizzazioni"
+author: Ottavia M. Epifania, Margherita Calderan
+date: ""
+format:
+  beamer:
+    slide-level: 3
+    toc-depth: 3
+    theme: Montpellier
+    colortheme: dove
+    navigation: horizontal
+    highlight-style: tango
+    classoption: compress, aspectratio=149
+    innertheme: rounded
+    outertheme: miniframes
+callout-icon: false
+code-annotations: below
+header-includes: |
+  \usepackage{graphicx}
+  \usepackage{xcolor}
+  \usepackage{fancyvrb}
+  \usepackage{listings}
+  \definecolor{ColPrimario}{RGB}{100,8,58}
+  \definecolor{ColSecondario}{RGB}{20,143,184}
+  \setbeamercolor{structure}{fg=ColPrimario}
+  \setbeamercolor{itemize item}{fg=ColPrimario}
+  \setbeamercolor{itemize subitem}{fg=ColSecondario}
+  \setbeamercolor{palette primary}{bg=ColPrimario,fg=white}
+  \setbeamercolor{palette secondary}{bg=ColSecondario,fg=white}
+  \setbeamercolor{section in head/foot}{bg=ColPrimario,fg=white}
+  \setbeamercolor{subsection in head/foot}{bg=ColSecondario,fg=white}
+  \setbeamercolor{separation line}{fg=white}
+  \setbeamercolor{upper separation line head}{bg=white}
+  \setbeamercolor{middle separation line head}{bg=white}
+  \setbeamercolor{lower separation line head}{bg=white}
+  \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
+  \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  \AtBeginSubsection{}
+  \AtBeginDocument{\institute[]{Università di Padova} }
+  \\AtBeginDocument{\\author{Ottavia M. Epifania\\\\\\texttt{ottavia.epifania@unipd.it} \\\\ Margherita Calderan\\\\\\texttt{margherita.calderan@unipd.it}}}
+  \AtBeginSection[]
+          {
+             \begin{frame}[plain]
+             \tableofcontents[currentsection, hideallsubsections]
+              \end{frame}
+          }
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+---
+
+# La probabilità
+
+## Introduzione
+
+- In termini generali, la **probabilità** può essere vista come il
+grado di **fiducia** rispetto al manifestarsi di
+un evento
+
+- In altre parole, la probabilità è una misura matematica che
+serve ad esprimere la nostra **incertezza**
+
+## Definizioni: Spazio campionario, esito e evento
+
+- Dato un fenomeno casuale (ad esempio, un lancio di un
+dado), l'insieme di tutti i possibili esiti (risultati) è detto
+**spazio campionario** (S)
+
+- Gli elementi di **S** devono essere tra loro **mutuamente esclusivi**
+e complessivamente **esaustivi**
+
+
+----
+
+
+L'intersezione tra gli eventi è nulla, quindi se abbiamo due eventi A e B se la loro intersezione è nulla questi eventi si dicono **mutuamente esclusivi** o **mutuamente disgiunti**
+
+$$A \cap B = \emptyset$$
+
+Se l'unione tra gli eventi coincide con lo spazio campione, gli eventi si dicono **collettivamente esaustivi**
+
+$$(A + B) = S$$
+
+**Partizione:** Se gli eventi sono sia mutuamente esclusivi che collettivamente esaustivi, si può dire che ogni evento costituisce una **partizione unica dello spazio campione**.
+
+
+### Evento
+
+Un **evento**(**E**) è un sottoinsieme di S:
+
+- Fenomeno casuale: Un lancio di un dado a 6 facce
+- Spazio campionario: $S =  \{1; 2 ; 3 ; 4 ; 5 ; 6 \}$
+- Evento: L'uscita di un numero pari, $E=\{2 ,4 ,6\}$
+
+
+## Spazi campionari discreti e continui
+
+Uno spazio campionario si dice **discreto** se i suoi elementi
+sono numerabili in categorie
+
+- Fenomeno: Numero di errori in un compito
+- Spazio Campionario:  $S =  \{1; 2 ; 3 ; 4 ; 5 ; \ldots\}$
+
+---
+
+Uno spazio campionario si dice **continuo** se i suoi elementi
+non sono direttamente numerabili, ma rappresentano un
+continuo di valori
+
+- Fenomeno: tempo di risposta ($\theta$)
+- Spazio Campionario: $S = \theta \geq 0$
+
+
+## La probabilità
+
+La probabilità, $P()$, è una funzione matematica che assegna dei
+valori numerici a degli esiti possibili di un fenomeno casuale
+
+- Un valore di probabilità deve essere non negativo: $P(A) \ge 0$.
+- La probabilità dell’intero spazio campionario è pari a 1: $P(\Omega)=1$ (i.e., La somma delle probabilità di tutti gli esiti dello spazio
+campionario deve essere pari a 1).
+- Se due eventi sono **mutuamente esclusivi** (non possono verificarsi insieme), allora la probabilità che si verifichi l’uno *oppure* l’altro è pari alla somma delle probabilità dei singoli eventi: se $A \cap B = \varnothing$, allora $P(A \cup B)=P(A)+P(B)$.
+
+(Assiomi di Kolmogorv, 1956)
+
+
+# Distribuzioni di probabilità
+
+Una distribuzione di probabilità è l'insieme di tutti gli esiti dello
+spazio campionario e delle corrispettive probabilità.
+
+- **Fenomeno**: $X$ = esito del lancio di una moneta non truccata; dove $X$ è una variabile aleatoria (casuale) che può assumere i valori $x = 0$ (Croce) e $x = 1$ (Testa).
+
+- **Spazio campionario**: $S = \{0, 1\}$. 
+
+- **Distribuzione di probabilità**:
+  $$
+  \Pr(X = x) = \theta^{x}(1-\theta)^{1-x},
+  $$
+  dove $\theta$, il parametro che definisce la distribuzione di probabilità, è pari a $0.5$. 
+
+- **Proprietà della distribuzione di probabilità**:
+  $$
+\Pr(X = 0) = 0.5 \ge 0;\quad \Pr(X = 1) = 0.5 \ge 0
+  $$
+  $$
+  \Pr(X = 0) + \Pr(X = 1) = 1
+  $$ 
+
+
+# La distribuzione normale
+
+
+
+
+
+
+# Credits
+
+Altoè, G. (2022). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2022/23
+
+
