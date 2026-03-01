@@ -191,21 +191,33 @@
 \setbeamercolor{upper separation line head}{bg=white}
 \setbeamercolor{middle separation line head}{bg=white}
 \setbeamercolor{lower separation line head}{bg=white}
+
 \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
 \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+
 \AtBeginSubsection{}
-\AtBeginDocument{\institute[]{Università di Padova} }
-\AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
-\AtBeginSection[]
+
+\AtBeginDocument{\institute[]{Università di Padova}}
+
+\AtBeginDocument
 {
-   \begin{frame}[plain]
-   \tableofcontents[currentsection, hideallsubsections]
-   \end{frame}
-   \begin{frame}[plain]
-   \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-   \end{frame}
-}
+  \author{Ottavia M. Epifania \\
+  \texttt{ottavia.epifania@unipd.it} \\
+  \textbf{Margherita Calderan} \\
+  \texttt{margherita.calderan@unipd.it}}
+  }
+
+\AtBeginSection
+{
+  \begin{frame}[plain]
+  \tableofcontents[currentsection, hideallsubsections]
+  \end{frame}
+  \begin{frame}[plain]
+  \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+  \end{frame}
+  }
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -261,7 +273,7 @@
 \title{Frequenze e Indici di Tendenza Centrale}
 \subtitle{Test per le organizzaioni}
 \author{Ottavia M. Epifania, Margherita Calderan}
-\date{}
+\date{02/2026}
 
 \begin{document}
 \frame{\titlepage}
@@ -344,13 +356,13 @@ Carichiamo il dataset:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# installo pacchetti}
-\CommentTok{\#\textgreater{} install.packages("dplyr")}
-\CommentTok{\#\textgreater{} install.packages("readr")}
+\CommentTok{\# installo pacchetti, vedi script pkg.R}
 
 \CommentTok{\# carico pacchetti}
 \FunctionTok{library}\NormalTok{(dplyr)}
 \FunctionTok{library}\NormalTok{(readr)}
+
+\CommentTok{\# carico dataset}
 \NormalTok{burnout }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/burnout.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -412,27 +424,26 @@ assumendola variabile categoriale ordinale.
 
 \begin{frame}[fragile]
 In particolare, i livelli di stress sono stati categorizzati in tre
-fasce: \textbf{basso} (1--2), \textbf{medio-basso} (3--4),
-\textbf{medio-alto} (5--7), e \textbf{alto} (8--10). A tale scopo,
-creiamo una nuova variabile che rappresenta una versione categorizzata
-di \texttt{StressLevel}.
+fasce: \textbf{basso} (1--2), \textbf{moderato} (3--4), \textbf{alto}
+(5--7), e \textbf{severo} (8--10). A tale scopo, creiamo una nuova
+variabile che rappresenta una versione categorizzata di
+\texttt{StressLevel}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# creo la variabile StressLevel}
-\NormalTok{StressCat }\OtherTok{=} \FunctionTok{case\_when}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel }\SpecialCharTok{\textless{}=} \DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"basso"}\NormalTok{,}
-\NormalTok{                      burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textgreater{}=} \DecValTok{3} \SpecialCharTok{\&}
-\NormalTok{                                burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textless{}=} \DecValTok{4} \SpecialCharTok{\textasciitilde{}} \StringTok{"medio{-}basso"}\NormalTok{,}
-\NormalTok{                              burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textgreater{}=} \DecValTok{5} \SpecialCharTok{\&}
-\NormalTok{                                burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textless{}=} \DecValTok{7} \SpecialCharTok{\textasciitilde{}} \StringTok{"medio{-}alto"}\NormalTok{,}
-\NormalTok{                             burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textgreater{}=} \DecValTok{8} \SpecialCharTok{\textasciitilde{}} \StringTok{"alto"}\NormalTok{ )}
+\NormalTok{StressCat }\OtherTok{=} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{  burnout}\SpecialCharTok{$}\NormalTok{StressLevel }\SpecialCharTok{\textless{}=} \DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"basso"}\NormalTok{, }
+\NormalTok{  burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textgreater{}=} \DecValTok{3} \SpecialCharTok{\&}\NormalTok{ burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textless{}=} \DecValTok{4} \SpecialCharTok{\textasciitilde{}} \StringTok{"moderato"}\NormalTok{,}
+\NormalTok{  burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textgreater{}=} \DecValTok{5} \SpecialCharTok{\&}\NormalTok{ burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textless{}=} \DecValTok{7} \SpecialCharTok{\textasciitilde{}} \StringTok{"alto"}\NormalTok{,}
+\NormalTok{  burnout}\SpecialCharTok{$}\NormalTok{StressLevel  }\SpecialCharTok{\textgreater{}=} \DecValTok{8} \SpecialCharTok{\textasciitilde{}} \StringTok{"severo"}\NormalTok{ )}
 
 \FunctionTok{str}\NormalTok{(StressCat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
- chr [1:2000] "basso" "basso" "medio-basso" "alto" "basso" "medio-alto" ...
+ chr [1:2000] "basso" "basso" "moderato" "severo" "basso" "alto" "moderato" ...
 \end{verbatim}
 \end{frame}
 
@@ -444,14 +455,14 @@ ordinale.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{StressCat }\OtherTok{=} \FunctionTok{ordered}\NormalTok{(StressCat, }
-           \AttributeTok{levels=}\FunctionTok{c}\NormalTok{(}\StringTok{"basso"}\NormalTok{,}\StringTok{"medio{-}basso"}\NormalTok{,}\StringTok{"medio{-}alto"}\NormalTok{,}\StringTok{"alto"}\NormalTok{))}
-
+           \AttributeTok{levels=}\FunctionTok{c}\NormalTok{(}\StringTok{"basso"}\NormalTok{,}\StringTok{"moderato"}\NormalTok{,}\StringTok{"alto"}\NormalTok{,}\StringTok{"severo"}\NormalTok{))}
+\CommentTok{\# attraverso l\textquotesingle{}argomento levels specifichiamo l\textquotesingle{}ORDINE dei livelli/categorie}
 \FunctionTok{str}\NormalTok{(StressCat)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
- Ord.factor w/ 4 levels "basso"<"medio-basso"<..: 1 1 2 4 1 3 2 2 3 3 ...
+ Ord.factor w/ 4 levels "basso"<"moderato"<..: 1 1 2 4 1 3 2 2 3 3 ...
 \end{verbatim}
 
 \begin{Shaded}
@@ -490,14 +501,14 @@ categoria/livello, possiamo utilizzare la funzione \texttt{table()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)}
+\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat) }\CommentTok{\# nome\_dataframe$nome\_variabile}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 
-      basso medio-basso  medio-alto        alto 
-        419         399         584         598 
+   basso moderato     alto   severo 
+     419      399      584      598 
 \end{verbatim}
 \end{frame}
 
@@ -510,21 +521,6 @@ La frequenza assoluta cumulata di una categoria/livello è la
 categorie precedenti alla categoria data più la frequenza assoluta
 semplice della categoria data.
 
-Quanti hanno hanno riportato un grado di stress inferiore o uguale a
-medio-basso?
-
-\begin{verbatim}
-# A tibble: 4 x 2
-  StressCat      fi
-  <ord>       <int>
-1 basso         419
-2 medio-basso   399
-3 medio-alto    584
-4 alto          598
-\end{verbatim}
-\end{frame}
-
-\begin{frame}[fragile]
 Attraverso la funzione \texttt{cumsum()} possiamo calcolare la somma
 cumulata, in questo caso le frequenze assolute cumulate
 
@@ -536,8 +532,8 @@ cumulata, in questo caso le frequenze assolute cumulate
 
 \begin{verbatim}
 
-      basso medio-basso  medio-alto        alto 
-        419         399         584         598 
+   basso moderato     alto   severo 
+     419      399      584      598 
 \end{verbatim}
 
 \begin{Shaded}
@@ -547,8 +543,8 @@ cumulata, in questo caso le frequenze assolute cumulate
 \end{Shaded}
 
 \begin{verbatim}
-      basso medio-basso  medio-alto        alto 
-        419         818        1402        2000 
+   basso moderato     alto   severo 
+     419      818     1402     2000 
 \end{verbatim}
 \end{frame}
 
@@ -564,7 +560,7 @@ Qual'è il numero totale di unità statistiche?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{nrow}\NormalTok{(burnout)}
+\FunctionTok{nrow}\NormalTok{(burnout) }\CommentTok{\#numero righe dataframe}
 \end{Highlighting}
 \end{Shaded}
 
@@ -574,7 +570,7 @@ Qual'è il numero totale di unità statistiche?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)}
+\FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat) }\CommentTok{\# lunghezza della variabile }
 \end{Highlighting}
 \end{Shaded}
 
@@ -584,7 +580,7 @@ Qual'è il numero totale di unità statistiche?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{n }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(burnout)}
+\NormalTok{n }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(burnout) }\CommentTok{\#oggetto n = numero unità stat}
 \end{Highlighting}
 \end{Shaded}
 \end{frame}
@@ -600,8 +596,8 @@ Qual'è frequenza relativa semplice associata alle categorie/livelli?
 
 \begin{verbatim}
 
-      basso medio-basso  medio-alto        alto 
-     0.2095      0.1995      0.2920      0.2990 
+   basso moderato     alto   severo 
+  0.2095   0.1995   0.2920   0.2990 
 \end{verbatim}
 
 \textbf{Una frequenza relativa semplice varia sempre tra 0 e 1.}
@@ -620,17 +616,17 @@ le frequenze relative \textbf{cumulate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cumsum}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat))}\SpecialCharTok{/}\NormalTok{n}
+\FunctionTok{cumsum}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)}\SpecialCharTok{/}\NormalTok{n)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-      basso medio-basso  medio-alto        alto 
-     0.2095      0.4090      0.7010      1.0000 
+   basso moderato     alto   severo 
+  0.2095   0.4090   0.7010   1.0000 
 \end{verbatim}
 
 Ad esempio, \(P_2 = 0.409\), indica che \textasciitilde40\% rispondenti
-ha riportato un grado di stress inferiore o uguale a medio-basso.
+ha riportato un grado di stress inferiore o uguale a moderato.
 
 \textbf{Una frequenza relativa cumulata varia sempre tra 0 e 1.}
 \end{frame}
@@ -642,9 +638,9 @@ Indice i & Categoria & Xi & fi & Fi & pi & Pi \\
 \midrule\noalign{}
 \endhead
 1 & basso & 1 & 419 & 419 & 0.2095 & 0.2095 \\
-2 & medio-basso & 2 & 399 & 818 & 0.1995 & 0.4090 \\
-3 & medio-alto & 3 & 584 & 1402 & 0.2920 & 0.7010 \\
-4 & alto & 4 & 598 & 2000 & 0.2990 & 1.0000 \\
+2 & moderato & 2 & 399 & 818 & 0.1995 & 0.4090 \\
+3 & alto & 3 & 584 & 1402 & 0.2920 & 0.7010 \\
+4 & severo & 4 & 598 & 2000 & 0.2990 & 1.0000 \\
 \bottomrule\noalign{}
 \end{longtable}
 \end{frame}
@@ -655,7 +651,18 @@ Indice i & Categoria & Xi & fi & Fi & pi & Pi \\
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat), }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
-         \AttributeTok{xlab=}\StringTok{"Accordo"}\NormalTok{,}\AttributeTok{ylim =}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{600}\NormalTok{)) }\CommentTok{\# diagramma a barre}
+         \AttributeTok{xlab=}\StringTok{" "}\NormalTok{,}\AttributeTok{ylim =}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{600}\NormalTok{)) }\CommentTok{\# diagramma a barre}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{0-Descrittiva_files/figure-beamer/unnamed-chunk-12-1.pdf}}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)}\SpecialCharTok{/}\NormalTok{n, }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
+         \AttributeTok{xlab=}\StringTok{" "}\NormalTok{, }\AttributeTok{ylim =}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{3}\NormalTok{)) }\CommentTok{\# diagramma a barre}
 \end{Highlighting}
 \end{Shaded}
 
@@ -665,8 +672,8 @@ Indice i & Categoria & Xi & fi & Fi & pi & Pi \\
 \begin{frame}[fragile]
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)}\SpecialCharTok{/}\NormalTok{n, }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
-         \AttributeTok{xlab=}\StringTok{"Accordo"}\NormalTok{, }\AttributeTok{ylim =}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{3}\NormalTok{)) }\CommentTok{\# diagramma a barre}
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)), }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
+         \AttributeTok{xlab=}\StringTok{" "}\NormalTok{) }\CommentTok{\# diagramma a barre}
 \end{Highlighting}
 \end{Shaded}
 
@@ -676,23 +683,12 @@ Indice i & Categoria & Xi & fi & Fi & pi & Pi \\
 \begin{frame}[fragile]
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{barplot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)), }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
-         \AttributeTok{xlab=}\StringTok{"Accordo"}\NormalTok{) }\CommentTok{\# diagramma a barre}
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat))}\SpecialCharTok{/}\NormalTok{n, }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
+         \AttributeTok{xlab=}\StringTok{" "}\NormalTok{) }\CommentTok{\# diagramma a barre}
 \end{Highlighting}
 \end{Shaded}
 
 \pandocbounded{\includegraphics[keepaspectratio]{0-Descrittiva_files/figure-beamer/unnamed-chunk-15-1.pdf}}
-\end{frame}
-
-\begin{frame}[fragile]
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{barplot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(}\FunctionTok{table}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat))}\SpecialCharTok{/}\NormalTok{n, }\AttributeTok{ylab=}\StringTok{"?"}\NormalTok{, }
-         \AttributeTok{xlab=}\StringTok{"Accordo"}\NormalTok{) }\CommentTok{\# diagramma a barre}
-\end{Highlighting}
-\end{Shaded}
-
-\pandocbounded{\includegraphics[keepaspectratio]{0-Descrittiva_files/figure-beamer/unnamed-chunk-16-1.pdf}}
 \end{frame}
 
 \section{Indici di tendenza centrale}\label{indici-di-tendenza-centrale}
@@ -723,8 +719,8 @@ Ad esempio, rispetto ai dati relativi ai livelli di stress, la moda è
 
 \begin{verbatim}
 
-      basso medio-basso  medio-alto        alto 
-        419         399         584         598 
+   basso moderato     alto   severo 
+     419      399      584      598 
 \end{verbatim}
 \end{frame}
 
@@ -739,8 +735,8 @@ Che funzione posso usare per ottenere la moda?
 
 \begin{verbatim}
 
-      basso medio-basso  medio-alto        alto 
-        419         399         584         598 
+   basso moderato     alto   severo 
+     419      399      584      598 
 \end{verbatim}
 \end{frame}
 
@@ -791,8 +787,8 @@ posizione cercata:
 \end{Shaded}
 
 \begin{verbatim}
-      basso medio-basso  medio-alto        alto 
-        419         818        1402        2000 
+   basso moderato     alto   severo 
+     419      818     1402     2000 
 \end{verbatim}
 \end{frame}
 
@@ -805,14 +801,26 @@ di un vettore (nel nostro caso la variabile \texttt{StressCat})
 \begin{Highlighting}[]
 \NormalTok{StressCatOrd }\OtherTok{=} \FunctionTok{sort}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat)}
 
-\CommentTok{\# visualizzo i primi elementi}
+\CommentTok{\# visualizzo i primi elementi variabile ordinata}
 \FunctionTok{head}\NormalTok{(StressCatOrd, }\AttributeTok{n =} \DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 [1] basso basso basso basso basso basso
-Levels: basso < medio-basso < medio-alto < alto
+Levels: basso < moderato < alto < severo
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# prima}
+\FunctionTok{head}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressCat, }\AttributeTok{n =} \DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] basso    basso    moderato severo   basso    alto    
+Levels: basso < moderato < alto < severo
 \end{verbatim}
 \end{frame}
 
@@ -837,8 +845,8 @@ posizioni tra cui si trova la mediana:
 \end{Shaded}
 
 \begin{verbatim}
-[1] medio-alto
-Levels: basso < medio-basso < medio-alto < alto
+[1] alto
+Levels: basso < moderato < alto < severo
 \end{verbatim}
 
 \begin{Shaded}
@@ -848,8 +856,8 @@ Levels: basso < medio-basso < medio-alto < alto
 \end{Shaded}
 
 \begin{verbatim}
-[1] medio-alto
-Levels: basso < medio-basso < medio-alto < alto
+[1] alto
+Levels: basso < moderato < alto < severo
 \end{verbatim}
 \end{frame}
 
@@ -859,6 +867,9 @@ Levels: basso < medio-basso < medio-alto < alto
 La media aritmetica di una distribuzione di dati rilevati sulla
 variabile \(X\), è data dalla somma dei dati divisa per il numero di
 unità statistiche.
+
+In questo caso possiamo calcolare la media dei livelli di Stress in
+quanto variabile quantitativa:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -876,18 +887,11 @@ Calcolo della media :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}
-\NormalTok{n}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\# numero di unità}
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel) }
 
-\begin{verbatim}
-[1] 2000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}\SpecialCharTok{/}\NormalTok{n}
+\CommentTok{\# sommo tutti gli elementi e divido per n}
+\FunctionTok{sum}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}\SpecialCharTok{/}\NormalTok{n }
 \end{Highlighting}
 \end{Shaded}
 
@@ -897,6 +901,7 @@ Calcolo della media :
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# funzione mean}
 \FunctionTok{mean}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}
 \end{Highlighting}
 \end{Shaded}

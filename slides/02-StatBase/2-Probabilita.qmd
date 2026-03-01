@@ -1,8 +1,9 @@
 ---
 title: "Probabilità, distribuzioni di probabilità, la distribuzione Normale e i test psicologici"
-subtitle: "Test per le organizzazioni"
+subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
-date: ""
+date: today
+date-format: "MM/YYYY"
 format:
   beamer:
     slide-level: 3
@@ -34,18 +35,33 @@ header-includes: |
   \setbeamercolor{upper separation line head}{bg=white}
   \setbeamercolor{middle separation line head}{bg=white}
   \setbeamercolor{lower separation line head}{bg=white}
+  
   \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
   \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  
   \AtBeginSubsection{}
-  \AtBeginDocument{\institute[]{Università di Padova} }
-  \\AtBeginDocument{\\author{Ottavia M. Epifania\\\\\\texttt{ottavia.epifania@unipd.it} \\\\ Margherita Calderan\\\\\\texttt{margherita.calderan@unipd.it}}}
-  \AtBeginSection[]
-          {
-             \begin{frame}[plain]
-             \tableofcontents[currentsection, hideallsubsections]
-              \end{frame}
-          }
+  
+  \AtBeginDocument{\institute[]{Università di Padova}}
+  
+  \AtBeginDocument
+  {
+    \author{Ottavia M. Epifania \\ 
+    \texttt{ottavia.epifania@unipd.it} \\ 
+    \textbf{Margherita Calderan} \\ 
+    \texttt{margherita.calderan@unipd.it}}
+    }
+    
+  \AtBeginSection
+  {
+    \begin{frame}[plain]
+    \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+    \begin{frame}[plain]
+    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+    }
 editor_options: 
   chunk_output_type: console
 execute: 
@@ -92,7 +108,7 @@ $$(A + B) = S$$
 Un **evento**(**E**) è un sottoinsieme di S:
 
 - Fenomeno casuale: Un lancio di un dado a 6 facce
-- Spazio campionario: $S =  \{1; 2 ; 3 ; 4 ; 5 ; 6 \}$
+- Spazio campionario: $S =  \{1, 2, 3, 4, 5, 6 \}$
 - Evento: L'uscita di un numero pari, $E=\{2 ,4 ,6\}$
 
 
@@ -102,7 +118,7 @@ Uno spazio campionario si dice **discreto** se i suoi elementi
 sono numerabili in categorie
 
 - Fenomeno: Numero di errori in un compito
-- Spazio Campionario:  $S =  \{1; 2 ; 3 ; 4 ; 5 ; \ldots\}$
+- Spazio Campionario:  $S =  \{1, 2, 3, 4, 5, 6, \ldots\}$
 
 ---
 
@@ -141,6 +157,8 @@ spazio campionario e delle corrispettive probabilità.
   \Pr(X = x) = \theta^{x}(1-\theta)^{1-x},
   $$
   dove $\theta$, il parametro che definisce la distribuzione di probabilità, è pari a $0.5$. 
+
+---
 
 - **Proprietà della distribuzione di probabilità**:
   $$

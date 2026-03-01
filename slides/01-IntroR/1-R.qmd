@@ -2,7 +2,8 @@
 title: "Vettori, Matrici e Dataframe"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
-date: ""
+date: today
+date-format: "MM/YYYY"
 format:
   beamer:
     slide-level: 3
@@ -19,6 +20,7 @@ code-annotations: below
 header-includes: |
   \usepackage{graphicx}
   \usepackage{xcolor}
+  \usepackage{fancyvrb}
   \usepackage{listings}
   \definecolor{ColPrimario}{RGB}{100,8,58}
   \definecolor{ColSecondario}{RGB}{20,143,184}
@@ -33,26 +35,33 @@ header-includes: |
   \setbeamercolor{upper separation line head}{bg=white}
   \setbeamercolor{middle separation line head}{bg=white}
   \setbeamercolor{lower separation line head}{bg=white}
+  
   \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
   \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  
   \AtBeginSubsection{}
-  \AtBeginDocument{\institute[]{Università di Padova} }
-  \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
-  \AtBeginSection[]
-          {
-             \begin{frame}[plain]
-             \tableofcontents[currentsection, hideallsubsections]
-              \end{frame}
-          {}
-             \begin{frame}[plain]
-             \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-             \end{frame}
-          }
-editor_options: 
-  chunk_output_type: console
-execute: 
-  echo: true
+  
+  \AtBeginDocument{\institute[]{Università di Padova}}
+  
+  \AtBeginDocument
+  {
+    \author{Ottavia M. Epifania \\ 
+    \texttt{ottavia.epifania@unipd.it} \\ 
+    \textbf{Margherita Calderan} \\ 
+    \texttt{margherita.calderan@unipd.it}}
+    }
+    
+  \AtBeginSection
+  {
+    \begin{frame}[plain]
+    \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+    \begin{frame}[plain]
+    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+    }
 ---
 
 
@@ -92,6 +101,15 @@ char_vect = c("R","R","R","ok")
 ```
 :::
 
+---
+
+Attraverso il comando `length()` è possibile ottenere la lunghezza del vettore
+
+```{r, echo=TRUE}
+length(num_vect)
+length(char_vect)
+```
+
 ## Tiplogia di vettore
 
 La tipologia di dati da cui è formato il vettore.
@@ -101,7 +119,7 @@ class(num_vect)
 class(char_vect)
 ```
 
-### Tiplogia di vettore
+---
 
 Un vettore deve esssere formato da **elementi tutti dello stesso tipo**!
 
@@ -113,7 +131,7 @@ wrong
 
 Altrimenti si "rischia" che tutto venga trasformato a carattere.
 
-### 
+---
 
 ```{r, echo=TRUE}
 correct = c(1,2,3,NA, 4)
@@ -198,14 +216,14 @@ my_vect[c(1,4,2,9)] # estraggo elementi a scelta
 Possiamo selezionare elementi dal vettore basandoci su specifiche condizioni logiche: **`TRUE`** e **`FALSE`**.
 
 ```{r, echo=TRUE}
-numeri = 1:7; numeri
+(numeri = 1:7)
 ```
 
 ```{r,echo=TRUE}
 numeri>2 & numeri<5
 ```
 
-```{r}
+```{r, echo=TRUE}
 numeri[numeri>2 & numeri<5]
 ```
 
@@ -227,67 +245,93 @@ new_vect/2
 
 # Fattori
 
-I fattori sono una tipologia di dato peculiare e per quanto simile a semplici **`characters`** in realtà sono un tipo di vettore **`integer`** con delle proprietà aggiuntive.
-
-### Creare un fattore: `as.factor`
-
-La funzione `rep()` permette di ripetere gli elementi di un vettore, e quindi ci permette per esempio di creare un fattore a tre livelli  "hello","ciao" e "hola", e definire che per ogni livello abbiamo 2 osservazioni
-
-```{r, echo=TRUE}
-rep(c("hello","ciao", "hola"), each = 2)
-
-char_vect = rep(c("hello","ciao", "hola"), each = 2)
-
-my_fact = as.factor(char_vect)
-my_fact
-```
+I fattori sono una tipologia di dato peculiare, ma simile a semplici vettori **`character`**
 
 ### Creare un fattore: `factor()`
 
-```{r, echo=TRUE}
-my_fact = factor(x = rep(c("hello","ciao", "hola"), each = 2), 
-                 levels = c("hello","ciao","hola"),
-                   labels = c("hello","ciao","hola"))
+Attraverso la funzione  `factor()` è possibile creare un fattore, specificando:
+il vettore character, l'ordine dei livelli del fattore (levels = ), le etichette per ciascun livello (labels = )
 
-my_fact
+```{r, echo=TRUE}
+my_fact1 = factor(x = c("LT", "LM", "PhD", "LT", "LM", "PhD"), 
+                 levels = c("LT", "LM", "PhD"),
+                   labels = c("LT", "LM", "PhD"))
+my_fact1
 ```
 
-### 
+### Creare un fattore: `as.factor()`
+
+La funzione `rep()` permette di ripetere gli elementi di un vettore. In questo esempio creo prima un vettore di tipo `character` e poi lo trasformo a fattore attraverso il comando `as.factor()`.
+
+```{r, echo=TRUE}
+# come funziona rep?
+rep(c("LT", "LM", "PhD"), times = 2)
+
+# creo il vettore
+char_vect = rep(c("LT", "LM", "PhD"), times = 2)
+
+# Trasformo il vettore character in fattore
+(my_fact2 = as.factor(char_vect)) # cosa notate di diverso ?
+```
+
+## Fattori e Ordine Alfabetico
+
+**Perché l'ordine dei livelli differisce?** Di default, la funzione `factor()` assegna l'ordine dei livelli alfabeticamente, a meno che non lo forziamo con l'argomento `levels`.
+
+```{r, echo=TRUE}
+str(my_fact2)
+str(my_fact1)
+```
+
+---
+
+I fattori sono trattati come numeri interi. R prende i valori unici, li mette in ordine alfabetico e assegna loro progressivamente i numeri 1, 2, 3, ecc. Questo rispecchia come R valuta le stringhe di testo:
+
+```{r, echo=TRUE}
+"a" > "b"
+"abba" > "aac"
+```
+
+
+## I livelli
 
 I fattori permettono di avere dei livelli **`levels()`** come metadati,
 
 ```{r, echo = TRUE}
-levels(my_fact)
+levels(my_fact1)
 ```
 
+... a prescindere da quali dati siano effettivamente presenti nel vettore. 
 
-###
+---
 
-A prescindere da quali siano effettivamente presenti nel vettore. 
-Per esempio se creo un fattore composto solo dagli elementi di my_fact diversi da ciao:
+Per esempio se creo un fattore composto solo dagli elementi di my_fact1 diversi da "LM":
 
 ```{r, echo = TRUE}
-my_fact2 = my_fact[my_fact!="ciao"]
+my_fact1 # fattore
+
+my_fact1!="LM" # condizione da valutare per tutta la lunghezza del vettore
+
+my_fact1[my_fact1!="LM"] # prendo solo gli elementi diversi da "LM"
+
+my_fact3 = my_fact1[my_fact1!="LM"] #creo l'oggetto my_fact3
 ```
 
-I livelli di my_fact2 saranno gli stessi di my_fact ("ciao" incluso) anche se "ciao" non è presente come osservazione:
 
+---
+
+I livelli di my_fact2 saranno gli stessi di my_fact1 ("LM" incluso) anche se "LM" non è presente come osservazione
 ```{r, echo = TRUE}
-my_fact2
-levels(my_fact2)
+my_fact3
 ```
-
-### 
 
 E' possibile però eslcudere i livelli non più utili attraverso il comando `droplevels()`:
 
 ```{r, echo = TRUE}
-# come sarebbe my_fact2?
-droplevels(my_fact2) 
-
+# come sarebbe my_fact3?
+droplevels(my_fact3) 
 # modifico my_fact2 eliminando i livelli inutili
-my_fact2 = droplevels(my_fact2) 
-my_fact2
+my_fact3 = droplevels(my_fact3)
 ```
 
 
@@ -295,7 +339,7 @@ my_fact2
 
 <br/> Aprite e tenete aperto questo link:
 
-<https://etherpad.wikimedia.org/p/arca-corsoR>
+<https://etherpad.wikimedia.org/p/test-organizzazioni>
 
 # Matrici
 
@@ -498,7 +542,7 @@ my_df$numeri[1]
 
 Una delle operazioni più comuni che dovrete affrontare sarà sicuramente quella di estrarre/valutare un sottoinsieme di valori presenti nel vostro dataset
 
-###
+---
 
 Includo solo le righe per cui alla colonna numeri i valori sono maggiori di 2
 
@@ -507,29 +551,29 @@ my_df[my_df$numeri > 2, ]
 my_df[my_df[1] > 2, ] 
 ```
 
-### 
+---
 
-```{r}
+```{r, echo = TRUE}
 my_df
 ```
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo = TRUE}
 my_df[my_df$numeri > 2 & my_df$numeri < 4, ]
 ```
 
-### 
+---
 
-```{r}
+```{r,echo = TRUE}
 my_df
 ```
 
-```{r, eval=TRUE}
+```{r, eval=TRUE,echo = TRUE}
 my_df[my_df$numeri > 2 & my_df$numeri < 4, ]
 ```
 
-###
+---
 
-```{r}
+```{r,echo = TRUE}
 my_df
 ```
 
@@ -537,19 +581,19 @@ my_df
 my_df[my_df$numeri== 2,  2]
 ```
 
-###
+---
 
-```{r}
+```{r,echo = TRUE}
 my_df
 ```
 
-```{r}
+```{r,echo = TRUE}
 my_df[my_df$numeri== 2,  2]
 ```
 
-###
+---
 
-```{r}
+```{r,echo = TRUE}
 my_df
 ```
 
@@ -557,9 +601,9 @@ my_df
 my_df[my_df$numeri== 2,  "lettere"]
 ```
 
-###
+---
 
-```{r}
+```{r, echo=TRUE}
 my_df
 my_df[my_df$numeri== 2,  "lettere"]
 ```
@@ -578,15 +622,21 @@ head(my_df, n = 5)
 
 ### Indicizzazione `subset()`
 
-```{r,echo=TRUE}
-my_df
+Attraverso la funzione `subset()` è possibile ottenere un dataframe formato da un sottoinsieme di elementi. 
 
+```{r,echo=TRUE}
 subset(my_df, subset = lettere == "a" & numeri > 2)
 ```
 
-### 
+L'argomento `subset=` definisce la condizione da valutare per la selezione degli elementi di `my_df`.
 
-Equivalente a:
+---
+
+```{r,echo=TRUE}
+subset(my_df, subset = lettere == "a" & numeri > 2)
+```
+
+è equivalente a:
 
 ```{r,echo=TRUE}
 
@@ -596,7 +646,7 @@ my_df[my_df$lettere == "a" & my_df$numeri > 2,]
 
 ### `subset(df, select = ...)`
 
-E' possibile anche selezionare colonne piuttosto che righe attraverso l'argomento ***`select`***:
+E' possibile anche selezionare specigiche colonne attraverso l'argomento ***`select`***:
 
 ```{r, echo=TRUE, eval=FALSE}
 subset(my_df, select = c(lettere, numeri))
@@ -617,18 +667,22 @@ subset(my_df, subset = lettere == "a" & numeri > 2,
 ```
 
 
+- valuto la condizione per riga (`subset = lettere == "a" & numeri > 2`) 
 
-### 
+- seleziono le colonne (`subset = c(lettere, numeri)`)
+
+---
 
 La maggiorparte delle volte vi troverete ad accedere alle variabili tramite l'operatore **`$`**. Questo comando può essere utilizzato anche per creare una nuova variabile...
 
 ```{r,echo=TRUE}
+my_df$numeri
 # creo una variablie che è la somma di numeri e normale
 my_df$somma = my_df$numeri + my_df$normale
 str(my_df)
 ```
 
-###
+---
 
 Potete  sia creare che modificare variabili accedendo attraverso **`$`**
 
@@ -655,7 +709,7 @@ my_df2 = data.frame(numero = 1:9, lettere = letters[1:9],
 str(my_df2)
 ```
 
-### 
+---
 
 **Unisco i due Dataframe**
 
@@ -663,7 +717,7 @@ str(my_df2)
 my_df3 = rbind(my_df,my_df2) 
 ```
 
-### 
+---
 
 
 ```{r,echo=TRUE, error=TRUE}
@@ -672,14 +726,16 @@ str(my_df2)
 ```
 
 
-### 
+---
+
 
 **Unisco i due Dataframe**
 
 -   I Dataframe devono avere lo stesso numero di colonne
 -   I nomi delle colonne devono essere identici
 
-###
+
+---
 
 **Sistemo i nomi**
 
@@ -691,7 +747,8 @@ names(my_df)
 names(my_df2) = names(my_df)
 ```
 
-###
+
+---
 
 **Unisco i dataframe**
 
@@ -700,11 +757,13 @@ my_df3 = rbind(my_df,my_df2)
 str(my_df3)
 ```
 
-###
+---
 
 Potrebbe anche capitarvi di dover raccogliere differenti tipi di dato dallo stesso partecipante, e successivamente combinare le informazioni raccolte...
 
-###
+---
+
+Dataframe contente i tempi di reazione:
 
 ```{r, echo=TRUE}
 df_rt = data.frame(subj = factor(rep(c("caio","tizio"),each = 400)),
@@ -715,7 +774,7 @@ df_rt = data.frame(subj = factor(rep(c("caio","tizio"),each = 400)),
 str(df_rt)
 ```
 
-###
+---
 
 Dataframe contente l'età:
 
@@ -725,7 +784,8 @@ str(df_age)
 ```
 
 
-###
+---
+
 
 In questo caso, è possibile utilizzare la funzione **`merge()`**:
 ```{r, echo=TRUE}
@@ -773,4 +833,4 @@ load(file ="data/df_rt.rda") # formato R
 
 <br/> Aprite e tenete aperto questo link:
 
-<https://etherpad.wikimedia.org/p/arca-corsoR>
+<https://etherpad.wikimedia.org/p/test-organizzazioni>

@@ -2,18 +2,11 @@ Calcolo della media :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}
-\NormalTok{n}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\# numero di unità}
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel) }
 
-\begin{verbatim}
-[1] 2000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}\SpecialCharTok{/}\NormalTok{n}
+\CommentTok{\# sommo tutti gli elementi e divido per n}
+\FunctionTok{sum}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}\SpecialCharTok{/}\NormalTok{n }
 \end{Highlighting}
 \end{Shaded}
 
@@ -23,6 +16,7 @@ Calcolo della media :
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# funzione mean}
 \FunctionTok{mean}\NormalTok{(burnout}\SpecialCharTok{$}\NormalTok{StressLevel)}
 \end{Highlighting}
 \end{Shaded}

@@ -2,7 +2,8 @@
 title: "Frequenze e Indici di Tendenza Centrale"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
-date: ""
+date: today
+date-format: "MM/YYYY"
 format:
   beamer:
     slide-level: 3
@@ -34,29 +35,37 @@ header-includes: |
   \setbeamercolor{upper separation line head}{bg=white}
   \setbeamercolor{middle separation line head}{bg=white}
   \setbeamercolor{lower separation line head}{bg=white}
+  
   \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
+  
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
   \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+  
   \AtBeginSubsection{}
-  \AtBeginDocument{\institute[]{Università di Padova} }
-  \AtBeginDocument{\author{Ottavia M. Epifania\\\texttt{ottavia.epifania@unipd.it}\\[0.5em]Margherita Calderan\\\texttt{margherita.calderan@unipd.it}}}
-  \AtBeginSection[]
+  
+  \AtBeginDocument{\institute[]{Università di Padova}}
+  
+  \AtBeginDocument
   {
-     \begin{frame}[plain]
-     \tableofcontents[currentsection, hideallsubsections]
-     \end{frame}
-     \begin{frame}[plain]
-     \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-     \end{frame}
-  }
-
+    \author{Ottavia M. Epifania \\ 
+    \texttt{ottavia.epifania@unipd.it} \\ 
+    \textbf{Margherita Calderan} \\ 
+    \texttt{margherita.calderan@unipd.it}}
+    }
+    
+  \AtBeginSection
+  {
+    \begin{frame}[plain]
+    \tableofcontents[currentsection, hideallsubsections]
+    \end{frame}
+    \begin{frame}[plain]
+    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+    }
 editor_options: 
   chunk_output_type: console
 execute: 
   echo: true
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
 # Statistica descrittiva e inferenziale
@@ -104,13 +113,13 @@ dati](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/dat
 Carichiamo il dataset:
 
 ```{r, echo=TRUE}
-# installo pacchetti
-#> install.packages("dplyr")
-#> install.packages("readr")
+# installo pacchetti, vedi script pkg.R
 
 # carico pacchetti
 library(dplyr)
 library(readr)
+
+# carico dataset
 burnout = read_csv("data/burnout.csv")
 ```
 
@@ -132,16 +141,15 @@ str(burnout$StressLevel)
 
 -------------------------------------------------------------------
 
-In particolare, i livelli di stress sono stati categorizzati in tre fasce: **basso** (1–2), **medio-basso** (3–4), **medio-alto** (5–7), e **alto** (8–10). A tale scopo, creiamo una nuova variabile che rappresenta una versione categorizzata di `StressLevel`.
+In particolare, i livelli di stress sono stati categorizzati in tre fasce: **basso** (1–2), **moderato** (3–4), **alto** (5–7), e **severo** (8–10). A tale scopo, creiamo una nuova variabile che rappresenta una versione categorizzata di `StressLevel`.
 
 ```{r}
 # creo la variabile StressLevel
-StressCat = case_when(burnout$StressLevel <= 2 ~ "basso",
-                      burnout$StressLevel  >= 3 &
-                                burnout$StressLevel  <= 4 ~ "medio-basso",
-                              burnout$StressLevel  >= 5 &
-                                burnout$StressLevel  <= 7 ~ "medio-alto",
-                             burnout$StressLevel  >= 8 ~ "alto" )
+StressCat = case_when(
+  burnout$StressLevel <= 2 ~ "basso", 
+  burnout$StressLevel  >= 3 & burnout$StressLevel  <= 4 ~ "moderato",
+  burnout$StressLevel  >= 5 & burnout$StressLevel  <= 7 ~ "alto",
+  burnout$StressLevel  >= 8 ~ "severo" )
 
 str(StressCat)
 ```
@@ -152,8 +160,8 @@ Così come esiste il comando `factor`, possiamo utilizzare il comando `ordered` 
 
 ```{r}
 StressCat = ordered(StressCat, 
-           levels=c("basso","medio-basso","medio-alto","alto"))
-
+           levels=c("basso","moderato","alto","severo"))
+# attraverso l'argomento levels specifichiamo l'ORDINE dei livelli/categorie
 str(StressCat)
 
 #Aggiugo la nuova variabile al dataset
@@ -179,20 +187,12 @@ Se vogliamo calcolare le frequenze assolute semplici per ogni
 categoria/livello, possiamo utilizzare la funzione `table()`
 
 ```{r, eval=TRUE}
-table(burnout$StressCat)
+table(burnout$StressCat) # nome_dataframe$nome_variabile
 ```
 
 ## Le frequenze assolute cumulate
 
 La frequenza assoluta cumulata di una categoria/livello è la **somma** delle **frequenze assolute semplici** delle categorie precedenti alla categoria data più la frequenza assoluta semplice della categoria data.
-
-Quanti hanno hanno riportato un grado di stress inferiore o uguale a medio-basso?
-
-```{r, eval=TRUE, echo=FALSE}
-burnout |> count(StressCat, name = "fi")
-```
-
-------------------------------------------------------------------------
 
 Attraverso la funzione `cumsum()` possiamo calcolare la somma cumulata, in questo caso le frequenze assolute cumulate
 
@@ -209,9 +209,9 @@ statistiche osservate
 Qual'è il numero totale di unità statistiche?
 
 ```{r}
-nrow(burnout)
-length(burnout$StressCat)
-n = nrow(burnout)
+nrow(burnout) #numero righe dataframe
+length(burnout$StressCat) # lunghezza della variabile 
+n = nrow(burnout) #oggetto n = numero unità stat
 ```
 
 -------------------------------------------------------------------
@@ -231,11 +231,11 @@ La frequenza relativa cumulata di una categoria è la **somma delle frequenze re
 Come prima, attraverso la funzione `cumsum()`, possiamo calcolare le frequenze relative **cumulate**
 
 ```{r}
-cumsum(table(burnout$StressCat))/n
+cumsum(table(burnout$StressCat)/n)
 ```
 
 Ad esempio, $P_2 = 0.409$, indica che ~40% rispondenti ha riportato
-un grado di stress inferiore o uguale a medio-basso.
+un grado di stress inferiore o uguale a moderato.
 
 **Una frequenza relativa cumulata varia sempre tra 0 e 1.**
 
@@ -265,28 +265,28 @@ knitr::kable(tabella, align = "ccccccc")
 
 ```{r, fig.width=5,fig.height=3.5}
 barplot(table(burnout$StressCat), ylab="?", 
-         xlab="Accordo",ylim =c(0,600)) # diagramma a barre
+         xlab=" ",ylim =c(0,600)) # diagramma a barre
 ```
 
 ------------------------------------------------------------------------
 
 ```{r, fig.width=5,fig.height=3.5}
 barplot(table(burnout$StressCat)/n, ylab="?", 
-         xlab="Accordo", ylim =c(0,.3)) # diagramma a barre
+         xlab=" ", ylim =c(0,.3)) # diagramma a barre
 ```
 
 ------------------------------------------------------------------------
 
 ```{r, fig.width=5,fig.height=3.5}
 barplot(cumsum(table(burnout$StressCat)), ylab="?", 
-         xlab="Accordo") # diagramma a barre
+         xlab=" ") # diagramma a barre
 ```
 
 ------------------------------------------------------------------------
 
 ```{r, fig.width=5,fig.height=3.8}
 barplot(cumsum(table(burnout$StressCat))/n, ylab="?", 
-         xlab="Accordo") # diagramma a barre
+         xlab=" ") # diagramma a barre
 ```
 
 # Indici di tendenza centrale
@@ -364,8 +364,11 @@ Attraverso la funzione `sort` si possono riordinare gli elementi di un vettore (
 ```{r}
 StressCatOrd = sort(burnout$StressCat)
 
-# visualizzo i primi elementi
+# visualizzo i primi elementi variabile ordinata
 head(StressCatOrd, n = 6)
+
+# prima
+head(burnout$StressCat, n = 6)
 ```
 
 
@@ -386,8 +389,9 @@ StressCatOrd[(n/2) + 1] # i_sup = (n/2) + 1
 ## La media aritmetica
 
 La media aritmetica di una distribuzione di dati rilevati sulla
-variabile $X$, è data dalla somma dei dati divisa per il numero di unità statistiche.
+variabile $X$, è data dalla somma dei dati divisa per il numero di unità statistiche. 
 
+In questo caso possiamo calcolare la media dei livelli di Stress in quanto variabile quantitativa:
 
 ```{r}
 str(burnout$StressLevel)
@@ -398,11 +402,13 @@ str(burnout$StressLevel)
 Calcolo della media :
 
 ```{r}
-n = length(burnout$StressLevel)
-n
+# numero di unità
+n = length(burnout$StressLevel) 
 
-sum(burnout$StressLevel)/n
+# sommo tutti gli elementi e divido per n
+sum(burnout$StressLevel)/n 
 
+# funzione mean
 mean(burnout$StressLevel)
 ```
 
