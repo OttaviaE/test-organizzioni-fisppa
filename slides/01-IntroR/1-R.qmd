@@ -1,6 +1,6 @@
 ---
 title: "Vettori, Matrici e Dataframe"
-subtitle: "Test per le organizzaioni"
+subtitle: "Test per le organizzazioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: today
 date-format: "MM/YYYY"
@@ -14,7 +14,6 @@ format:
     highlight-style: tango
     classoption: compress, aspectratio=149
     innertheme: rounded
-    outertheme: miniframes
 callout-icon: false
 code-annotations: below
 header-includes: |
@@ -62,6 +61,7 @@ header-includes: |
     \tableofcontents[currentsection,currentsubsection,hideothersubsections]
     \end{frame}
     }
+    
 ---
 
 
@@ -199,7 +199,7 @@ my_vect[1] # estraggo il primo elemento
 ```
 :::
 
-### 
+---
 
 ```{r, echo=TRUE}
 my_vect[1:5] # estraggo i primi 5 elementi
@@ -228,7 +228,7 @@ numeri[numeri>2 & numeri<5]
 ```
 
 
-### Operazioni matematiche sui vettori
+## Operazioni matematiche sui vettori
 
 Possiamo eseguire operazioni sui vettori, ed applicare la stessa operazione a tutti gli elementi del vettore (element-wise)
 
@@ -376,7 +376,7 @@ Il numero di righe e colonne non deve essere lo stesso necessariamente (matrice 
 matrix(data = 1:10, ncol = 3, nrow = 3)
 ```
 
-### 
+---
 
 Cosa fa R di default?
 
@@ -401,7 +401,7 @@ my_mat[1,1]
 
 ```
 
-###
+---
 
 E' possibile anche selezionare un'intera riga o colonna
 
@@ -414,7 +414,7 @@ my_mat[,1]
 ```
 
 
-### Vettori e Matrici
+## Vettori e Matrici
 
 I vettori si creano attraverso la funzione **`c()`** e possono essere concatenati tra loro sempre attraverso la stessa funzione:
 
@@ -426,7 +426,7 @@ my_vect12 = c(my_vect1,my_vect2)
 my_vect12
 ```
 
-###
+---
 
 ```{r, echo=TRUE}
 
@@ -437,7 +437,8 @@ my_mat2
 
 ```
 
-###
+
+---
 
 Le matrici possono essere unite tra loro attraverso i comandi:
 
@@ -448,7 +449,7 @@ cbind(my_mat1, my_mat2)
 
 ```
 
-###
+---
 
 **`rowbind()`**
 
@@ -459,7 +460,7 @@ rbind(my_mat1, my_mat2)
 ```
 
 
-### Operazioni con le matrici
+## Operazioni con le matrici
 
 Come per i vettori, anche alle matrici si possono applicare operazioni matematiche:
 
@@ -473,7 +474,7 @@ my_mat*my_mat
 ```
 
 
-### Operazioni con le matrici
+---
 
 Come per i vettori, anche alle matrici si possono applicare operazioni matematiche:
 
@@ -506,7 +507,7 @@ my_df = data.frame( numeri = 1:4, lettere = letters[1:4],
 my_df
 ```
 
-### Attributi
+## Attributi
 
 Possiamo utlizzare le funzioni **`names()`** , **`dim()`**, **`nrow()`**, **`ncol()`**... per ottenere informazioni sulle caratteristiche del dataframe. 
 
@@ -538,7 +539,7 @@ my_df$numeri[1]
 
 ```
 
-### Indicizzazione - Operatori relazionali
+### Indicizzazione Logica
 
 Una delle operazioni più comuni che dovrete affrontare sarà sicuramente quella di estrarre/valutare un sottoinsieme di valori presenti nel vostro dataset
 
@@ -620,7 +621,7 @@ my_df = data.frame(numeri = rep(1:3,each = 3),
 head(my_df, n = 5)
 ```
 
-### Indicizzazione `subset()`
+----
 
 Attraverso la funzione `subset()` è possibile ottenere un dataframe formato da un sottoinsieme di elementi. 
 
@@ -644,7 +645,9 @@ my_df[my_df$lettere == "a" & my_df$numeri > 2,]
 
 ```
 
-### `subset(df, select = ...)`
+---
+
+#### `subset(df, select = ...)`
 
 E' possibile anche selezionare specigiche colonne attraverso l'argomento ***`select`***:
 
@@ -657,7 +660,9 @@ subset(my_df, select = c(lettere, numeri))
 head(subset(my_df, select = c(lettere, numeri)), n = 3) 
 ```
 
-### `subset(df, subset = ..., select = ...)`
+---
+
+#### `subset(df, subset = ..., select = ...)`
 
 Possiamo anche combinare le due cose:
 

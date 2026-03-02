@@ -1,6 +1,6 @@
 ---
 title: "Introduzione a R"
-subtitle: "Test per le organizzaioni"
+subtitle: "Test per le organizzazioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: today
 date-format: "MM/YYYY"
@@ -14,7 +14,6 @@ format:
     highlight-style: tango
     classoption: compress, aspectratio=149
     innertheme: rounded
-    outertheme: miniframes
 callout-icon: false
 code-annotations: below
 header-includes: |
@@ -74,13 +73,13 @@ E' un software completamente **open-source** e **gratuito** in continua evoluzio
 
 ![](img/R_logo.png){fig-align="center" width="80"}
 
-### Perchè R?
+## Perchè R?
 
 Un software si definisce open-source quando il **codice sorgente è disponibile** a tutti per essere **modificato**, **aggiornato** e **controllato**.
 
 R è **sia open-source che gratuito** e vanta una community estremamente attiva, come spesso accade con tutti i progetti open-source e in generale i linguaggi di programmazione.
 
-###
+---
 
 Nell'ambito della statistica ci sono vari software non open-source ed a pagamento come:
 
@@ -89,7 +88,7 @@ Nell'ambito della statistica ci sono vari software non open-source ed a pagament
 -   STATA
 -   SAS
 
-###
+---
 
 Sono degli ottimi software ma:
 
@@ -98,7 +97,7 @@ Sono degli ottimi software ma:
 -   Le licenze possono costare molto
 -   La community non è altrettanto attiva (non open-source)
 
-###
+---
 
 Ci sono degli ottimo software open-source basati su R come:
 
@@ -109,7 +108,7 @@ Ci sono degli ottimo software open-source basati su R come:
     -   **pros**: molti modelli anche avanzati
     -   **cons**: non si può vedere il codice R
 
-###
+---
 
 Imparare in linguaggio come R vi permette di conoscere uno strumento molto potente ma anche di imparare:
 
@@ -124,7 +123,7 @@ Entrambi vanno installati separatamente e la procedura varia a seconda del propr
 
 Se non l'avete già installato, seguite la procedura spiegata a questo link: <https://ottaviae.github.io/test-organizzioni-fisppa/slides/01-IntroR/guida.html>
 
-###
+---
 
 Se non volete/non riuscite nell'installazione, potete accedere ad R-studio attraverso il server: <https://posit.cloud/> (collegatevi attraverso la mail unipd)
 
@@ -132,7 +131,7 @@ Se non volete/non riuscite nell'installazione, potete accedere ad R-studio attra
 
 ![](img/workspace.png){fig-align="left" width="400"}
 
-###
+---
 
 **Environment.** La vostra scrivania quando lavorate in R. Contiene tutti gli oggetti (variabili) creati durante la sessione di lavoro.
 
@@ -204,7 +203,7 @@ setwd('/Users/tita/Desktop')
 
 Io sto lavorando dentro la cartella `01-IntroR`.
 
-###
+---
 
 Dato che sto lavorando dentro la cartella, se voglio caricare un file che si trova dentro questa cartella posso scrivere semplicemente il nome del file tra virgolette, ed utilizzare per esempio la funzione `read.csv`:
 
@@ -221,13 +220,13 @@ data = read.csv("data/prova.csv")
 **N.B.** Per specificare il path scrivere `/` non `\`
 
 
-###
+---
 
 Creiamo uno script:
 
 ![](img/script.png){fig-align="center" width="400"}
 
-###
+---
 
 Salviamo:
 
@@ -258,7 +257,7 @@ matrice = matrix(nrow = 2, ncol = 2, data = vettore); matrice
 ```
 
 
-### Creare/nominare oggetti
+## Creare/nominare oggetti
 
 Gli oggetti si possono creare e tramite il comando **`<-`** oppure **`=`**
 
@@ -273,7 +272,7 @@ x1 == x2 # i due oggetti sono identici?
 ```
 
 
-### Principali tipi di dato 
+## Principali tipi di dato 
 
 -   **`character`**: Stringhe di caratteri i cui valori alfanumerici vengono delimitati dalle doppie vigolette "Hello world!" o virgolette singole 'Hello world!'
 -   **`numeri`**: interi e/o decimali
@@ -287,7 +286,7 @@ b1 = c(12, 0.3, 5, 778.3) # vettore numerico
 Nomi3 = c("giorgio", "ugo", "anna") # vettore character
 ```
 
-### Regole sulla denominazione di oggetti
+## Regole sulla denominazione di oggetti
 
 -   Deve iniziare con una lettera e può contenere lettere, numeri, underscore ( \_ ), o punti (.).
 -   Potrebbe anche iniziare con un punto (.) ma in tal caso non può essere seguito da un numero.
@@ -298,7 +297,7 @@ Nomi3 = c("giorgio", "ugo", "anna") # vettore character
 .x = 3
 ```
 
-###
+---
 
 -   Non deve contenere caratteri speciali come #, &, \$, ?, etc.
 
@@ -314,7 +313,7 @@ if = 3
 
 ```
 
-###
+---
 
 Ci sono alcuni nomi che non sono proibiti ma sono sconsigliati
 
@@ -325,11 +324,11 @@ sum(2,3)
 sum = 4
 ```
 
-###
+---
 
 Tra i diversi linguaggi, le *convenzioni di denominazione* per i nomi di variabili più lunghi e composti da più parole privilegiano **`snake_case`** (ad esempio, "**my_data**") o **`camelCase`** (ad esempio, "**myData**"), e **abbreviazioni** dove appropriato (ad esempio, "**unipdData**" meglio di "university_of_padova_dataset").
 
-###
+---
 
 R è case-sensitive!
 
@@ -346,13 +345,13 @@ nome
 Nome == nome
 ```
 
-### Dove vengono salvati gli oggetti?
+## Dove vengono salvati gli oggetti?
 
 Di default gli oggetti sono creati nel **global environment** accessibile con `ls()` o visibile in R Studio con anche alcune informazioni aggiuntive:
 
 ![](img/envi.png){fig-align="center" width="300"}
 
-###
+---
 
 Possiamo eliminare un oggetto presente nel nostro enviroment attraverso il comando **`rm("nomeoggetto")`**.
 
@@ -371,24 +370,24 @@ mean(x = vettore)
 ```
 
 
-### Funzioni 
+---
 
 Possiamo pensare alle funzioni in R in modo analogo alle classiche funzioni matematiche. Dati dei valori in **input**, le funzioni eseguono dei specifici calcoli e restituiscono in **output** il risultato ottenuto.
 
 ![](img/fun1.png){fig-align="center"}
 
-### Argomenti
+## Argomenti
 
 Gli argomenti delle funzioni sono quelli che da *utenti* dobbiamo conoscere ed impostare nel modo corretto per fare in modo che la funzioni faccia quello per cui è stata pensata. Nell'esempio precedente l'unico argomento era x. Vediamo invece l'`help` della funzione `mean()`.
 
-###
+---
 
 Per impostare questi argomenti ci sono 2 regole:
 
 -   l'ordine non conta SE DEFINISCO NOME DELL'ARGOMENTO con `x = vettore`, `na.rm = TRUE`, etc.
 -   l'ordine conta SE NON DEFINISCO IL NOME DELL'ARGOMENTO. Posso quindi omettere `argomento = valore` ma devo rispettare l'ordine con cui è stata scritta la funzione.
 
-###
+---
 
 In questo caso proviamo ad usare la funzione `mean()`:
 
@@ -401,7 +400,7 @@ mean(x = myvec)
 
 
 
-###
+---
 
 In questo caso proviamo ad usare la funzione `mean()`:
 
@@ -414,7 +413,7 @@ mean(myvec, TRUE) # cosa succede?
 
 
 
-### Packages
+## Packages
 
 In R è possibile installare e caricare pacchetti aggiuntivi che non fanno altro che rendere disponibili librerie di funzioni create da altri utenti. Per utilizzare un pacchetto:
 
@@ -424,13 +423,13 @@ In R è possibile installare e caricare pacchetti aggiuntivi che non fanno altro
 
 -   Accedere ad una funzione senza caricare il pachetto **`nomepacchetto::nomefunzione()`**. Utile se serve solo una funzione o ci sono conflitti)
 
-### Packages
+---
 
 ![](img/pkg.png){fig-align="center" width="300"}
 
 # Operatori 
 
-### Operatori Matematici
+## Operatori Matematici
 
 | Funzione | Cosa fa?        | Esempio     | Risultato |
 |----------|-----------------|-------------|-----------|
@@ -442,7 +441,7 @@ In R è possibile installare e caricare pacchetti aggiuntivi che non fanno altro
 | `^`      | potenza         | `15 ^ 2`    | `225`     |
 
 
-###
+---
 
 | Funzione | Cosa fa?               | Esempio           | Risultato |
 |----------|------------------------|-------------------|-----------|
@@ -467,7 +466,7 @@ L'ordine delle operazioni in R segue le regole della matematica.
 (1 + 2) * 3
 ```
 
-###  Operatori Relazionali
+## Operatori Relazionali
 
 In R è possibile valutare se una data relazione è vera o falsa. R valuterà le proposizioni e ci restituirà il valore **`TRUE`** se la proposizione è vera oppure **`FALSE`** se la proposizione è falsa.
 
@@ -491,7 +490,7 @@ In R è possibile valutare se una data relazione è vera o falsa. R valuterà le
 +---------------+-------------------+-------------------+---------------+
 
 
-###
+---
 
 Non vale solo per i numeri!
 
@@ -507,7 +506,7 @@ Nome == nome
 
 <br/> PS. Ricordatevi che **`=`** è diverso da **`==`**
 
-###  Operatori Logici
+##  Operatori Logici
 
 In R è possibile congiungere più relazioni per valutare una desiderata proposizione.
 
@@ -521,7 +520,7 @@ x = 30 #Assegnamo a x il valore 30.
 | `|`      | Disgiunzione Inclusiva | `x>25 | x>60` | `TRUE`   |
 | `!`      | Negazione              | `!(x<18)`     | `TRUE`   |
 
-###
+---
 
 ```{r,echo = TRUE}
 x = 30 #Assegnamo a x il valore 30.
@@ -550,7 +549,7 @@ x>25 | x>60
 
 
 
-## R ed errori
+# R ed errori
 
 In R gli errori sono:
 
@@ -558,7 +557,7 @@ In R gli errori sono:
 -   parte del codice stesso
 -   educativi
 
-###
+---
 
 Ci sono diversi livelli di **allerta** quando scriviamo codice:
 
@@ -568,7 +567,7 @@ Ci sono diversi livelli di **allerta** quando scriviamo codice:
 
 -   **`error`**: la funzione non solo ci informa di un **errore** ma le operazioni richieste non sono state eseguite
 
-###
+---
 
 Come risolvere?
 
@@ -577,7 +576,7 @@ Come risolvere?
 -   Cercare il messaggio su internet
 -   Chiedere aiuto nei forum dedicati
 
-###
+---
 
 -   Ogni funzione ha una pagina di documentazione accessibile con `?nomefunzione`, `??nomefunzione` oppure `help(nomefunzione)`
 

@@ -1,20 +1,19 @@
 ---
-title: "Frequenze e Indici di Tendenza Centrale"
-subtitle: "Test per le organizzaioni"
+title: "Frequenze, Indici di Posizione e di Variabilità"
+subtitle: "Test per le organizzazioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: today
 date-format: "MM/YYYY"
 format:
   beamer:
-    slide-level: 3
-    toc-depth: 3
+    slide-level: 2
+    toc-depth: 2
     theme: Montpellier
     colortheme: dove
     navigation: horizontal
     highlight-style: tango
     classoption: compress, aspectratio=149
     innertheme: rounded
-    outertheme: miniframes
 callout-icon: false
 code-annotations: below
 header-includes: |
@@ -35,9 +34,10 @@ header-includes: |
   \setbeamercolor{upper separation line head}{bg=white}
   \setbeamercolor{middle separation line head}{bg=white}
   \setbeamercolor{lower separation line head}{bg=white}
+
   
   \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
-  
+
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
   \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
   
@@ -51,21 +51,21 @@ header-includes: |
     \texttt{ottavia.epifania@unipd.it} \\ 
     \textbf{Margherita Calderan} \\ 
     \texttt{margherita.calderan@unipd.it}}
-    }
+  }
     
   \AtBeginSection
   {
     \begin{frame}[plain]
-    \tableofcontents[currentsection, hideallsubsections]
+    \tableofcontents[currentsection, currentsubsection, hideothersubsections]
     \end{frame}
-    \begin{frame}[plain]
-    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-    \end{frame}
-    }
+  }
+  
+  \setbeamertemplate{mini frame}{}
 editor_options: 
   chunk_output_type: console
 execute: 
   echo: true
+
 ---
 
 # Statistica descrittiva e inferenziale
@@ -80,7 +80,7 @@ execute:
     -   Confronti tra gruppi, valutazione di interventi, validazione di
         test
 
-## La statistica descrittiva
+---
 
 -   È utile per controllare, descrivere ed esplorare i dati
 
@@ -90,7 +90,8 @@ execute:
 -   **Non esiste una buona analisi statistica, senza una buona analisi
     descrittiva**
 
-## Tecniche
+---
+
 
 -   **Distribuzione di frequenza e grafici**
 
@@ -112,9 +113,9 @@ dati](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/dat
 
 Carichiamo il dataset:
 
-```{r, echo=TRUE}
-# installo pacchetti, vedi script pkg.R
+(prima installo pacchetti, vedi script [pkg.R](slides/pkg.R)
 
+```{r, echo=TRUE}
 # carico pacchetti
 library(dplyr)
 library(readr)
@@ -171,7 +172,9 @@ burnout$StressCat = StressCat
 
 # Frequenze
 
-## Notazioni fondamentali
+---
+
+#### Notazioni fondamentali
 
 -   Sia $X$ la variabile `StressCat`
 
@@ -179,7 +182,9 @@ burnout$StressCat = StressCat
 
 -   Sia $n$ il totale delle unità statistiche ($n = 2000$)
 
-## Le frequenze assolute semplici
+---
+
+#### Le frequenze assolute semplici
 
 La frequenza assoluta semplice di una categoria è il **numero naturale di unità statistiche** che presentano tale categoria.
 
@@ -190,7 +195,9 @@ categoria/livello, possiamo utilizzare la funzione `table()`
 table(burnout$StressCat) # nome_dataframe$nome_variabile
 ```
 
-## Le frequenze assolute cumulate
+---
+
+#### Le frequenze assolute cumulate
 
 La frequenza assoluta cumulata di una categoria/livello è la **somma** delle **frequenze assolute semplici** delle categorie precedenti alla categoria data più la frequenza assoluta semplice della categoria data.
 
@@ -201,7 +208,10 @@ table(burnout$StressCat)
 cumsum(table(burnout$StressCat))
 ```
 
-## Le frequenze relative semplici
+
+---
+
+#### Le frequenze relative semplici
 
 La frequenza relativa semplice è data dal rapporto tra la **frequenza assoluta semplice di tale categoria** e **il numero totale** di unità
 statistiche osservate
@@ -224,7 +234,10 @@ table(burnout$StressCat)/n
 
 **Una frequenza relativa semplice varia sempre tra 0 e 1.**
 
-## Le frequenze relative cumulate
+
+---
+
+#### Le frequenze relative cumulate
 
 La frequenza relativa cumulata di una categoria è la **somma delle frequenze relative semplice** delle categorie precedenti alla categoria data più la frequenza relativa semplice della categoria data.
 
@@ -259,7 +272,10 @@ knitr::kable(tabella, align = "ccccccc")
 
 ```
 
-## Visualizzazione
+
+---
+
+#### Visualizzazione
 
 ------------------------------------------------------------------------
 
@@ -318,15 +334,7 @@ categoria che si presenta con la massima frequenza.
 
 Ad esempio, rispetto ai dati relativi ai livelli di stress, la moda è ....
 
-```{r, echo=FALSE}
-table(burnout$StressCat)
-```
--------
-
-
-Che funzione posso usare per ottenere la moda?
-
-```{r}
+```{r, echo=TRUE}
 table(burnout$StressCat)
 ```
 
@@ -338,7 +346,9 @@ table(burnout$StressCat)
     variabile $X$, è il dato che occupa la posizione centrale rispetto alla distribuzione dei dati.
     
     
-### Calcolo della mediana
+---
+
+#### Calcolo della mediana
 
 Si individua la prima frequenza cumulata maggiore
 o uguale della posizione cercata:
@@ -355,9 +365,10 @@ cumsum(table(burnout$StressCat))
 ```
 
 
--------------------------------------------------------------------
 
-### Calcolo della mediana
+---
+
+#### Calcolo della mediana
 
 Attraverso la funzione `sort` si possono riordinare gli elementi di un vettore (nel nostro caso la variabile `StressCat`)
 
@@ -372,7 +383,9 @@ head(burnout$StressCat, n = 6)
 ```
 
 
-### Calcolo della mediana: caso n pari
+---
+
+#### Calcolo della mediana: caso n pari
 
 Nel caso di *n* dispari, la mediana sarà semplicemente il valore che sta al centro. Nel caso invece di *n* pari, possiamo trovare le posizioni tra cui si trova la mediana:
 
@@ -412,15 +425,545 @@ sum(burnout$StressLevel)/n
 mean(burnout$StressLevel)
 ```
 
+# Indici di variabilità
+
+- Il concetto di variabilità si riferisce a quanto i punteggi di una distribuzione sono sparsi, ovvero quanto siano simili o dissimili tra loro.
+
+- Il ricorso ad un indice di tendenza centrale (come la media) comporta una forte semplificazione, e da solo non fornisce informazioni esaurienti sulla distribuzione.
+
+- È fondamentale capire quanto i dati siano dispersi intorno all’indice di tendenza centrale.
+
+- La variabilità è una caratteristica fondamentale delle distribuzioni: *"Variability is the essence of statistics"* (Cobb, 1992).
+
+
+
+### Esempio: numero di ore lavorate
+
+Consideriamo le ore di lavoro settimanali di tre diversi team:
+
+```{r}
+team_A = c(38, 42, 44, 36, 39, 42, 38, 41)
+mean(team_A)
+
+team_B = c(30, 30, 32, 30, 50, 48, 50, 50)
+mean(team_B)
+
+team_C = c(40, 40, 40, 40, 40, 40, 40, 40)
+mean(team_C)
+```
+
+
+---
+
+#### Indici di variabilità o disperisione
+
+-   Dobbiamo quindi considerare la variabilità (o dispersione) di una distribuzione di dati.
+-   Gli indici di variabilità possono assumere solo valori positivi (non ha senso parlare di dispersione negativa) o nulli (quando i dati osservati hanno tutti lo stesso valore).
+
+-   La variabilità minima possibile è $0$ e si riferisce a distribuzioni in cui tutti i punteggi sono uguali e dunque non c’è variabilità nei dati.
+
+
+## Campo di variazione
+
+Campo di variazione (o gamma) di una distribuzione di dati è la
+diﬀerenza tra il valore massimo e il valore minimo osservato:
+
+$$
+\text{gamma} = X_{max} - X_{min}
+$$
+
+```{r}
+team_A
+
+max(team_A) - min(team_A)
+```
+
+Il campo di variazione del Team A è di 8 ore.
+
+
+---
+
+Confrontiamo il Team B con un ipotetico Team D:
+
+```{r}
+team_D = c(30, 30, 32, 31, 31, 30, 30, 50)
+team_B
+
+# Gamma Team B
+max(team_B) - min(team_B)
+
+# Gamma Team D
+max(team_D) - min(team_D)
+```
+
+Commenti?
+
+## La varianza
+
+La varianza $\sigma^2$ di un insieme di dati è la media degli scarti al quadrato tra i dati e la media dei dati stessi:
+ 
+$$
+\sigma^2 = \frac{\sum_i^n (X_i - \bar{X})^2}{n}
+$$
+
+La varianza assume valore minimo $0$ quando
+tutti i dati sono uguali tra loro e aumenta all’aumentare della
+dispersione dei dati rispetto alla media:
+
+$$
+\sigma^2 \geq 0
+$$
+
+---
+
+Qual è la varianza maggiore tra i nostri tre team? E quant'è la varianza del team_C?
+
+```{r, echo=FALSE, fig.width=5, fig.height=2}
+library(ggplot2)
+theme_set(theme_classic())
+data_team = data.frame(
+  Team = rep(c("Team A","Team B","Team C"), each = length(team_A)),
+  Ore = c(team_A, team_B, team_C)
+)
+
+p_team = ggplot(data = data_team, aes(x = Ore, fill = Team, color = Team)) +
+  geom_histogram(show.legend = FALSE, lwd = 1, binwidth = 2) +
+  facet_wrap(~Team) + 
+  scale_color_manual(values = rep("black",3)) +
+  labs(x = "Ore di lavoro settimanali", y = "Frequenza")
+
+p_team
+```
+
+---
+
+#### Calcolo della varianza
+
+$$\sigma^2 = \frac{\sum_i^n (X_i - \bar{X})^2}{n}$$
+
+Prendiamo in esame il team_A:
+
+```{r}
+team_A
+```
+
+
+Il divisore è il numero di osservazioni (membri del team): $n = 8$
+
+```{r}
+divisore = length(team_A) # numero di osservazioni
+```
+
+$$\sigma^2 = \frac{\sum_i^8 (X_i - \bar{X})^2}{8}$$
+
+---
+
+Calcoliamo la **media** $\bar{X}$
+
+```{r}
+media = mean(team_A)
+media
+```
+
+$$\sigma^2 = \frac{\sum_i^8 (X_i - 40)^2}{8}$$
+
+---
+
+Il dividendo è dato dalla **somma dei quadrati degli scarti dalla media** aritmetica
+
+
+```{r}
+# Ad ogni elemento di team_A viene sottratta la media (40)
+scarti = team_A - media
+scarti_quadrati = scarti^2
+
+scarti_quadrati
+
+dividendo = sum(scarti_quadrati)
+```
+
+----
+
+La varianza è la **media dei quadrati degli scarti dalla media** aritmetica:
+
+
+```{r}
+dividendo # 4 + 4 + 16 + 16 + 1 + 4 + 4 + 1
+divisore 
+
+varianza = dividendo / divisore # varianza della popolazione (descrittiva)
+varianza
+```
+
+
+
+## La deviazione standard
+
+La deviazione standard (o scarto quadratico medio) è la radice
+della varianza:
+
+$$\sigma = \sqrt{\sigma^2}$$
+
+Riporta l'indice di varibilità sulla scala della variabile.
+
+Es. Se in un campione di dipendenti è stata rilevata la variabile WorkHoursPerWeek con una media pari a $40$ ore e una deviazione standard pari a $2.5$, si potrà affermare che i dipendenti differiscono mediamente di $2.5$ ore dal carico di lavoro medio di $40$ ore.
+
+## Il coefficiente di variazione
+
+Il coeﬃciente di variazione è dato dal rapporto tra la **deviazione
+standard** e il **valore assoluto della media** dei dati:
+
+$$
+CV = \frac{\sigma}{|\bar{X}|}
+$$
+
+Il CV è un indice di **variabilità relativa** che tiene conto, oltre che della **deviazione** standard, anche della **media**.
+Per questo motivo è fondamentale per eseguire dei **confronti** in termini di variabilità tra fenomeni misurati su **scale diverse**.
+
+### Esempio sul dataset Burnout
+
+[Dati sul burnout](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/data)
+
+```{r}
+# carichiamo il dataset
+library(readr)
+burnout = read_csv("data/burnout.csv")
+```
+
+Vogliamo capire se c'è più variabilità negli anni di eseperienza (Experience) dei dipendenti o nelle loro ore lavorative settimanali (WorkHoursPerWeek). 
+
+---
+
+Estrarremo media e deviazione standard direttamente dal dataset:
+
+```{r}
+# Statistiche per il livello di esperienza
+(media_esp = abs(mean(burnout$Experience)))
+(sd_esp  = sd(burnout$Experience))
+
+# Statistiche per le Ore Lavorative
+(media_ore = abs(mean(burnout$WorkHoursPerWeek)))
+(sd_ore = sd(burnout$WorkHoursPerWeek))
+```
+
+Dove c'è più variabilità?
+---
+
+Naturalmente confrontare le deviazioni standard non è di grande aiuto. Esse dipendono fortemente dalle media dei dati su cui sono state calcolate.
+
+Per poter operare un confronto sulla variabilità è opportuno calcolare i rispettivi coefficienti di variazione:
+
+```{r, echo=TRUE}
+cv_esp = sd_esp / media_esp
+cv_ore = sd_ore / media_ore
+
+cat("CV Esperienza:", round(cv_esp, 2), "\n")
+cat("CV Ore Lavorative:", round(cv_ore, 2), "\n")
+```
+
+
+## I quantili e la diﬀerenza interquartilica 
+
+La diﬀerenza interquartilica di una distribuzione è la diﬀerenza
+tra il terzo e il primo quartile (o equivalentemente tra il
+75−esimo e il 25−esimo percentile) dei dati:
+
+$$
+IQR = Q_{75} - Q_{25}
+$$
+
+La differenza interquartilica (IQR) misura la dispersione del 50% centrale dei dati (tra primo e terzo quartile), quindi i valori estremi incidono poco o per nulla sul suo valore. Per questo è chiamato un indice di variabilità robusto.
+
+---
+
+Analizziamo la distribuzione degli anni di Esperienza nel dataset burnout:
+
+```{r, echo=FALSE, fig.width=10, fig.height=5}
+
+theme_set(theme_bw(base_size = 24))
+
+exp_totali = burnout$Experience
+q_exp = quantile(exp_totali, probs = c(.25, .50, .75))  
+
+# Creiamo un istogramma per i dati reali
+hist_plot = hist(exp_totali, breaks = 20, plot = FALSE)
+
+plot(hist_plot, 
+     main = "Distribuzione Anni di Esperienza", 
+     xlab = "Anni", 
+     ylab = "Frequenza",
+     col = "lightgray", border = "white")
+
+abline(v = q_exp[1], col = "steelblue", lwd = 6, lty = 2) # Q25 
+abline(v = q_exp[2], col = "firebrick", lwd = 6)          # Q50 
+abline(v = q_exp[3], col = "steelblue", lwd = 6, lty = 2) # Q75 
+abline(v = mean(exp_totali), col = "orange", lwd = 6)
+
+
+legend("topright", 
+       legend = c("Q1 (25%)", "Q2(50%)", "Q3 (75%)", "media"), 
+       col = c("steelblue", "firebrick", "steelblue", "orange"), 
+       lty = c(2, 1, 2), lwd = 8, bty = "n", cex = 0.8)
+```
+
+### Boxplot
+
+```{r, fig.height=4, fig.width=8, echo=FALSE}
+# Utilizziamo i dati reali del dataset
+exp_box = burnout$Experience
+
+# Calcola stats (per riferimento)
+Q1  = quantile(exp_box, 0.25)
+Q3  = quantile(exp_box, 0.75)
+IQR_val = IQR(exp_box)
+
+# ─── GRAFICO PULITO ────────────────────────────────────────────
+op = par(mar = c(4.5, 2, 2.5, 1), xpd = NA)
+
+bp = boxplot(exp_box,
+             horizontal = TRUE,
+             axes = FALSE,
+             main = " ",
+             xlab = "",
+             col = "lightblue",
+             border = "black",
+             outcol = "red",
+             outpch = 19,
+             lwd = 1.5)
+
+axis(1, cex.axis = 1.0)
+mtext("Anni", side = 1, line = 2.5, cex = 1.0)
+
+# Estrai posizioni
+Q1_x  = bp$stats[2]
+med_x = bp$stats[3]
+Q3_x  = bp$stats[4]
+y     = 1
+
+# ─── ETICHETTE SOPRA (brevi) ────────────────────────────────────
+text(Q1_x,  y + 0.42, expression(Q[25]), cex = 1.1, font = 2)
+text(med_x, y + 0.42, expression(Q[50]),              cex = 1.1, font = 2)  
+text(Q3_x,  y + 0.42, expression(Q[75]), cex = 1.1, font = 2)
+
+# ─── ETICHETTA DENTRO AL BOX ────────────────────────────────────
+text(((Q1_x + med_x)/2), y, "25%", col = "black", cex = 1.2, font = 2)
+text(((med_x + Q3_x)/2), y, "25%", col = "black", cex = 1.2, font = 2)
+
+text((Q1_x + Q3_x)/1.5, y - 0.42, "Il 50% dei dati sta tra il primo e il terzo quartile", col = "black", cex = 1.2, font = 2)
+
+# ─── LEGENDA OUTLIER (solo se ce ne sono) ───────────────────────
+if (length(bp$out) > 0) {
+  text(par("usr")[2] - (par("usr")[2]-par("usr")[1])*0.2, 
+       y + 0.35, 
+       "Outlier:\nValori oltre 1.5 x IQR\ndai quartili", 
+       col="red", cex = 0.9, font = 3) 
+}
+par(op)
+```
+
+
+---
+
+#### La diﬀerenza interquartilica
+
+Traduciamo in codice R la formula teorica: 
+$$[Q_1 - 1.5 \times IQR \quad ; \quad Q_3 + 1.5 \times IQR]$$
+
+```{r, echo=TRUE}
+# 1. Calcoliamo i Quartili e l'IQR 
+Q1 = quantile(burnout$Experience, prob = 0.25)
+Q3 = quantile(burnout$Experience, prob = 0.75)
+differenza_iqr = Q3 - Q1
+
+# 2. Definiamo i limiti oltre i quali un valore è un outlier
+limite_inferiore = Q1 - (1.5 * differenza_iqr)
+limite_superiore = Q3 + (1.5 * differenza_iqr)
+```
+
+---
+
+#### Quali dipendenti sono outlier?
+Dal grafico sappiamo che gli outlier in questo caso sono solo i valori maggiori del limite superiore:
+
+```{r, echo=TRUE}
+cat("Limite superiore:", limite_superiore, "\n")
+# Varibile Name, seleziono solo quelli con esperienza maggiore del limite
+burnout$Name[burnout$Experience>limite_superiore]
+```
+
+---
+
+Equivalente con subset:
+```{r, echo=TRUE}
+subset(burnout, select = c(Name,Experience), 
+       subset = Experience > limite_superiore)
+```
+
+# I percentili
+
+## Esempio: livelli di Soddisfazione
+
+Per questo esempio ci concentreremo sul livello di soddisfazione, (`SatisfactionLevel`):
+
+```{r, echo=TRUE}
+# estraiamo la vairabile di interesse
+soddisfazione = burnout$SatisfactionLevel
+```
+
+---
+
+Per parlare di percentili/quantili dobbiamo prima ordinare i dati dal più basso al più alto.
+
+```{r}
+head(soddisfazione, n = 6) # prime 6 risposte
+tail(soddisfazione, n = 6) # ultime 6 risposte
+```
+
+---
+
+Per parlare di percentili/quantili dobbiamo prima ordinare i livelli di soddisfazione dal più basso al più alto:
+
+```{r}
+s_sorted = sort(soddisfazione) # riordino ?sort
+
+head(s_sorted, n = 6) # primi 6 valori
+tail(s_sorted, n = 6) # ultimi 6 valori
+```
+
+
+---
+
+Trovare il valore sotto cui cade circa il 25% dei punteggi di soddisfazione.
+
+$$Pos_p = \frac{n+1}{100} \cdot p$$
+
+```{r}
+n = length(soddisfazione) # numero di osservazioni
+
+p = 25 # voglio il 25° percentile
+
+pos_p = ((n+1)/100) * p  #Posizione di ordine p
+
+p_25 = s_sorted[pos_p] # prendo il valore in quella posizione
+p_25
+```
+
+---
+
+Fortunatamente esiste la funzione `quantile()` che permette di calcolare i quantili:
+
+```{r}
+# probs specifica che quantili vogliamo
+quantile(soddisfazione, probs = c(0.05, 0.25,0.50,0.75, 0.95))
+
+```
+
+
+----
+
+#### Esempio
+
+Il livello di soddisfazione di 6 lavoratori è riportato nella tabella seguente:
+
+| Codice partecipante | 1  | 2  | 3  | 4  | 5  | 6  |
+|:---|:---:|:---:|:---:|:---:|:---:|:--:|
+| Punteggio | 3.65 | 4.90 | 1.06 | 2.93 | 3.10 | 4.97 |
+
+Valutare i livelli di soddisfazione dei 6 dipendenti alla luce dei valori del normativi (fittizzi):
+
+| Percentile | P5 | P25 | P50 | P75 | P95 |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Punteggio | 1.5 | 2.8  | 3.5  | 4.2 | 4.8 |
+
+
+## Rango percentile
+
+Il **Rango percentile** ($Rp$) indica la **percentuale di casi** che hanno un **valore uguale o inferiore** a un particolare punteggio $X_i$
+
+
+
+---
+
+Per i dipendenti del reparto `Sales`, a 39 ore di lavoro settimanali è associato il rango percentile di 50 ($Rp_{39} = 50$).
+
+Il **50%** dei dipendenti del reparto `Sales` lavora un numero di ore settimanali inferiore o uguale a 39.
+
+---
+
+Supponiamo di aver intervistato un dipendente e di aver verificato che il suo numero di ore lavorative equivale a un rango percentile pari a 5.
+
+Come interpretare il suo carico di lavoro?
+
+----
+
+#### Calcolo dei ranghi percentili
+
+Per calcolare un rango percentile, basta seguire questi semplici step:
+
+1. Determinare quanti casi sono nel gruppo.
+
+2. Determinare quanti casi cadono "sotto" o al punteggio di interesse.
+
+3. Dividere il numero di casi ottenuti allo step 2 per il numero totale di casi nel gruppo (step 1)
+
+4. Moltiplicare il risultato dello step 3 per 100
+
+---
+
+
+$$
+Rp = \frac{B}{N}\times 100 = \text{rango percentile di } X_i
+$$
+
+- $X_i$ = punteggio di interesse
+- $N$ = numero totale di casi
+- $B$ = numero di casi  $\leq X_i$
+- $Rp$ = rango percentile
+
+---
+
+Utilizziamo i dati del file `burnout.csv` per analizzare le ore di lavoro settimanali (`WorkHoursPerWeek`).
+
+```{r}
+# Visualizziamo le prime righe del dataset relative a questa variabile
+head(burnout$WorkHoursPerWeek)
+```
+
+---
+
+In R è possibile utilizzare direttamente la funzione `rank()`: *"Qual è il **rango** (la posizione relativa) di ciascun candidato rispetto al resto del gruppo?"*
+
+```{r}
+rango = rank(burnout$WorkHoursPerWeek)
+head(rango) # indica l'ordine crescente (mostriamo i primi 6) 
+head(burnout$WorkHoursPerWeek) # mostriamo i primi 6
+
+(N = nrow(burnout)) # quante osservazioni totali
+```
+
+
+---
+
+```{r}
+# aggiungo la variabile Pr al dataset
+# divido l'indice di posizione per il valore totale
+burnout$Rp_WorkHours = (rango / N )*100
+
+# Visualizzo le colonne nome, ore e rango percentile
+burnout[, c("Name", "WorkHoursPerWeek", "Rp_WorkHours")]
+```
+
+
 # Credits
 
-Altoè, G. (2022). Corso di Testing Psicologico, Scienze psicologiche
-dello sviluppo, della personalità e delle relazioni interpersonali, A.A.
-2022/23
+Altoè, G. (2022). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2022/23
 
-Marci, M. (2025). Corso di Testing Psicologico, Scienze psicologiche
-dello sviluppo, della personalità e delle relazioni interpersonali, A.A.
-2025/26
+Marci, M. (2025). Corso di Testing Psicologico, Scienze
+psicologiche dello sviluppo, della personalità e delle relazioni
+interpersonali, A.A. 2025/26
 
 [Fonte
 dati](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/data)
+
