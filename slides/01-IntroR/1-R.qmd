@@ -502,7 +502,8 @@ Si creano attraverso il comando `data.frame`
 
 ```{r, echo=TRUE}
 # Creo un dataframe con 3 colonne 
-my_df = data.frame( numeri = 1:4, lettere = letters[1:4],
+my_df = data.frame( numeri = 1:4, 
+                    lettere = letters[1:4],
                     normale = rnorm(n = 4, mean = 0, sd = 1)) 
 my_df
 ```
@@ -522,7 +523,6 @@ str(my_df)
 
 ```{r, echo = TRUE}
 my_df[1]  # estraggo un data.frame 5x1
-my_df[[1]] # estraggo la prima colonna del data.frame
 my_df[1,1] #  estraggo il primo elemento della prima colonna del data.frame
 ```
 
