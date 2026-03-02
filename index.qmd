@@ -23,8 +23,11 @@ Intoduzione a R
 
 **1.2.**  Vettori, Fattori, Matrici, Dataframe [slides in PDF](slides/01-IntroR/1-R.pdf)
 
--   [Esercizio 1](slides/01-IntroR/esercizi/vettori-fattori.R)
--   [Esercizio 2](slides/01-IntroR/esercizi/dataframe.R)
+-   [Esercizio 1, con soluzioni](slides/01-IntroR/esercizi/vettori-fattori.R)
+-   [Esercizio 2, con soluzioni](slides/01-IntroR/esercizi/dataframe.R)
+
+
+**1.3.** [Riassunto](slides/01-IntroR/recap.html) concetti principali
 
 # Modulo 2
 
