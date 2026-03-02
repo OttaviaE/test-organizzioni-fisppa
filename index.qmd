@@ -17,11 +17,11 @@ Il concetto di misura in psicologia [slides in PDF](slides/00-Misura/00-Misura.p
 
 Intoduzione a R
 
-**0.** [Guida](slides/01-IntroR/guida.html) installazione R 
+**1.0.** [Guida](slides/01-IntroR/guida.html) installazione R 
 
-**1.**  Come lavorare in R [slides in PDF](slides/01-IntroR/0-R.pdf)
+**1.1.**  Come lavorare in R [slides in PDF](slides/01-IntroR/0-R.pdf)
 
-**2.**  Vettori, Fattori, Matrici, Dataframe [slides in PDF](slides/01-IntroR/1-R.pdf)
+**1.2.**  Vettori, Fattori, Matrici, Dataframe [slides in PDF](slides/01-IntroR/1-R.pdf)
 
 -   [Esercizio 1](slides/01-IntroR/esercizi/vettori-fattori.R)
 -   [Esercizio 2](slides/01-IntroR/esercizi/dataframe.R)
@@ -30,13 +30,11 @@ Intoduzione a R
 
 Statistiche di base
 
-**1.**  Frequenze e Indici di Tendenza Centrale
+**2.0.**  Frequenze e Indici di Tendenza Centrale, di Variabilità e di Posizione
 
-**2.**  Indici di Variabilità e di Posizione
+**2.1.**  Probabilità
 
-**3.**  Probabilità
-
-**4.**  Indici di Forma, Punteggi Standardizzati, Covarinza e Correlazione
+**2.2.**  Indici di Forma, Punteggi Standardizzati, Covarinza e Correlazione
 
 # Modulo 3
 
