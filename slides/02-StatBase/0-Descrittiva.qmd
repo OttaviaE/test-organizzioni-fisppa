@@ -126,7 +126,7 @@ burnout = read_csv("data/burnout.csv")
 ```
 
 ::: callout-warning
-Prima di caricare i pacchetti attraveso il comando `library()`, è necessario installarli: vedi script [pkg.R](slides/02-StatBase/pkg.R)
+Prima di caricare i pacchetti attraveso il comando `library()`, è necessario installarli: vedi script [pkg.R](https://ottaviae.github.io/test-organizzioni-fisppa/slides/02-StatBase/pkg.R)
 :::
 
 ------------------------------------------------------------------

@@ -33,7 +33,7 @@ Intoduzione a R
 
 Statistiche di base
 
-**2.0.**  Frequenze e Indici di Tendenza Centrale, di Variabilità e di Posizione [slides in PDF](slides/02-StatBase/0-Descrittiva.pdf)
+**2.0.**  Frequenze e Indici di Tendenza Centrale, di Variabilità e di Posizione 
   
   - Dati (simulati) da [scaricare](slides/02-StatBase/data/burnout.csv){download="burnout.csv"}
   - Pacchetti da installare: scaricate lo [script](slides/02-StatBase/pkg.R){download="pkg.R"} e fate andare i comandi
