@@ -106,23 +106,28 @@ Il dataset sintetico contiene dati individuali relativi a dipendenti di
 un'azienda e viene utilizzato per modellare il rischio di burnout e
 analizzare i fattori associati al benessere lavorativo. Come prima cosa vogliamo esplorare la distribuzione di livelli di stess (variabile `StressLevel`)
 
-[fonte
-dati](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/data)
+[fonte dati](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset/data)
 
 ------------------------------------------------------------------
 
-Carichiamo il dataset:
-
-(prima installo pacchetti, vedi script [pkg.R](slides/pkg.R)
-
 ```{r, echo=TRUE}
-# carico pacchetti
+# Pulisco lo spazio di lavoro
+rm(list = ls())
+
+# imposto working directory
+# setwd(....)
+
+# carico pacchetti 
 library(dplyr)
 library(readr)
 
 # carico dataset
 burnout = read_csv("data/burnout.csv")
 ```
+
+::: callout-warning
+Prima di caricare i pacchetti attraveso il comando `library()`, è necessario installarli: vedi script [pkg.R](slides/02-StatBase/pkg.R)
+:::
 
 ------------------------------------------------------------------
 
