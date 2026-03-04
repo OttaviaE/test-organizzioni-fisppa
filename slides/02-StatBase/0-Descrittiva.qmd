@@ -88,7 +88,7 @@ execute:
 library(dplyr)
 ```
 
-#### Statistica descrittiva e inferenziale
+# Statistica descrittiva e inferenziale
 
 **Statistica descrittiva:**
 
@@ -103,9 +103,8 @@ uno strumento
   -   Confronti tra gruppi, valutazione di interventi, validazione di test
 
 
----
 
-#### Dati
+# Dati
 
 Il dataset sintetico contiene dati individuali relativi a dipendenti di
 un'azienda e viene utilizzato per modellare il rischio di burnout e
