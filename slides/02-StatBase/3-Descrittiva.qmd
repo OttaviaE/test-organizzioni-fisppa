@@ -52,6 +52,10 @@ execute:
 ---
 
 
+::: callout-warning
+Prima di caricare i pacchetti attraverso il comando `library()`, è necessario installarli: vedi script `pkg.R`. Se non l'hai già scaricato, clicca [qui](https://ottaviae.github.io/test-organizzioni-fisppa/slides/02-StatBase/pkg.R)
+:::
+
 # Indici di forma
 
 # Punteggi standardizzati 
