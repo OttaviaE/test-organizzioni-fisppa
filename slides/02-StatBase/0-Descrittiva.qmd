@@ -91,11 +91,13 @@ library(dplyr)
 # Statistica descrittiva e inferenziale
 
 **Statistica descrittiva:**
+
   -   Riassume, descrive, esplora i dati osservati\
   -   Prima fase nella valutazione delle proprietà psicometriche di
 uno strumento
 
 **Statistica inferenziale:**
+
   -   Usa i dati di un **campione** per fare inferenze sulla
 **popolazione**\
   -   Confronti tra gruppi, valutazione di interventi, validazione di test
