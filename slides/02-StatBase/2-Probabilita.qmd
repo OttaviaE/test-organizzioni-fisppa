@@ -1,5 +1,5 @@
 ---
-title: "Probabilità, distribuzioni di probabilità, la distribuzione Normale e i test psicologici"
+title: "Probabilità, la distribuzione Normale e i punteggi standardizzati"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: today
@@ -36,6 +36,22 @@ header-includes: |
   \setbeamercolor{middle separation line head}{bg=white}
   \setbeamercolor{lower separation line head}{bg=white}
   
+  % Link sempre visibili e colorati
+  \hypersetup{
+  colorlinks=true,
+  linkcolor=ColPrimario,
+  urlcolor=ColSecondario,
+  citecolor=ColPrimario,
+  allbordercolors={0 0 0}
+  }
+  
+  % Rendi i link bold
+  \urlstyle{same}
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\textbf{\color{ColSecondario}#2}}}
+  \let\oldurl\url
+  \renewcommand{\url}[1]{\oldhref{#1}{\textbf{\color{ColSecondario}#1}}}
+  
   \lstset{basicstyle=\footnotesize\ttfamily, breaklines=true}
   
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize}
@@ -47,21 +63,20 @@ header-includes: |
   
   \AtBeginDocument
   {
-    \author{Ottavia M. Epifania \\ 
-    \texttt{ottavia.epifania@unipd.it} \\ 
-    \textbf{Margherita Calderan} \\ 
-    \texttt{margherita.calderan@unipd.it}}
-    }
-    
+  \author{Ottavia M. Epifania \\
+  \texttt{ottavia.epifania@unipd.it} \\
+  \textbf{Margherita Calderan} \\
+  \texttt{margherita.calderan@unipd.it}}
+  }
+  
   \AtBeginSection
   {
-    \begin{frame}[plain]
-    \tableofcontents[currentsection, hideallsubsections]
-    \end{frame}
-    \begin{frame}[plain]
-    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-    \end{frame}
-    }
+  \begin{frame}[plain]
+  \tableofcontents[currentsection, currentsubsection, hideothersubsections]
+  \end{frame}
+  }
+  
+  \setbeamertemplate{mini frame}{}
 editor_options: 
   chunk_output_type: console
 execute: 

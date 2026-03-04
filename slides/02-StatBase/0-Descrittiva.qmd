@@ -1,5 +1,5 @@
 ---
-title: "Frequenze, Indici di Posizione e di Variabilità"
+title: "Frequenze, Indici di Posizione, di Variabilità e di Forma"
 subtitle: "Test per le organizzazioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: today
@@ -88,7 +88,7 @@ execute:
 library(dplyr)
 ```
 
-# Statistica descrittiva e inferenziale
+#### Statistica descrittiva e inferenziale
 
 **Statistica descrittiva:**
 
@@ -103,7 +103,9 @@ uno strumento
   -   Confronti tra gruppi, valutazione di interventi, validazione di test
 
 
-# Dati
+---
+
+#### Dati
 
 Il dataset sintetico contiene dati individuali relativi a dipendenti di
 un'azienda e viene utilizzato per modellare il rischio di burnout e
@@ -687,7 +689,6 @@ La differenza interquartilica (IQR) misura la dispersione del 50% centrale dei d
 Analizziamo la distribuzione degli anni di esperienza nel dataset burnout:
 
 ```{r, echo=FALSE, fig.width=10, fig.height=5}
-theme_set(theme_bw(base_size = 40))
 
 exp_totali = burnout$Experience
 q_exp      = quantile(exp_totali, probs = c(.25, .50, .75))
@@ -991,7 +992,207 @@ burnout[, c("Name", "SatisfactionLevel", "Rp_SatisfactionLevel")]
 ```
 
 
-# Credits
+# Indici di forma
+
+Gli indici di forma descrivono **come** è distribuita una variabile, oltre alla sua posizione centrale e dispersione. Due distribuzioni possono avere stessa media e deviazione standard ma **forma diversa**.
+
+-  La distribuzione è **simmetrica** o **sbilanciata** (asimmetrica)?
+-  Come sono le code (le estremità) della distribuzione?
+
+
+## Asimmetria (Skewness)
+
+L'**asimmetria** misura quanto una distribuzione si discosta dalla simmetria rispetto al centro.
+
+**Distribuzione simmetrica**: media, mediana e moda coincidono
+
+**Distribuzione asimmetrica**: i valori si "addensano" da una parte e la coda si allunga dall'altra
+
+
+### Tipi di asimmetria
+
+| Tipo | Valore indice | Caratteristiche |
+|:---------|:-----:|:----------------|
+| **Simmetrica** | $\approx 0$ | Media = Mediana = Moda |
+| **Asimmetria positiva** | $> 0$ | Moda < Mediana < Media |
+| **Asimmetria negativa** | $< 0$ | Media < Mediana < Moda |
+
+
+
+----
+
+```{r, echo=FALSE, fig.width=7, fig.height=4}
+set.seed(123)
+dati_pos <- rgamma(1000, 1, 1)
+
+library(moments)
+skew_pos <- skewness(dati_pos)
+
+ggplot(data.frame(x = dati_pos), aes(x = x)) +
+  geom_histogram(bins = 30, fill = "lightblue", 
+                 color = "white", alpha = 0.8) +
+  geom_vline(aes(xintercept = mean(dati_pos), 
+                 color = "Media"), 
+             linewidth = 2) +
+  geom_vline(aes(xintercept = median(dati_pos), 
+                 color = "Mediana"), 
+             linewidth = 2) +
+  scale_color_manual(values = c("Media" = "orange", 
+                                "Mediana" = "purple2")) +
+  labs(title = paste0("Esempio asimmetria positiva, skewness = ", 
+                     round(skew_pos, 2)),
+       x = "Valori", y = "Frequenza",
+       color = "") +
+  scale_x_continuous(breaks = seq(0,15,2))+
+  theme(legend.position = "top")
+```
+
+
+---
+
+```{r, echo=FALSE, fig.width=7, fig.height=4}
+
+dati_neg <- 100 - rgamma(1000, 1, 1)
+
+skew_neg <- skewness(dati_neg)
+
+ggplot(data.frame(x = dati_neg), aes(x = x)) +
+  geom_histogram(bins = 30, fill = "lightblue", 
+                 color = "white", alpha = 0.8) +
+  geom_vline(aes(xintercept = mean(dati_neg), 
+                 color = "Media"), 
+             linewidth = 2) +
+  geom_vline(aes(xintercept = median(dati_neg), 
+                 color = "Mediana"), 
+             linewidth = 2) +
+  scale_color_manual(values = c("Media" = "orange", 
+                                "Mediana" = "purple2")) +
+  labs(title = paste0("Esempio asimmetria negativa, skewness = ", 
+                     round(skew_neg, 2)),
+       x = "Valori", y = "Frequenza",
+       color = "") +
+  theme(legend.position = "top")
+```
+
+
+----
+
+```{r, eval=FALSE}
+# Installiamo il pacchetto moments 
+install.packages("moments")
+
+library(moments)
+
+# Calcoliamo l'asimmetria per WorkHoursPerWeek
+skewness(burnout$WorkHoursPerWeek)
+```
+
+```{r, echo=FALSE}
+library(moments)
+skewness(burnout$WorkHoursPerWeek)
+```
+
+Interpretazione: valore vicino a 0 indica distribuzione approssimativamente simmetrica.
+
+
+## Curtosi (Kurtosis)
+
+La **curtosi** ci da una misura delle distribuzione dei dati nelle code (tails).
+
+
+| Tipo | Valore indice | Forma |
+|:-----|:-------------:|:------|
+| **Mesocurtica** | $\approx 3$ | Forma normale |
+| **Leptocurtica** | $>3$ | code pesanti |
+| **Platicurtica** | $<3$ | code leggere |
+
+
+----
+
+```{r, echo=FALSE, fig.width=6, fig.height=3.5, message=FALSE,warning=FALSE}
+set.seed(789)
+
+n = 4e6
+y_meso = rnorm(n, 0, 1)
+y_lepto = rt(n, df = 1.5)
+y_plati = runif(n = n,-1.5,1.5)
+  
+dati_curt <- data.frame(
+  y = c(y_meso, y_lepto, y_plati),
+  Tipo = rep(c("Mesocurtica", 
+               "Leptocurtica", 
+               "Platicurtica"), 
+             each = n)
+)
+
+ggplot(dati_curt, aes(x = y, color = Tipo)) +
+  geom_density(linewidth = 1.6, adjust = 3) +
+  scale_color_manual(values = c("Mesocurtica" = "orchid3",
+                                "Leptocurtica" = "steelblue",
+                                "Platicurtica" = "orange")) +
+  labs(title = " ",
+       x = "Valori", y = "Densità",
+       color = "Tipo di distribuzione") +
+  theme(legend.position = "top")+
+  xlim(-6,6)
+```
+
+
+---
+
+```{r}
+# Calcoliamo la curtosi per la variabile WorkHoursPerWeek
+kurtosis(burnout$WorkHoursPerWeek)
+```
+
+Che tipo di distribuzione mi aspetto che abbia questa variabile? 
+
+```{r, echo=FALSE, fig.width=6, fig.height=2.6}
+ggplot(dati_curt, aes(x = y, color = Tipo)) +
+  geom_density(linewidth = 1, adjust = 3) +
+  scale_color_manual(values = c("Mesocurtica" = "orchid3",
+                                "Leptocurtica" = "steelblue",
+                                "Platicurtica" = "orange")) +
+  labs(title = " ",
+       x = " ", y = " ",
+       color = " ") +
+  theme(legend.position = "top")+
+  xlim(-6,6)+
+  theme_classic(base_size = 16)
+```
+
+
+
+----
+
+Confrontiamo asimmetria e curtosi di diverse variabili del dataset:
+
+```{r}
+variabili = c("Age", "Experience", 
+               "WorkHoursPerWeek", "SatisfactionLevel")
+
+risultati = data.frame(
+  Variabile = variabili,
+  #applico la funzione a tutte le variabili/colonne 
+  # via sapply(a cosa, funzione)
+  Asimmetria = sapply(burnout[, variabili], skewness), 
+  Curtosi = sapply(burnout[, variabili], kurtosis)
+)
+```
+
+
+### Interpretazione risultati
+
+```{r, echo=TRUE}
+print(risultati, row.names = FALSE, digits = 2)
+```
+
+
+
+
+---
+
+#### Credits
 
 Altoè, G. (2022). Corso di Testing Psicologico, Scienze
 psicologiche dello sviluppo, della personalità e delle relazioni

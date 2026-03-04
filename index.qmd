@@ -33,17 +33,11 @@ Intoduzione a R
 
 Statistiche di base
 
-**2.0.**  Frequenze e Indici di Tendenza Centrale, di Variabilità e di Posizione 
-
+**2.0.**  Frequenze, Indici di Tendenza Centrale, Posizione, Variabilità, e Forma
+ 
   - Dati (simulati) da [scaricare](slides/02-StatBase/data/burnout.csv){download="burnout.csv"}
   
 
-**2.1.**  Probabilità
-
-**2.2.**  Indici di Forma, Punteggi Standardizzati, Covarinza e Correlazione
-
-  - Pacchetti da installare...
-  
 # Modulo 3
 
 Tipi di test
