@@ -121,18 +121,18 @@ Fonte: [https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset](
 
 ```        
 Utente
-| 
-|--- NomeUtente
-|
-|--- Desktop
-|      |
-|--- test-organizzazioni
-|       |
-|-- data
-|     |---- burnout.csv
-|    
-|- script
-|     |---
+  | 
+  |--- NomeUtente
+        |
+        |--- Desktop
+        |      |
+               |--- test-organizzazioni
+               |       |
+                       |-- data
+                       |     |---- burnout.csv
+                       |    
+                       |- script
+                       |     |---
 
 ```
 
@@ -216,8 +216,8 @@ Se vogliamo calcolare le frequenze assolute semplici per ogni
 categoria/livello, possiamo utilizzare la funzione `table()`
 
 ```{r, eval=TRUE}
-fi = table(burnout$StressLevel); fi # nome_dataframe$nome_variabile
-
+# nome_dataframe$nome_variabile
+fi = table(burnout$StressLevel); fi
 ```
 
 
@@ -228,6 +228,7 @@ La frequenza assoluta cumulata di una categoria/livello è la **somma** delle **
 Attraverso la funzione `cumsum()` possiamo calcolare la somma cumulata:
 
 ```{r}
+# nome_dataframe$nome_variabile
 Fi = cumsum(table(burnout$StressLevel)); Fi
 ```
 
