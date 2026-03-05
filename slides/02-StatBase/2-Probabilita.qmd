@@ -1,5 +1,5 @@
 ---
-title: "Probabilità, la distribuzione Normale e i punteggi standardizzati"
+title: "Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
 date: today

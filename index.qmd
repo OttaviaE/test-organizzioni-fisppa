@@ -31,13 +31,18 @@ Intoduzione a R
 
 # Modulo 2
 
-Statistiche di base
+Statistiche Descrittive
 
-**2.0.**  Frequenze, Indici di Tendenza Centrale, Posizione, Variabilità, e Forma
+**2.0.**  Frequenze, Indici di Tendenza Centrale, Posizione, Variabilità, e Forma 
  
   - Dati (simulati) da [scaricare](slides/02-StatBase/data/burnout.csv){download="burnout.csv"}
   
 
 # Modulo 3
 
-Tipi di test
+Test di prestazione tipica e massima, scale di risposta, Validità e Attendibilità
+
+
+# Modulo 4
+
+Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà

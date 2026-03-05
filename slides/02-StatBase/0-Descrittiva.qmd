@@ -999,6 +999,61 @@ Gli indici di forma descrivono **come** è distribuita una variabile, oltre alla
 -  Come sono le code (le estremità) della distribuzione?
 
 
+---
+
+```{r, echo=FALSE,fig.width=6, fig.height=3.5}
+set.seed(42)
+n <- 2000
+target_mean <- 50
+target_sd   <- 10
+
+# Funzione per forzare esattamente media e sd desiderate
+match_moments <- function(x, mu, sigma) {
+  z <- (x - mean(x)) / sd(x)
+  mu + sigma * z
+}
+
+# 1. Normale
+dist_normale <- match_moments(rnorm(n), target_mean, target_sd)
+
+# 2. Uniforme
+dist_uniforme <- match_moments(runif(n), target_mean, target_sd)
+
+# 3. Bimodale (miscela di due normali)
+bimodale_raw  <- c(rnorm(n/2, mean = -2, sd = 0.8),
+                   rnorm(n/2, mean =  2, sd = 0.8))
+dist_bimodale <- match_moments(bimodale_raw, target_mean, target_sd)
+
+# 4. Asimmetrica a destra (log-normale)
+dist_asimm <- match_moments(rlnorm(n, meanlog = 0, sdlog = 1),
+                            target_mean, target_sd)
+
+# Verifica
+dists <- list(Normale = dist_normale, Uniforme = dist_uniforme,
+              Bimodale = dist_bimodale, Asimmetrica = dist_asimm)
+
+#sapply(dists, function(x) c(media = mean(x), sd = sd(x), skew = moments::skewness(x)))
+
+
+df <- as.data.frame(dists) |>
+  tidyr::pivot_longer(everything(), names_to = "Distribuzione", values_to = "x")
+
+ggplot(df, aes(x = x, fill = Distribuzione)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 60, alpha = 0.7, color = "white") +
+  geom_vline(xintercept = target_mean, color = "red",
+             linetype = "dashed", linewidth = 0.8) +
+  facet_wrap(~Distribuzione, nrow = 2) +
+  labs(title = "Stessa media e deviazione standard, forma diversa",
+       subtitle = paste0("media = ", target_mean, ", SD = ", target_sd),
+       x = "Valore", y = "Densità") +
+  theme(legend.position = "none")+
+  xlim(10,95)
+
+
+```
+
+
 ## Asimmetria (Skewness)
 
 L'**asimmetria** misura quanto una distribuzione si discosta dalla simmetria rispetto al centro.
@@ -1096,14 +1151,13 @@ Interpretazione: valore vicino a 0 indica distribuzione approssimativamente simm
 
 ## Curtosi (Kurtosis)
 
-La **curtosi** ci da una misura delle distribuzione dei dati nelle code (tails).
-
+La curtosi misura quanto i dati si **concentrano nelle code** della distribuzione. Molti software riportano automaticamente l'**eccesso di curtosi**, che esprime questo valore in relazione alla curtosi della distribuzione normale (il cui valore di curosi è 3).
 
 | Tipo | Valore indice | Forma |
 |:-----|:-------------:|:------|
-| **Mesocurtica** | $\approx 3$ | Forma normale |
-| **Leptocurtica** | $>3$ | code pesanti |
-| **Platicurtica** | $<3$ | code leggere |
+| **Mesocurtica** | $\approx 0$ | Forma normale |
+| **Leptocurtica** | $>0$ | code pesanti |
+| **Platicurtica** | $<0$ | code leggere |
 
 
 ----
@@ -1140,8 +1194,8 @@ ggplot(dati_curt, aes(x = y, color = Tipo)) +
 ---
 
 ```{r}
-# Calcoliamo la curtosi per la variabile WorkHoursPerWeek
-kurtosis(burnout$WorkHoursPerWeek)
+# Calcoliamo l'eccesso di curtosi per la variabile WorkHoursPerWeek
+kurtosis(burnout$WorkHoursPerWeek)-3
 ```
 
 Che tipo di distribuzione mi aspetto che abbia questa variabile? 
@@ -1187,7 +1241,13 @@ print(risultati, row.names = FALSE, digits = 2)
 ```
 
 
+---
 
+![]("img/kurto.jpg")
+
+\
+
+> 'Student', 1927. Errors of routine analysis. Biometrika, 19, 151-164. p. 160
 
 ---
 
