@@ -173,6 +173,9 @@ rm(list = ls())
 burnout = read.csv("data/burnout.csv")
 ```
 
+::: callout-tip
+In RStudio puoi anche usare **Session → Set Working Directory → Choose Directory** per impostare la cartella senza scrivere il percorso a mano.
+:::
 
 ---
 
@@ -395,6 +398,13 @@ i = (n + 1) / 2; i
 cumsum(table(burnout$StressLevel))
 ```
 
+---
+
+C'è anche la funzione `median()`
+
+```{r}
+median(as.numeric(burnout$StressLevel))
+```
 
 
 ## La media aritmetica
@@ -515,7 +525,7 @@ $$
 
 ---
 
-Qual è la varianza maggiore tra i nostri tre team? E quant'è la varianza del team_C?
+Qual è la varianza maggiore tra i nostri tre team? E quant'è la varianza del team C?
 
 ```{r, echo=FALSE, fig.width=5, fig.height=2}
 library(ggplot2)
@@ -540,11 +550,14 @@ p_team
 
 $$\sigma^2 = \frac{\sum_i^n (X_i - \bar{X})^2}{n}$$
 
-Prendiamo in esame il team_A:
+Prendiamo in esame il team A:
 
 ```{r}
 team_A
 ```
+
+
+---
 
 Il divisore è il numero di osservazioni (membri del team): $n = 8$
 
@@ -570,11 +583,15 @@ $$\sigma^2 = \frac{\sum_i^8 (X_i - 40)^2}{8}$$
 Il dividendo è dato dalla **somma dei quadrati degli scarti dalla media** aritmetica:
 
 ```{r}
+# scarti dalla media
 scarti = team_A - media
-scarti_quadrati = scarti^2
+scarti
 
+# quadrati
+scarti_quadrati = scarti^2
 scarti_quadrati
 
+# somma dei quadrati degli scarti
 dividendo = sum(scarti_quadrati)
 ```
 
@@ -844,8 +861,8 @@ bp = boxplot(burnout$Experience,
              col = "lightblue", #colore
              border = "black", #bordo 
              outcol = "red", # colore outlier
-             outpch = 19,
-             lwd = 1.5)
+             outpch = 19, # forma outlier (i.e, pallini)
+             lwd = 1.5) # spessore linee
 ```
 
 
@@ -906,9 +923,22 @@ Gli outlier identificati per la variabile `Experience` potrebbero non coincidere
 
 # I percentili
 
+Il **percentile $x_p$ di ordine $p$** è quella categoria/valore che è:
+
+  - preceduta da almeno $p\%$ dei casi
+  - superata da almeno $(1-p)\%$ dei casi
+
+**Quartili** $\rightarrow$ percentili di ordine 25 - 50 - 75
+
+**Decili** $\rightarrow$ percentili di ordine 10 - 20 - ... - 90  
+
+**Percentili** $\rightarrow$ percentili di ordine 1 - 2 - ... - 98 - 99
+
+
 ## Esempio: livelli di soddisfazione
 
 Trovare il valore sotto cui cade circa il 25% dei punteggi di soddisfazione.
+
 La funzione `quantile()` che permette di calcolare i quantili.
 L'argomento `prob = ...` definisce che percetile vogliamo ottenere.
 
@@ -960,7 +990,6 @@ $$
 
 - $Rp$ = rango percentile
 - $B$ = numero di casi $\leq X_i$
-- $X_i$ = punteggio di interesse
 - $N$ = numero totale di casi
 - $X_i$ = punteggio di interesse
 
@@ -1160,14 +1189,24 @@ La curtosi misura quanto i dati si **concentrano nelle code** della distribuzion
 | **Platicurtica** | $<0$ | code leggere |
 
 
+---
+
+![]("img/kurto.jpg")
+
+\
+
+> Student, 1927. Errors of routine analysis. Biometrika, 19, 151-164. p. 160
+
+
 ----
 
-```{r, echo=FALSE, fig.width=6, fig.height=3.5, message=FALSE,warning=FALSE}
+
+```{r, echo=FALSE, fig.width=5.5, fig.height=3, message=FALSE,warning=FALSE}
 set.seed(789)
 
 n = 4e6
 y_meso = rnorm(n, 0, 1)
-y_lepto = rt(n, df = 1.5)
+y_lepto = rt(n, df = 1)
 y_plati = runif(n = n,-1.5,1.5)
   
 dati_curt <- data.frame(
@@ -1187,7 +1226,8 @@ ggplot(dati_curt, aes(x = y, color = Tipo)) +
        x = "Valori", y = "Densità",
        color = "Tipo di distribuzione") +
   theme(legend.position = "top")+
-  xlim(-6,6)
+  xlim(-6,6)+
+  facet_wrap(~Tipo)
 ```
 
 
@@ -1216,6 +1256,7 @@ ggplot(dati_curt, aes(x = y, color = Tipo)) +
 
 
 
+
 ----
 
 Confrontiamo asimmetria e curtosi di diverse variabili del dataset:
@@ -1229,7 +1270,7 @@ risultati = data.frame(
   #applico la funzione a tutte le variabili/colonne 
   # via sapply(a cosa, funzione)
   Asimmetria = sapply(burnout[, variabili], skewness), 
-  Curtosi = sapply(burnout[, variabili], kurtosis)
+  Curtosi = sapply(burnout[, variabili], kurtosis)-3
 )
 ```
 
@@ -1243,13 +1284,6 @@ print(risultati, row.names = FALSE, digits = 2)
 
 ---
 
-![]("img/kurto.jpg")
-
-\
-
-> 'Student', 1927. Errors of routine analysis. Biometrika, 19, 151-164. p. 160
-
----
 
 #### Credits
 
