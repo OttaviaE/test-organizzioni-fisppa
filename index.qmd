@@ -37,6 +37,9 @@ Statistiche Descrittive
  
   - Dati (simulati) da [scaricare](slides/02-StatBase/data/burnout.csv){download="burnout.csv"}
   
+**2.1.** [Riassunto](slides/02-StatBase/recapDescrittive.html) comandi e concetti principali.
+
+  
 
 # Modulo 3
 

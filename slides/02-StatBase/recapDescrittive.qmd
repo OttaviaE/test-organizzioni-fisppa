@@ -1,0 +1,653 @@
+---
+title: "Statistica Descrittiva"
+subtitle: "Frequenze, Indici di Posizione, Variabilità e Forma"
+author: "Margherita Calderan"
+date: today
+format:
+  html:
+    page-layout: full  
+    max-width: 90%
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    number-sections: true
+    embed-resources: true
+    theme: cosmo
+    css: custom-style.css
+lang: it
+execute: 
+  echo: true
+---
+
+# Statistica Descrittiva e Inferenziale
+
+## Definizioni
+
+**Statistica descrittiva**: Riassume, descrive ed esplora i dati osservati. Prima fase nella valutazione delle proprietà psicometriche di uno strumento.
+
+**Statistica inferenziale**: Usa i dati di un campione per fare inferenze sulla popolazione (confronti tra gruppi, valutazione di interventi, validazione di test).
+
+# Preparazione dei Dati in R
+
+## Comandi base
+
+```{r}
+#| eval: false
+
+# Pulire lo spazio di lavoro
+rm(list = ls())
+
+# Impostare working directory
+setwd('/percorso/cartella')
+
+# Caricare dataset
+burnout = read.csv("data/burnout.csv")
+```
+
+```{r, eval=TRUE, echo=FALSE}
+burnout = read.csv("data/burnout.csv")
+```
+
+```{r}
+# Visualizzare struttura
+str(burnout)
+
+# Definire natura della variabile
+burnout$StressLevel = as.ordered(burnout$StressLevel)
+burnout$StressLevel
+```
+
+## Notazioni fondamentali
+
+- $X$: variabile di interesse
+- $X_i$: categoria/livello $i$-esima di $X$
+- $n$: totale unità statistiche
+
+# Frequenze
+
+## Frequenze Assolute Semplici
+
+**Definizione**: Numero naturale di unità statistiche che presentano una data categoria.
+
+**Comando R**:
+```{r}
+fi = table(burnout$StressLevel)
+fi
+```
+
+## Frequenze Assolute Cumulate
+
+**Definizione**: Somma delle frequenze assolute semplici delle categorie precedenti alla categoria data più la frequenza assoluta semplice della categoria data.
+
+**Comando R**:
+```{r}
+Fi = cumsum(table(burnout$StressLevel))
+Fi
+```
+
+## Frequenze Relative Semplici
+
+**Definizione**: Rapporto tra la frequenza assoluta semplice e il numero totale di unità statistiche. Varia sempre tra 0 e 1.
+
+**Comandi R**:
+```{r}
+n = nrow(burnout)  # numero unità statistiche
+# oppure n = length(burnout$StressLevel)
+pi = table(burnout$StressLevel) / n
+pi
+```
+
+## Frequenze Relative Cumulate
+
+**Definizione**: Somma delle frequenze relative semplici delle categorie precedenti più la frequenza relativa semplice della categoria data. Varia sempre tra 0 e 1.
+
+**Comando R**:
+```{r}
+Pi = cumsum(table(burnout$StressLevel) / n)
+Pi
+```
+
+## Visualizzazione
+
+```{r}
+# Frequenze assolute semplici
+barplot(table(burnout$StressLevel), 
+        ylab = "Frequenze assolute semplici")
+
+# Frequenze relative
+barplot(table(burnout$StressLevel) / n, 
+        ylab = "Frequenze relative semplici")
+
+# Frequenze cumulate assolute
+barplot(cumsum(table(burnout$StressLevel)), 
+        ylab = "Frequenze assolute cumulate")
+
+# Frequenze cumulate relative
+barplot(cumsum(table(burnout$StressLevel)/n), 
+        ylab = "Frequenze relative cumulate")
+```
+
+# Indici di Tendenza Centrale
+
+## Definizione
+
+Un **indice di tendenza centrale** è un valore che descrive e riassume il centro di una distribuzione di dati.
+
+| Indice | Variabile nominale | Variabile ordinale | Variabile quantitativa |
+|--------|-------------------|-------------------|------------------------|
+| Moda | SI | SI | SI |
+| Mediana | NO | SI | SI |
+| Media | NO | NO | SI |
+
+## Moda
+
+**Definizione**: Categoria che si presenta con la massima frequenza.
+
+**Comando R**:
+```{r}
+table(burnout$StressLevel)  # identificare categoria più frequente
+```
+
+## Mediana
+
+**Definizione**: Dato che occupa la posizione centrale rispetto alla distribuzione dei dati ordinati.
+
+**Comandi R**:
+```{r}
+# Calcolo manuale
+i = (n + 1) / 2  # posizione centrale
+cumsum(table(burnout$StressLevel))  # trovare prima freq cumulata >= i
+
+# Funzione diretta
+median(as.numeric(burnout$StressLevel))
+```
+
+## Media Aritmetica
+
+**Definizione**: Somma dei dati divisa per il numero di unità statistiche.
+
+$$\bar{X} = \frac{\sum_{i=1}^{n} X_i}{n}$$
+
+**Comandi R**:
+```{r}
+
+# Calcolo manuale
+sum(burnout$Age) / length(burnout$Age)
+
+# Funzione diretta
+mean(burnout$Age)
+```
+
+# Indici di Variabilità
+
+## Definizione
+
+La **variabilità** (o dispersione) misura quanto i punteggi di una distribuzione sono sparsi, ovvero quanto siano simili o dissimili tra loro.
+
+- Valori sempre positivi o nulli
+- Variabilità minima = 0 (tutti i punteggi uguali)
+
+## Campo di Variazione (Gamma)
+
+**Definizione**: Differenza tra valore massimo e minimo osservato.
+
+$$\gamma = X_{max} - X_{min}$$
+
+**Comandi R**:
+```{r}
+team_A = c(38, 42, 44, 36, 39, 42, 38, 41)
+max(team_A) - min(team_A)
+range(team_A)  # restituisce [min, max]
+```
+
+## Varianza
+
+**Definizione**: Media degli scarti al quadrato tra i dati e la media dei dati stessi.
+
+$$\sigma^2 = \frac{\sum_{i=1}^{n} (X_i - \bar{X})^2}{n}$$
+
+Proprietà: $\sigma^2 \geq 0$
+
+**Comandi R**:
+```{r}
+# Calcolo manuale (varianza descrittiva, divide per n)
+n = length(team_A)
+media = mean(team_A)
+scarti = team_A - media
+varianza = sum(scarti^2) / n
+varianza
+
+# Funzione var() - ATTENZIONE: calcola varianza campionaria (divide per n-1)
+var(team_A)  # varianza campionaria
+sum(scarti^2) / (n-1)
+```
+
+::: {.callout-important}
+La funzione `var()` di R calcola la **varianza campionaria** (divide per $n-1$). Per dati descrittivi (popolazione osservata) si usa $n$; per stimare la varianza della popolazione da un campione si usa $n-1$.
+:::
+
+## Deviazione Standard
+
+**Definizione**: Radice quadrata della varianza. Riporta l'indice di variabilità sulla scala della variabile.
+
+$$\sigma = \sqrt{\sigma^2}$$
+
+**Comando R**:
+```{r}
+sd(burnout$WorkHoursPerWeek)  # deviazione standard campionaria
+```
+
+## Coefficiente di Variazione
+
+**Definizione**: Rapporto tra deviazione standard e valore assoluto della media. Indice di variabilità relativa per confrontare fenomeni misurati su scale diverse.
+
+$$CV = \frac{\sigma}{|\bar{X}|}$$
+
+**Esempio R**:
+```{r}
+# Confronto variabilità tra esperienza e ore lavorative
+media_esp = abs(mean(burnout$Experience))
+sd_esp = sd(burnout$Experience)
+cv_esp = sd_esp / media_esp
+
+media_ore = abs(mean(burnout$WorkHoursPerWeek))
+sd_ore = sd(burnout$WorkHoursPerWeek)
+cv_ore = sd_ore / media_ore
+
+sd_esp
+sd_ore
+
+cv_esp
+cv_ore
+```
+
+## Differenza Interquartilica (IQR)
+
+**Definizione**: Differenza tra terzo e primo quartile. Misura la dispersione del 50% centrale dei dati. Indice **robusto** (valori estremi incidono poco).
+
+$$IQR = Q_{75} - Q_{25}$$
+
+
+**Comandi R**:
+La funzione `quantile()` permette di calcolare i quantili.
+L'argomento `prob = ...` definisce che percetile vogliamo ottenere.
+
+```{r}
+
+Q1 = quantile(burnout$Experience, prob = 0.25)
+Q3 = quantile(burnout$Experience, prob = 0.75)
+differenza_iqr = Q3 - Q1
+
+# Limiti outlier
+limite_inferiore = Q1 - (1.5 * differenza_iqr)
+limite_superiore = Q3 + (1.5 * differenza_iqr)
+```
+
+## Boxplot
+
+**Visualizzazione della variabilità**:
+
+```{r}
+boxplot(burnout$Experience,
+             horizontal = TRUE, 
+             # Visualizzo il boxplot in orizzontale
+             main = "Boxplot", #titolo
+             xlab = "Anni", # nome della variabil 
+             # (asse x perchè orizzontale)
+             col = "lightblue", #colore
+             border = "black", #bordo 
+             outcol = "red", # colore outlier
+             outpch = 19, # forma outlier (i.e, pallini)
+             lwd = 1.5) # spessore linee
+```
+
+**Outlier**: Valori oltre $1.5 \times IQR$ dai quartili.
+
+**Identificare outlier**:
+```{r}
+subset(burnout, #dataset
+       select = c(Name, Experience), # colonne d'interesse
+       subset = Experience>limite_superiore) # valuto per riga
+
+# Equivalente con dataframe[valuto per riga, colonne d'interesse]:
+burnout[burnout$Experience > limite_superiore, c("Name", "Experience")]
+```
+
+# Percentili
+
+## Definizione
+
+Il **percentile** $x_p$ di ordine $p$ è quella categoria/valore che è:
+
+- preceduta da almeno $p\%$ dei casi
+- superata da almeno $(1-p)\%$ dei casi
+
+**Tipi**:
+
+- Quartili: percentili di ordine 25, 50, 75
+- Decili: percentili di ordine 10, 20, ..., 90
+- Percentili: percentili di ordine 1, 2, ..., 98, 99
+
+**Comando R**:
+```{r}
+quantile(burnout$SatisfactionLevel, 
+         probs = c(0.05, 0.25, 0.50, 0.75, 0.95))
+```
+
+## Rango Percentile
+
+**Definizione**: Percentuale di casi che hanno un valore uguale o inferiore a un particolare punteggio $X_i$.
+
+$$R_p = \frac{B}{N} \times 100$$
+
+dove:
+
+- $R_p$ = rango percentile
+- $B$ = numero di casi $\leq X_i$
+- $N$ = numero totale di casi
+- $X_i$ = punteggio di interesse
+
+**Comandi R**:
+```{r}
+rango = rank(burnout$SatisfactionLevel)
+N = nrow(burnout)
+Rp_SatisfactionLevel = (rango / N) * 100
+
+# Aggiungere al dataset
+burnout$Rp_SatisfactionLevel = Rp_SatisfactionLevel
+
+# visualizzo le prime 6 righe del dataset
+head(burnout$Rp_SatisfactionLevel, n = 6)
+```
+
+# Indici di Forma
+
+## Definizione
+
+Gli **indici di forma** descrivono come è distribuita una variabile, oltre alla sua posizione centrale e dispersione. Due distribuzioni possono avere stessa media e deviazione standard ma forma diversa.
+
+
+```{r, echo=FALSE,fig.width=8, fig.height=5, message=FALSE,warning=FALSE}
+set.seed(42)
+library(ggplot2)
+n <- 2000
+target_mean <- 50
+target_sd   <- 10
+
+# Funzione per forzare esattamente media e sd desiderate
+match_moments <- function(x, mu, sigma) {
+  z <- (x - mean(x)) / sd(x)
+  mu + sigma * z
+}
+
+# 1. Normale
+dist_normale <- match_moments(rnorm(n), target_mean, target_sd)
+
+# 2. Uniforme
+dist_uniforme <- match_moments(runif(n), target_mean, target_sd)
+
+# 3. Bimodale (miscela di due normali)
+bimodale_raw  <- c(rnorm(n/2, mean = -2, sd = 0.8),
+                   rnorm(n/2, mean =  2, sd = 0.8))
+dist_bimodale <- match_moments(bimodale_raw, target_mean, target_sd)
+
+# 4. Asimmetrica a destra (log-normale)
+dist_asimm <- match_moments(rlnorm(n, meanlog = 0, sdlog = 1),
+                            target_mean, target_sd)
+
+# Verifica
+dists <- list(Normale = dist_normale, Uniforme = dist_uniforme,
+              Bimodale = dist_bimodale, Asimmetrica = dist_asimm)
+
+#sapply(dists, function(x) c(media = mean(x), sd = sd(x), skew = moments::skewness(x)))
+
+
+df <- as.data.frame(dists) |>
+  tidyr::pivot_longer(everything(), names_to = "Distribuzione", values_to = "x")
+
+ggplot(df, aes(x = x, fill = Distribuzione)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 60, alpha = 0.7, color = "white") +
+  geom_vline(xintercept = target_mean, color = "red",
+             linetype = "dashed", linewidth = 0.8) +
+  facet_wrap(~Distribuzione, nrow = 2) +
+  labs(title = "Stessa media e deviazione standard, forma diversa",
+       subtitle = paste0("media = ", target_mean, ", SD = ", target_sd),
+       x = "Valore", y = "Densità") +
+  theme(legend.position = "none")+
+  xlim(10,95)
+
+
+```
+
+
+## Asimmetria (Skewness)
+
+**Definizione**: Misura quanto una distribuzione si discosta dalla simmetria rispetto al centro.
+
+| Tipo | Valore indice | Caratteristiche |
+|------|--------------|-----------------|
+| Simmetrica | $\approx 0$ | Media = Mediana = Moda |
+| Asimmetria positiva | $> 0$ | Moda < Mediana < Media |
+| Asimmetria negativa | $< 0$ | Media < Mediana < Moda |
+
+**Comando R**:
+```{r, message=FALSE,warning=FALSE}
+# Installare e caricare pacchetto
+# install.packages("psych")
+library(psych)
+
+# Calcolare asimmetria
+skew(burnout$WorkHoursPerWeek)
+```
+
+### Visualizzazioni (Skewness)
+
+```{r, echo=FALSE, fig.width=7, fig.height=4,message=FALSE,warning=FALSE}
+set.seed(123)
+dati_pos <- rgamma(1000, 1, 1)
+
+library(moments)
+library(ggplot2)
+skew_pos <- skewness(dati_pos)
+
+ggplot(data.frame(x = dati_pos), aes(x = x)) +
+  geom_histogram(bins = 30, fill = "lightblue", 
+                 color = "white", alpha = 0.8) +
+  geom_vline(aes(xintercept = mean(dati_pos), 
+                 color = "Media"), 
+             linewidth = 2) +
+  geom_vline(aes(xintercept = median(dati_pos), 
+                 color = "Mediana"), 
+             linewidth = 2) +
+  scale_color_manual(values = c("Media" = "orange", 
+                                "Mediana" = "purple2")) +
+  labs(title = paste0("Esempio asimmetria positiva, skewness = ", 
+                     round(skew_pos, 2)),
+       x = "Valori", y = "Frequenza",
+       color = "") +
+  scale_x_continuous(breaks = seq(0,15,2))+
+  theme(legend.position = "top")
+```
+
+
+---
+
+```{r, echo=FALSE, fig.width=7, fig.height=4}
+
+dati_neg <- 100 - rgamma(1000, 1, 1)
+
+skew_neg <- skewness(dati_neg)
+
+ggplot(data.frame(x = dati_neg), aes(x = x)) +
+  geom_histogram(bins = 30, fill = "lightblue", 
+                 color = "white", alpha = 0.8) +
+  geom_vline(aes(xintercept = mean(dati_neg), 
+                 color = "Media"), 
+             linewidth = 2) +
+  geom_vline(aes(xintercept = median(dati_neg), 
+                 color = "Mediana"), 
+             linewidth = 2) +
+  scale_color_manual(values = c("Media" = "orange", 
+                                "Mediana" = "purple2")) +
+  labs(title = paste0("Esempio asimmetria negativa, skewness = ", 
+                     round(skew_neg, 2)),
+       x = "Valori", y = "Frequenza",
+       color = "") +
+  theme(legend.position = "top")
+```
+
+## Curtosi (Kurtosis)
+
+**Definizione**: Misura quanto i dati si concentrano nelle code della distribuzione. Molti software riportano l'**eccesso di curtosi** (valore in relazione alla curtosi della distribuzione normale = 3).
+
+| Tipo | Valore indice | Forma |
+|------|--------------|-------|
+| Mesocurtica | $\approx 0$ | Forma normale |
+| Leptocurtica | $> 0$ | Code pesanti |
+| Platicurtica | $< 0$ | Code leggere |
+
+
+```{r, echo=FALSE, fig.width=8, fig.height=5, message=FALSE,warning=FALSE}
+set.seed(789)
+
+n = 4e6
+y_meso = rnorm(n, 0, 1)
+y_lepto = rt(n, df = 1)
+y_plati = runif(n = n,-1.5,1.5)
+  
+dati_curt <- data.frame(
+  y = c(y_meso, y_lepto, y_plati),
+  Tipo = rep(c("Mesocurtica", 
+               "Leptocurtica", 
+               "Platicurtica"), 
+             each = n)
+)
+
+ggplot(dati_curt, aes(x = y, color = Tipo)) +
+  geom_density(linewidth = 1.6, adjust = 3) +
+  scale_color_manual(values = c("Mesocurtica" = "orchid3",
+                                "Leptocurtica" = "steelblue",
+                                "Platicurtica" = "orange")) +
+  labs(title = " ",
+       x = "Valori", y = "Densità",
+       color = "Tipo di distribuzione") +
+  theme(legend.position = "top")+
+  xlim(-6,6)+
+  facet_wrap(~Tipo)
+```
+
+
+**Comando R**:
+```{r}
+kurtosi(burnout$WorkHoursPerWeek)
+```
+
+
+## Confronto Multiple Variabili
+
+```{r}
+variabili = c("Age", "Experience", 
+              "WorkHoursPerWeek", "SatisfactionLevel")
+
+risultati = data.frame(
+  Variabile = variabili,
+  #applico la funzione a tutte le variabili/colonne 
+  # via sapply(a cosa, funzione)
+  Asimmetria = sapply(burnout[, variabili], skew),
+  Curtosi = sapply(burnout[, variabili], kurtosi)
+)
+
+print(risultati, row.names = FALSE, digits = 2)
+```
+
+
+#### psych::describe
+
+La funzione `describe()` del pacchetto `psych` calcola le statiche descrittive per tutte le variabili in un dataset
+```{r}
+psych::describe(burnout)
+```
+
+# Riepilogo Funzioni R
+
+## Funzioni Base
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `rm(list = ls())` | Pulire workspace |
+| `setwd()` | Impostare working directory |
+| `read.csv()` | Caricare dataset CSV |
+| `str()` | Visualizzare struttura |
+| `head()` | Prime righe |
+| `nrow()` | Numero righe |
+| `length()` | Lunghezza vettore |
+
+## Trasformazioni Variabili
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `as.ordered()` | Convertire a ordinale |
+| `as.numeric()` | Convertire a numerico |
+| `as.factor()` | Convertire a fattore |
+
+## Frequenze
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `table()` | Frequenze assolute |
+| `cumsum()` | Somma cumulata |
+
+## Tendenza Centrale
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `mean()` | Media aritmetica |
+| `median()` | Mediana |
+| `sum()` | Somma |
+
+## Variabilità
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `min()` | Valore minimo |
+| `max()` | Valore massimo |
+| `range()` | Range [min, max] |
+| `var()` | Varianza (campionaria, $n-1$) |
+| `sd()` | Deviazione standard (campionaria) |
+| `quantile()` | Percentili/quartili |
+| `IQR()` | Differenza interquartilica |
+| `rank()` | Rango |
+
+## Forma (pacchetto psych)
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `skew()` | Asimmetria |
+| `kurtosi()` | Eccesso di curtosi |
+
+## Visualizzazione
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `barplot()` | Grafico a barre |
+| `boxplot()` | Boxplot |
+| `hist()` | Istogramma |
+
+## Manipolazione Dati
+
+| Funzione | Descrizione |
+|----------|-------------|
+| `subset()` | Filtrare righe/colonne |
+| `data.frame()` | Creare dataframe |
+| `sapply()` | Applicare funzione a colonne |
+| `print()` | Stampare output |
+
+---
+
+## Riferimenti
+
+- Corso Test per le organizzazioni, Università di Padova
+- Altoè, G. (2022). Corso di Testing Psicologico
+- Marci, M. (2025). Corso di Testing Psicologico
+- Dataset: [Synthetic HR Burnout Dataset](https://www.kaggle.com/datasets/ankam6010/synthetic-hr-burnout-dataset)
