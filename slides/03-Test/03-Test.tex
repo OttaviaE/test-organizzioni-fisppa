@@ -461,7 +461,42 @@ Molto utilizzate anche in psicologia dello sviluppo
 	\end{columns} 
 \end{frame}
 
-\begin{frame}{Quanti punti?}
+\begin{frame}
+
+\scalebox{.80}{
+\begin{tabular}{|l| c| c|c|c|c|}
+	\hline
+	Comportamento	&	Mai	&	Raramente	&	Qualche volta	&	Spesso	&	Sempre	\\\hline
+	Scrollare Instagram	&		&		&		&		&		\\\hline
+	Controllare WhatsApp	&		&		&		&		&		\\\hline
+	Andare al cinema 	&		&		&		&		&		\\\hline
+\end{tabular}
+
+}
+
+
+\vspace{5mm}	
+\pause
+	
+\scalebox{.80}{
+\begin{tabular}{|l| c| c|c|c|c|}
+	\hline
+	Comportamento	&	Mai	&	Raramente	&	Qualche volta	&	Spesso	&	Sempre	\\\hline
+	Fare lo spid	&		&		&		&		&		\\\hline
+	Aprire un conto in banca	&		&		&		&		&		\\\hline
+	Andare al cinema	&		&		&		&		&		\\\hline
+\end{tabular}
+
+
+}
+
+	
+	
+\end{frame}
+
+\subsection*{Quanti punti?}
+
+\begin{frame}
 	Come regola generale, più è alto il numero di punti della scala, maggiore è poi l'attendibilità della misura
 	
 	Solitamente si considerano scale con un numero di punti tra 4 e 7 $\rightarrow$ Più di 7 punti sono ``Inutili''
@@ -476,8 +511,8 @@ Molto utilizzate anche in psicologia dello sviluppo
 	\end{itemize}
 \end{frame}
 
-
-\begin{frame}{Criticità}
+\subsection*{Criticità}
+\begin{frame}
 	\begin{block}{Acquiescienza}
 		
 		Essere sistematicamente d'accordo con le affermazioni proposte dagli item
@@ -500,9 +535,11 @@ Rispondere in modo da mostrarsi delle belle persone sempre e comunque
 
 \end{frame}
 
-\section[Validità]{Validità e attendibilità delle misure}
+\section{Attendibilità}
 
-\begin{frame}{Attendibilità}
+\subsection*{Attendibilità}
+
+\begin{frame}
 	
 	Grado in cui una procedura di misurazione produce lo stesso risultato in prove ripetute
 	
@@ -514,7 +551,7 @@ Rispondere in modo da mostrarsi delle belle persone sempre e comunque
 	$V$: parte vera\\
 	$E$: errore: fluttuazioni casuali oppure costante e sistematico
 	
-	\pause
+\vspace{2mm}
 	L'attendibilità di una misura è la proporzione di $X$ che non riflette l'errore di misurazione: 
 	\begin{equation*}
 		\rho = \dfrac{V}{V + E}
@@ -522,43 +559,181 @@ Rispondere in modo da mostrarsi delle belle persone sempre e comunque
 	
 \end{frame}
 
-\begin{frame}{Una nota sull'errore}
-	\begin{block}{Errore casuale}
-		
-		Tutti quei fattori casuali che confondono la misurazione di qualunque fenomeno. \\
-		Caratteristiche: 
-		\begin{itemize}
-			\item Ha media zero
-		\item 	La correlazione fra punteggio vero ed errore è zero
-			\item La correlazione fra errore e punteggio vero alla misurazione successiva è zero
-			\item La correlazione fra errori di misurazioni diverse è zero
-			
-		\end{itemize}
-		
-	\end{block}
+\subsection*{L'errore $E$}
+
+\vspace*{-5mm}
+\begin{frame}
+	\scalebox{.80}{
+	\begin{tikzpicture}[scale=1]
 	
-		\begin{block}{Errore sistematico (bias)}
-		
-		Effetto distorcente non casuale, sistematico
-	\end{block}
+	% linea vera
+	\draw[very thick, black] (0,0) -- (10,0);
+	\node[left] at (0,0) {};
+	
+	% +2 (blu)
+	\draw[thick, blue] (0,2) -- (11.5,2);
+	\draw[<->, very thick] (10,2) -- (11.5,2);
+	\node[right] at (10.5,2.5) {\color{blue}$e_1 = +2$};
+	
+	\draw[thick, red] (0,1) -- (9,1);
+	\draw[<->, very thick] (9,1) -- (10,1);
+	\node[right] at (9,1.5) {\color{red}$e_2 = -1$};
+	
+	\draw[thick, blue] (0,-1) -- (11,-1);
+	\draw[<->, very thick] (10,-1) -- (11,-1);
+	\node[right] at (10,-0.5) {\color{blue}$e_3 = +1$};
+	
+	\draw[thick, red] (0,-2) -- (8.5,-2);
+	\draw[<->, very thick] (8.5,-2) -- (10,-2);
+	\node[right] at (8.5,-1.5) {\color{red}$e_4 = -2$};
+	
+\end{tikzpicture}	
+	}
+
+\small
+\begin{itemize}
+	\item La media degli errori è 0
+	\begin{quote}
+		\footnotesize
+		$(+2) + (-1) + (+1) + (-2) = 0$
+	\end{quote}
+	\item 	La correlazione fra punteggio vero ed errore è zero
+	\begin{quote}
+			\footnotesize
+L'errore cambia sempre indipendentemente e imprevedibilmente, indipendentemente dalla linea nera
+	\end{quote}
+	\item La correlazione fra errore e punteggio vero alla misurazione successiva è zero
+	\begin{quote}
+			\footnotesize
+	L'errore alla prima misurazione non influenza l'errore alla seconda misurazione	
+	\end{quote}
+	\item La correlazione fra errori di misurazioni diverse è zero
+	\begin{quote}
+			\footnotesize
+		Ogni errore è unico
+	\end{quote}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-
-\begin{block}{Validità di costrutto}
+	\scalebox{.80}{
+\begin{tikzpicture}[scale=1]
 	
-	Quello che si sta misurando... è proprio quello che si voleva misurare e non altro!
+	% linea vera
+	\draw[very thick, black] (0,0) -- (10,0);
+	\node[left] at (0,0) {};
+	
+	% +1
+	\draw[thick, blue] (0,1) -- (11,1);
+	\draw[<->, very thick] (10,1) -- (11,1);
+	\node[right] at (11,1) {$+1$};
+	
+	% +2
+	\draw[thick, blue] (0,2) -- (11.5,2);
+	\draw[<->, very thick] (10,2) -- (11.5,2);
+	\node[right] at (11.5,2) {$+2$};
+	
+	% +1.5
+	\draw[thick, blue] (0,-1) -- (11.3,-1);
+	\draw[<->, very thick] (10,-1) -- (11.3,-1);
+	\node[right] at (11.3,-1) {$+1.5$};
+	
+	% +2.5
+	\draw[thick, blue] (0,-2) -- (11.8,-2);
+	\draw[<->, very thick] (10,-2) -- (11.8,-2);
+	\node[right] at (11.8,-2) {$+2.5$};
+	
+\end{tikzpicture}
+	}
+
+L'errore va sempre dalla stessa parte $\rightarrow$ è sistematico (bias)
+
+\end{frame}
+
+\begin{frame}
+	\centering
+	\scalebox{.80}{
+	\begin{tikzpicture}[scale=1]
+		
+		% TITOLI
+		\node at (0,3) {Errore casuale};
+		\node at (8,3) {Bias (errore sistematico)};
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%
+		% ERRORE CASUALE
+		%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		% linea valore vero
+		\draw[very thick] (0,-2.5) -- (0,2.5);
+		
+		% scarti
+		\draw[blue, thick] (0,2) -- (1.5,2) node[right] {$+2$};
+		\draw[red, thick] (0,1) -- (-1,1) node[left] {$-1$};
+		\draw[blue, thick] (0,-1) -- (1,-1) node[right] {$+1$};
+		\draw[red, thick] (0,-2) -- (-1.5,-2) node[left] {$-2$};
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%
+		% BIAS
+		%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		% linea valore vero
+		\draw[very thick] (8,-2.5) -- (8,2.5);
+		
+		% scarti sistematici
+		\draw[blue, thick] (8,2) -- (9.5,2) node[right] {$+2$};
+		\draw[blue, thick] (8,1) -- (9,1) node[right] {$+1$};
+		\draw[blue, thick] (8,-1) -- (9.2,-1) node[right] {$+1.5$};
+		\draw[blue, thick] (8,-2) -- (9.8,-2) node[right] {$+2.5$};
+		
+	\end{tikzpicture}
+	}
+
+\end{frame}
+
+\section{Validità}
+
+\subsection*{Validità di costrutto}
+
+\begin{frame}
+		Quello che si sta misurando... è proprio quello che si voleva misurare e non altro!
 	
 	(Alcuni) Elementi utili per la \underline{validità di costrutto}:
 	\begin{itemize}
 		\item Chiara definizione del costrutto teorico
 		\item Misurare il costrutto con metodi differenti
 	\end{itemize} 
-\end{block}	
-
-\pause
-\begin{block}{Validità statistica}
 	
+	
+	\begin{columns}[T]
+		\begin{column}{.50\linewidth}
+			\begin{center}
+				Convergente
+			\end{center}
+			La misura di interesse correla con misure che misurano lo stesso costrutto o \emph{costrutti simili}
+			
+			\begin{block}{Esempio}
+				
+				La leadership misurata con un nuovo questionario correla fortemente con la leadership misurata con il gold standard.
+			\end{block}
+		\end{column}
+		\begin{column}{.50\linewidth}
+				\begin{center}
+				Divergente/Discriminante
+			\end{center}
+			La misura di interesse NON correla con misure che misurano costrutti diversi
+			
+					\begin{block}{Esempio}
+				
+				La nuova misura della leadership non correla con una misura per la mindfulness. 
+			\end{block}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\subsection*{Validità Statistica}
+
+\begin{frame}
 	Quello che stiamo inferendo a partire dalle analisi ha senso perché le analisi hanno senso! 
 	
 	(Alcuni) Elementi utili per la \underline{validità statistica}:
@@ -567,29 +742,60 @@ Rispondere in modo da mostrarsi delle belle persone sempre e comunque
 		\item Adeguatezza dell'ampiezza campionaria
 	\end{itemize} 
 	
-\end{block}
+	Le analisi statistiche applicate per fare inferenze (a livello di popolazione o di varibaili latenti) hanno bisogno di essere sensate e pensate dati i limiti dei dati osservati: 
+	
+	\begin{itemize}
+		\item ampiezza campionaria adeguata
+		\item scelta del modello statistico coerente con la propria teoria 
+		\item equilibrio tra quello che si vuole ottenere e le caratteristiche reali del dato/campione
+	\end{itemize}
 \end{frame}
 
+\subsection*{Validità Interna}
+
 \begin{frame}
-	\begin{block}{Validità esterna}
-		
-		Il grado in cui i risultati sono \emph{rappresentativi} della popolazione di interesse e il grado in cui sono \emph{replicabili}
-		
-			(Alcuni) Elementi utili per la \underline{validità esterna}:
-		\begin{itemize}
-			\item Il campione è rappresentativo della popolazione target
-			\item La validità ecologica
-		\end{itemize} 
-	\end{block}
+	I risultati osservati in uno studio riflettono realmente l’effetto della variabile indipendente sulla variabile dipendente, senza essere distorti da fattori confondenti
 	
-	\pause
-		\begin{block}{Validità ecologica}
+	(Alcuni) Elementi utili per la validità esterna: 
+	
+	\begin{itemize}
+		\item Controllo di fattori esterni e variabili confondenti
 		
-		Rappresenta la generalizzabilità dei risultati di una ricerca a quella che è la vita quotidiana 
+	\item 	Disegni sperimentali appropriati (randomizzazione, gruppo di controllo)
 		
-		I dati raccolti devono essere rappresentativi del comportamento dell’individuo nella sua realtà abituale
+		\item 		Misurazioni valide e attendibili
+	\end{itemize}
+\end{frame}
+
+\subsection*{Validità esterna}
+
+\begin{frame}
+	Il grado in cui i risultati sono \emph{rappresentativi} della popolazione di interesse e il grado in cui sono \emph{replicabili}
+	
+	(Alcuni) Elementi utili per la \underline{validità esterna}:
+	\begin{itemize}
+		\item Il campione è rappresentativo della popolazione target
+		\item La validità ecologica
+	\end{itemize} 
+	
+	\begin{block}{Esempio}
 		
+		Il nuovo questionario per la leadership è stato somministrato a un campione di studenti e studentesse universatari. I risultati sono generalizzabili (validi) alla popolazione dell student iscritt al corso di studio, NON per la popolazione dei manager aziendali.
 	\end{block}
 \end{frame}
+
+\subsection*{Validità ecologica}
+
+\begin{frame}
+		Rappresenta la generalizzabilità dei risultati di una ricerca a quella che è la vita quotidiana 
+
+I dati raccolti devono essere rappresentativi del comportamento dell’individuo nella sua realtà abituale
+
+Il problema degli esperimenti di laboratorio, dei questionari, degli scenari... non sono la vita reale.
+
+Il laboratorio fornsice la possibilità di avere un alto controllo rispetto alle manipolazioni sperimentali e alle variabili confondenti. Tuttavia è un ambiente molto molto finto e lontano dall'ambiente in cui le persone agiscono normalmente.
+\end{frame}
+
+
 
 \end{document}

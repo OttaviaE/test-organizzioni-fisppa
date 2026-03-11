@@ -54,25 +54,60 @@
 \headcommand {\beamer@framepages {23}{23}}
 \headcommand {\slideentry {2}{4}{2}{24/25}{Rating scales: Domini}{0}}
 \headcommand {\beamer@framepages {24}{25}}
-\headcommand {\slideentry {2}{4}{3}{26/26}{Rating scales: Domini}{0}}
-\headcommand {\beamer@framepages {26}{26}}
-\headcommand {\slideentry {2}{4}{4}{27/27}{Rating scales: Domini}{0}}
-\headcommand {\beamer@framepages {27}{27}}
-\headcommand {\beamer@sectionpages {12}{27}}
+\headcommand {\slideentry {2}{4}{3}{26/27}{Rating scales: Domini}{0}}
+\headcommand {\beamer@framepages {26}{27}}
 \headcommand {\beamer@subsectionpages {23}{27}}
-\headcommand {\sectionentry {3}{Validità}{28}{Validità e attendibilità delle misure}{0}}
-\headcommand {\slideentry {3}{0}{1}{28/28}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{28}{Quanti punti?}}
+\headcommand {\slideentry {2}{5}{1}{28/28}{Quanti punti?}{0}}
 \headcommand {\beamer@framepages {28}{28}}
-\headcommand {\slideentry {3}{0}{2}{29/30}{}{0}}
-\headcommand {\beamer@framepages {29}{30}}
-\headcommand {\slideentry {3}{0}{3}{31/31}{}{0}}
+\headcommand {\beamer@subsectionpages {28}{28}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{29}{Criticità}}
+\headcommand {\slideentry {2}{6}{1}{29/29}{Criticità}{0}}
+\headcommand {\beamer@framepages {29}{29}}
+\headcommand {\beamer@sectionpages {12}{29}}
+\headcommand {\beamer@subsectionpages {29}{29}}
+\headcommand {\sectionentry {3}{Attendibilità}{30}{Attendibilità}{0}}
+\headcommand {\slideentry {3}{0}{1}{30/30}{}{0}}
+\headcommand {\beamer@framepages {30}{30}}
+\headcommand {\beamer@subsectionpages {30}{30}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{31}{Attendibilità}}
+\headcommand {\slideentry {3}{1}{1}{31/31}{Attendibilità}{0}}
 \headcommand {\beamer@framepages {31}{31}}
-\headcommand {\slideentry {3}{0}{4}{32/33}{}{0}}
-\headcommand {\beamer@framepages {32}{33}}
-\headcommand {\slideentry {3}{0}{5}{34/35}{}{0}}
-\headcommand {\beamer@framepages {34}{35}}
-\headcommand {\beamer@partpages {1}{35}}
-\headcommand {\beamer@subsectionpages {28}{35}}
-\headcommand {\beamer@sectionpages {28}{35}}
-\headcommand {\beamer@documentpages {35}}
-\headcommand {\gdef \inserttotalframenumber {26}}
+\headcommand {\beamer@subsectionpages {31}{31}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{32}{L'errore $E$}}
+\headcommand {\slideentry {3}{2}{1}{32/32}{L'errore $E$}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\slideentry {3}{2}{2}{33/33}{L'errore $E$}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\slideentry {3}{2}{3}{34/34}{L'errore $E$}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\beamer@sectionpages {30}{34}}
+\headcommand {\beamer@subsectionpages {32}{34}}
+\headcommand {\sectionentry {4}{Validità}{35}{Validità}{0}}
+\headcommand {\slideentry {4}{0}{1}{35/35}{}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\beamer@subsectionpages {35}{35}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{36}{Validità di costrutto}}
+\headcommand {\slideentry {4}{1}{1}{36/36}{Validità di costrutto}{0}}
+\headcommand {\beamer@framepages {36}{36}}
+\headcommand {\beamer@subsectionpages {36}{36}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{37}{Validità Statistica}}
+\headcommand {\slideentry {4}{2}{1}{37/37}{Validità Statistica}{0}}
+\headcommand {\beamer@framepages {37}{37}}
+\headcommand {\beamer@subsectionpages {37}{37}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{38}{Validità Interna}}
+\headcommand {\slideentry {4}{3}{1}{38/38}{Validità Interna}{0}}
+\headcommand {\beamer@framepages {38}{38}}
+\headcommand {\beamer@subsectionpages {38}{38}}
+\headcommand {\beamer@subsectionentry {0}{4}{4}{39}{Validità esterna}}
+\headcommand {\slideentry {4}{4}{1}{39/39}{Validità esterna}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\beamer@subsectionpages {39}{39}}
+\headcommand {\beamer@subsectionentry {0}{4}{5}{40}{Validità ecologica}}
+\headcommand {\slideentry {4}{5}{1}{40/40}{Validità ecologica}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\beamer@partpages {1}{40}}
+\headcommand {\beamer@subsectionpages {40}{40}}
+\headcommand {\beamer@sectionpages {35}{40}}
+\headcommand {\beamer@documentpages {40}}
+\headcommand {\gdef \inserttotalframenumber {33}}

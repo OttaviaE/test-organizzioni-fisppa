@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  4 MAR 2026 17:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  5 MAR 2026 16:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1500,7 +1500,7 @@ thkerncmss.
 [18
 
 ]
-<img/accordo.png, id=1456, 792.123pt x 40.734pt>
+<img/accordo.png, id=1752, 792.123pt x 40.734pt>
 File: img/accordo.png Graphic file (type png)
 <use img/accordo.png>
 Package pdftex.def Info: img/accordo.png  used on input line 346.
@@ -1533,7 +1533,7 @@ Overfull \hbox (14.66502pt too wide) in paragraph at lines 372--372
 [21
 
 ]
-<img/vas.png, id=1679, 338.76563pt x 84.315pt>
+<img/vas.png, id=2015, 338.76563pt x 84.315pt>
 File: img/vas.png Graphic file (type png)
 <use img/vas.png>
 Package pdftex.def Info: img/vas.png  used on input line 383.
@@ -1562,7 +1562,7 @@ Package pdftex.def Info: img/vas.png  used on input line 383.
 
 [27
 
-] (03-Test.toc)
+]
 
 [28
 
@@ -1570,7 +1570,7 @@ Package pdftex.def Info: img/vas.png  used on input line 383.
 
 [29
 
-]
+] (03-Test.toc)
 
 [30
 
@@ -1579,6 +1579,39 @@ Package pdftex.def Info: img/vas.png  used on input line 383.
 [31
 
 ]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 562.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 562.
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+[][][][][][][]  
+ []
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+[][][][][][][]  
+ []
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+[][][][][][][]  
+ []
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+[][][][][][][]  
+ []
+
+
+Overfull \vbox (11.08333pt too high) detected at line 616
+ []
+
+
 
 [32
 
@@ -1590,9 +1623,29 @@ Package pdftex.def Info: img/vas.png  used on input line 383.
 
 [34
 
-]
+] (03-Test.toc)
 
 [35
+
+]
+
+[36
+
+]
+
+[37
+
+]
+
+[38
+
+]
+
+[39
+
+]
+
+[40
 
 ]
 \tf@nav=\write6
@@ -1610,14 +1663,14 @@ LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
  ***********
 Package rerunfilecheck Info: File `03-Test.out' has not changed.
-(rerunfilecheck)             Checksum: D3352A81C3463DB8F905F242D7367744;1446.
+(rerunfilecheck)             Checksum: 418F0C7A423988286FA737E45E837C0E;2649.
  ) 
 Here is how much of TeX's memory you used:
- 30937 strings out of 473650
- 659051 string characters out of 5716970
- 1125993 words of memory out of 5000000
- 53293 multiletter control sequences out of 15000+600000
- 571883 words of font info for 85 fonts, out of 8000000 for 9000
+ 31028 strings out of 473650
+ 660333 string characters out of 5716970
+ 1135362 words of memory out of 5000000
+ 53362 multiletter control sequences out of 15000+600000
+ 572544 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,123p,406b,907s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Ottavia\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
@@ -1630,13 +1683,16 @@ Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/Ottavi
 a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:
 /Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
 si10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmssi9.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Ottavia/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on 03-Test.pdf (35 pages, 596828 bytes).
+fonts/cm/cmssi8.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmssi9.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ottavia/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Ottavia/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Ottavi
+a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+
+Output written on 03-Test.pdf (40 pages, 739800 bytes).
 PDF statistics:
- 2727 PDF objects out of 2984 (max. 8388607)
- 80 named destinations out of 1000 (max. 500000)
- 257 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3796 PDF objects out of 4296 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
+ 337 words of extra memory for PDF output out of 10000 (max. 10000000)
 
