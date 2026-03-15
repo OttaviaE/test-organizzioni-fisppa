@@ -43,7 +43,7 @@ Statistiche Descrittive
 
 # Modulo 3
 
-Test di prestazione tipica e massima, scale di risposta, Validità e Attendibilità
+Test di prestazione tipica e massima, scale di risposta, Validità e Attendibilità [slides in pdf](slides/03-Test/03-Test.pdf)
 
 
 # Modulo 4
