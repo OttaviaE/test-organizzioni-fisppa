@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  15 MAR 2026 20:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  15 MAR 2026 21:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1455,129 +1455,126 @@ thkerncmss.
 
 ] [8
 
-] [9
+] (03-Test.toc) [9
 
-] (03-Test.toc) [10
+] [10
 
-] [11
+] (03-Test.toc)
+[11
 
-]
-(03-Test.toc) [12
+] [12
 
-] [13
+] (03-Test.toc) [13
 
-] (03-Test.toc) [14
+] [14
 
-] [15
+] (03-Test.toc) [15
 
-] (03-Test.toc) [16
+] [16
 
 ] [17
 
-]
-[18
+] [18
+
 
 ] [19
 
 
-] [20
+]
+[20
 
 
-] [21
+] (03-Test.toc) [21
 
+] [22
 
-] (03-Test.toc) [22
+] (03-Test.toc) [23
 
-] [23
-
-] (03-Test.toc) [24
+] [24
 
 ] [25
 
 ] [26
 
-]
-[27
+] [27
 
 ] [28
 
-] [29
+]
+[29
 
 ] [30
 
 ] [31
 
-] [32
+] (03-Test.toc) [32
 
 ] [33
 
 ] [34
 
-] [35
+] (03-Test.toc) [35
 
-] (03-Test.toc) [36
+] [36
 
 ] [37
 
-] [38
-
 ]
-(03-Test.toc) [39
+<porta.png, id=4975, 143.007pt x 72.27pt>
+File: porta.png Graphic file (type png)
+<use porta.png>
+Package pdftex.def Info: porta.png  used on input line 550.
+(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+
+Overfull \vbox (2.14557pt too high) detected at line 550
+ []
+
+[38
+
+ <./porta.png>]
+File: porta.png Graphic file (type png)
+<use porta.png>
+Package pdftex.def Info: porta.png  used on input line 550.
+(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+
+Overfull \vbox (2.14557pt too high) detected at line 550
+ []
+
+[39
 
 ] [40
 
 ] [41
 
-]
-<porta.png, id=5029, 143.007pt x 72.27pt>
-File: porta.png Graphic file (type png)
-<use porta.png>
-Package pdftex.def Info: porta.png  used on input line 553.
-(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+] [42
 
-Overfull \vbox (2.14557pt too high) detected at line 553
- []
+] [43
 
-[42
+] [44
 
- <./porta.png>]
-File: porta.png Graphic file (type png)
-<use porta.png>
-Package pdftex.def Info: porta.png  used on input line 553.
-(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
-
-Overfull \vbox (2.14557pt too high) detected at line 553
- []
-
-[43
+] [45
 
 ]
-File: porta.png Graphic file (type png)
-<use porta.png>
-Package pdftex.def Info: porta.png  used on input line 553.
-(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
-
-Overfull \vbox (2.14557pt too high) detected at line 553
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 746--746
+[]|\OT1/cmss/m/n/10.95 Completamente| 
  []
 
-[44
+
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 746--746
+[]|\OT1/cmss/m/n/10.95 Completamente| 
+ []
+
+[46
 
 ]
-File: porta.png Graphic file (type png)
-<use porta.png>
-Package pdftex.def Info: porta.png  used on input line 553.
-(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+<img/vas.png, id=6188, 338.76563pt x 84.315pt>
+File: img/vas.png Graphic file (type png)
+<use img/vas.png>
+Package pdftex.def Info: img/vas.png  used on input line 757.
+(pdftex.def)             Requested size: 240.9357pt x 59.96826pt.
+ [47
 
-Overfull \vbox (2.14557pt too high) detected at line 553
- []
-
-[45
-
-] [46
-
-] [47
-
-] [48
+ <./img/vas.png>] [48
 
 ] [49
 
@@ -1591,95 +1588,73 @@ Overfull \vbox (2.14557pt too high) detected at line 553
 
 ] [54
 
-]
-Overfull \hbox (14.66502pt too wide) in paragraph at lines 752--752
-[]|\OT1/cmss/m/n/10.95 Completamente| 
- []
-
-
-Overfull \hbox (14.66502pt too wide) in paragraph at lines 752--752
-[]|\OT1/cmss/m/n/10.95 Completamente| 
- []
-
+] (03-Test.toc)
 [55
 
-]
-<img/vas.png, id=6599, 338.76563pt x 84.315pt>
-File: img/vas.png Graphic file (type png)
-<use img/vas.png>
-Package pdftex.def Info: img/vas.png  used on input line 763.
-(pdftex.def)             Requested size: 240.9357pt x 59.96826pt.
- [56
+] [56
 
- <./img/vas.png>] [57
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 936.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 936.
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+[][][][][][][]  
+ []
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+[][][][][][][]  
+ []
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+[][][][][][][]  
+ []
+
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+[][][][][][][]  
+ []
+
+
+Overfull \vbox (9.74995pt too high) detected at line 990
+ []
+
+[57
 
 ] [58
 
 ] [59
 
-] [60
+] (03-Test.toc) [60
 
-] [61
+] (03-Test.toc) [61
 
 ] [62
 
-] [63
-
 ] (03-Test.toc)
-[64
+[63
 
-] [65
+] [64
 
-]
+] (03-Test.toc) [65
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 942.
+] [66
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 942.
-
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
-[][][][][][][]  
- []
-
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
-[][][][][][][]  
- []
-
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
-[][][][][][][]  
- []
-
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
-[][][][][][][]  
- []
-
-
-Overfull \vbox (9.74995pt too high) detected at line 996
- []
-
-[66
-
-] [67
+] (03-Test.toc) [67
 
 ] [68
 
-] (03-Test.toc) [69
+] (03-Test.toc)
+[69
 
 ] [70
-
-] [71
-
-] [72
-
-] [73
-
-] [74
 
 ]
 \tf@nav=\write6
@@ -1697,13 +1672,13 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `03-Test.out' has not changed.
-(rerunfilecheck)             Checksum: CF731E133930AD6870F650EB9700115C;3750.
+(rerunfilecheck)             Checksum: 374C3492232ADED16D9553909A1CA83A;3749.
  ) 
 Here is how much of TeX's memory you used:
- 31364 strings out of 467867
- 666950 string characters out of 5417366
- 1185066 words of memory out of 5000000
- 59384 multiletter control sequences out of 15000+600000
+ 31376 strings out of 467867
+ 667442 string characters out of 5417366
+ 1191427 words of memory out of 5000000
+ 59394 multiletter control sequences out of 15000+600000
  644345 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,123p,453b,915s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1724,9 +1699,9 @@ ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Ottavia/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Ottavi
 a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 
-Output written on 03-Test.pdf (74 pages, 1456771 bytes).
+Output written on 03-Test.pdf (70 pages, 1392795 bytes).
 PDF statistics:
- 9187 PDF objects out of 10688 (max. 8388607)
- 175 named destinations out of 1000 (max. 500000)
+ 9439 PDF objects out of 10688 (max. 8388607)
+ 167 named destinations out of 1000 (max. 500000)
  399 words of extra memory for PDF output out of 10000 (max. 10000000)
 
