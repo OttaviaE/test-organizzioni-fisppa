@@ -1,79 +1,79 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.12.30)  5 MAR 2026 16:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  15 MAR 2026 20:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./03-Test.tex
 (03-Test.tex
-LaTeX2e <2024-11-01> patch level 1
-L3 programming layer <2024-11-02>
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamer.cls
-Document Class: beamer 2024/01/06 v3.71 A class for typesetting presentations
+Document Class: beamer 2026/01/22 v3.77 A class for typesetting presentations
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasemode
 s.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count196
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count275
 )
-\beamer@tempbox=\box52
-\beamer@tempcount=\count197
-\c@beamerpauses=\count198
+\beamer@tempbox=\box53
+\beamer@tempcount=\count276
+\c@beamerpauses=\count277
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasedeco
 de.sty
-\beamer@slideinframe=\count199
-\beamer@minimum=\count266
-\beamer@decode@box=\box53
+\beamer@slideinframe=\count278
+\beamer@minimum=\count279
+\beamer@decode@box=\box54
 )
-\beamer@commentbox=\box54
-\beamer@modecount=\count267
+\beamer@commentbox=\box55
+\beamer@modecount=\count280
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
-\headdp=\dimen141
-\footheight=\dimen142
-\sidebarheight=\dimen143
-\beamer@tempdim=\dimen144
-\beamer@finalheight=\dimen145
-\beamer@animht=\dimen146
-\beamer@animdp=\dimen147
-\beamer@animwd=\dimen148
-\beamer@leftmargin=\dimen149
-\beamer@rightmargin=\dimen150
-\beamer@leftsidebar=\dimen151
-\beamer@rightsidebar=\dimen152
-\beamer@boxsize=\dimen153
-\beamer@vboxoffset=\dimen154
-\beamer@descdefault=\dimen155
-\beamer@descriptionwidth=\dimen156
+\headdp=\dimen148
+\footheight=\dimen149
+\sidebarheight=\dimen150
+\beamer@tempdim=\dimen151
+\beamer@finalheight=\dimen152
+\beamer@animht=\dimen153
+\beamer@animdp=\dimen154
+\beamer@animwd=\dimen155
+\beamer@leftmargin=\dimen156
+\beamer@rightmargin=\dimen157
+\beamer@leftsidebar=\dimen158
+\beamer@rightsidebar=\dimen159
+\beamer@boxsize=\dimen160
+\beamer@vboxoffset=\dimen161
+\beamer@descdefault=\dimen162
+\beamer@descriptionwidth=\dimen163
 \beamer@lastskip=\skip49
-\beamer@areabox=\box55
-\beamer@animcurrent=\box56
-\beamer@animshowbox=\box57
-\beamer@sectionbox=\box58
-\beamer@logobox=\box59
-\beamer@linebox=\box60
-\beamer@sectioncount=\count268
-\beamer@subsubsectionmax=\count269
-\beamer@subsectionmax=\count270
-\beamer@sectionmax=\count271
-\beamer@totalheads=\count272
-\beamer@headcounter=\count273
-\beamer@partstartpage=\count274
-\beamer@sectionstartpage=\count275
-\beamer@subsectionstartpage=\count276
-\beamer@animationtempa=\count277
-\beamer@animationtempb=\count278
-\beamer@xpos=\count279
-\beamer@ypos=\count280
-\beamer@ypos@offset=\count281
-\beamer@showpartnumber=\count282
-\beamer@currentsubsection=\count283
-\beamer@coveringdepth=\count284
-\beamer@sectionadjust=\count285
-\beamer@toclastsection=\count286
-\beamer@tocsectionnumber=\count287
+\beamer@areabox=\box56
+\beamer@animcurrent=\box57
+\beamer@animshowbox=\box58
+\beamer@sectionbox=\box59
+\beamer@logobox=\box60
+\beamer@linebox=\box61
+\beamer@sectioncount=\count281
+\beamer@subsubsectionmax=\count282
+\beamer@subsectionmax=\count283
+\beamer@sectionmax=\count284
+\beamer@totalheads=\count285
+\beamer@headcounter=\count286
+\beamer@partstartpage=\count287
+\beamer@sectionstartpage=\count288
+\beamer@subsectionstartpage=\count289
+\beamer@animationtempa=\count290
+\beamer@animationtempb=\count291
+\beamer@xpos=\count292
+\beamer@ypos=\count293
+\beamer@ypos@offset=\count294
+\beamer@showpartnumber=\count295
+\beamer@currentsubsection=\count296
+\beamer@coveringdepth=\count297
+\beamer@sectionadjust=\count298
+\beamer@toclastsection=\count299
+\beamer@tocsectionnumber=\count300
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseopti
 ons.sty
@@ -89,17 +89,17 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count288
-\Gm@cntv=\count289
-\c@Gm@tempcnt=\count290
-\Gm@bindingoffset=\dimen157
-\Gm@wd@mp=\dimen158
-\Gm@odd@mp=\dimen159
-\Gm@even@mp=\dimen160
-\Gm@layoutwidth=\dimen161
-\Gm@layoutheight=\dimen162
-\Gm@layouthoffset=\dimen163
-\Gm@layoutvoffset=\dimen164
+\Gm@cnth=\count301
+\Gm@cntv=\count302
+\c@Gm@tempcnt=\count303
+\Gm@bindingoffset=\dimen164
+\Gm@wd@mp=\dimen165
+\Gm@odd@mp=\dimen166
+\Gm@even@mp=\dimen167
+\Gm@layoutwidth=\dimen168
+\Gm@layoutheight=\dimen169
+\Gm@layouthoffset=\dimen170
+\Gm@layoutvoffset=\dimen171
 \Gm@dimlist=\toks18
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg
@@ -110,18 +110,18 @@ sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfut
 il-common.tex
 \pgfutil@everybye=\toks19
-\pgfutil@tempdima=\dimen165
-\pgfutil@tempdimb=\dimen166
+\pgfutil@tempdima=\dimen172
+\pgfutil@tempdimb=\dimen173
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfut
 il-latex.def
-\pgfutil@abb=\box61
+\pgfutil@abb=\box62
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrc
 s.code.tex
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.te
 x)
-Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys
 .sty
@@ -138,24 +138,24 @@ yslibraryfiltered.code.tex
 de.tex
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathuti
 l.code.tex
-\pgf@x=\dimen167
-\pgf@xa=\dimen168
-\pgf@xb=\dimen169
-\pgf@xc=\dimen170
-\pgf@y=\dimen171
-\pgf@ya=\dimen172
-\pgf@yb=\dimen173
-\pgf@yc=\dimen174
-\c@pgf@counta=\count291
-\c@pgf@countb=\count292
-\c@pgf@countc=\count293
-\c@pgf@countd=\count294
+\pgf@x=\dimen174
+\pgf@xa=\dimen175
+\pgf@xb=\dimen176
+\pgf@xc=\dimen177
+\pgf@y=\dimen178
+\pgf@ya=\dimen179
+\pgf@yb=\dimen180
+\pgf@yc=\dimen181
+\c@pgf@counta=\count304
+\c@pgf@countb=\count305
+\c@pgf@countc=\count306
+\c@pgf@countd=\count307
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathpar
 ser.code.tex
-\pgfmath@dimen=\dimen175
-\pgfmath@count=\count295
-\pgfmath@box=\box62
+\pgfmath@dimen=\dimen182
+\pgfmath@count=\count308
+\pgfmath@box=\box63
 \pgfmath@toks=\toks23
 \pgfmath@stack@operand=\toks24
 \pgfmath@stack@operation=\toks25
@@ -182,15 +182,15 @@ ctions.integerarithmetics.code.tex)
 c.code.tex)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathflo
 at.code.tex
-\c@pgfmathroundto@lastzeros=\count296
+\c@pgfmathroundto@lastzeros=\count309
 )))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
-File: size11.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcor
 e.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
@@ -205,60 +205,60 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.d
 ef
-File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen176
-\Gin@req@width=\dimen177
+\Gin@req@height=\dimen183
+\Gin@req@width=\dimen184
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsy
 s.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
 sys.code.tex
-Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
-\pgf@x=\dimen178
-\pgf@y=\dimen179
-\pgf@xa=\dimen180
-\pgf@ya=\dimen181
-\pgf@xb=\dimen182
-\pgf@yb=\dimen183
-\pgf@xc=\dimen184
-\pgf@yc=\dimen185
-\pgf@xd=\dimen186
-\pgf@yd=\dimen187
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@x=\dimen185
+\pgf@y=\dimen186
+\pgf@xa=\dimen187
+\pgf@ya=\dimen188
+\pgf@xb=\dimen189
+\pgf@yb=\dimen190
+\pgf@xc=\dimen191
+\pgf@yc=\dimen192
+\pgf@xd=\dimen193
+\pgf@yd=\dimen194
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count297
-\c@pgf@countb=\count298
-\c@pgf@countc=\count299
-\c@pgf@countd=\count300
+\c@pgf@counta=\count310
+\c@pgf@countb=\count311
+\c@pgf@countc=\count312
+\c@pgf@countd=\count313
 \t@pgf@toka=\toks26
 \t@pgf@tokb=\toks27
 \t@pgf@tokc=\toks28
-\pgf@sys@id@count=\count301
+\pgf@sys@id@count=\count314
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
 .cfg
-File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
 sys-pdftex.def
-File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
 sys-common-pdf.def
-File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
 syssoftpath.code.tex
-File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count302
-\pgfsyssoftpath@bigbuffer@items=\count303
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count315
+\pgfsyssoftpath@bigbuffer@items=\count316
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
 sysprotocol.code.tex
-File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
@@ -283,121 +283,121 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 ore.code.tex
-Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.cod
 e.tex)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orepoints.code.tex
-File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen188
-\pgf@picmaxx=\dimen189
-\pgf@picminy=\dimen190
-\pgf@picmaxy=\dimen191
-\pgf@pathminx=\dimen192
-\pgf@pathmaxx=\dimen193
-\pgf@pathminy=\dimen194
-\pgf@pathmaxy=\dimen195
-\pgf@xx=\dimen196
-\pgf@xy=\dimen197
-\pgf@yx=\dimen198
-\pgf@yy=\dimen199
-\pgf@zx=\dimen256
-\pgf@zy=\dimen257
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen195
+\pgf@picmaxx=\dimen196
+\pgf@picminy=\dimen197
+\pgf@picmaxy=\dimen198
+\pgf@pathminx=\dimen199
+\pgf@pathmaxx=\dimen256
+\pgf@pathminy=\dimen257
+\pgf@pathmaxy=\dimen258
+\pgf@xx=\dimen259
+\pgf@xy=\dimen260
+\pgf@yx=\dimen261
+\pgf@yy=\dimen262
+\pgf@zx=\dimen263
+\pgf@zy=\dimen264
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orepathconstruct.code.tex
-File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen258
-\pgf@path@lasty=\dimen259
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen265
+\pgf@path@lasty=\dimen266
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orepathusage.code.tex
-File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen260
-\pgf@shorten@start@additional=\dimen261
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen267
+\pgf@shorten@start@additional=\dimen268
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orescopes.code.tex
-File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box63
-\pgf@hbox=\box64
-\pgf@layerbox@main=\box65
-\pgf@picture@serial@count=\count304
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box64
+\pgf@hbox=\box65
+\pgf@layerbox@main=\box66
+\pgf@picture@serial@count=\count317
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oregraphicstate.code.tex
-File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen262
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen269
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oretransformations.code.tex
-File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen263
-\pgf@pt@y=\dimen264
-\pgf@pt@temp=\dimen265
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen270
+\pgf@pt@y=\dimen271
+\pgf@pt@temp=\dimen272
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orequick.code.tex
-File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oreobjects.code.tex
-File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orepathprocessing.code.tex
-File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orearrows.code.tex
-File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen266
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen273
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oreshade.code.tex
-File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen267
-\pgf@sys@shading@range@num=\count305
-\pgf@shadingcount=\count306
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen274
+\pgf@sys@shading@range@num=\count318
+\pgf@shadingcount=\count319
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oreimage.code.tex
-File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oreexternal.code.tex
-File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box66
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box67
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orelayers.code.tex
-File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 oretransparency.code.tex
-File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orepatterns.code.tex
-File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
 orerdf.code.tex
-File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\xxcolor
 .sty
 Package: xxcolor 2003/10/24 ver 0.1
-\XC@nummixins=\count307
-\XC@countmixins=\count308
+\XC@nummixins=\count320
+\XC@countmixins=\count321
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.s
 ty
@@ -431,7 +431,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
@@ -444,48 +444,48 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 ty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count309
+\c@section@level=\count322
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc
 .sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen268
-\Hy@linkcounter=\count310
-\Hy@pagecounter=\count311
+\@linkdim=\dimen275
+\Hy@linkcounter=\count323
+\Hy@pagecounter=\count324
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count312
+\Hy@SavedSpaceFactor=\count325
  (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `bookmarks' set `true' on input line 4040.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 4040.
-Package hyperref Info: Option `implicit' set `false' on input line 4040.
-Package hyperref Info: Hyper figures OFF on input line 4157.
-Package hyperref Info: Link nesting OFF on input line 4162.
-Package hyperref Info: Hyper index ON on input line 4165.
-Package hyperref Info: Plain pages OFF on input line 4172.
-Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Option `bookmarks' set `true' on input line 4072.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4072.
+Package hyperref Info: Option `implicit' set `false' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
-Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count313
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count326
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen269
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen276
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -495,17 +495,17 @@ lc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count314
-\Field@Width=\dimen270
-\Fld@charsize=\dimen271
-Package hyperref Info: Hyper figures OFF on input line 6042.
-Package hyperref Info: Link nesting OFF on input line 6047.
-Package hyperref Info: Hyper index ON on input line 6050.
-Package hyperref Info: backreferencing OFF on input line 6057.
-Package hyperref Info: Link coloring OFF on input line 6062.
-Package hyperref Info: Link coloring with OCG OFF on input line 6067.
-Package hyperref Info: PDF/A mode OFF on input line 6072.
-\Hy@abspage=\count315
+\Fld@menulength=\count327
+\Field@Width=\dimen277
+\Fld@charsize=\dimen278
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count328
 
 
 Package hyperref Message: Stopped early.
@@ -514,27 +514,20 @@ Package hyperref Message: Stopped early.
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
-
-(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.st
-y
-Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
-kage
-with kernel methods
-)
-\Fld@listcount=\count316
-\c@bookmark@seq@number=\count317
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
+\Fld@listcount=\count329
+\c@bookmark@seq@number=\count330
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunf
 ilecheck.sty
-Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniqu
 ecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-85.
+84.
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaserequ
 ires.sty
@@ -560,16 +553,16 @@ Package: sansmathaccent 2020/01/31
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlfile.
 sty
-Package: scrlfile 2024/10/24 v3.43 KOMA-Script package (file load hooks)
+Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlfile-
 hook.sty
-Package: scrlfile-hook 2024/10/24 v3.43 KOMA-Script package (using LaTeX hooks)
-
+Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hook
+s)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlogo.s
 ty
-Package: scrlogo 2024/10/24 v3.43 KOMA-Script package (logo)
+Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
 )))))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasetran
 slator.sty
@@ -583,36 +576,36 @@ Package: translator 2021-05-31 v1.12d Easy translation of strings in LaTeX
 creens.sty)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseover
 lay.sty
-\beamer@argscount=\count318
+\beamer@argscount=\count331
 \beamer@lastskipcover=\skip52
-\beamer@trivlistdepth=\count319
+\beamer@trivlistdepth=\count332
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasetitl
 e.sty)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasesect
 ion.sty
-\c@lecture=\count320
-\c@part=\count321
-\c@section=\count322
-\c@subsection=\count323
-\c@subsubsection=\count324
+\c@lecture=\count333
+\c@part=\count334
+\c@section=\count335
+\c@subsection=\count336
+\c@subsubsection=\count337
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasefram
 e.sty
-\beamer@framebox=\box67
-\beamer@frametitlebox=\box68
-\beamer@zoombox=\box69
-\beamer@zoomcount=\count325
-\beamer@zoomframecount=\count326
-\beamer@frametextheight=\dimen272
-\c@subsectionslide=\count327
+\beamer@framebox=\box68
+\beamer@frametitlebox=\box69
+\beamer@zoombox=\box70
+\beamer@zoomcount=\count338
+\beamer@zoomframecount=\count339
+\beamer@frametextheight=\dimen279
+\c@subsectionslide=\count340
 \beamer@frametopskip=\skip53
 \beamer@framebottomskip=\skip54
 \beamer@frametopskipautobreak=\skip55
 \beamer@framebottomskipautobreak=\skip56
 \beamer@envbody=\toks30
-\framewidth=\dimen273
-\c@framenumber=\count328
+\framewidth=\dimen280
+\c@framenumber=\count341
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseverb
 atim.sty
@@ -620,21 +613,22 @@ atim.sty
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasefram
 esize.sty
-\beamer@splitbox=\box70
-\beamer@autobreakcount=\count329
-\beamer@autobreaklastheight=\dimen274
+\beamer@splitbox=\box71
+\beamer@autobreakcount=\count342
+\beamer@autobreaklastheight=\dimen281
 \beamer@frametitletoks=\toks31
 \beamer@framesubtitletoks=\toks32
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasefram
 ecomponents.sty
-\beamer@footins=\box71
+\beamer@colheight=\skip57
+\beamer@footins=\box72
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasecolo
 r.sty)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasenote
 s.sty
-\beamer@frameboxcopy=\box72
+\beamer@frameboxcopy=\box73
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasetoc.
 sty)
@@ -646,17 +640,17 @@ lates.sty
 emplates.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseboxe
 s.sty
-\bmb@box=\box73
-\bmb@colorbox=\box74
-\bmb@boxwidth=\dimen275
-\bmb@boxheight=\dimen276
-\bmb@prevheight=\dimen277
-\bmb@temp=\dimen278
-\bmb@dima=\dimen279
-\bmb@dimb=\dimen280
-\bmb@prevheight=\dimen281
+\bmb@box=\box74
+\bmb@colorbox=\box75
+\bmb@boxwidth=\dimen282
+\bmb@boxheight=\dimen283
+\bmb@prevheight=\dimen284
+\bmb@temp=\dimen285
+\bmb@dima=\dimen286
+\bmb@dimb=\dimen287
+\bmb@prevheight=\dimen288
 )
-\beamer@blockheadheight=\dimen282
+\beamer@blockheadheight=\dimen289
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseloca
 lstructure.sty
@@ -664,87 +658,87 @@ lstructure.sty
 Package: enumerate 2023/07/04 v3.00 enumerate extensions (DPC)
 \@enLab=\toks34
 )
-\beamer@bibiconwidth=\skip57
-\c@figure=\count330
-\c@table=\count331
-\abovecaptionskip=\skip58
-\belowcaptionskip=\skip59
+\beamer@bibiconwidth=\skip58
+\c@figure=\count343
+\c@table=\count344
+\abovecaptionskip=\skip59
+\belowcaptionskip=\skip60
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasenavi
 gation.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasenavi
 gationsymbols.tex)
-\beamer@section@min@dim=\dimen283
+\beamer@section@min@dim=\dimen290
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasetheo
 rems.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
-Package: amsmath 2024/11/05 v2.17t AMS math features
-\@mathmargin=\skip60
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip61
 
 For additional information on amsmath, use the `?' option.
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
-Package: amstext 2021/08/26 v2.01 AMS text
+Package: amstext 2024/11/17 v2.01 AMS text
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks35
-\ex@=\dimen284
+\ex@=\dimen291
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen285
+\pmbraise@=\dimen292
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count332
+\inf@bad=\count345
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count333
-\leftroot@=\count334
+\uproot@=\count346
+\leftroot@=\count347
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count335
-\DOTSCASE@=\count336
+\classnum@=\count348
+\DOTSCASE@=\count349
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box75
-\strutbox@=\box76
+\Mathstrutbox@=\box76
+\strutbox@=\box77
 LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen286
+\big@size=\dimen293
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count337
+\macc@depth=\count350
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count338
+\c@MaxMatrixCols=\count351
 \dotsspace@=\muskip18
-\c@parentequation=\count339
-\dspbrk@lvl=\count340
+\c@parentequation=\count352
+\dspbrk@lvl=\count353
 \tag@help=\toks36
-\row@=\count341
-\column@=\count342
-\maxfields@=\count343
+\row@=\count354
+\column@=\count355
+\maxfields@=\count356
 \andhelp@=\toks37
-\eqnshift@=\dimen287
-\alignsep@=\dimen288
-\tagshift@=\dimen289
-\tagwidth@=\dimen290
-\totwidth@=\dimen291
-\lineht@=\dimen292
+\eqnshift@=\dimen294
+\alignsep@=\dimen295
+\tagshift@=\dimen296
+\tagwidth@=\dimen297
+\totwidth@=\dimen298
+\lineht@=\dimen299
 \@envbody=\toks38
-\multlinegap=\skip61
-\multlinetaggap=\skip62
+\multlinegap=\skip62
+\multlinetaggap=\skip63
 \mathdisplay@stack=\toks39
-LaTeX Info: Redefining \[ on input line 2953.
-LaTeX Info: Redefining \] on input line 2954.
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
@@ -753,12 +747,12 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headfont=\toks42
 \thm@notefont=\toks43
 \thm@headpunct=\toks44
-\thm@preskip=\skip63
-\thm@postskip=\skip64
-\thm@headsep=\skip65
+\thm@preskip=\skip64
+\thm@postskip=\skip65
+\thm@headsep=\skip66
 \dth@everypar=\toks45
 )
-\c@theorem=\count344
+\c@theorem=\count357
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasethem
 es.sty))
@@ -770,8 +764,8 @@ edefault.sty)
 medefault.sty)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerinnerthe
 medefault.sty
-\beamer@dima=\dimen293
-\beamer@dimb=\dimen294
+\beamer@dima=\dimen300
+\beamer@dimb=\dimen301
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerouterthe
 medefault.sty)))
@@ -791,34 +785,51 @@ Package: setspace 2022/12/04 v6.7b set line spacing
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
-Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
-\col@sep=\dimen295
-\ar@mcellbox=\box77
-\extrarowheight=\dimen296
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen302
+\ar@mcellbox=\box78
+\extrarowheight=\dimen303
 \NC@list=\toks46
-\extratabsurround=\skip66
-\backup@length=\skip67
-\ar@cellbox=\box78
+\extratabsurround=\skip67
+\backup@length=\skip68
+\ar@cellbox=\box79
 )
-\TX@col@width=\dimen297
-\TX@old@table=\dimen298
-\TX@old@col=\dimen299
-\TX@target=\dimen300
-\TX@delta=\dimen301
-\TX@cols=\count345
+\TX@col@width=\dimen304
+\TX@old@table=\dimen305
+\TX@old@col=\dimen306
+\TX@target=\dimen307
+\TX@delta=\dimen308
+\TX@cols=\count358
 \TX@ftn=\toks47
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2024/11/30 v24.14 The multilingual framework for pdfLaTeX, LuaLa
-TeX and XeLaTeX
-\babel@savecnt=\count346
-\U@D=\dimen302
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count359
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2078.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2080.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2082.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2083.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2084.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2086.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2111.
+\U@D=\dimen309
 \l@unhyphenated=\language79
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read3
-LaTeX Info: Redefining \textlatin on input line 3834.
-\bbl@dirlevel=\count347
+LaTeX Info: Redefining \textlatin on input line 3974.
+\bbl@dirlevel=\count360
+Package babel Info: Configuration files are deprecated, as
+(babel)             they can break document portability.
+(babel)             Reported on input line 4206.
 *************************************
 * Local config file bblopts.cfg used
 *
@@ -826,32 +837,31 @@ LaTeX Info: Redefining \textlatin on input line 3834.
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
+(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/it\bab
+el-italian.tex)
+Package babel Info: Importing font and identification data for italian
+(babel)             from babel-it.ini. Reported on input line 4330.
+
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\italian
 .ldf
-Language: italian 2024/10/10 v.1.5.01 Italian support for the babel system
-\it@lettering=\count348
-\it@doublequoteactive=\count349
-\it@ISOcompliance=\count350
+Language: italian 2026/01/13 v.1.5.02 Italian support for the babel system
+\it@lettering=\count361
+\it@doublequoteactive=\count362
+\it@ISOcompliance=\count363
 ))
-(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/it\bab
-el-italian.tex
-Package babel Info: Importing font and identification data for italian
-(babel)             from babel-it.ini. Reported on input line 11.
-)
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/tikzsymbols\tikzsymbo
 ls.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpa
 rse.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2024-11-02 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader) 
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-p
 dftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count351
-\l__pdf_internal_box=\box79
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count364
 ))
-Package: xparse 2024-08-16 L3 Experimental document command parser
+Package: xparse 2025-10-09 L3 Experimental document command parser
 )
 Package: tikzsymbols 2021/12/14 v4.12a Some symbols created using tikz and LaTe
 X3.
@@ -860,92 +870,92 @@ X3.
 z.sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.st
 y
-Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
 leshapes.code.tex
-File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodeparttextbox=\box80
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
 leplot.code.tex
-File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgf
 comp-version-0-65.sty
-Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen303
-\pgf@nodesepend=\dimen304
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen310
+\pgf@nodesepend=\dimen311
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgf
 comp-version-1-18.sty
-Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.
 sty
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffo
 r.code.tex
-Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen305
-\pgffor@skip=\dimen306
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen312
+\pgffor@skip=\dimen313
 \pgffor@stack=\toks48
 \pgffor@toks=\toks49
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz\tikz.code.tex
-Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfli
 braryplothandlers.code.tex
-File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count352
-\pgfplotmarksize=\dimen307
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count365
+\pgfplotmarksize=\dimen314
 )
-\tikz@lastx=\dimen308
-\tikz@lasty=\dimen309
-\tikz@lastxsaved=\dimen310
-\tikz@lastysaved=\dimen311
-\tikz@lastmovetox=\dimen312
-\tikz@lastmovetoy=\dimen313
-\tikzleveldistance=\dimen314
-\tikzsiblingdistance=\dimen315
+\tikz@lastx=\dimen315
+\tikz@lasty=\dimen316
+\tikz@lastxsaved=\dimen317
+\tikz@lastysaved=\dimen318
+\tikz@lastmovetox=\dimen319
+\tikz@lastmovetoy=\dimen320
+\tikzleveldistance=\dimen321
+\tikzsiblingdistance=\dimen322
 \tikz@figbox=\box81
 \tikz@figbox@bg=\box82
 \tikz@tempbox=\box83
 \tikz@tempbox@bg=\box84
-\tikztreelevel=\count353
-\tikznumberofchildren=\count354
-\tikznumberofcurrentchild=\count355
-\tikz@fig@count=\count356
+\tikztreelevel=\count366
+\tikznumberofchildren=\count367
+\tikznumberofcurrentchild=\count368
+\tikz@fig@count=\count369
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
 lematrix.code.tex
-File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count357
-\pgfmatrixcurrentcolumn=\count358
-\pgf@matrix@numberofcolumns=\count359
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count370
+\pgfmatrixcurrentcolumn=\count371
+\pgf@matrix@numberofcolumns=\count372
 )
-\tikz@expandcount=\count360
+\tikz@expandcount=\count373
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/tools\xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l
 3keys2e.sty
-Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfli
 braryarrows.code.tex
-File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\arrowsize=\dimen316
+File: pgflibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\arrowsize=\dimen323
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex
@@ -953,14 +963,14 @@ ikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex
 ikz/libraries\tikzlibrarydecorations.code.tex
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
 ledecorations.code.tex
-\pgfdecoratedcompleteddistance=\dimen317
-\pgfdecoratedremainingdistance=\dimen318
-\pgfdecoratedinputsegmentcompleteddistance=\dimen319
-\pgfdecoratedinputsegmentremainingdistance=\dimen320
-\pgf@decorate@distancetomove=\dimen321
-\pgf@decorate@repeatstate=\count361
-\pgfdecorationsegmentamplitude=\dimen322
-\pgfdecorationsegmentlength=\dimen323
+\pgfdecoratedcompleteddistance=\dimen324
+\pgfdecoratedremainingdistance=\dimen325
+\pgfdecoratedinputsegmentcompleteddistance=\dimen326
+\pgfdecoratedinputsegmentremainingdistance=\dimen327
+\pgf@decorate@distancetomove=\dimen328
+\pgf@decorate@repeatstate=\count374
+\pgfdecorationsegmentamplitude=\dimen329
+\pgfdecorationsegmentlength=\dimen330
 )
 \tikz@lib@dec@box=\box85
 )
@@ -968,129 +978,129 @@ ledecorations.code.tex
 ations\pgflibrarydecorations.pathmorphing.code.tex))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarytrees.code.tex
-File: tikzlibrarytrees.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarytrees.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-\l__tikzsymbols_Moai_thickness_dim=\dimen324
-\l__tikzsymbols_Kochtopf_nr_arguments_int=\count362
-\l__tikzsymbols_Bratpfanne_nr_arguments_int=\count363
-\l__tikzsymbols_Schneebesen_nr_arguments_int=\count364
-\l__tikzsymbols_Sieb_nr_arguments_int=\count365
-\l__tikzsymbols_Purierstab_nr_arguments_int=\count366
-\l__tikzsymbols_Dreizack_nr_arguments_int=\count367
-\l__tikzsymbols_Backblech_nr_arguments_int=\count368
-\l__tikzsymbols_Ofen_nr_arguments_int=\count369
-\l__tikzsymbols_Pfanne_nr_arguments_int=\count370
-\l__tikzsymbols_Herd_nr_arguments_int=\count371
-\l__tikzsymbols_Saftpresse_nr_arguments_int=\count372
-\l__tikzsymbols_Schussel_nr_arguments_int=\count373
-\l__tikzsymbols_Schaler_nr_arguments_int=\count374
-\l__tikzsymbols_Reibe_nr_arguments_int=\count375
-\l__tikzsymbols_Flasche_nr_arguments_int=\count376
-\l__tikzsymbols_Nudelholz_nr_arguments_int=\count377
-\l__tikzsymbols_Knoblauchpresse_nr_arguments_int=\count378
-\l__tikzsymbols_Sadey_nr_arguments_int=\count379
-\l__tikzsymbols_dSadey_nr_arguments_int=\count380
-\l__tikzsymbols_Changey_nr_arguments_int=\count381
-\l__tikzsymbols_dChangey_nr_arguments_int=\count382
-\l__tikzsymbols_cChangey_nr_arguments_int=\count383
-\l__tikzsymbols_dcChangey_nr_arguments_int=\count384
-\l__tikzsymbols_Annoey_nr_arguments_int=\count385
-\l__tikzsymbols_dAnnoey_nr_arguments_int=\count386
-\l__tikzsymbols_Smiley_nr_arguments_int=\count387
-\l__tikzsymbols_dSmiley_nr_arguments_int=\count388
-\l__tikzsymbols_Laughey_nr_arguments_int=\count389
-\l__tikzsymbols_dLaughey_nr_arguments_int=\count390
-\l__tikzsymbols_Neutrey_nr_arguments_int=\count391
-\l__tikzsymbols_dNeutrey_nr_arguments_int=\count392
-\l__tikzsymbols_Winkey_nr_arguments_int=\count393
-\l__tikzsymbols_oldWinkey_nr_arguments_int=\count394
-\l__tikzsymbols_dWinkey_nr_arguments_int=\count395
-\l__tikzsymbols_olddWinkey_nr_arguments_int=\count396
-\l__tikzsymbols_Sey_nr_arguments_int=\count397
-\l__tikzsymbols_dSey_nr_arguments_int=\count398
-\l__tikzsymbols_Xey_nr_arguments_int=\count399
-\l__tikzsymbols_dXey_nr_arguments_int=\count400
-\l__tikzsymbols_Innocey_nr_arguments_int=\count401
-\l__tikzsymbols_wInnocey_nr_arguments_int=\count402
-\l__tikzsymbols_dInnocey_nr_arguments_int=\count403
-\l__tikzsymbols_Cooley_nr_arguments_int=\count404
-\l__tikzsymbols_dCooley_nr_arguments_int=\count405
-\l__tikzsymbols_Tongey_nr_arguments_int=\count406
-\l__tikzsymbols_dTongey_nr_arguments_int=\count407
-\l__tikzsymbols_Nursey_nr_arguments_int=\count408
-\l__tikzsymbols_dNursey_nr_arguments_int=\count409
-\l__tikzsymbols_Vomey_nr_arguments_int=\count410
-\l__tikzsymbols_dVomey_nr_arguments_int=\count411
-\l__tikzsymbols_Walley_nr_arguments_int=\count412
-\l__tikzsymbols_rWalley_nr_arguments_int=\count413
-\l__tikzsymbols_dWalley_nr_arguments_int=\count414
-\l__tikzsymbols_drWalley_nr_arguments_int=\count415
-\l__tikzsymbols_Cat_nr_arguments_int=\count416
-\l__tikzsymbols_SchrodingersCat_nr_arguments_int=\count417
-\l__tikzsymbols_Ninja_nr_arguments_int=\count418
-\l__tikzsymbols_dNinja_nr_arguments_int=\count419
-\l__tikzsymbols_Sleepey_nr_arguments_int=\count420
-\l__tikzsymbols_dSleepey_nr_arguments_int=\count421
-\l__tikzsymbols_Maskey_nr_arguments_int=\count422
-\l__tikzsymbols_NiceReapey_nr_arguments_int=\count423
-\l__tikzsymbols_Strichmaxerl_nr_arguments_int=\count424
-\l__tikzsymbols_Person_nr_arguments_int=\count425
-\l__tikzsymbols_Heart_nr_arguments_int=\count426
-\l__tikzsymbols_dHeart_nr_arguments_int=\count427
-\l__tikzsymbols_HeartBroken_nr_arguments_int=\count428
-\l__tikzsymbols_Candle_nr_arguments_int=\count429
-\l__tikzsymbols_Fire_nr_arguments_int=\count430
-\l__tikzsymbols_Coffeecup_nr_arguments_int=\count431
-\l__tikzsymbols_Chair_nr_arguments_int=\count432
-\l__tikzsymbols_Bed_nr_arguments_int=\count433
-\l__tikzsymbols_Tribar_nr_arguments_int=\count434
-\l__tikzsymbols_Moai_nr_arguments_int=\count435
-\l__tikzsymbols_Snowman_nr_arguments_int=\count436
-\l__tikzsymbols_BasicTree_nr_arguments_int=\count437
-\l__tikzsymbols_WorstTree_nr_arguments_int=\count438
-\l__tikzsymbols_Springtree_nr_arguments_int=\count439
-\l__tikzsymbols_Summertree_nr_arguments_int=\count440
-\l__tikzsymbols_Autumntree_nr_arguments_int=\count441
-\l__tikzsymbols_Wintertree_nr_arguments_int=\count442
+\l__tikzsymbols_Moai_thickness_dim=\dimen331
+\l__tikzsymbols_Kochtopf_nr_arguments_int=\count375
+\l__tikzsymbols_Bratpfanne_nr_arguments_int=\count376
+\l__tikzsymbols_Schneebesen_nr_arguments_int=\count377
+\l__tikzsymbols_Sieb_nr_arguments_int=\count378
+\l__tikzsymbols_Purierstab_nr_arguments_int=\count379
+\l__tikzsymbols_Dreizack_nr_arguments_int=\count380
+\l__tikzsymbols_Backblech_nr_arguments_int=\count381
+\l__tikzsymbols_Ofen_nr_arguments_int=\count382
+\l__tikzsymbols_Pfanne_nr_arguments_int=\count383
+\l__tikzsymbols_Herd_nr_arguments_int=\count384
+\l__tikzsymbols_Saftpresse_nr_arguments_int=\count385
+\l__tikzsymbols_Schussel_nr_arguments_int=\count386
+\l__tikzsymbols_Schaler_nr_arguments_int=\count387
+\l__tikzsymbols_Reibe_nr_arguments_int=\count388
+\l__tikzsymbols_Flasche_nr_arguments_int=\count389
+\l__tikzsymbols_Nudelholz_nr_arguments_int=\count390
+\l__tikzsymbols_Knoblauchpresse_nr_arguments_int=\count391
+\l__tikzsymbols_Sadey_nr_arguments_int=\count392
+\l__tikzsymbols_dSadey_nr_arguments_int=\count393
+\l__tikzsymbols_Changey_nr_arguments_int=\count394
+\l__tikzsymbols_dChangey_nr_arguments_int=\count395
+\l__tikzsymbols_cChangey_nr_arguments_int=\count396
+\l__tikzsymbols_dcChangey_nr_arguments_int=\count397
+\l__tikzsymbols_Annoey_nr_arguments_int=\count398
+\l__tikzsymbols_dAnnoey_nr_arguments_int=\count399
+\l__tikzsymbols_Smiley_nr_arguments_int=\count400
+\l__tikzsymbols_dSmiley_nr_arguments_int=\count401
+\l__tikzsymbols_Laughey_nr_arguments_int=\count402
+\l__tikzsymbols_dLaughey_nr_arguments_int=\count403
+\l__tikzsymbols_Neutrey_nr_arguments_int=\count404
+\l__tikzsymbols_dNeutrey_nr_arguments_int=\count405
+\l__tikzsymbols_Winkey_nr_arguments_int=\count406
+\l__tikzsymbols_oldWinkey_nr_arguments_int=\count407
+\l__tikzsymbols_dWinkey_nr_arguments_int=\count408
+\l__tikzsymbols_olddWinkey_nr_arguments_int=\count409
+\l__tikzsymbols_Sey_nr_arguments_int=\count410
+\l__tikzsymbols_dSey_nr_arguments_int=\count411
+\l__tikzsymbols_Xey_nr_arguments_int=\count412
+\l__tikzsymbols_dXey_nr_arguments_int=\count413
+\l__tikzsymbols_Innocey_nr_arguments_int=\count414
+\l__tikzsymbols_wInnocey_nr_arguments_int=\count415
+\l__tikzsymbols_dInnocey_nr_arguments_int=\count416
+\l__tikzsymbols_Cooley_nr_arguments_int=\count417
+\l__tikzsymbols_dCooley_nr_arguments_int=\count418
+\l__tikzsymbols_Tongey_nr_arguments_int=\count419
+\l__tikzsymbols_dTongey_nr_arguments_int=\count420
+\l__tikzsymbols_Nursey_nr_arguments_int=\count421
+\l__tikzsymbols_dNursey_nr_arguments_int=\count422
+\l__tikzsymbols_Vomey_nr_arguments_int=\count423
+\l__tikzsymbols_dVomey_nr_arguments_int=\count424
+\l__tikzsymbols_Walley_nr_arguments_int=\count425
+\l__tikzsymbols_rWalley_nr_arguments_int=\count426
+\l__tikzsymbols_dWalley_nr_arguments_int=\count427
+\l__tikzsymbols_drWalley_nr_arguments_int=\count428
+\l__tikzsymbols_Cat_nr_arguments_int=\count429
+\l__tikzsymbols_SchrodingersCat_nr_arguments_int=\count430
+\l__tikzsymbols_Ninja_nr_arguments_int=\count431
+\l__tikzsymbols_dNinja_nr_arguments_int=\count432
+\l__tikzsymbols_Sleepey_nr_arguments_int=\count433
+\l__tikzsymbols_dSleepey_nr_arguments_int=\count434
+\l__tikzsymbols_Maskey_nr_arguments_int=\count435
+\l__tikzsymbols_NiceReapey_nr_arguments_int=\count436
+\l__tikzsymbols_Strichmaxerl_nr_arguments_int=\count437
+\l__tikzsymbols_Person_nr_arguments_int=\count438
+\l__tikzsymbols_Heart_nr_arguments_int=\count439
+\l__tikzsymbols_dHeart_nr_arguments_int=\count440
+\l__tikzsymbols_HeartBroken_nr_arguments_int=\count441
+\l__tikzsymbols_Candle_nr_arguments_int=\count442
+\l__tikzsymbols_Fire_nr_arguments_int=\count443
+\l__tikzsymbols_Coffeecup_nr_arguments_int=\count444
+\l__tikzsymbols_Chair_nr_arguments_int=\count445
+\l__tikzsymbols_Bed_nr_arguments_int=\count446
+\l__tikzsymbols_Tribar_nr_arguments_int=\count447
+\l__tikzsymbols_Moai_nr_arguments_int=\count448
+\l__tikzsymbols_Snowman_nr_arguments_int=\count449
+\l__tikzsymbols_BasicTree_nr_arguments_int=\count450
+\l__tikzsymbols_WorstTree_nr_arguments_int=\count451
+\l__tikzsymbols_Springtree_nr_arguments_int=\count452
+\l__tikzsymbols_Summertree_nr_arguments_int=\count453
+\l__tikzsymbols_Autumntree_nr_arguments_int=\count454
+\l__tikzsymbols_Wintertree_nr_arguments_int=\count455
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/spot\spot.sty
 Package: spot 2011/05/09 v1.1 Spotlight highlighting
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shape
 s\pgflibraryshapes.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shape
 s\pgflibraryshapes.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shape
 s\pgflibraryshapes.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shape
 s\pgflibraryshapes.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.callouts.code.tex
@@ -1098,11 +1108,11 @@ ikz/libraries\tikzlibraryshapes.callouts.code.tex
 s\pgflibraryshapes.callouts.code.tex))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shape
 s\pgflibraryshapes.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodepartlowerbox=\box86
 \pgfnodeparttwobox=\box87
 \pgfnodepartthreebox=\box88
@@ -1126,50 +1136,50 @@ File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryfadings.code.tex
-File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfli
 braryfadings.code.tex
-File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
-\c@spot@spots=\count443
+\c@spot@spots=\count456
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/textpos\textpos.sty
 Package: textpos 2022/07/23 v1.10.1
 Package textpos Info: choosing support for LaTeX3 on input line 60.
 \TP@textbox=\box106
 \TP@holdbox=\box107
-\TPHorizModule=\dimen325
-\TPVertModule=\dimen326
-\TP@margin=\dimen327
-\TP@absmargin=\dimen328
+\TPHorizModule=\dimen332
+\TPVertModule=\dimen333
+\TP@margin=\dimen334
+\TP@absmargin=\dimen335
 
 Grid set 16 x 16 = 22.7622pt x 17.07166pt
-\TPboxrulesize=\dimen329
-\TP@ox=\dimen330
-\TP@oy=\dimen331
+\TPboxrulesize=\dimen336
+\TP@ox=\dimen337
+\TP@oy=\dimen338
 \TP@tbargs=\toks50
 TextBlockOrigin set to 0pt x 0pt
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen332
-\lightrulewidth=\dimen333
-\cmidrulewidth=\dimen334
-\belowrulesep=\dimen335
-\belowbottomsep=\dimen336
-\aboverulesep=\dimen337
-\abovetopsep=\dimen338
-\cmidrulesep=\dimen339
-\cmidrulekern=\dimen340
-\defaultaddspace=\dimen341
-\@cmidla=\count444
-\@cmidlb=\count445
-\@aboverulesep=\dimen342
-\@belowrulesep=\dimen343
-\@thisruleclass=\count446
-\@lastruleclass=\count447
-\@thisrulewidth=\dimen344
+\heavyrulewidth=\dimen339
+\lightrulewidth=\dimen340
+\cmidrulewidth=\dimen341
+\belowrulesep=\dimen342
+\belowbottomsep=\dimen343
+\aboverulesep=\dimen344
+\abovetopsep=\dimen345
+\cmidrulesep=\dimen346
+\cmidrulekern=\dimen347
+\defaultaddspace=\dimen348
+\@cmidla=\count457
+\@cmidlb=\count458
+\@aboverulesep=\dimen349
+\@belowrulesep=\dimen350
+\@thisruleclass=\count459
+\@lastruleclass=\count460
+\@thisrulewidth=\dimen351
 ) (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks51
@@ -1177,19 +1187,19 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarymindmap.code.tex
-File: tikzlibrarymindmap.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarymindmap.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarycalc.code.tex
-File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarypatterns.code.tex
-File: tikzlibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfli
 brarypatterns.code.tex
-File: pgflibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarydecorations.markings.code.tex
@@ -1197,21 +1207,21 @@ ikz/libraries\tikzlibrarydecorations.markings.code.tex
 ations\pgflibrarydecorations.markings.code.tex))
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarybackgrounds.code.tex
-File: tikzlibrarybackgrounds.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@layerbox@background=\box108
 \pgf@layerboxsaved@background=\box109
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/pgf-blur\tikzlibrarys
 hadows.blur.code.tex  v1.02, 2012/12/09
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
 ikz/libraries\tikzlibraryshadows.code.tex
-File: tikzlibraryshadows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshadows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
-\pgfbs@fading@count=\count448
+\pgfbs@fading@count=\count461
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1285,16 +1295,16 @@ LaTeX Font Info:    ... okay on input line 82.
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count449
-\scratchdimen=\dimen345
+\scratchcounter=\count462
+\scratchdimen=\dimen352
 \scratchbox=\box110
-\nofMPsegments=\count450
-\nofMParguments=\count451
+\nofMPsegments=\count463
+\nofMParguments=\count464
 \everyMPshowfont=\toks53
-\MPscratchCnt=\count452
-\MPscratchDim=\dimen346
-\MPnumerator=\count453
-\makeMPintoPDFobject=\count454
+\MPscratchCnt=\count465
+\MPscratchDim=\dimen353
+\MPnumerator=\count466
+\makeMPintoPDFobject=\count467
 \everyMPtoPDFconversion=\toks54
 )
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
@@ -1408,244 +1418,268 @@ italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting
 italian.ldf    on input line 82.
 
-(03-Test.nav)
+(03-Test.nav) [1
 
-[1
+{C:/Users/Ottavia/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (03-Test.t
+oc) [2
 
-{C:/Users/Ottavia/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(03-Test.toc)
+] (03-Test.toc) [3
 
-[2
+] [4
 
-]
-
-[3
+] [5
 
 ]
-
-[4
-
-]
-
-[5
-
-]
-
-[6
-
-]
-
-[7
-
-]
-
-[8
-
-]
-
-[9
-
-]
-
-[10
-
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 247
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124
 .
- (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+
+(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 247
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124
 .
- (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+
+(C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 247.
+ut line 124.
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mat
 hkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-)
+) [6
 
-[11
+] (03-Test.toc) [7
 
-] (03-Test.toc)
+] [8
 
-[12
+] [9
 
-]
+] (03-Test.toc) [10
 
-[13
-
-]
-
-[14
+] [11
 
 ]
+(03-Test.toc) [12
 
-[15
+] [13
+
+] (03-Test.toc) [14
+
+] [15
+
+] (03-Test.toc) [16
+
+] [17
 
 ]
-
-[16
-
-]
-
-[17
-
-]
-
 [18
 
-]
-<img/accordo.png, id=1752, 792.123pt x 40.734pt>
-File: img/accordo.png Graphic file (type png)
-<use img/accordo.png>
-Package pdftex.def Info: img/accordo.png  used on input line 346.
-(pdftex.def)             Requested size: 309.77371pt x 15.92969pt.
+] [19
 
 
-[19
-
- <./img/accordo.png>]
-File: img/accordo.png Graphic file (type png)
-<use img/accordo.png>
-Package pdftex.def Info: img/accordo.png  used on input line 346.
-(pdftex.def)             Requested size: 309.77371pt x 15.92969pt.
+] [20
 
 
-[20
-
-]
-Overfull \hbox (14.66502pt too wide) in paragraph at lines 372--372
-[]|\OT1/cmss/m/n/10.95 Completamente| 
- []
+] [21
 
 
-Overfull \hbox (14.66502pt too wide) in paragraph at lines 372--372
-[]|\OT1/cmss/m/n/10.95 Completamente| 
- []
+] (03-Test.toc) [22
 
+] [23
 
+] (03-Test.toc) [24
 
-[21
+] [25
+
+] [26
 
 ]
-<img/vas.png, id=2015, 338.76563pt x 84.315pt>
-File: img/vas.png Graphic file (type png)
-<use img/vas.png>
-Package pdftex.def Info: img/vas.png  used on input line 383.
-(pdftex.def)             Requested size: 240.9357pt x 59.96826pt.
-
-
-[22
-
- <./img/vas.png>]
-
-[23
-
-]
-
-[24
-
-]
-
-[25
-
-]
-
-[26
-
-]
-
 [27
 
+] [28
+
+] [29
+
+] [30
+
+] [31
+
+] [32
+
+] [33
+
+] [34
+
+] [35
+
+] (03-Test.toc) [36
+
+] [37
+
+] [38
+
 ]
+(03-Test.toc) [39
 
-[28
+] [40
+
+] [41
 
 ]
+<porta.png, id=5029, 143.007pt x 72.27pt>
+File: porta.png Graphic file (type png)
+<use porta.png>
+Package pdftex.def Info: porta.png  used on input line 553.
+(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
 
-[29
+Overfull \vbox (2.14557pt too high) detected at line 553
+ []
+
+[42
+
+ <./porta.png>]
+File: porta.png Graphic file (type png)
+<use porta.png>
+Package pdftex.def Info: porta.png  used on input line 553.
+(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+
+Overfull \vbox (2.14557pt too high) detected at line 553
+ []
+
+[43
+
+]
+File: porta.png Graphic file (type png)
+<use porta.png>
+Package pdftex.def Info: porta.png  used on input line 553.
+(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+
+Overfull \vbox (2.14557pt too high) detected at line 553
+ []
+
+[44
+
+]
+File: porta.png Graphic file (type png)
+<use porta.png>
+Package pdftex.def Info: porta.png  used on input line 553.
+(pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
+
+Overfull \vbox (2.14557pt too high) detected at line 553
+ []
+
+[45
+
+] [46
+
+] [47
+
+] [48
+
+] [49
+
+] [50
+
+] [51
+
+] [52
+
+] [53
+
+] [54
+
+]
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 752--752
+[]|\OT1/cmss/m/n/10.95 Completamente| 
+ []
+
+
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 752--752
+[]|\OT1/cmss/m/n/10.95 Completamente| 
+ []
+
+[55
+
+]
+<img/vas.png, id=6599, 338.76563pt x 84.315pt>
+File: img/vas.png Graphic file (type png)
+<use img/vas.png>
+Package pdftex.def Info: img/vas.png  used on input line 763.
+(pdftex.def)             Requested size: 240.9357pt x 59.96826pt.
+ [56
+
+ <./img/vas.png>] [57
+
+] [58
+
+] [59
+
+] [60
+
+] [61
+
+] [62
+
+] [63
 
 ] (03-Test.toc)
+[64
 
-[30
-
-]
-
-[31
+] [65
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 562.
+(hyperref)                removing `math shift' on input line 942.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 562.
+(hyperref)                removing `math shift' on input line 942.
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
 [][][][][][][]  
  []
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
 [][][][][][][]  
  []
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
 [][][][][][][]  
  []
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 616--616
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 996--996
 [][][][][][][]  
  []
 
 
-Overfull \vbox (11.08333pt too high) detected at line 616
+Overfull \vbox (9.74995pt too high) detected at line 996
  []
 
+[66
 
+] [67
 
-[32
+] [68
 
-]
+] (03-Test.toc) [69
 
-[33
+] [70
 
-]
+] [71
 
-[34
+] [72
 
-] (03-Test.toc)
+] [73
 
-[35
-
-]
-
-[36
-
-]
-
-[37
-
-]
-
-[38
-
-]
-
-[39
-
-]
-
-[40
+] [74
 
 ]
 \tf@nav=\write6
@@ -1659,20 +1693,20 @@ Overfull \vbox (11.08333pt too high) detected at line 616
 
  (03-Test.aux)
  ***********
-LaTeX2e <2024-11-01> patch level 1
-L3 programming layer <2024-11-02>
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `03-Test.out' has not changed.
-(rerunfilecheck)             Checksum: 418F0C7A423988286FA737E45E837C0E;2649.
+(rerunfilecheck)             Checksum: CF731E133930AD6870F650EB9700115C;3750.
  ) 
 Here is how much of TeX's memory you used:
- 31028 strings out of 473650
- 660333 string characters out of 5716970
- 1135362 words of memory out of 5000000
- 53362 multiletter control sequences out of 15000+600000
- 572544 words of font info for 87 fonts, out of 8000000 for 9000
+ 31364 strings out of 467867
+ 666950 string characters out of 5417366
+ 1185066 words of memory out of 5000000
+ 59384 multiletter control sequences out of 15000+600000
+ 644345 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,19n,123p,406b,907s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,19n,123p,453b,915s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Ottavia\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 sx1095.pk><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmmi10.pfb><C:/Users/Ottavia/AppData/Local/Programs/MiKTeX/fonts/type
@@ -1690,9 +1724,9 @@ ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Ottavia/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Ottavi
 a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 
-Output written on 03-Test.pdf (40 pages, 739800 bytes).
+Output written on 03-Test.pdf (74 pages, 1456771 bytes).
 PDF statistics:
- 3796 PDF objects out of 4296 (max. 8388607)
- 100 named destinations out of 1000 (max. 500000)
- 337 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 9187 PDF objects out of 10688 (max. 8388607)
+ 175 named destinations out of 1000 (max. 500000)
+ 399 words of extra memory for PDF output out of 10000 (max. 10000000)
 
