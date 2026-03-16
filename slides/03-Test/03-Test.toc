@@ -2,19 +2,19 @@
 \babel@toc {italian}{}\relax 
 \beamer@sectionintoc {1}{Test}{2}{0}{1}
 \beamer@subsectionintoc {1}{1}{Cosa sono i test?}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Perché i test?}{7}{0}{1}
-\beamer@subsectionintoc {1}{3}{Come è fatto un test?}{9}{0}{1}
-\beamer@subsectionintoc {1}{4}{A cosa servono?}{11}{0}{1}
-\beamer@subsectionintoc {1}{5}{Dove si usano?}{13}{0}{1}
-\beamer@subsectionintoc {1}{6}{Come si costruisce un test?}{15}{0}{1}
-\beamer@sectionintoc {2}{Tipi di test}{21}{0}{2}
-\beamer@subsectionintoc {2}{1}{Prestazione massima}{23}{0}{2}
-\beamer@subsectionintoc {2}{2}{Prestazione Tipica}{32}{0}{2}
-\beamer@sectionintoc {3}{Scale di Risposta}{35}{0}{3}
-\beamer@sectionintoc {4}{Attendibilità}{55}{0}{4}
-\beamer@sectionintoc {5}{Validità}{60}{0}{5}
-\beamer@subsectionintoc {5}{1}{Validità di costrutto}{61}{0}{5}
-\beamer@subsectionintoc {5}{2}{Validità Statistica}{63}{0}{5}
-\beamer@subsectionintoc {5}{3}{Validità Interna}{65}{0}{5}
-\beamer@subsectionintoc {5}{4}{Validità esterna}{67}{0}{5}
-\beamer@subsectionintoc {5}{5}{Validità ecologica}{69}{0}{5}
+\beamer@subsectionintoc {1}{2}{Perché i test?}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{Come è fatto un test?}{8}{0}{1}
+\beamer@subsectionintoc {1}{4}{A cosa servono?}{10}{0}{1}
+\beamer@subsectionintoc {1}{5}{Dove si usano?}{12}{0}{1}
+\beamer@subsectionintoc {1}{6}{Come si costruisce un test?}{14}{0}{1}
+\beamer@sectionintoc {2}{Tipi di test}{20}{0}{2}
+\beamer@subsectionintoc {2}{1}{Prestazione Massima}{22}{0}{2}
+\beamer@subsectionintoc {2}{2}{Prestazione Tipica}{31}{0}{2}
+\beamer@sectionintoc {3}{Scale di Risposta}{34}{0}{3}
+\beamer@sectionintoc {4}{Attendibilità}{54}{0}{4}
+\beamer@sectionintoc {5}{Validità}{59}{0}{5}
+\beamer@subsectionintoc {5}{1}{Validità di costrutto}{60}{0}{5}
+\beamer@subsectionintoc {5}{2}{Validità Statistica}{62}{0}{5}
+\beamer@subsectionintoc {5}{3}{Validità Interna}{64}{0}{5}
+\beamer@subsectionintoc {5}{4}{Validità esterna}{66}{0}{5}
+\beamer@subsectionintoc {5}{5}{Validità ecologica}{68}{0}{5}

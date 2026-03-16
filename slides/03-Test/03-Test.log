@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  15 MAR 2026 21:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  16 MAR 2026 08:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1427,68 +1427,68 @@ oc) [2
 
 ] [4
 
-] [5
-
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 124
+LaTeX Font Info:    Trying to load font information for U+msa on input line 123
 .
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 124
+LaTeX Font Info:    Trying to load font information for U+msb on input line 123
 .
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 124.
+ut line 123.
 
 (C:\Users\Ottavia\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mat
 hkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-) [6
+) [5
 
-] (03-Test.toc) [7
+] (03-Test.toc) [6
 
-] [8
+] [7
 
-] (03-Test.toc) [9
+] (03-Test.toc) [8
 
-] [10
+] [9
 
 ] (03-Test.toc)
-[11
+[10
 
-] [12
+] [11
 
-] (03-Test.toc) [13
+] (03-Test.toc) [12
 
-] [14
+] [13
 
-] (03-Test.toc) [15
+] (03-Test.toc) [14
+
+] [15
 
 ] [16
 
 ] [17
 
+
 ] [18
 
 
-] [19
-
-
 ]
-[20
+[19
 
 
-] (03-Test.toc) [21
+] (03-Test.toc) [20
 
-] [22
+] [21
 
-] (03-Test.toc) [23
+] (03-Test.toc) [22
+
+] [23
 
 ] [24
 
@@ -1498,49 +1498,49 @@ thkerncmss.
 
 ] [27
 
-] [28
-
 ]
-[29
+[28
+
+] [29
 
 ] [30
 
-] [31
+] (03-Test.toc) [31
 
-] (03-Test.toc) [32
+] [32
 
 ] [33
 
-] [34
+] (03-Test.toc) [34
 
-] (03-Test.toc) [35
+] [35
 
 ] [36
 
-] [37
-
 ]
-<porta.png, id=4975, 143.007pt x 72.27pt>
+<porta.png, id=4883, 143.007pt x 72.27pt>
 File: porta.png Graphic file (type png)
 <use porta.png>
-Package pdftex.def Info: porta.png  used on input line 550.
+Package pdftex.def Info: porta.png  used on input line 549.
 (pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
 
-Overfull \vbox (2.14557pt too high) detected at line 550
+Overfull \vbox (2.14557pt too high) detected at line 549
  []
 
-[38
+[37
 
  <./porta.png>]
 File: porta.png Graphic file (type png)
 <use porta.png>
-Package pdftex.def Info: porta.png  used on input line 550.
+Package pdftex.def Info: porta.png  used on input line 549.
 (pdftex.def)             Requested size: 172.09767pt x 86.97496pt.
 
-Overfull \vbox (2.14557pt too high) detected at line 550
+Overfull \vbox (2.14557pt too high) detected at line 549
  []
 
-[39
+[38
+
+] [39
 
 ] [40
 
@@ -1552,29 +1552,29 @@ Overfull \vbox (2.14557pt too high) detected at line 550
 
 ] [44
 
-] [45
-
 ]
-Overfull \hbox (14.66502pt too wide) in paragraph at lines 746--746
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 745--745
 []|\OT1/cmss/m/n/10.95 Completamente| 
  []
 
 
-Overfull \hbox (14.66502pt too wide) in paragraph at lines 746--746
+Overfull \hbox (14.66502pt too wide) in paragraph at lines 745--745
 []|\OT1/cmss/m/n/10.95 Completamente| 
  []
 
-[46
+[45
 
 ]
-<img/vas.png, id=6188, 338.76563pt x 84.315pt>
+<img/vas.png, id=6097, 338.76563pt x 84.315pt>
 File: img/vas.png Graphic file (type png)
 <use img/vas.png>
-Package pdftex.def Info: img/vas.png  used on input line 757.
+Package pdftex.def Info: img/vas.png  used on input line 756.
 (pdftex.def)             Requested size: 240.9357pt x 59.96826pt.
- [47
+ [46
 
- <./img/vas.png>] [48
+ <./img/vas.png>] [47
+
+] [48
 
 ] [49
 
@@ -1586,75 +1586,73 @@ Package pdftex.def Info: img/vas.png  used on input line 757.
 
 ] [53
 
-] [54
-
 ] (03-Test.toc)
-[55
+[54
 
-] [56
+] [55
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 936.
+(hyperref)                removing `math shift' on input line 935.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 936.
+(hyperref)                removing `math shift' on input line 935.
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 989--989
 [][][][][][][]  
  []
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 989--989
 [][][][][][][]  
  []
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 989--989
 [][][][][][][]  
  []
 
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 990--990
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 989--989
 [][][][][][][]  
  []
 
 
-Overfull \vbox (9.74995pt too high) detected at line 990
+Overfull \vbox (9.74995pt too high) detected at line 989
  []
 
-[57
+[56
+
+] [57
 
 ] [58
 
-] [59
+] (03-Test.toc) [59
 
 ] (03-Test.toc) [60
 
-] (03-Test.toc) [61
-
-] [62
+] [61
 
 ] (03-Test.toc)
-[63
+[62
 
-] [64
+] [63
 
-] (03-Test.toc) [65
+] (03-Test.toc) [64
 
-] [66
+] [65
 
-] (03-Test.toc) [67
+] (03-Test.toc) [66
 
-] [68
+] [67
 
 ] (03-Test.toc)
-[69
+[68
 
-] [70
+] [69
 
 ]
 \tf@nav=\write6
@@ -1671,13 +1669,20 @@ Overfull \vbox (9.74995pt too high) detected at line 990
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `03-Test.out' has not changed.
-(rerunfilecheck)             Checksum: 374C3492232ADED16D9553909A1CA83A;3749.
+
+
+Package rerunfilecheck Warning: File `03-Test.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `03-Test.out':
+(rerunfilecheck)             Before: 7FC978AEF910191375F3DCA64C1E8939;3749
+(rerunfilecheck)             After:  04FA1A32AB8907461144041D0DC98693;3749.
  ) 
 Here is how much of TeX's memory you used:
- 31376 strings out of 467867
- 667442 string characters out of 5417366
- 1191427 words of memory out of 5000000
+ 31374 strings out of 467867
+ 667423 string characters out of 5417366
+ 1191417 words of memory out of 5000000
  59394 multiletter control sequences out of 15000+600000
  644345 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1699,9 +1704,9 @@ ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Ottavia/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Ottavi
 a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 
-Output written on 03-Test.pdf (70 pages, 1392795 bytes).
+Output written on 03-Test.pdf (69 pages, 1374181 bytes).
 PDF statistics:
- 9439 PDF objects out of 10688 (max. 8388607)
- 167 named destinations out of 1000 (max. 500000)
+ 9348 PDF objects out of 10688 (max. 8388607)
+ 165 named destinations out of 1000 (max. 500000)
  399 words of extra memory for PDF output out of 10000 (max. 10000000)
 
