@@ -182,10 +182,22 @@
 \headcommand {\sectionentry {6}{Esercitazione}{70}{Esercitazione}{0}}
 \headcommand {\slideentry {6}{0}{1}{70/70}{}{0}}
 \headcommand {\beamer@framepages {70}{70}}
-\headcommand {\slideentry {6}{0}{2}{71/71}{}{0}}
+\headcommand {\beamer@subsectionpages {70}{70}}
+\headcommand {\beamer@subsectionentry {0}{6}{1}{71}{Big Five Invetory}}
+\headcommand {\slideentry {6}{1}{1}{71/71}{Big Five Invetory}{0}}
 \headcommand {\beamer@framepages {71}{71}}
-\headcommand {\beamer@partpages {1}{71}}
-\headcommand {\beamer@subsectionpages {72}{71}}
-\headcommand {\beamer@sectionpages {70}{71}}
-\headcommand {\beamer@documentpages {71}}
-\headcommand {\gdef \inserttotalframenumber {63}}
+\headcommand {\beamer@subsectionpages {71}{71}}
+\headcommand {\beamer@subsectionentry {0}{6}{2}{72}{Esercitazione 1}}
+\headcommand {\slideentry {6}{2}{1}{72/72}{Esercitazione 1}{0}}
+\headcommand {\beamer@framepages {72}{72}}
+\headcommand {\slideentry {6}{2}{2}{73/73}{Esercitazione 1}{0}}
+\headcommand {\beamer@framepages {73}{73}}
+\headcommand {\beamer@subsectionpages {72}{73}}
+\headcommand {\beamer@subsectionentry {0}{6}{3}{74}{Esercitazione 2}}
+\headcommand {\slideentry {6}{3}{1}{74/74}{Esercitazione 2}{0}}
+\headcommand {\beamer@framepages {74}{74}}
+\headcommand {\beamer@partpages {1}{74}}
+\headcommand {\beamer@subsectionpages {74}{74}}
+\headcommand {\beamer@sectionpages {70}{74}}
+\headcommand {\beamer@documentpages {74}}
+\headcommand {\gdef \inserttotalframenumber {66}}
