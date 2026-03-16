@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  16 MAR 2026 08:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.12)  16 MAR 2026 08:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1518,7 +1518,7 @@ thkerncmss.
 ] [36
 
 ]
-<porta.png, id=4883, 143.007pt x 72.27pt>
+<porta.png, id=5068, 143.007pt x 72.27pt>
 File: porta.png Graphic file (type png)
 <use porta.png>
 Package pdftex.def Info: porta.png  used on input line 549.
@@ -1565,7 +1565,7 @@ Overfull \hbox (14.66502pt too wide) in paragraph at lines 745--745
 [45
 
 ]
-<img/vas.png, id=6097, 338.76563pt x 84.315pt>
+<img/vas.png, id=6327, 338.76563pt x 84.315pt>
 File: img/vas.png Graphic file (type png)
 <use img/vas.png>
 Package pdftex.def Info: img/vas.png  used on input line 756.
@@ -1654,6 +1654,20 @@ Overfull \vbox (9.74995pt too high) detected at line 989
 
 ] [69
 
+] (03-Test.toc) [70
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1191--1191
+[]|\OT1/cmss/bx/n/10.95 Apertura
+ []
+
+
+Overfull \hbox (10.89793pt too wide) in paragraph at lines 1191--1191
+[][]  
+ []
+
+[71
+
 ]
 \tf@nav=\write6
 \openout6 = `03-Test.nav'.
@@ -1669,21 +1683,14 @@ Overfull \vbox (9.74995pt too high) detected at line 989
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-Package rerunfilecheck Warning: File `03-Test.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `03-Test.out':
-(rerunfilecheck)             Before: 7FC978AEF910191375F3DCA64C1E8939;3749
-(rerunfilecheck)             After:  04FA1A32AB8907461144041D0DC98693;3749.
+Package rerunfilecheck Info: File `03-Test.out' has not changed.
+(rerunfilecheck)             Checksum: 864561F7EE3289BC5B2CCEAC5F94C5CE;3858.
  ) 
 Here is how much of TeX's memory you used:
- 31374 strings out of 467867
- 667423 string characters out of 5417366
- 1191417 words of memory out of 5000000
- 59394 multiletter control sequences out of 15000+600000
+ 31389 strings out of 467867
+ 667642 string characters out of 5417366
+ 1193976 words of memory out of 5000000
+ 59402 multiletter control sequences out of 15000+600000
  644345 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,123p,453b,915s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1704,9 +1711,9 @@ ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/Ottavia/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Ottavi
 a/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 
-Output written on 03-Test.pdf (69 pages, 1374181 bytes).
+Output written on 03-Test.pdf (71 pages, 1441691 bytes).
 PDF statistics:
- 9348 PDF objects out of 10688 (max. 8388607)
- 165 named destinations out of 1000 (max. 500000)
- 399 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 9958 PDF objects out of 10688 (max. 8388607)
+ 170 named destinations out of 1000 (max. 500000)
+ 407 words of extra memory for PDF output out of 10000 (max. 10000000)
 

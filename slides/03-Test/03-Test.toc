@@ -18,3 +18,4 @@
 \beamer@subsectionintoc {5}{3}{Validità Interna}{64}{0}{5}
 \beamer@subsectionintoc {5}{4}{Validità esterna}{66}{0}{5}
 \beamer@subsectionintoc {5}{5}{Validità ecologica}{68}{0}{5}
+\beamer@sectionintoc {6}{Esercitazione}{70}{0}{6}

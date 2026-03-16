@@ -45,6 +45,17 @@ Statistiche Descrittive
 
 Test di prestazione tipica e massima, scale di risposta, Validità e Attendibilità [slides in pdf](slides/03-Test/03-Test.pdf)
 
+Il Big Five Inventory è uno strumento molto usato per la valutazione dei 5 fattori del Big Five. La verione originale si trova in: 
+
+John, O. P., Donahue, E. M., & Kentle, R. L. (1991). *The Big Five Inventory—Versions 4a and 54*. Berkeley, CA: University of California, Berkeley, Institute of Personality and Social Research.
+
+La validazione italiana e standardizzazione è a cura di Chiorri e colleghi:
+
+Chiorri, C., Bracco, F., Piccinno, T., Modafferi, C., & Battini, V. (2015). Psychometric properties of a revised version of the Big Five Inventory (BFI) in an Italian sample. *Psychological Reports, 117*(1), 1–21.
+
+**BFI** [Questionario](slides/03-Test/esempi-test/BFI.pdf)
+
+**BFI** [Dati normativi](slides/03-Test/esempi-test/BFI_dati_normativi_completo.pdf)
 
 # Modulo 4
 
