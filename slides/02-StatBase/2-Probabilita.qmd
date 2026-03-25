@@ -929,13 +929,11 @@ calcola la probabilità $P(X = x)$ per la Binomiale.
 
 #### `dnorm()`
 
-`dnorm()` restituisce la **densità** in un punto, cioè l'altezza della
-curva in quel punto. Per le distribuzioni continue, la densità **non è
-una probabilità**: la probabilità di un singolo valore esatto è sempre
-zero.
+`dnorm()` restituisce la **densità** in un punto, cioè l'altezza della curva in quel punto. Per le distribuzioni continue, la densità **non è una probabilità**: la probabilità di un singolo valore esatto è sempre zero.
 
+<br/>
 
-> **Nota**: per le distribuzioni **discrete** (es. Binomiale), `dbinom()` restituisce invece una vera probabilità: $P(X = x)$.
+**Nota**: per le distribuzioni **discrete** (es. Binomiale), `dbinom()` restituisce invece una vera probabilità: $P(X = x)$.
 
 --------------------------------------------------------------------
 
@@ -963,13 +961,12 @@ curve(dnorm(x, mean = 40, sd = 10),from = 0, to = 80,
 
 #### `pnorm()`
 
-Dato un valore $q$, restituisce l'area a sinistra sotto la curva, cioè
-$P(X \leq q)$.
+- Dato un valore $q$, restituisce l'area a sinistra sotto la curva, cioè $P(X \leq q)$.
 
-Questo sì è una probabilità. Per l'area a destra si usa
+- Questo sì è una probabilità. Per l'area a destra si usa
 `lower.tail = FALSE`.
 
-`pnorm()` accetta direttamente la media e la deviazione standard della
+- `pnorm()` accetta direttamente la media e la deviazione standard della
 distribuzione originale.
 
 -------------------------------------------------------------------
@@ -992,9 +989,9 @@ pnorm(50, mean = 40, sd = 10) - pnorm(30, mean = 40, sd = 10)
 
 #### `qnorm()`
 
-Dato un livello di probabilità cumulata $p$, restituisce il quantile
-corrispondente, cioè il valore $x$ tale che $P(X \leq x) = p$. È
-l'inversa di `pnorm()`.
+- Dato un livello di probabilità cumulata $p$, restituisce il quantile corrispondente, cioè il valore $x$ tale che $P(X \leq x) = p$. 
+
+- È l'inversa di `pnorm()`.
 
 ```{r}
 # Quale punteggio corrisponde al 5° percentile? (mu = 40, sd = 10)
