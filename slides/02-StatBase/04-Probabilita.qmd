@@ -872,7 +872,7 @@ c.  $P(0 \leq Z \leq 1)$
 ```{r}
 z = rnorm(1e6, mean = 0, sd = 1)
 
-1 - mean(z > 2)
+mean(z >= 2)
 
 mean(z <= -1)
 
@@ -887,14 +887,17 @@ probabilità:
 
 -   `d*`: calcola la **massa di probabilità** per distribuzioni discrete
     e la **densità di probabilità** per distribuzioni continue
--   `p*`: calcola la probabilità cumulata $P(X \leq q)$ dato un quantile
--   `q*`: calcola il quantile dato un livello di probabilità cumulata
--   `r*`: genera un campione casuale dalla distribuzione
+-   `p*`: calcola la **probabilità cumulata** $P(X \leq q)$ dato un quantile
+-   `q*`: calcola il **quantile** dato un livello di probabilità cumulata
+-   `r*`: genera un **campione casuale** dalla distribuzione
 
-`*` sta per nome della distribuzione in R, per esempio `rnorm` per la
-Normale.
+`*` sta per nome della distribuzione in R, per esempio `rnorm` per la Normale.
 
-------------------------------------------------------------------------
+------------------------------------------------------------------
+
+
+
+-----
 
 #### Alcune distribuzioni di probabilità in R
 
@@ -975,13 +978,10 @@ distribuzione originale.
 
 ```{r}
 
-# Probabilità di ottenere un punteggio >= 60 (corrisponde a z = 2)
+# Probabilità di ottenere un punteggio >= 60 
 pnorm(60, mean = 40, sd = 10, lower.tail = FALSE)
 
-# È identico a lavorare direttamente sulla Normale standard:
-pnorm(2, lower.tail = FALSE)
-
-# Probabilità di punteggio compreso tra 30 e 50 (media +/- 1 sd)
+# Probabilità di punteggio compreso tra 30 e 50 
 pnorm(50, mean = 40, sd = 10) - pnorm(30, mean = 40, sd = 10)
 ```
 
@@ -1000,11 +1000,21 @@ qnorm(0.05, mean = 40, sd = 10)
 # E al 95° percentile?
 qnorm(0.95, mean = 40, sd = 10)
 
-# Sulla Normale standard: valore z al 97.5° percentile
-qnorm(0.975)
 ```
 
-------------------------------------------------------------------------
+------------------------------------------------------------------
+
+
+Dal grezzo alla Normale stardard:
+
+```{r}
+pnorm(60, mean = 40, sd = 10) # probabilità 
+
+# Aa quale quantile corrisponde nella normale standard?
+qnorm(0.9772499) 
+
+```
+
 
 #### `rnorm()`
 
@@ -1090,12 +1100,7 @@ Usa `pnorm()` e `qnorm()` per rispondere alle seguenti domande.
     rispetto alla media) si trova il **50% centrale** della
     distribuzione?
 
-9.  Qual è il **rango percentile** di un lavoratore con punteggio 35? E
-    di uno con punteggio 70?
-
-10. Un lavoratore ottiene un punteggio di 80. Dove si colloca il suo
-    punteggio? Quanti lavoratori ci aspettiamo abbiano un punteggio
-    uguale o superiore?
+9. Un lavoratore ottiene un punteggio di 70 Dove si colloca il suo punteggio? Quanti lavoratori ci aspettiamo abbiano un punteggio uguale o superiore?
 
 # Credits
 

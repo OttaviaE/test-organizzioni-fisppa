@@ -59,4 +59,4 @@ Chiorri, C., Bracco, F., Piccinno, T., Modafferi, C., & Battini, V. (2015). Psyc
 
 # Modulo 4
 
-Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà
+Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [slides in PDF](slides/02-StatBase/04-Probabilita.pdf)
