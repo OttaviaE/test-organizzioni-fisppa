@@ -1,0 +1,540 @@
+---
+title: "Modulo Didattico 1: Il concetto di Misura"
+subtitle: "Test per le organizzaioni"
+author: Ottavia M. Epifania, Margherita Calderan
+format:
+  beamer:
+    slide-level: 3
+    theme: Montpellier
+    colortheme: dove
+    navigation: horizontal
+    highlight-style: tango
+    classoption: compress, aspectratio=149
+    innertheme: rounded
+    outertheme: miniframes
+callout-icon: false
+code-annotations: below
+header-includes: 
+   - \usepackage{graphicx} 
+   - \usepackage{xcolor}
+   - \usepackage{tikz}
+   - \usepackage{multirow}
+   - \newcommand{\cov}{\mathrm{Cov}}
+   - \usetikzlibrary{positioning,shapes,calc,arrows,decorations.pathreplacing}
+   - \AtBeginSubsection{}
+   - \AtBeginDocument{\author[Ottavia M. Epifania]{Ottavia M. Epifania \\ University of Trento \\\texttt{ottavia.epifania@unitn.it}}}
+   - \AtBeginDocument{\institute[]{A.A. 2025/2026} }
+   - \AtBeginSection[]
+          {
+             \begin{frame}[plain]
+             \tableofcontents[currentsection, hideallsubsections]
+              \end{frame}
+          }
+   - \AtBeginSubsection[]
+          {
+             \begin{frame}[plain]
+             \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+             \end{frame}
+          }
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+---
+
+```{r include=FALSE}
+library(tidyverse)
+consegne = length(dir(paste0(getwd(), "/BF")))
+data = read.csv("data/bfq.csv")
+revdata = read.csv("data/bfqR.csv")
+df <- data.frame(
+  dimension = c(
+    "E","E","E","E","E","E","E","E",
+    "G","G","G","G","G","G","G","G","G",
+    "C","C","C","C","C","C","C","C","C",
+    "S","S","S","S","S","S","S","S",
+    "A","A","A","A","A","A","A","A","A","A"
+  ),
+  item = c(
+    "I01","I06","I11","I16","I21","I26","I31","I36",
+    "I02","I07","I12","I17","I22","I27","I32","I37","I42",
+    "I03","I08","I13","I18","I23","I28","I33","I38","I43",
+    "I04","I09","I14","I19","I24","I29","I34","I39",
+    "I05","I10","I15","I20","I25","I30","I35","I40","I41","I44"
+  ),
+  reverse = c(
+    0,1,0,0,1,0,1,0,
+    1,0,1,0,0,1,0,1,0,
+    0,1,0,1,1,0,0,0,1,
+    0,1,0,0,1,0,1,0,
+    0,0,0,0,0,0,1,0,1,0
+  )
+)
+mappa = df
+ordine_dimensioni <- unique(df$dimension)
+df$dimension = factor(df$dimension, levels = ordine_dimensioni)
+
+df_order = df[order(df$dimension, df$item), ]
+item_order = df$item
+corstart = cor(data[,-1])
+corstart = corstart[item_order, item_order]
+corstart[upper.tri(corstart, diag = FALSE)] = NA
+corstart <- as.data.frame(as.table(corstart))
+corstart = corstart[!is.na(corstart$Freq), ]
+corstart$Var1 <- factor(corstart$Var1, levels = item_order)
+corstart$Var2 <- factor(corstart$Var2, levels = item_order)
+corstart <- corstart[as.numeric(corstart$Var1) >= as.numeric(corstart$Var2), ]
+df = corstart
+```
+
+
+# BFQ 
+
+### Grazie :) 
+
+Ci sono state `r consegne` consegne. Di queste, sono risultate `r nrow(data)` valide per le analisi. 
+
+Tutti i dati sono stati anonimizzati prima di qualsiasi analisi. 
+
+:::{.callout-warning}
+
+è una perdita di dati "fisiologica"!
+
+:::
+
+
+### {.plain}
+
+```{r}
+#| echo: false
+#| fig-cap: "Matrice di correlazione degli item"
+#| fig-align: center
+#| out-width: "100%"
+df <- corstart
+diag_df <- df[df$Var1 == df$Var2, ]
+lower_df <- df[df$Var1 != df$Var2, ]
+ggplot() +   geom_tile(data = diag_df,
+                       aes(x = Var1, y = Var2),
+                       color = "#191970") +   geom_point(data = lower_df,
+                                                        aes(x = Var1, y = Var2,
+                                                            color = Freq,
+                                                            size = abs(Freq))) + scale_fill_gradient2(
+                                                              low = "firebrick", 
+                                                              mid = "grey88", high = "#191970",
+                                                              midpoint = 0,
+                                                              limits = c(-1, 1)
+                                                            ) +
+  scale_color_gradient2(
+    low = "firebrick", mid = "grey88", high = "#191970",
+    midpoint = 0,
+    limits = c(-1, 1)
+  ) +   scale_size(range = c(1, 6)) + theme_light() + theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text = element_text(size = 22),
+    axis.title = element_blank(), 
+    legend.title = element_blank(), 
+    legend.text = element_text(size = 22)
+  ) + guides(size = "none")
+
+
+```
+
+### {.plain} 
+
+```{r}
+#| echo: false
+#| fig-cap: "Doppia matrice di correlazione degli item"
+#| fig-align: center
+#| out-width: "100%"
+cor_data    <- cor(data[,-1])
+cor_revdata <- cor(revdata[,-1])
+
+df1 <- as.data.frame(as.table(cor_data))
+df2 <- as.data.frame(as.table(cor_revdata))
+
+colnames(df1) <- c("Var1", "Var2", "cor")
+colnames(df2) <- c("Var1", "Var2", "cor")
+
+df1$dataset <- "data"
+df2$dataset <- "revdata"
+df_all <- rbind(df1, df2)
+df_all$Var1 <- factor(df_all$Var1, levels = item_order)
+df_all$Var2 <- factor(df_all$Var2, levels = item_order)
+
+df_all$pos1 <- as.numeric(df_all$Var1)
+df_all$pos2 <- as.numeric(df_all$Var2)
+
+df_plot <- df_all[
+  (df_all$dataset == "data"    & df_all$pos1 > df_all$pos2) |  # sopra (visivo)
+    (df_all$dataset == "revdata" & df_all$pos1 < df_all$pos2) |  # sotto (visivo)
+    (df_all$pos1 == df_all$pos2),
+]
+
+other_df <- df_plot[df_plot$pos1 != df_plot$pos2, ]
+diag_df  <- df_plot[df_plot$pos1 == df_plot$pos2, ]
+
+
+ggplot() +
+  # diagonale (tile)
+  geom_tile(data = diag_df,
+            aes(x = Var1, y = Var2), color = "#191970") +
+  # triangoli (punti)
+  geom_point(data = other_df,
+             aes(x = Var1, y = Var2,
+                 color = cor,
+                 size = abs(cor),
+                 shape = dataset)) +
+  scale_color_gradient2(
+    low = "firebrick", mid = "grey88", high = "#191970",
+    midpoint = 0,
+    limits = c(-1, 1)
+  ) +
+  
+  scale_size(range = c(2, 6)) +
+  
+  scale_shape_manual(values = c(16, 17))  +
+  
+  theme_light() + theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text = element_text(size = 22),
+    axis.title = element_blank(), 
+    legend.title = element_blank(), 
+    legend.text = element_text(size = 22)
+  ) + guides(size = "none", shape = "none")
+
+```
+
+## Scoring 
+
+### 
+\small
+\scalebox{.80}{
+\begin{tabular}{p{2.5cm}p{10cm}}
+\textbf{Estroversione}	&	 item01, \textbf{item06}, item11, item16, \textbf{item21}, item26, \textbf{item31}, item36	\\
+& \\
+\textbf{Gradevolezza}	&	 \textbf{item02}, item07, \textbf{item12}, item17, item22, \textbf{item27}, item32, \textbf{item37}, item42	\\
+		& \\
+\textbf{Coscienziosità}	&	 item03, \textbf{item08}, item13, \textbf{item18}, \textbf{item23}, item28, item33, item38, \textbf{item43}	\\
+		& \\
+\textbf{Nevroticismo}	&	 item04, \textbf{item09}, item14, item19, \textbf{item24}, item29, \textbf{item34}, item39	\\
+		& \\
+\textbf{Apertura all'esperienza}	&	 item05, item10, item15, item20, item25, item30, \textbf{item35}, item40, \textbf{item41}, item44	\\
+	
+\end{tabular}
+}
+
+
+Gli item in **grassetto** sono gli **item reverse**
+
+# Item Reverse 
+
+### 
+
+
+\vspace*{-5mm}
+
+```{r}
+#| out-width: 70%
+#| echo: false
+#| fig-align: center
+corE = cor(data[, colnames(data) %in% mappa$item[mappa$dimension == "E"]])
+corE[upper.tri(corE)] = NA
+corE = as.data.frame(as.table(corE))
+corE = corE[!is.na(corE$Freq), ]
+
+corE$type = "Raw"
+corEr = cor(revdata[, colnames(revdata) %in% mappa$item[mappa$dimension == "E"]])
+corEr[upper.tri(corEr)] = NA
+corEr = as.data.frame(as.table(corEr))
+corEr = corEr[!is.na(corEr$Freq), ]
+
+corEr$type = "Reversed"
+thecor = rbind(corE, corEr)
+
+ggplot(thecor, 
+       aes(x = Var1, y = Var2, fill = Freq)) + 
+  geom_tile() + 
+  scale_fill_gradient2(
+    low = "firebrick",
+    mid = "grey88",
+    high = "#191970",
+    midpoint = 0,
+    limits = c(-1, 1)
+  ) + facet_wrap(~type) + theme_light() + 
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        legend.title = element_blank(), 
+        legend.text = element_text(size = 22))
+
+```
+
+:::: {.columns}
+
+:::{.column width=50%}
+\small
+I01: è loquace
+
+I06: è riservata 
+
+I11: è piena di energia
+
+I16: genera molto entusiasmo
+:::
+
+:::{.column width=50%}
+\small
+I21: tende ad essere taciturna 
+
+I26: ha una personalità energica
+
+I31: è qualche volta timida, inibita
+
+I36: è estroversa, socievole
+:::
+
+
+::::
+
+
+### 
+
+I01: Io mi vedo come una persona che **è loquace**: 5 
+
+I21: Io mi vedo come una persona che **tende ad essere taciturna**: 1 
+
+\pause
+
+L'item 21 è un item reverse! 
+
+\small
+:::{.callout-tip}
+## Item straight
+
+Sono item il cui contenuto è formulato *nella direzione del costrutto*
+
+A punteggi *alti* nell'item sono verosilmente associati a livelli alti del costrutto 
+
+:::
+
+:::{.callout-warning}
+## Item straight
+
+Sono item il cui contenuto è formulato *nella direzione opposta al costrutto*
+
+A punteggi *bassi* nell'item sono verosilmente associati a livelli alti del costrutto
+:::
+
+## Tipologie di item reverse
+
+### 
+
+\vspace*{-5mm}
+
+:::{.callout-note}
+## Polar opposite
+
+Nell'item reverse viene utilizzato un termine che è concettualmente contrario al termine usato nell'item straight.
+
+:::
+
+:::{.callout-warning}
+## Negated regular
+
+Nell'item reverse viene aggiunta la negazione sul termine usato nell'item straight.
+
+:::
+
+:::{.callout-caution}
+## Negated polar opposite
+
+Nell'item reverse viene aggiunta la negazione al termine che è concettualmente contrario al termine usato nell'item straight. 
+
+La doppia negazione implica che l'item reverse stia affermando la stessa identica cosa dell'item straight
+
+:::
+
+### Un esempio 
+
+*Io mi vedo come una persona che...* LAVORA IN MODO ACCURATO 
+
+
+:::{.callout-note}
+## Polar opposite
+
+Lavora in modo *inaccurato*
+:::
+
+:::{.callout-warning}
+## Negated regular
+
+Lavora in modo *non accurato*
+
+:::
+
+:::{.callout-caution}
+## Negated polar opposite
+
+Lavora in modo *non inaccurato*
+:::
+
+
+### 
+
+\centering
+Scale a 5 punti
+\begin{tabular}{|c |c| c| c| c| c|}
+\hline
+Straight	&	1	&	2	&	3	&	4	&	5	\\
+\hline
+Reverse	&	5	&	4	&	3	&	2	&	1	\\
+\hline
+\end{tabular}
+
+Scala a 7 punti
+
+\begin{tabular}{|c|c|c| c|c|c| c|c|}
+\hline
+Straight	&	1	&	2	&	3	&	4	&	5	&	6	&	7	\\\hline
+Reverse	&	7	&	6	&	5	&	4	&	3	&	2	&	1	\\\hline
+\end{tabular}
+
+
+
+$$\ldots$$
+
+
+### 
+
+\vspace*{-5mm}
+
+:::{.callout-tip}
+## Pro
+
+* Obbligano le persone a rallentare nella compilazione e leggere con attenzione l'item per comprenderlo
+* A posteriori, permettono di identificare le persone che hanno risposto a caso al questionario 
+
+:::
+
+
+:::{.callout-caution}
+## Contro
+
+* Le negazioni sono più difficili da comprendere (specie le doppie negazioni)
+* Non sempre si può trovare il poalr opposite, per cui la negazione è "d'obbligo"
+* Potrebbero non misurare il costrutto nello stesso modo dell'item straight
+
+:::
+
+## Distribuzioni delle risposte 
+
+### 
+
+```{r}
+#| echo: false
+long = pivot_longer(data, cols = !codice_personale)
+colnames(long)[2] = "item"
+long = merge(long, mappa)
+
+mysum = long %>% 
+  group_by(dimension, item, value) %>%  
+  summarise(count = n()/nrow(data))
+g= list()
+for (i in 1:length(unique(mysum$dimension))) {
+  g[[i]] = ggplot(mysum[mysum$dimension == unique(mysum$dimension)[i], ], 
+                  aes(x = value, y = count, fill = factor(value))) + geom_bar(stat = "identity") + facet_wrap(~item) + ggtitle(unique(mysum$dimension)[i]) + 
+    theme_light() + ylim(0,1)+
+    theme(legend.position = "none", 
+          axis.title = element_blank(),
+          axis.text = element_text(size = 22), 
+          plot.title = element_text(size = 22), 
+          strip.text = element_text(size = 22))
+}
+
+i = 1 
+```
+
+
+```{r}
+#| echo: false
+#| fig-cap:  !expr paste("Distribuzione per la scala", unique(mysum$dimension)[i_plot])
+#| fig-align: center
+#| out-width: 80%
+
+i_plot <- i   # ← salva il valore
+
+g[[i_plot]]
+
+i <- i + 1
+```
+
+
+### 
+
+```{r}
+#| echo: false
+#| fig-cap:  !expr paste("Distribuzione per la scala", unique(mysum$dimension)[i_plot])
+#| fig-align: center
+#| out-width: 80%
+
+i_plot <- i   # ← salva il valore
+
+g[[i_plot]]
+
+i <- i + 1
+```
+
+### 
+
+```{r}
+#| echo: false
+#| fig-cap:  !expr paste("Distribuzione per la scala", unique(mysum$dimension)[i_plot])
+#| fig-align: center
+#| out-width: 80%
+
+i_plot <- i   # ← salva il valore
+
+g[[i_plot]]
+
+i <- i + 1
+```
+
+
+### 
+```{r}
+#| echo: false
+#| fig-cap:  !expr paste("Distribuzione per la scala", unique(mysum$dimension)[i_plot])
+#| fig-align: center
+#| out-width: 80%
+
+i_plot <- i   # ← salva il valore
+
+g[[i_plot]]
+
+i <- i + 1
+```
+
+### 
+```{r}
+#| echo: false
+#| fig-cap:  !expr paste("Distribuzione per la scala", unique(mysum$dimension)[i_plot])
+#| fig-align: center
+#| out-width: 80%
+
+i_plot <- i   # ← salva il valore
+
+g[[i_plot]]
+
+i <- i + 1
+```
+
+
+
+
+
+# Correlazione 
+
+## Pearson 
+
+## Policorica 
+
+## Tetracorica
