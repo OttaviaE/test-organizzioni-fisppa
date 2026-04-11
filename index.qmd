@@ -57,6 +57,11 @@ Chiorri, C., Bracco, F., Piccinno, T., Modafferi, C., & Battini, V. (2015). Psyc
 
 **BFI** [Dati normativi](slides/03-Test/esempi-test/BFI_dati_normativi_completo.pdf)
 
-# Modulo 4
+
+# Modulo 4 
+
+Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/04-Dimensioni/04-dimensioni.pdf)
+
+# Modulo 5
 
 Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [slides in PDF](slides/02-StatBase/04-Probabilita.pdf)
