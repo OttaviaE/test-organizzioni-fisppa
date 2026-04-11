@@ -1,5 +1,5 @@
 ---
-title: "Modulo Didattico 4: Dimensionalità, item reverse, valutazione degli item"
+title: "Modulo 4: Dimensionalità, item reverse, valutazione degli item"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
 format:
@@ -45,7 +45,9 @@ execute:
 
 ```{r include=FALSE}
 library(tidyverse)
-consegne = length(dir(paste0(getwd(), "/BF")))
+library(ltm)
+library(psych)
+consegne = length(dir(paste0("C:/Users/Ottavia/Documents/GitHub/test-organizzioni-fisppa", "/BF")))
 data = read.csv("data/bfq.csv")
 revdata = read.csv("data/bfqR.csv")
 df <- data.frame(
@@ -89,7 +91,7 @@ df = corstart
 ```
 
 
-# BFQ 
+# BFI
 
 ### Grazie :) 
 
@@ -554,7 +556,15 @@ La difficoltà è quindi la tendenza media dell'item
 
 :::
 
+### 
+
 La difficoltà degli item dipende dal campione di rispondenti considerato, ovvero dal livello latente di abilità delle persone sotto osservazione
+
+Questo vuol dire che non è una qualità assoluta degli item!
+
+L'importanze della rappresentatività del campione rispetto alla popolazione target nel momento in cui si valida una misura 
+
+
 
 ## Item dicotomici
 
@@ -606,23 +616,446 @@ Per rendere però i punteggi comparabili, si "corregge" il punteggio dell'item c
 
 $$\pi_i = \dfrac{p_i - \min(Y_i)}{\max(Y_i) - \min(Y_i)}$$
 
-### Dicotomizzazione
+### Dicotomizzazione {.plain}
+
+\small
 
 :::{.callout-note}
 ## Proporzione del punteggio massimo
 
+$$\pi_i = \dfrac{1}{n} \sum_{n = 1}^{N}Y_{pi} = \max(Y_i)$$
+La difficoltà è quindi la proporzione di persone che hanno scleto il punteggio massimo
 :::
 
 :::{.callout-tip}
 ## Proporzione $Y_i \geq k_i$
 
+$k_i$ è un valore di cut-off deciso arbitrariamente (può  essere la media, la mediana, un punto a caso): 
+$$\pi_i = \dfrac{1}{n}\sum_{n = 1}^{N} Y_{pi} = Y_{pi} \geq k_i$$
 :::
+
+In entrambi i casi, la difficoltà è calcolata come per gli item dicotomici 
+
+### 
+
+Indici di difficoltà come tendenza al punteggio medio 
+
+\footnotesize
+
+```{r}
+#| echo: false
+
+d = data.frame(lapply(Science, as.integer))
+d$Environment = ifelse(d$Environment == 4, 3, d$Environment)
+colMeans(d)
+```
+
+\normalsize
+
+Non dice molto rispetto 
+alla difficoltà degli item... qual è il valore minimo? e il massimo? 
+
+### 
+
+\footnotesize
+
+```{r}
+#| echo: false
+
+describe(d)
+normaldiff = colMeans(d)
+```
+
+\normalsize
+
+Attenzione all'item "enrivornment"! Non ha mai ottenuto il punteggio massimo 
+
+### 
+
+\footnotesize
+```{r}
+#| echo: false
+
+mydiff = (colMeans(d) - 1)/(4 - 1)
+mydiff 
+```
+
+\small
+
+Indipendentemente dalle scelte fatte dalle persone, gli item sono confrontabili in termini di difficoltà. 
+
+Più è alto il valore della proporzione, più sono stati scelti i punteggi alti. 
+
+
+### {.plain}
+ 
+```{r}
+#| echo: false
+#| fig-cap: "Scala E del vostro BFI"
+#| out-width: 80%
+#| fig-align: center
+e = data[, colnames(data) %in% mappa$item[mappa$dimension == "E"]]
+eR = revdata[, colnames(revdata) %in% mappa$item[mappa$dimension == "E"]]
+
+myE = data.frame(rbind((colMeans(e) - 1)/(5-1),
+(colMeans(eR) - 1)/(5-1)))
+myE$type = c("0","1")
+myE = pivot_longer(myE, 
+                   cols = !type)
+
+ggplot(myE, 
+       aes( x= name, y = value, fill = type)) + 
+  geom_bar(stat = "identity", position = position_dodge()) + ylim(0, 1) +
+theme_light() + 
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        legend.position = "none")
+
+```
+
+
+\pause
+
+Attenzione agli item reverse! 
+
+### 
+
+\footnotesize
+
+Proporzione della risposta massima:
+
+```{r}
+#| echo: false 
+colSums(d ==4)/nrow(d)
+
+myd = data.frame(rbind(colSums(d >=3)/nrow(d), 
+colSums(d >=2)/nrow(d),
+colSums(d >=1)/nrow(d)
+))
+myd$type = c("k >= 3", "k >= 2", "k >= 1")
+myd = pivot_longer(myd, cols = !type)
+
+
+```
+
+### 
+
+Dicotomizzazione basata su $k$. Quale $k$?
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 80%
+ggplot(myd, 
+       aes( x= name, y = value, fill = type)) + 
+  geom_bar(stat = "identity", position = position_dodge()) + ylim(0, 1) +
+theme_light() + 
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        legend.position = "bottom", 
+        legend.title = element_blank(), 
+        legend.text = element_text(size = 22))
+```
+
+
+## Discriminatività 
+
+### 
+\small 
+
+Con discriminatività di un item si intende la sua capacità di distinguere tra rispondenti con livelli alti e bassi di tratto latente
+
+:::{.callout-tip}
+## Esempi
+
+Student3 con alti/bassi livelli di abilità, pazienti con  un grado alto vs. basso di compromissione
+:::
+
+
+La misura "prediletta" è la *correlazione item-totale* (meglio *item totale corretto*) 
+
+:::{.callout-caution}
+## Attenzione!
+
+Assume che il tratto misurato sia unidimensionale 
+
+Come la difficoltà, dipende dal campione. In questo caso, maggiore è l'eterogeneità dei livelli di abilità delle persone, maggiore è la capacità discriminatività degli item
+:::
+
+### Correlazione item-totale corretta 
+
+Se si considera la correlazione tra ogni singolo item e il punteggio totale, calcolato come somma dei punteggi a ogni item, sarà sempre positiva
+
+Per questo si utilizza la correlazione "corretta", ovvero senza l'item incluso nel totale $T_{n(-i)} = \sum_{j \ne i} Y_{nj}$: 
+
+$$r_{i,\mathrm{tot}(-i)} = \frac{\sum_{n=1}^{N} (Y_{ni} - \bar{Y}_i)(T_{n(-i)} - \overline{T_{(-i)}})}{\sqrt{\sum_{n=1}^{N} (Y_{ni} - \bar{Y}_i)^2} \sqrt{\sum_{n=1}^{N} (T_{n(-i)} - \overline{T_{(-i)}})^2}}$$
+
+### Item dicotomici
+
+Stesso principio ma applicato alla correlazione punto-biseriale, 
+
+$$r_{pb,i}^{*} = \frac{\bar{T}_{1(-i)} - \bar{T}_{0(-i)}}{s_{T(-i)}} \sqrt{p_i q_i}$$
+
+
+Dove di nuovo il totale è calcolato escludendo un item alla volta
+
+### 
+
+:::: {.columns}
+
+:::{.column width=50%}
+
+```{r}
+#| echo: false
+#| warning: false 
+#| message: false
+erit = as.data.frame(psych::alpha(e)$item.stats)
+eRrit = as.data.frame(psych::alpha(eR)$item.stats)
+apply(erit[, c("n", "raw.r", "r.drop", "mean", "sd")], 2, round, digits = 2)
+
+```
+
+:::
+
+:::{.column width=50%}
+
+```{r}
+#| echo: false
+#| warning: false 
+apply(eRrit[, c("n", "raw.r", "r.drop", "mean", "sd")], 2, round, digits = 2)
+
+```
+
+:::
+
+::::
+
+
+## Analisi dei distrattori 
+
+### 
+
+La risposta corretta è sempre il focus dell'analisi, ma la difficoltà e discriminatività di ogni item dipendono anche da come sono strutturati i distrattori
+
+I distrattori non devono mai essere più probabili della risposta corretta o non deve esserci un distrattore più scelto degli altri o meno scelto degli altri
+
+Ci si aspetta quindi che i distrattori venagno scelti in maniera uniforme, ovvero abbastanza a caso
+
+Questa analisi si può fare sia consdierando il campione nella sua totalità sia considerando diversi gruppi di rispondenti, suddivisi in diversi gruppi a seconda del punteggio totale osservato
+
+
+### 
+
+```{r}
+#| echo: false 
+#| out-width: 80%
+#| fig-align: center
+set.seed(123)
+to_binary <- function(data, key) {
+  as.data.frame(
+    mapply(function(x, k) as.integer(x == k),
+           data, key)
+  )
+}
+
+N <- 300   # numero soggetti
+J <- 4     # numero item
+K <- 4     # numero alternative (A,B,C,D)
+
+options <- c("A","B","C","D")
+
+# risposte corrette per ciascun item
+correct <- c("A","B","C","D")
+
+
+sim_good <- matrix(NA, nrow = N, ncol = J)
+
+for (j in 1:J) {
+  
+  # probabilità: corretta più alta, distrattori simili
+  probs <- c(0.5, 0.166, 0.166, 0.166)
+  
+  # riordino per mettere la corretta nella posizione giusta
+  probs <- probs[match(options, c(correct[j], setdiff(options, correct[j])))]
+  
+  sim_good[, j] <- sample(options, N, replace = TRUE, prob = probs)
+}
+
+
+colnames(sim_good) <- paste0("Item", 1:J)
+sim_good <- as.data.frame(sim_good)
+
+sim_bad <- matrix(NA, nrow = N, ncol = J)
+
+for (j in 1:J) {
+  
+  # corretta + distrattore dominante
+  probs <- c(0.4, 0.4, 0.1, 0.1)
+  
+  probs <- probs[match(options, c(correct[j], setdiff(options, correct[j])))]
+  
+  sim_bad[, j] <- sample(options, N, replace = TRUE, prob = probs)
+}
+
+colnames(sim_bad) <- paste0("Item", 1:J)
+sim_bad <- as.data.frame(sim_bad)
+
+m = data.frame(name = colnames(sim_good), 
+               correct = correct)
+sim_good$respondents = 1:nrow(sim_good)
+sim_bad$respondents = 1:nrow(sim_bad)
+
+
+long_good = pivot_longer(sim_good, cols = !respondents)
+long_bad = pivot_longer(sim_bad, cols = !respondents)
+
+count_good = long_good %>%  
+  group_by(name, value) %>%  
+  summarise(prop = n()/nrow(sim_good))
+count_good = merge(count_good, m)
+count_good$mc = ifelse(count_good$value == count_good$correct, 1, 0)
+ggplot(count_good, 
+       aes( x= value, y = prop, fill = factor(mc))) + geom_bar(stat = "identity") + facet_wrap(~name) + theme_light() + 
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        legend.position = "none", 
+        strip.text = element_text(size = 22)) + ylim(0,1)
+
+
+ 
+```
+
+
+### 
+
+```{r}
+#| echo: false 
+#| out-width: 80%
+#| fig-align: center
+count_bad = long_bad %>%  
+  group_by(name, value) %>%  
+  summarise(prop = n()/nrow(sim_bad))
+count_bad = merge(count_bad, m)
+count_bad$mc = ifelse(count_bad$value == count_bad$correct, 1, 0)
+ggplot(count_bad, 
+       aes( x= value, y = prop, fill = factor(mc))) + geom_bar(stat = "identity") + facet_wrap(~name) + theme_light() + 
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        legend.position = "none", 
+        strip.text = element_text(size = 22)) + ylim(0,1)
+dico_good = to_binary(sim_good[,-ncol(sim_good)], correct)
+dico_good$respondents = sim_good$respondents
+dico_good$total = rowSums(dico_good[, -ncol(dico_good)])
+dico_good$group = cut_interval(dico_good$total, n = 3)
+dico_good = dico_good[, c("respondents", "group")]
+long_good = merge(long_good, dico_good)
+
+```
+
+
+### 
+
+```{r}
+#| echo: false 
+#| out-width: 80%
+#| fig-align: center
+
+count_good_group = long_good %>%  
+  group_by(name, value, group) %>%  
+  summarise(prop = n()/nrow(sim_good))
+count_good_group = merge(count_good_group, m)
+count_good_group$mc = ifelse(count_good_group$value == count_good_group$correct, 1, 0)
+
+ggplot(count_good_group, 
+       aes(x= group, y = prop, color = value, 
+           shape = factor(mc),  group = factor(value), 
+           linetype = value)) + geom_point(size = 3) + 
+  geom_line(linewidth=1.2) + facet_wrap(~name) + theme_light() +
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        strip.text = element_text(size = 22), 
+        legend.position = "bottom",
+        legend.text = element_text(size = 22), 
+        legend.title = element_text(size = 22)) + guides(shape = "none") + ylim(0,.50)
+
+
+```
+
+
+### 
+
+```{r}
+#| echo: false
+dico_bad = to_binary(sim_bad[,-ncol(sim_bad)], correct)
+dico_bad$respondents = sim_bad$respondents
+dico_bad$total = rowSums(dico_bad[, -ncol(dico_bad)])
+dico_bad$group = cut_interval(dico_bad$total, n = 3)
+dico_bad = dico_bad[, c("respondents", "group")]
+long_bad = merge(long_bad, dico_bad)
+
+count_bad_group = long_bad %>%  
+  group_by(name, value, group) %>%  
+  summarise(prop = n()/nrow(sim_bad))
+count_bad_group = merge(count_bad_group, m)
+count_bad_group$mc = ifelse(count_bad_group$value == count_bad_group$correct, 1, 0)
+
+ggplot(count_bad_group, 
+       aes(x= group, y = prop, color = value, 
+           shape = factor(mc),  group = factor(value), 
+           linetype = value)) + geom_point(size = 3) + 
+  geom_line(linewidth=1.2) + facet_wrap(~name) + theme_light() +
+  theme(axis.title = element_blank(), 
+        axis.text = element_text(size = 22), 
+        strip.text = element_text(size = 22), 
+        legend.position = "bottom",
+        legend.text = element_text(size = 22), 
+        legend.title = element_text(size = 22)) + guides(shape = "none") + ylim(0,.50)
+```
+
+
+## Missing
+
+### 
+
+L'analisi dei missing permette di indagare più a fondo la validità degli item e del test
+
+Questa analisi permette di capire se la lunghezza del questionario è adeguata (questo solo se la somministrazione degli item non è randomizzata) o se gli item hanno delle formulazioni che non permettono di dare una risposta
+
+:::{.callout-wanring}
+## Rule of thumb
+
+Se un item ha circa più del 5% di risposte missing dovrebbe essere ricontrollato ed eventualmente eliminato
+:::
+
+### 
+
+```{r}
+#| echo: false 
+#| wanrning: false 
+library(ShinyItemAnalysis)
+data("HeightInventory")
+md = HeightInventory
+
+myna = data.frame(item = colnames(md)[1:10], 
+          percNA = (colSums(apply(md[, 1:10], 2, is.na))/nrow(md))*100)
+
+ggplot(myna, 
+       aes(x = item, y = percNA)) + geom_bar(stat = "identity") + ylim(0, 5) + 
+  ylab("% NA") + theme_light() + 
+  theme(axis.title.y = element_text(size = 22),
+        axis.title.x = element_blank(),
+        axis.text = element_text(size = 22), 
+        axis.text.x = element_text(angle = 40, margin = margin(t = 15)))
+  
+
+```
+
 
 # Correlazione 
 
 ### 
 
-Lo scopo finale della validazione di test è quello di trovare delle dimensioni non osservate (i fattori latenti) che permettono di raggruppare tra di loro gli item in base alle loro similarità
+Tra gli scopi di una validazione di test, si vuole trovare il numero delle dimensioni non osservate (i fattori latenti) che permettono di raggruppare tra di loro gli item in base alle loro similarità
 
 \pause
 
