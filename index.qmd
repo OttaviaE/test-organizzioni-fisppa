@@ -65,4 +65,4 @@ Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [sl
 # Modulo 5
 
 
-Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/05-Dimensioni/04-dimensioni.pdf)
+Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/05-Dimensioni/05-dimensioni.pdf)
