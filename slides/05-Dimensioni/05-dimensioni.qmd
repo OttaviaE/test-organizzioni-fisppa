@@ -699,7 +699,7 @@ eR = revdata[, colnames(revdata) %in% mappa$item[mappa$dimension == "E"]]
 
 myE = data.frame(rbind((colMeans(e) - 1)/(5-1),
 (colMeans(eR) - 1)/(5-1)))
-myE$type = c("0","1")
+myE$type = c("raw","reverse")
 myE = pivot_longer(myE, 
                    cols = !type)
 
@@ -709,12 +709,13 @@ ggplot(myE,
 theme_light() + 
   theme(axis.title = element_blank(), 
         axis.text = element_text(size = 22), 
-        legend.position = "none")
+        legend.position = "bottom", 
+        legend.text = element_text(size = 20), 
+        legend.title = element_blank())
 
 ```
 
 
-\pause
 
 Attenzione agli item reverse! 
 
@@ -779,7 +780,7 @@ La misura "prediletta" è la *correlazione item-totale* (meglio *item totale cor
 
 Assume che il tratto misurato sia unidimensionale 
 
-Come la difficoltà, dipende dal campione. In questo caso, maggiore è l'eterogeneità dei livelli di abilità delle persone, maggiore è la capacità discriminatività degli item
+Come la difficoltà, dipende dal campione. In questo caso, maggiore è l'eterogeneità dei livelli di abilità delle persone, maggiore è la capacità discriminativ degli item
 :::
 
 ### Correlazione item-totale corretta 
@@ -809,10 +810,16 @@ Dove di nuovo il totale è calcolato escludendo un item alla volta
 #| echo: false
 #| warning: false 
 #| message: false
+#| results: hide
 erit = as.data.frame(psych::alpha(e)$item.stats)
 eRrit = as.data.frame(psych::alpha(eR)$item.stats)
-apply(erit[, c("n", "raw.r", "r.drop", "mean", "sd")], 2, round, digits = 2)
 
+
+```
+
+```{r}
+#| echo: false
+apply(erit[, c("n", "raw.r", "r.drop", "mean", "sd")], 2, round, digits = 2)
 ```
 
 :::
@@ -825,11 +832,9 @@ apply(erit[, c("n", "raw.r", "r.drop", "mean", "sd")], 2, round, digits = 2)
 apply(eRrit[, c("n", "raw.r", "r.drop", "mean", "sd")], 2, round, digits = 2)
 
 ```
-
 :::
 
 ::::
-
 
 ## Analisi dei distrattori 
 
@@ -839,9 +844,9 @@ La risposta corretta è sempre il focus dell'analisi, ma la difficoltà e discri
 
 I distrattori non devono mai essere più probabili della risposta corretta o non deve esserci un distrattore più scelto degli altri o meno scelto degli altri
 
-Ci si aspetta quindi che i distrattori venagno scelti in maniera uniforme, ovvero abbastanza a caso
+Ci si aspetta quindi che i distrattori vengano scelti in maniera uniforme, ovvero abbastanza a caso
 
-Questa analisi si può fare sia consdierando il campione nella sua totalità sia considerando diversi gruppi di rispondenti, suddivisi in diversi gruppi a seconda del punteggio totale osservato
+Questa analisi si può fare sia considerando il campione nella sua totalità sia considerando diversi gruppi di rispondenti, suddivisi in diversi gruppi a seconda del punteggio totale osservato
 
 
 ### 
@@ -969,14 +974,15 @@ count_good_group$mc = ifelse(count_good_group$value == count_good_group$correct,
 ggplot(count_good_group, 
        aes(x= group, y = prop, color = value, 
            shape = factor(mc),  group = factor(value), 
-           linetype = value)) + geom_point(size = 3) + 
+           linetype = factor(mc))) + geom_point(size = 3) + 
   geom_line(linewidth=1.2) + facet_wrap(~name) + theme_light() +
   theme(axis.title = element_blank(), 
         axis.text = element_text(size = 22), 
         strip.text = element_text(size = 22), 
         legend.position = "bottom",
         legend.text = element_text(size = 22), 
-        legend.title = element_text(size = 22)) + guides(shape = "none") + ylim(0,.50)
+        legend.title = element_text(size = 22)) + guides(shape = "none", linetype ="none") + ylim(0,.50) + 
+  scale_linetype_manual(values = c(2, 1))
 
 
 ```
@@ -1002,14 +1008,16 @@ count_bad_group$mc = ifelse(count_bad_group$value == count_bad_group$correct, 1,
 ggplot(count_bad_group, 
        aes(x= group, y = prop, color = value, 
            shape = factor(mc),  group = factor(value), 
-           linetype = value)) + geom_point(size = 3) + 
+           linetype = factor(mc))) + geom_point(size = 3) + 
   geom_line(linewidth=1.2) + facet_wrap(~name) + theme_light() +
   theme(axis.title = element_blank(), 
         axis.text = element_text(size = 22), 
         strip.text = element_text(size = 22), 
         legend.position = "bottom",
         legend.text = element_text(size = 22), 
-        legend.title = element_text(size = 22)) + guides(shape = "none") + ylim(0,.50)
+        legend.title = element_text(size = 22)) + guides(shape = "none", 
+                                                         linetype = "none") + ylim(0,.50)  + 
+  scale_linetype_manual(values = c(2, 1))
 ```
 
 
