@@ -60,8 +60,9 @@ Chiorri, C., Bracco, F., Piccinno, T., Modafferi, C., & Battini, V. (2015). Psyc
 
 # Modulo 4 
 
-Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/04-Dimensioni/04-dimensioni.pdf)
+Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [slides in PDF](slides/02-StatBase/04-Probabilita.pdf)
 
 # Modulo 5
 
-Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [slides in PDF](slides/02-StatBase/04-Probabilita.pdf)
+
+Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/05-Dimensioni/04-dimensioni.pdf)

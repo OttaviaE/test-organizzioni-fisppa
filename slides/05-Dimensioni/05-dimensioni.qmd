@@ -1,5 +1,5 @@
 ---
-title: "Modulo 4: Dimensionalità, item reverse, valutazione degli item"
+title: "Modulo 5: Dimensionalità, item reverse, valutazione degli item"
 subtitle: "Test per le organizzaioni"
 author: Ottavia M. Epifania, Margherita Calderan
 format:
@@ -25,18 +25,18 @@ header-includes:
    - \AtBeginSubsection{}
    - \AtBeginDocument{\author[Ottavia M. Epifania]{Ottavia M. Epifania \\ University of Trento \\\texttt{ottavia.epifania@unitn.it}}}
    - \AtBeginDocument{\institute[]{A.A. 2025/2026} }
-   - \AtBeginSection[]
-          {
-             \begin{frame}[plain]
-             \tableofcontents[currentsection, hideallsubsections]
-              \end{frame}
-          }
-   - \AtBeginSubsection[]
-          {
-             \begin{frame}[plain]
-             \tableofcontents[currentsection,currentsubsection,hideothersubsections]
-             \end{frame}
-          }
+   -  \AtBeginSection[]
+        {
+      \begin{frame}[plain]
+      \tableofcontents[currentsection, hideallsubsections]
+     \end{frame}
+        }
+   - \AtBeginSubsection[] 
+       {
+      \begin{frame}[plain]
+      \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+     }
 editor_options: 
   chunk_output_type: console
 execute: 
@@ -1320,3 +1320,12 @@ La correlazione tra i punteggi degli item è positiva e moderata.
 
 Le soglie associate ad ogni categoria per ogni item sono riportate nella sezione `with tau of`
 
+
+
+# Esercitazione 
+
+### 
+
+Calcolate i vostri punteggi al Big Five, secondo lo scoring riportato all'inizio della lezione
+
+Ricollocate il vostro punteggio nei dati standardizzati!
