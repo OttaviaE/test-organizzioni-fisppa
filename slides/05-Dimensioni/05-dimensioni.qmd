@@ -423,7 +423,7 @@ $$\ldots$$
 ## Contro
 
 * Le negazioni sono più difficili da comprendere (specie le doppie negazioni)
-* Non sempre si può trovare il poalr opposite, per cui la negazione è "d'obbligo"
+* Non sempre si può trovare il polar opposite, per cui la negazione è "d'obbligo"
 * Potrebbero non misurare il costrutto nello stesso modo dell'item straight
 
 :::
@@ -572,7 +572,7 @@ L'importanze della rappresentatività del campione rispetto alla popolazione tar
 
 La deviazione standard per ogni item è
 
-$$s_i = \sqrt{pi(1-p_i)}$$
+$$s_i = \sqrt{p_i(1-p_i)}$$
 
 Per cui la variabilità è massima quando $p_i = .50$
 
@@ -624,7 +624,7 @@ $$\pi_i = \dfrac{p_i - \min(Y_i)}{\max(Y_i) - \min(Y_i)}$$
 ## Proporzione del punteggio massimo
 
 $$\pi_i = \dfrac{1}{n} \sum_{n = 1}^{N}Y_{pi} = \max(Y_i)$$
-La difficoltà è quindi la proporzione di persone che hanno scleto il punteggio massimo
+La difficoltà è quindi la proporzione di persone che hanno scelto il punteggio massimo
 :::
 
 :::{.callout-tip}
@@ -668,7 +668,7 @@ normaldiff = colMeans(d)
 
 \normalsize
 
-Attenzione all'item "enrivornment"! Non ha mai ottenuto il punteggio massimo 
+Attenzione al secondo item! Non ha mai ottenuto il punteggio massimo 
 
 ### 
 
