@@ -1102,16 +1102,16 @@ N <- 200
 
 # Fattori latenti
 Sigma_fattori <- matrix(c(
-  1.0, 0.3, 0.3,
-  0.3, 1.0, 0.3,
-  0.3, 0.3, 1.0
+  1.0, 0.4, 0.4,
+  0.3, 1.0, 0.33,
+  0.35, 0.43, 1.0
 ), nrow = 3)
 
 fattori <- mvrnorm(N, mu = c(0,0,0), Sigma = Sigma_fattori)
 
 # Loading diversi
 loadings <- c(.8, .6, .7,   # stabilità
-              .7, .5, .6,   # apertura
+              .7, .55, .6,   # apertura
               .75, .65, .55) # estroversione
 
 # Errori diversi
