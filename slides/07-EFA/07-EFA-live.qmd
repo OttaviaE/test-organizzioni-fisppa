@@ -1,0 +1,202 @@
+---
+title: "Modulo 7: Exploratory Factor Analysis - EFA"
+author: "Ottavia M. Epifania, Margherita Calderan"
+format: 
+  revealjs: 
+    footer: "Psychoco 2026 - Padova"
+    highlight-style: tango
+    transition: none
+    transition-speed: slow
+    background-transition: fade
+    slide-number: c/t
+    show-slide-number: all
+    self-contained: true
+# server: shiny
+editor_options: 
+  chunk_output_type: console
+code-annotations: hover
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(ltm)
+library(psych)
+library(MASS)
+library(lavaan)
+library(semPlot)
+library(corrplot)
+
+data = read.delim("C:/Users/Ottavia/Documents/GitHub/test-organizzioni-fisppa/BIG5/BIG5/data.csv")
+set.seed(123)
+data = data[data$gender %in% c(1, 2), ]
+data = data[data$engnat %in% 1, ]
+data = data[data$race %in% 1, ]
+
+data$filter = sample(c(0,1), size = nrow(data)/2, replace = TRUE)
+
+
+labels = list(E =  paste0("E", 1:10),
+              N = paste0("N", 1:10),
+              A = paste0("A", 1:10),
+              O = paste0("O", 1:10),
+              C = paste0("C", 1:10))
+d = data[data$filter %in% 0, colnames(data) %in% unlist(labels)]
+
+mycor = list()
+myrev = list()
+
+for(i in 1:length(names(labels))) {
+  mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
+  names(mycor)[i] = names(labels)[i]
+  myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
+  names(myrev)[i] = names(labels)[i]
+}
+d[, colnames(d) %in% unlist(myrev[-3])] = 6 - d[, colnames(d) %in% unlist(myrev[-3])] 
+# nel caso di A devoisolare gli item
+m = labels$A[!labels$A %in% myrev$A]
+# devo fare la differenza simmetrica:gli item che sono in A ma che non sono in rev$A
+d[, colnames(d) %in% m] = 6 - d[, colnames(d) %in% m]
+
+for(i in 1:length(names(labels))) {
+  mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
+  names(mycor)[i] = names(labels)[i]
+  myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
+  names(myrev)[i] = names(labels)[i]
+}
+
+mycor = polychoric(d)
+
+```
+
+# matrice di correlazione
+
+## 
+
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 100%
+corrplot(mycor$rho, type = "lower")
+```
+
+
+# kmo e bartlett 
+
+# Estrarre le dimensioni latenti
+
+## 
+
+Scree test di cattell
+
+Parallel Analsysis
+
+Autovalore 
+
+## 
+
+```{r}
+#| echo: false 
+scree(mycor$rho, pc = FALSE)
+```
+
+
+## 
+
+```{r}
+#| echo: false 
+fa.parallel(mycor$rho, n.obs = nrow(d), fa = "fa")
+```
+
+
+## Rotazioni 
+
+Oblique vs ortogonali 
+
+# Indici di fit 
+
+## 
+
+chi quadro, p value, rmsea. solitamente si cofnrontano più mdoelli tra di loro, quindi aic e bic. 
+si può guardare anche il cfi, ma più in termini comparativi con altri modelli 
+
+conta tanto la correlazione tra i fattori (se prevista) e la quota di varianza spiegata 
+
+L'ideale è cercare la soluzione con 3 item per fattore e senza cross loadings
+
+
+
+## 
+
+```{r}
+#| echo: false
+#| warning: false
+efa2 = efa(d, nfactors = 4:6, rotation = "oblimin", 
+               estimator = "WLSMV", 
+               ordered = colnames(d))
+b =summary(efa2, fit.measures = "all")
+b
+```
+
+
+## 
+
+```{r}
+#| echo: false
+
+b$fit.table
+```
+
+Riporta la model comparison tra i modelli: 
+
+`chisq`: Chi-quadro del modello (testa l'ipotesi nulla per cui i dati si conformano al modello con $f$ fattori -- le frequenze attese --)
+
+`df`: gradi di libertà del modello 
+
+`pvalue`: p-value associato al chi quadro
+
+`cfi`: Va interpretato in maneira comparitiva, non assoluta!
+
+`rmsea`: Interpretato sia in maniera comparativa che assoluta
+
+## 
+
+```{r}
+#| echo: false 
+
+b$model.list$nf4$efa$sumsq.table[[1]]
+```
+
+Sum of sq (obliq) loadings: Somma dei quadrati dei loadings fattoriali
+
+Proportion of total: Proporzione della varianza spiegata DAI FATTORI LATENTI (somma a 1)
+
+Proportion var: Percentuale di varianza totale osservata spiegata da ogni fattore 
+
+Cumulative var: Varianza totale spegata cumulativa 
+
+## 
+
+```{r}
+b$model.list$nf4$efa$sumsq.table[[1]]
+```
+
+
+```{r}
+b$model.list$nf5$efa$sumsq.table[[1]]
+```
+
+
+```{r}
+b$model.list$nf6$efa$sumsq.table[[1]]
+```
+
+L'aggiunta del 6 fattore non aggiunge molto al modello: Parsimonia!
+
+
+
+
+# Matrice delle saturazioni 
+
+
+# ispezione dei residui 

@@ -1,0 +1,348 @@
+---
+title: "Modulo 6: Elementi di base dell'Analisi Fattoriale"
+subtitle: "Test per le organizzaioni"
+author: Ottavia M. Epifania, Margherita Calderan
+format:
+  beamer:
+    slide-level: 3
+    theme: Montpellier
+    colortheme: dove
+    navigation: horizontal
+    highlight-style: tango
+    classoption: compress, aspectratio=149
+    innertheme: rounded
+    outertheme: miniframes
+callout-icon: false
+code-annotations: below
+header-includes: 
+   - \usepackage{graphicx} 
+   - \usepackage{xcolor}
+   - \usepackage{tikz}
+   - \usepackage{multirow}
+   - \usepackage{amsmath}
+   - \newcommand{\cov}{\mathrm{Cov}}
+   - \newcommand{\strongval}[1]{\textcolor{black}{#1}}
+   - \newcommand{\weakval}[1]{\textcolor{gray}{#1}}
+   - \usetikzlibrary{positioning,shapes,calc,arrows,decorations.pathreplacing}
+   - \AtBeginSubsection{}
+   - \AtBeginDocument{\author[Ottavia M. Epifania]{Ottavia M. Epifania \\ University of Trento \\\texttt{ottavia.epifania@unitn.it}}}
+   - \AtBeginDocument{\institute[]{A.A. 2025/2026} }
+   -  \AtBeginSection[]
+        {
+      \begin{frame}[plain]
+      \tableofcontents[currentsection, hideallsubsections]
+     \end{frame}
+        }
+   - \AtBeginSubsection[] 
+       {
+      \begin{frame}[plain]
+      \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+     }
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(ltm)
+library(psych)
+library(MASS)
+library(lavaan)
+library(semPlot)
+
+set.seed(123)
+
+N <- 500
+
+# Fattori latenti
+Sigma_fattori <- matrix(c(
+  1.0, 0.4, 0.4,
+  0.3, 1.0, 0.33,
+  0.35, 0.43, 1.0
+), nrow = 3)
+
+fattori <- mvrnorm(N, mu = c(0,0,0), Sigma = Sigma_fattori)
+
+# Loading diversi
+loadings <- c(.8, .6, .7,   # stabilità
+              .7, .55, .6,   # apertura
+              .75, .65, .55) # estroversione
+
+# Errori diversi
+errori_sd <- sqrt(1 - loadings^2)
+
+# Costruzione item continui
+dati_cont <- data.frame(
+  Triste      = loadings[1]*fattori[,1] + rnorm(N, 0, errori_sd[1]),
+  Stressat3   = loadings[2]*fattori[,1] + rnorm(N, 0, errori_sd[2]),
+  Ansios3     = loadings[3]*fattori[,1] + rnorm(N, 0, errori_sd[3]),
+
+  Artistic3   = loadings[4]*fattori[,2] + rnorm(N, 0, errori_sd[4]),
+  Curios3     = loadings[5]*fattori[,2] + rnorm(N, 0, errori_sd[5]),
+  Inventiv3   = loadings[6]*fattori[,2] + rnorm(N, 0, errori_sd[6]),
+
+  Loquace     = loadings[7]*fattori[,3] + rnorm(N, 0, errori_sd[7]),
+  Socievole   = loadings[8]*fattori[,3] + rnorm(N, 0, errori_sd[8]),
+  Energic3    = loadings[9]*fattori[,3] + rnorm(N, 0, errori_sd[9])
+)
+
+# Soglie NON simmetriche (diverse per item!)
+make_likert <- function(x) {
+  # soglie un po' asimmetriche
+  cuts <- c(-Inf, -1, -0.2, 0.3, 1.2, Inf)
+  as.numeric(cut(x, breaks = cuts, labels = 1:5))
+}
+
+# Applico la discretizzazione
+dati_likert <- as.data.frame(lapply(dati_cont, make_likert))
+
+
+```
+
+
+
+# Trovare la causa comune
+
+## Da questo
+
+### 
+
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 80%
+library(corrplot)
+corrplot(cor(dati_likert), method = "number", type = "lower")
+```
+
+## A questo 
+
+### 
+
+```{r}
+#| echo: false 
+#| fig-align: center
+#| out-width: 80% 
+modello <- 'Stabilita =~ Triste + Stressat3 + Ansios3
+Apertura  =~ Artistic3 + Curios3 + Inventiv3
+Estroversione =~ Loquace + Socievole + Energic3
+'
+fit <- cfa(modello, data = dati_likert, ordered = names(dati_likert))
+
+semPaths(fit,
+         whatLabels = "none",
+         layout = "tree",
+         style = "ram",
+         intercepts = FALSE,
+         residuals = FALSE,
+         nCharNodes = 0, 
+                  sizeMan = 6,
+         sizeLat = 8,)
+```
+ 
+# Analisi Fattoriale FA
+
+## Scopo 
+
+### 
+
+* Raggruppare le variabili ossevate (gli item) in  una serie di variabili latenti (fattori) sulla base della loro correlazione
+* Inferire quanti sono i fattori latenti necessari per spiegare la variabilità nei dati 
+* Trovare quali variabili osservate vadano su quale fattore latente
+* Stabilire la forza della relazione tra le variabili osservate e il fattore latente 
+* Ricavare il punteggio latente di ogni persona, ovvero il loro livello di costrutto
+
+
+### 
+
+\vspace{-3mm}
+
+:::{.callout-tip}
+## Exploratory Factor Analysis (EFA)
+
+Quanti e quali dimensioni latenti si devono utilizzare per spiegare le covariazioni tra le variabili osservate? 
+
+Sono i dati che guidano la scelta delle dimensioni latenti 
+:::
+
+:::{.callout-caution}
+## Confirmatory Factor Analysis (CFA)
+
+Esiste un modello teorico rispetto a quanti fattori latenti sono coinvolti, sulla loro relazione tra loro e con le variabili osservate
+
+Viene testato un modello teorico per vedere se i si conforma ed è in grado di spiegare le variazioni nei dati 
+:::
+
+Le **saturazioni** (factor loadings) esprimono la correlazione tra l'item e il fattore latente (elevate al quadrato: varianza spiegata dal fattore per i punteggi osservati negli item)
+
+## EFA 
+
+### 
+
+:::{.callout-note}
+
+## Causazione
+
+La correlazione tra gli indicatori è dovuta all'*effetto causale* di una serie di variabili latenti 
+
+Le variabili latenti sono la *causa* dei punteggi osservati negli item
+
+La relazione tra gli indicatori è una relazione spuria, dove la variabile di controllo è una variabile latente 
+
+Tutto parte dalla matrice di correlazione tra gli indicatori e dalla sua scomposizione. Per ogni item: 
+
+* Varianza **comune**: proporzione della variabilità di un item condivisa con gli altri item (comunalità, $h_i^2$)
+* Varianza **unica** proporzione della variabilità di un item che è propria (specifica) di quell'item (unicità, $u_i = 1 - h_i^2$)
+
+:::
+
+
+### 
+
+:::{.callout-tip}
+## Parsimonia
+
+Scopo: Raggruppare la variabilità osservata nel minor numero possibile di sottogruppi che siano il più omogenei possibile al loro interno e più distinti possibile tra di loro
+
+Tra due soluzioni che spiegano circa la stessa quota di varianza, viene scelta quella più parsimoniosa, ossia quella che uilizza meno dimensioni latenti per spiegare la variabilità
+
+:::
+
+### 
+
+:::: {.columns}
+
+:::{.column width=50%}
+
+```{r}
+#| echo: false 
+#| warning: false
+#| fig-cap: Matrice di correlazione tra le variabili osservate
+data = dati_likert[, 1:6]
+myefa = efa(data, nfactors = 1:2)
+corrplot(cor(data), type = "lower", method = "number")
+```
+
+:::
+
+:::{.column width=50%}
+```{r}
+#| echo: false
+#| fig-cap: Matrice di correlazione residua tra le variabili osservate (1 fattore)
+corrplot(residuals(myefa$nf1)$cov,  type = "lower", method = "number")
+```
+
+:::
+::::
+
+### 
+
+:::: {.columns}
+
+:::{.column width=50%}
+
+```{r}
+#| echo: false 
+#| warning: false
+#| fig-cap: Matrice di correlazione tra le variabili osservate
+corrplot(cor(data), type = "lower", method = "number")
+```
+
+:::
+
+:::{.column width=50%}
+```{r}
+#| echo: false
+#| fig-cap: Matrice di correlazione residua tra le variabili osservate (2 fattori)
+corrplot(residuals(myefa$nf2)$cov,  type = "lower", method = "number")
+```
+
+:::
+::::
+
+
+### 
+
+:::: {.columns}
+
+:::{.column width=50%}
+
+Saturazioni della soluzione a un fattore: 
+
+```{r}
+#| echo: false 
+#| warning: false
+#| results: asis
+format_loading <- function(x, cutoff = 0.30) {
+  ifelse(abs(x) >= cutoff,
+         paste0("\\strongval{", sprintf("%.3f", x), "}"),
+         paste0("\\weakval{", sprintf("%.3f", x), "}"))
+}
+
+load <- as.data.frame(unclass(myefa$loadings$nf1))
+
+load_fmt <- as.data.frame(lapply(load, format_loading))
+knitr::kable(load_fmt, escape = FALSE)
+```
+
+:::
+
+:::{.column width=50%}
+Saturazioni della soluzione a due fattori: 
+```{r}
+#| echo: false
+load <- as.data.frame(unclass(myefa$loadings$nf2))
+
+load_fmt <- as.data.frame(lapply(load, format_loading))
+knitr::kable(load_fmt, escape = FALSE)
+```
+
+:::
+::::
+
+
+### 
+
+:::{.callout-caution}
+## Struttura semplice
+
+La matrice delle saturazioni ideale dovrebbe presentare una saturazione sostanziale su ogni riga e tutte le altre estremamente basse
+
+I cross-loadings si hanno quando un item presenta saturazioni sostanziali su più di una dimensione latente
+
+Saturazione sostanziale $\lambda_i \geq |.30|$ (o $|.40|$)
+
+:::
+
+
+## CFA 
+
+
+### 
+
+Ci sono dei casi dove è più utile andare a testare un modello teorico già noto: Confirmatory Factor Analysis (CFA)
+
+Viene specificato: 
+
+* Il numero di fattori latenti
+* La relazione tra i fattori latenti 
+* La relazione tra i fattori latenti e le variabii osservate 
+
+Viene direttamente testato il modello teorico sui dati e si guarda se il modello fitta 
+
+
+
+# Cross validation
+
+
+### 
+
+La valutazione preliminare degli item (e.g., difficoltà, discriminatività, distrattori) l'analisi fattoriale esplorativa e l'analisi fattoriale confermativa **devono** essere svolti su 3 campioni differenti
+
+Svolgere EFA e CFA sullo stesso campione: Il modello è i dati
+
+La cross-validation è uno strumetno che garantisce la robustezza e replicabilità dei risultati
