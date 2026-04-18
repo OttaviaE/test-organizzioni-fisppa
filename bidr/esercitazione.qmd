@@ -5,7 +5,11 @@ format:
    self-contained: true
    toc: true
    toc-location: left
-   theme: minty
+   theme: serif
+execute: 
+  echo: false
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Introduzione
@@ -17,10 +21,163 @@ Dovete:
 
 * Individuare quella che secondo voi è la soluzione fattoriale più adeguata
 * Trovare quali item vanno su quale fattore
-* Provare a dare una definizione a questo fattore
+* Provare a dare una definizione ai fattori sulla base dei contenuti degli item
+
+:::{.callout-caution}
+## Attenzione!
+
+Nei risultati che vedrete in seguito, gli eventuali item reverse sono già girati dalla parte giusta
+
+:::
 
 # Item 
 
 <iframe src="BIDR-SF.pdf" width="100%" height="600px"></iframe>
 
+
+# Risultati 
+
+## Matrice di correlazione
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 100%
+#| fig-cap: "Matrice di correlazione policorica degli item BIDR"
+set.seed(123)
+
+N <- 300
+library(MASS)
+library(psych)
+library(corrplot)
+# ---------------------------
+# FATTORI LATENTI CORRELATI
+# ---------------------------
+Sigma <- matrix(c(1, .4,
+                  .4, 1), 2, 2)
+
+latent <- mvrnorm(N, mu = c(0,0), Sigma = Sigma)
+
+ego   <- latent[,1]
+moral <- latent[,2]
+
+# ---------------------------
+# PARAMETRI
+# ---------------------------
+lambda <- 0.7
+error_sd <- 0.7
+
+e <- matrix(rnorm(N*16, 0, error_sd), N, 16)
+
+# ---------------------------
+# TUTTI GLI ITEM COERENTI
+# (reverse già sistemati)
+# ---------------------------
+
+X_cont <- matrix(NA, N, 16)
+
+for (i in 1:16) {
+  
+  if (i %% 2 == 0) {
+    # egoistico (pari)
+    X_cont[,i] <- lambda * ego + e[,i]
+    
+  } else {
+    # moralistico (dispari)
+    X_cont[,i] <- lambda * moral + e[,i]
+  }
+}
+
+# ---------------------------
+# DISCRETIZZAZIONE 1–6
+# ---------------------------
+to_likert <- function(x) {
+  as.numeric(cut(x,
+    breaks = quantile(x, probs = seq(0,1,length=7)),
+    include.lowest = TRUE,
+    labels = 1:6))
+}
+
+data <- as.data.frame(apply(X_cont, 2, to_likert))
+
+names(data) <- paste0("item", sprintf("%02d", 1:16))
+
+# ---------------------------
+# CHECK
+# ---------------------------
+mycor = polychoric(data)
+corrplot(mycor$rho, type = "lower", method ="number")
+```
+
+
+
+## Soluzioni Fattoriali
+
+### 1-Fattore
+
+```{r}
+#| echo: false
+
+efa1 = fa(mycor$rho,  nfactors = 1, n.obs = nrow(data))
+efa2 = fa(mycor$rho,  nfactors = 2, n.obs = nrow(data), rotate = "oblimin")
+efa3 = fa(mycor$rho,  nfactors = 3, n.obs = nrow(data), rotate = "oblimin")
+```
+
+```{r}
+#| layout-ncol: 2
+#| label: "fig:fattore1"
+#| fig-cap: "Soluzione a 1 fattore"
+#| fig-subcap: 
+#|   - "Saturazioni"
+#|   - "Residui"
+
+plot(efa1, cex = 3, cex.axis = 3, cex.lab = 3)
+corrplot(efa1$residual, type = "lower")
+```
+
+```{r}
+efa1$Structure
+```
+
+
+
+### 2-Fattori
+
+
+```{r}
+#| layout-ncol: 2
+#| label: "fig:fattore2"
+#| fig-cap: "Soluzione a 2 fattori"
+#| fig-subcap: 
+#|   - "Saturazioni"
+#|   - "Residui"
+
+plot(efa2, cex = 3, cex.axis = 3, cex.lab = 3)
+corrplot(efa2$residual, type = "lower")
+```
+
+```{r}
+efa2$Structure
+```
+
+
+### 3 fattori
+
+
+
+```{r}
+#| layout-ncol: 2
+#| label: "fig:fattore3"
+#| fig-cap: "Soluzione a 3 fattori"
+#| fig-subcap: 
+#|   - "Saturazioni"
+#|   - "Residui"
+
+plot(efa3, cex = 3, cex.axis = 3, cex.lab = 3)
+corrplot(efa3$residual, type = "lower")
+```
+
+```{r}
+efa3$Structure
+```
 
