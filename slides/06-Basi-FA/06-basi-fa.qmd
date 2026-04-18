@@ -195,11 +195,25 @@ La relazione tra gli indicatori è una relazione spuria, dove la variabile di co
 
 Tutto parte dalla matrice di correlazione tra gli indicatori e dalla sua scomposizione. Per ogni item: 
 
-* Varianza **comune**: proporzione della variabilità di un item condivisa con gli altri item (comunalità, $h_i^2$)
-* Varianza **unica** proporzione della variabilità di un item che è propria (specifica) di quell'item (unicità, $u_i = 1 - h_i^2$)
+* Varianza **comune**: proporzione della variabilità di un item spiegata dall'insieme dei fattori (comunalità, $h_i^2$)
+* Varianza **unica** proporzione della variabilità di un item che è propria (specifica) di quell'item (unicità, $u_i = 1 - h_i^2$) 
 
 :::
 
+
+### 
+
+:::{.callout-note}
+## $h_i^2$
+
+$$h_i^2 = \sum_{f = 1}^{F} \lambda_{if}^2 = \lambda_{i1}^2 + \lambda_{i2}^2 + \ldots + \lambda_{iF}^2 $$
+:::
+
+:::{.callout-note}
+## $u_i^2$
+
+$$u_i^2 = 1 - h_i^2$$
+:::
 
 ### 
 
@@ -211,6 +225,16 @@ Scopo: Raggruppare la variabilità osservata nel minor numero possibile di sotto
 Tra due soluzioni che spiegano circa la stessa quota di varianza, viene scelta quella più parsimoniosa, ossia quella che uilizza meno dimensioni latenti per spiegare la variabilità
 
 :::
+
+### 
+
+Trovare i fattori latenti per i seguenti item: 
+
+\vspace{5mm}
+> Triste, Stressato, Ansioso, Artistico, Curioso, Inventivo
+
+
+Quante dimensioni latenti? 
 
 ### 
 
@@ -335,6 +359,223 @@ Viene specificato:
 Viene direttamente testato il modello teorico sui dati e si guarda se il modello fitta 
 
 
+### Rotazione di Procuste
+
+\vspace*{-5mm}
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 40%
+knitr::include_graphics("img/procruste.jpg")
+```
+\small
+
+Viene specificata la matrice delle saturazioni *attesa* dopo la rotazione dei fattori 
+
+Vengono estratti i fattori, si ottiene la matrice delle staurazioni che viene ruotata verso la matrice target fino ad ottenere la migliore sovrapposizione possibile 
+
+Il grado di sovrapposizione tra le due matrici viene preso come prova empirica della bontà del modello teorico 
+
+### Analisi delle strutture di covarianza
+
+
+::::{.columns}
+
+:::{.column width=45%}
+Matrice di covarianza **osservata**
+:::
+
+:::{.column width=10%}
+$+$
+:::
+
+
+:::{.column width=45%}
+Modello teorico circa le relazioni tra le variabili osservate e i fattori latenti
+:::
+
+::::
+
+\centering
+
+Matrice di covarianza **attesa**
+
+\flushleft
+
+
+Matrice **osservata** vs. Matrice **attesa**: Statistica $\chi^2$ che indica il grado di vicinanza tra il modello teorico e i dati osservati 
+
+Altri indici di fit ($[0, 1]$: 
+
+* *Goodness of fit*: Quanto è "bravo" il modello a spiegare i dati ($>.90$)
+* *Badness of fit*: Quanto è lontano il modello dai dati ($<.08$)
+
+
+### Fattori di secondo ordine
+
+\centering
+
+```{=latex}
+\begin{tikzpicture}[
+  latent/.style={circle, draw, minimum size=1.4cm, align=center},
+  observed/.style={rectangle, draw, minimum width=2.2cm, minimum height=0.8cm, align=center},
+  ->, >=stealth
+]
+
+% Fattore di secondo ordine
+\node[latent] (G) at (0,4) {Estroversione};
+
+% Fattori di primo ordine
+\node[latent] (F1) at (-4,2) {Energia};
+\node[latent] (F2) at (0,2) {Assertività};
+\node[latent] (F3) at (4,2) {Socievolezza};
+
+% Variabili osservate
+\node[observed] (x1) at (-5,0) {Energico};
+\node[observed] (x2) at (-3,0) {Reattivo};
+
+\node[observed] (x3) at (-1,0) {Deciso};
+\node[observed] (x4) at (1,0) {Autoritario};
+
+\node[observed] (x5) at (3,0) {Socievole};
+\node[observed] (x6) at (5,0) {Aperto};
+
+% Frecce secondo ordine -> primo ordine
+\draw (G) -> (F1);
+\draw (G) -> (F2);
+\draw (G) -> (F3);
+
+% Frecce primo ordine -> osservate
+\draw (F1) -> (x1);
+\draw (F1) -> (x2);
+
+\draw (F2) -> (x3);
+\draw (F2) -> (x4);
+
+\draw (F3) -> (x5);
+\draw (F3) -> (x6);
+
+\end{tikzpicture}
+
+```
+
+
+
+### Modello bifactor
+
+
+\centering
+
+```{=latex}
+\begin{tikzpicture}[
+  latent/.style={circle, draw, minimum size=1.4cm, align=center},
+  observed/.style={rectangle, draw, minimum width=2.2cm, minimum height=0.8cm, align=center},
+  ->, >=stealth
+]
+
+% Fattore generale
+\node[latent] (G) at (0,4) {Estroversione};
+
+% Variabili osservate
+\node[observed] (x1) at (-5,2) {Energico};
+\node[observed] (x2) at (-3,2) {Reattivo};
+
+\node[observed] (x3) at (-1,2) {Socievole};
+\node[observed] (x4) at (1,2) {Taciturno};
+
+\node[observed] (x5) at (3,2) {Timido};
+\node[observed] (x6) at (5,2) {Riservato};
+
+% Fattori specifici (sotto)
+\node[latent] (S1) at (-2,0) {Straight};
+\node[latent] (S2) at (2,0) {Reverse};
+
+% Frecce dal fattore generale a tutti gli item
+\foreach \x in {x1,x2,x3,x4,x5,x6}
+  \draw (G) -> (\x);
+
+% Frecce dai fattori specifici agli item
+\draw (S1) -> (x1);
+\draw (S1) -> (x2);
+\draw (S1) -> (x3);
+
+\draw (S2) -> (x4);
+\draw (S2) -> (x5);
+\draw (S2) -> (x6);
+
+\end{tikzpicture}
+```
+
+
+## Rotazione dei fattori 
+
+
+### 
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 60%
+mycor = polychoric(data)
+fap = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "none" )
+plot(fap, xlim=c(-.5, 1), ylim= c(-.5,1), cex = 3, cex.axis = 3, cex.lab = 3)
+fapOb = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "oblimin" )
+
+```
+
+
+### 
+
+```{r}
+#| echo: false
+
+fap$Structure
+```
+
+
+### 
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 60%
+
+plot(fapOb, xlim=c(-.5, 1), ylim= c(-.5,1), cex = 3, cex.axis = 3, cex.lab = 3)
+```
+
+### 
+
+```{r}
+#| echo: false
+
+fapOb$Structure
+```
+
+
+###
+
+:::{.callout-note}
+## Rotazione ortgonale
+
+L'angolo tra gli assi (i fattori) è e rimane un angolo retto 
+
+Questo implica l'*ortogonalità* dei fattori, ovvero la loro indipendenza (la correlazione è forzata a 0) 
+
+> e.g., Quartimax, Varimax, Equamax
+
+:::
+
+:::{.callout-tip}
+## Rotazione obliqua
+
+L'angolo tra gli assi non è un angolo retto
+
+Esiste una correlazione tra i fattori! 
+:::
+
+
+
 
 # Cross validation
 
@@ -345,4 +586,4 @@ La valutazione preliminare degli item (e.g., difficoltà, discriminatività, dis
 
 Svolgere EFA e CFA sullo stesso campione: Il modello è i dati
 
-La cross-validation è uno strumetno che garantisce la robustezza e replicabilità dei risultati
+La cross-validation è uno strumento che garantisce la robustezza e replicabilità dei risultati
