@@ -174,7 +174,7 @@ Sono i dati che guidano la scelta delle dimensioni latenti
 
 Esiste un modello teorico rispetto a quanti fattori latenti sono coinvolti, sulla loro relazione tra loro e con le variabili osservate
 
-Viene testato un modello teorico per vedere se i si conforma ed è in grado di spiegare le variazioni nei dati 
+Viene testato un modello teorico per vedere se si conforma ed è in grado di spiegare le variazioni nei dati 
 :::
 
 Le **saturazioni** (factor loadings) esprimono la correlazione tra l'item e il fattore latente (elevate al quadrato: varianza spiegata dal fattore per i punteggi osservati negli item)
@@ -247,8 +247,9 @@ Quante dimensioni latenti?
 #| warning: false
 #| fig-cap: Matrice di correlazione tra le variabili osservate
 data = dati_likert[, 1:6]
-myefa = efa(data, nfactors = 1:2)
-corrplot(cor(data), type = "lower", method = "number")
+myefa = efa(data, nfactors = 1:2, rotation = "oblimin", ordered = colnames(data))
+mcor = polychoric(data)$rho
+corrplot(mcor, type = "lower", method = "number")
 ```
 
 :::
@@ -273,7 +274,7 @@ corrplot(residuals(myefa$nf1)$cov,  type = "lower", method = "number")
 #| echo: false 
 #| warning: false
 #| fig-cap: Matrice di correlazione tra le variabili osservate
-corrplot(cor(data), type = "lower", method = "number")
+corrplot(mcor, type = "lower", method = "number")
 ```
 
 :::
@@ -373,7 +374,7 @@ knitr::include_graphics("img/procruste.jpg")
 
 Viene specificata la matrice delle saturazioni *attesa* dopo la rotazione dei fattori 
 
-Vengono estratti i fattori, si ottiene la matrice delle staurazioni che viene ruotata verso la matrice target fino ad ottenere la migliore sovrapposizione possibile 
+Vengono estratti i fattori, si ottiene la matrice delle saturazioni che viene ruotata verso la matrice target fino ad ottenere la migliore sovrapposizione possibile 
 
 Il grado di sovrapposizione tra le due matrici viene preso come prova empirica della bontà del modello teorico 
 
@@ -406,7 +407,7 @@ Matrice di covarianza **attesa**
 
 Matrice **osservata** vs. Matrice **attesa**: Statistica $\chi^2$ che indica il grado di vicinanza tra il modello teorico e i dati osservati 
 
-Altri indici di fit ($[0, 1]$: 
+Altri indici di fit ($[0, 1]$): 
 
 * *Goodness of fit*: Quanto è "bravo" il modello a spiegare i dati ($>.90$)
 * *Badness of fit*: Quanto è lontano il modello dai dati ($<.08$)
@@ -512,44 +513,76 @@ Altri indici di fit ($[0, 1]$:
 
 
 ### 
+\vspace*{-3mm}
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 100%
+#| fig-cap: "Soluzione fattoriale non ruotata"
+# mycor = polychoric(data)
+# fap = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "none" )
+# plot(fap, xlim=c(-.5, 1), ylim= c(-.5,1), cex = 3, cex.axis = 3, cex.lab = 3)
+# fapOb = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "oblimin" )
+efanorotate = efa(data, rotation = "none", nfactors = 2, ordered = colnames(data))
+
+loadf2norotate = as.data.frame(efanorotate$loadings)
+loadf2norotate$color = c(rep("f1", 3), 
+                   rep("f2", 3))
+ggplot(loadf2norotate, 
+       aes( x= f1, y= f2, col = color)) + geom_point(size = 4) + 
+  ylim(-0.5, 0.9) +  xlim(-0.5, 0.9) + theme_light() + 
+  theme(
+    legend.position = "none", 
+    axis.title = element_text(size = 22), 
+    axis.text = element_text(size = 20)
+  ) + geom_hline(yintercept = 0) + 
+  geom_vline(xintercept = 0)
+```
+
+
+### 
+
+```{r}
+#| echo: false
+#| results: asis
+load <- as.data.frame(unclass(efanorotate$loadings))
+
+load_fmt <- as.data.frame(lapply(load, format_loading))
+knitr::kable(load_fmt, escape = FALSE)
+```
+
+
+### 
+\vspace*{-3mm}
 
 ```{r}
 #| echo: false
 #| fig-align: center
-#| out-width: 60%
-mycor = polychoric(data)
-fap = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "none" )
-plot(fap, xlim=c(-.5, 1), ylim= c(-.5,1), cex = 3, cex.axis = 3, cex.lab = 3)
-fapOb = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "oblimin" )
-
-```
-
-
-### 
-
-```{r}
-#| echo: false
-
-fap$Structure
-```
-
-
-### 
-
-```{r}
-#| echo: false
-#| fig-align: center
-#| out-width: 60%
-
-plot(fapOb, xlim=c(-.5, 1), ylim= c(-.5,1), cex = 3, cex.axis = 3, cex.lab = 3)
+#| out-width: 100%
+#| fig-cap: "Soluzione fattoriale  ruotata"
+loadf2rotate = as.data.frame(myefa$loadings$nf2)
+loadf2rotate$color = c(rep("f1", 3), 
+                   rep("f2", 3))
+ggplot(loadf2rotate, 
+       aes( x= f1, y= f2, col = color)) + geom_point(size = 4) + 
+  ylim(-0.5, 0.9) +  xlim(-0.5, 0.9) + theme_light() + 
+  theme(
+    legend.position = "none", 
+    axis.title = element_text(size = 22), 
+    axis.text = element_text(size = 20)
+  ) + geom_hline(yintercept = 0) + 
+  geom_vline(xintercept = 0)
 ```
 
 ### 
 
 ```{r}
 #| echo: false
+#| results: asis
+load <- as.data.frame(unclass(myefa$loadings$nf2))
 
-fapOb$Structure
+load_fmt <- as.data.frame(lapply(load, format_loading))
+knitr::kable(load_fmt, escape = FALSE)
 ```
 
 
@@ -572,6 +605,8 @@ Questo implica l'*ortogonalità* dei fattori, ovvero la loro indipendenza (la co
 L'angolo tra gli assi non è un angolo retto
 
 Esiste una correlazione tra i fattori! 
+
+> e.g., oblimin, promax
 :::
 
 
