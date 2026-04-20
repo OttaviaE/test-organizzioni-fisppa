@@ -1,0 +1,53 @@
+---
+title: "BIDR"
+format: 
+  html: 
+   self-contained: true
+   toc: true
+   toc-location: left
+   theme: lumen
+execute: 
+  echo: false
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Costrutto 
+
+Il BIDR misura la desiderabilità sociale considerando due fattori distinti ma correlati tra loro: 
+
+
+:::{.callout-note icon="false"}
+## **Bias egoistico**
+
+Misura la tendenza ad avere *percezioni di sé irrealisticamente positive* riguardo a caratteristiche come la dominanza, il coraggio, la stabilità emotiva, la creatività e l’intelligenza, da cui un forte legame con l’*idea narcisistica di sé del "super-eroe"*.
+:::
+ 
+ 
+:::{.callout-tip icon="false"}
+## **Bias moralistico**
+
+Misura la *tendenza ad auto-ingannarsi* negando impulsi considerati socialmente inappropriati, *presentandosi ipocritamente come dei "santarellini"* e attribuendosi qualità legate all’amicalità, alla coscienziosità e alla moderazione.
+:::
+
+
+# Scoring
+
+
+:::{.callout-note icon="false" collapse=true}
+## **Bias egoistico**
+
+**item02**, **item04**, item06, **item08**, item10, **item12**, **item14**, **item16**
+:::
+ 
+ 
+:::{.callout-tip icon="false" collapse=true}
+## **Bias moralistico**
+
+item01, item03, item05, item07, item09, item11, item13, item15
+:::
+
+
+Gli item in grassetto sono gli item reverse
