@@ -6,7 +6,7 @@ format:
    self-contained: true
    toc: true
    toc-location: left
-   theme: superhero
+   theme: lux
 ---
 
 # Modulo 0
@@ -67,8 +67,8 @@ Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [sl
 
 Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/05-Dimensioni/05-dimensioni.pdf)
 
-# Modulo 6 
+## Modulo 5b 
 
-Introduzione e concetti di base dell'analisi fattoriale [slides in pdf](slides/06-Basi-FA/06-basi-fa.pdf)
+Introduzione e concetti di base dell'analisi fattoriale [slides in pdf](slides/05-Dimensioni/05b-basi-fa.pdf)
 
 Esercitazione [file html](bidr/esercitazione.html)
