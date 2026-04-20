@@ -8,6 +8,8 @@ format:
    theme: lux
 execute: 
   echo: false
+  message: false
+  warning: false
 editor_options: 
   chunk_output_type: console
 ---
