@@ -5,7 +5,7 @@ format:
    self-contained: true
    toc: true
    toc-location: left
-   theme: serif
+   theme: lux
 execute: 
   echo: false
 editor_options: 
@@ -40,6 +40,7 @@ Nei risultati che vedrete in seguito, gli eventuali item reverse sono già girat
 ## Matrice di correlazione
 
 ```{r}
+#| column: page
 #| echo: false
 #| fig-align: center
 #| out-width: 100%
@@ -124,6 +125,7 @@ efa3 = fa(mycor$rho,  nfactors = 3, n.obs = nrow(data), rotate = "oblimin")
 ```
 
 ```{r}
+#| column: page
 #| layout-ncol: 2
 #| label: "fig:fattore1"
 #| fig-cap: "Soluzione a 1 fattore"
@@ -145,6 +147,7 @@ efa1$Structure
 
 
 ```{r}
+#| column: page
 #| layout-ncol: 2
 #| label: "fig:fattore2"
 #| fig-cap: "Soluzione a 2 fattori"
@@ -166,6 +169,7 @@ efa2$Structure
 
 
 ```{r}
+#| column: page
 #| layout-ncol: 2
 #| label: "fig:fattore3"
 #| fig-cap: "Soluzione a 3 fattori"
