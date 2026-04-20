@@ -247,7 +247,7 @@ Quante dimensioni latenti?
 #| warning: false
 #| fig-cap: Matrice di correlazione tra le variabili osservate
 data = dati_likert[, 1:6]
-myefa = efa(data, nfactors = 1:2, rotation = "oblimin", ordered = colnames(data))
+myefa = efa(data, nfactors = 1:2, rotation = "geomin")
 mcor = cor(data)
 corrplot(mcor, type = "lower", method = "number")
 ```
@@ -522,8 +522,8 @@ Altri indici di fit ($[0, 1]$:
 # mycor = polychoric(data)
 # fap = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "none" )
 # plot(fap, xlim=c(-.5, 1), ylim= c(-.5,1), cex = 3, cex.axis = 3, cex.lab = 3)
-# fapOb = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "oblimin" )
-efanorotate = efa(data, rotation = "none", nfactors = 2, ordered = colnames(data))
+# fapOb = fa(mycor$rho, nfactors = 2, n.obs = nrow(data), rotate = "geomin" )
+efanorotate = efa(data, rotation = "none", nfactors = 2)
 
 loadf2norotate = as.data.frame(efanorotate$loadings)
 loadf2norotate$color = c(rep("f1", 3), 
@@ -589,7 +589,7 @@ knitr::kable(load_fmt, escape = FALSE)
 ###
 
 :::{.callout-note}
-## Rotazione ortgonale
+## Rotazione ortogonale
 
 L'angolo tra gli assi (i fattori) è e rimane un angolo retto 
 
@@ -606,7 +606,7 @@ L'angolo tra gli assi non è un angolo retto
 
 Esiste una correlazione tra i fattori! 
 
-> e.g., oblimin, promax
+> e.g., Oblimin, Promax, Geomin
 :::
 
 
