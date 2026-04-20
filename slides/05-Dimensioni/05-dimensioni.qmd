@@ -320,7 +320,7 @@ A punteggi *alti* nell'item sono verosilmente associati a livelli alti del costr
 :::
 
 :::{.callout-warning}
-## Item straight
+## Item Reverse
 
 Sono item il cui contenuto è formulato *nella direzione opposta al costrutto*
 
@@ -1245,7 +1245,7 @@ Punto di partenza:
  \hline
  $Y_i = 0$ & $n_{00}$ & $n_{01}$ & $n_{0\bullet} = n_{00} + n_{01}$\\\hline
  $Y_i = 1$ & $n_{10}$ & $n_{11}$ & $n_{1\bullet} = n_{10} + n_{11}$\\\hline
- & $n_{\bullet0} = n_{00} + n_{10}$ & $n_{\bullet1} = n_{01} + n_{11}$ \\\hline 
+ & $n_{\bullet0} = n_{00} + n_{10}$ & $n_{\bullet1} = n_{01} + n_{11}$ & $n$ \\\hline 
 \end{tabular}
 
 \end{table}
