@@ -7,20 +7,30 @@ setwd('/percorso/cartella')
 # Caricare dataset
 
 # Visualizzare struttura
+str(data_pswq)
 
-# Definire natura della variabile (somma a PSWQ)
-
+# Definire natura della variabile
+dat <- data_pswq
+dat$id <- as.factor(dat$id)
+dat$eta <- as.factor(dat$eta)
+dat$genere <- as.factor(dat$genere)
 
 # Frequenze---------------
+dat$PSWQ_1 <- as.ordered(dat$PSWQ_1)
+str(dat$PSWQ_1)
 
 ## Frequenze Assolute Semplici
+table(dat$PSWQ_1)
 
 ## Frequenze Assolute Cumulate
+cumsum(table(dat$PSWQ_1))
 
 ## Frequenze Relative Semplici
+n = length(dat$PSWQ_1)
+table(dat$PSWQ_1)/n
 
 ## Frequenze Relative Cumulate
-
+cumsum(table(dat$PSWQ_1)/n)
 
 # Indici di Tendenza Centrale ---------------
 
@@ -28,6 +38,7 @@ setwd('/percorso/cartella')
   
 ## Mediana
 
+median(as.numeric(dat$PSWQ_1))
 
 # Indici di Variabilità -----------
 

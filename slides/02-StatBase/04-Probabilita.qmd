@@ -896,9 +896,6 @@ probabilità:
 ------------------------------------------------------------------
 
 
-
------
-
 #### Alcune distribuzioni di probabilità in R
 
 | Distribuzione | Tipo     | Nome R   |
@@ -1015,6 +1012,7 @@ qnorm(0.9772499)
 
 ```
 
+----
 
 #### `rnorm()`
 

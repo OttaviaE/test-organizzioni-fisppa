@@ -8,9 +8,9 @@ dat <- dat[-c(1,2,3), colint]
 
 dat <- dat|>
   mutate(id = as.factor(ResponseId),
-         eta = factor(Eta, levels = c(1,2,3),
+         eta = factor(Eta, levels = c("18-25","26-40","41-60"),
                       labels = c("18_25", "26_40", "41_60")),
-         genere = factor(Q2, labels = c("F","M", "A")))|>
+         genere = factor(Q2, labels = c("F","M")))|>
   select(id, eta, genere, all_of(PSQW_item))
 
 str(dat)
@@ -33,9 +33,11 @@ dat[,c("PSWQ_1","PSWQ_3","PSWQ_8","PSWQ_10","PSWQ_11")] <-
 # computo la somma
 dat$somma = rowSums(dat[, 4:ncol(dat)])
 
+write_csv(dat, file = "data_pswq.csv")
+
 # visualizzo
-dat|>ggplot(aes(x = somma, fill = eta))+
-  geom_histogram()+facet_wrap(~genere)+
+dat|>ggplot(aes(x = somma, fill = genere))+
+  geom_density(alpha = 0.5)+
   theme_classic()
 
 
