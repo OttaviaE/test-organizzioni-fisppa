@@ -128,6 +128,7 @@ Di seguito sono riportati gli item suddivisi per scala. Gli item in **grassetto*
 ## Caricamento e preparazione dei dati
 
 ```{r}
+# pulisco lo spazio di lavoro
 rm(list = ls())
 
 # Carico pacchetti 
@@ -193,12 +194,7 @@ colSums(is.na(itemE_orig)) # sommo gli NA per colonna
 colMeans(is.na(itemE_orig))
 ```
 
-Nel nostro caso i missing sono più o meno uniformemente distribuiti tra gli item e in percentuale trascurabile. Occorre tuttavia chiedersi *perché* si sono generati. Le cause più frequenti nei test di personalità sono:
-
-- il rispondente si è rifiutato intenzionalmente di rispondere
-- il rispondente non sapeva come rispondere e ha preferito non indicare nulla
-- il rispondente ha semplicemente saltato l'item per sbaglio
-- errore di inserimento nel database
+Nel nostro caso i missing sono più o meno uniformemente distribuiti tra gli item e in percentuale trascurabile. Occorre tuttavia chiedersi *perché* si sono generati. 
 
 ::: {.callout-note}
 ## Perché il significato dei missing è diverso nei due tipi di test
@@ -206,11 +202,11 @@ Nel nostro caso i missing sono più o meno uniformemente distribuiti tra gli ite
 Nei **test di prestazione tipica**, un'omissione è ambigua: non sappiamo se il rispondente non ha capito, non voleva rispondere, o si è distratto. Nei **test di prestazione massima**, invece, un'omissione può essere interpretata come mancata conoscenza (l'item era troppo difficile).
 :::
 
-In letteratura si distinguono tre meccanismi che possono generare dati mancanti:
+In letteratura si distinguono tre meccanismi che possono generare dati [mancanti](https://www.ncbi.nlm.nih.gov/books/NBK493614/):
 
-- **MCAR** (*Missing Completely at Random*): la probabilità che un dato sia mancante è del tutto indipendente sia dal costrutto misurato sia da qualsiasi altra variabile osservata. È il caso più favorevole e consente di procedere con la *complete-case analysis* (analizzare solo i casi completi) senza introdurre distorsioni.
-- **MAR** (*Missing at Random*): la probabilità di missing dipende da altre variabili osservate (es. età, genere), ma non dal valore mancante in sé.
-- **MNAR** (*Missing Not at Random*): la probabilità di missing dipende dal valore non osservato stesso, il caso più problematico, difficile da rilevare senza informazioni esterne.
+- **MCAR** (*Missing Completely at Random*): la probabilità che un dato sia mancante è **del tutto indipendente** sia **dal costrutto** misurato sia **da qualsiasi altra variabile** osservata. È il caso più favorevole e consente di procedere con la *complete-case analysis* (analizzare solo i casi completi) senza introdurre distorsioni. 
+- **MAR** (*Missing at Random*): la probabilità di missing **dipende da altre variabili osservate** (es. età, genere), ma non dal valore mancante in sé. 
+- **MNAR** (*Missing Not at Random*): la probabilità di missing **dipende dal valore non osservato stesso**, il caso più problematico, difficile da rilevare senza informazioni esterne.
 
 Nel nostro caso, con una percentuale di missing molto bassa, qualunque meccanismo sia in atto le conseguenze pratiche sono trascurabili. Procediamo con la **complete-case analysis**.
 
