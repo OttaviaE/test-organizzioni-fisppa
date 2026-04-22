@@ -154,6 +154,54 @@ Le prime 7 colonne sono le variabili socio-demografiche; dalla colonna 8 in poi 
 item <- dataB[, 8:ncol(dataB)]
 ```
 
+
+---
+
+## Struttura dell'intero questionario
+
+Visualizziamo la matrice di correlazione dell'intero questionario:
+
+
+```{r}
+#| fig-width: 12
+#| fig-height: 12
+#| code-fold: true
+#| fig-cap: "Matrice di correlazione dell'intero questionario"
+
+R_rec <- cor(item, use = "pairwise.complete.obs")
+corrplot(R_rec, type = "lower", tl.cex = 1, mar = c(0, 0, 1, 0))
+```
+
+> Cosa notate di strano? Come descrivereste questa matrice?
+
+---
+
+```{r}
+#| fig-width: 12
+#| fig-height: 12
+#| code-fold: true
+#| fig-cap: "Matrice di correlazione dell'intero questionario (tutti gli item reverse ricodificati)"
+
+# item reverse per tutte le scale
+rev_E <- paste("E", seq(2, 10, by = 2), sep = "")
+rev_N <- c("N2", "N4")
+rev_A <- c("A1", "A3", "A5", "A7")
+rev_C <- c("C2", "C4", "C6", "C8")
+rev_O <- c("O2", "O4", "O6")
+tutti_rev <- c(rev_E, rev_N, rev_A, rev_C, rev_O)
+
+item_rec <- item
+item_rec[, tutti_rev] <- 6 - item_rec[, tutti_rev]
+
+# ordino le colonne per scala
+ordine <- c(paste("E", 1:10, sep = ""), paste("N", 1:10, sep = ""),
+            paste("A", 1:10, sep = ""), paste("C", 1:10, sep = ""),
+            paste("O", 1:10, sep = ""))
+
+R_rec <- cor(item_rec[, ordine], use = "pairwise.complete.obs")
+corrplot(R_rec, type = "lower", tl.cex = 1, mar = c(0, 0, 1, 0))
+```
+
 ---
 
 ## Analisi della scala di Estroversione
@@ -387,6 +435,7 @@ barplot(t(rf), beside = TRUE,
 ```
 
 Il grafico mostra le **frequenze relative** per ciascuna categoria di risposta, separate per item. 
+
 ---
 
 
@@ -577,39 +626,6 @@ head(corr_E, 10)
 
 ---
 
-## Appendice: struttura dell'intero questionario
-
-Prima di passare all'esercizio, visualizziamo la matrice di correlazione dell'intero questionario dopo aver ricodificato **tutti** gli item reverse. Questo ci permette di apprezzare la struttura a blocchi del Big Five.
-
-```{r}
-#| fig-width: 12
-#| fig-height: 12
-#| code-fold: true
-#| fig-cap: "Matrice di correlazione dell'intero questionario (tutti gli item reverse ricodificati, ordinati per scala)"
-
-# item reverse per tutte le scale
-rev_E <- paste("E", seq(2, 10, by = 2), sep = "")
-rev_N <- c("N2", "N4")
-rev_A <- c("A1", "A3", "A5", "A7")
-rev_C <- c("C2", "C4", "C6", "C8")
-rev_O <- c("O2", "O4", "O6")
-tutti_rev <- c(rev_E, rev_N, rev_A, rev_C, rev_O)
-
-item_rec <- item
-item_rec[, tutti_rev] <- 6 - item_rec[, tutti_rev]
-
-# ordino le colonne per scala
-ordine <- c(paste("E", 1:10, sep = ""), paste("N", 1:10, sep = ""),
-            paste("A", 1:10, sep = ""), paste("C", 1:10, sep = ""),
-            paste("O", 1:10, sep = ""))
-
-R_rec <- cor(item_rec[, ordine], use = "pairwise.complete.obs")
-corrplot(R_rec, type = "lower", tl.cex = 1, mar = c(0, 0, 1, 0))
-```
-
-
----
-
 ::: {.callout-tip}
 ## Esercizio: Nevroticismo
 
@@ -617,10 +633,13 @@ Applica la stessa procedura alla scala di **Nevroticismo** (item reverse: N2, N4
 
 1. Estrai gli item N1–N10
 2. Analizza i dati mancanti
-3. Ricodifica N2 e N4 con la formula $6 - x$
-4. Calcola statistiche descrittive e $p_i^*$
-5. Visualizza la distribuzione delle risposte con `ggplot2`
+3. Ricodifica gli item reverse
+4. Calcola statistiche descrittive e la difficoltà
+5. Visualizza la distribuzione delle risposte (opzionale)
 6. Calcola e visualizza la matrice di correlazione
 7. Valuta la discriminatività con `alpha()`
 8. Verifica se ci sono coppie di item ridondanti ($r > .70$)
 :::
+
+
+
