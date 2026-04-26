@@ -67,6 +67,13 @@ Punteggi standardizzati, Distribuzione Normale, Distribuzioni di Probabiltà [sl
 
 Dimensionalità, item reverse, valutazione degli item [slides in pdf](slides/05-Dimensioni/05-dimensioni.pdf)
 
+
+## Modulo 5a 
+
+Analisi preliminare degli item: Esercitazione pratica e richiami alla teoria [file html](slides/05-Dimensioni/05a-PIA.html)
+
+- Dati da [scaricare](slides/05-Dimensioni/data/dataB.RData){download="dataB.RData"}
+
 ## Modulo 5b 
 
 Introduzione e concetti di base dell'analisi fattoriale [slides in pdf](slides/05-Dimensioni/05b-basi-fa.pdf)
