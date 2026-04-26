@@ -961,7 +961,7 @@ for (i in seq_along(names(item_raw))) {
 
 È utile esaminare le **correlazioni tra item** per individuare possibili ridondanze e verificare la coerenza interna della batteria. Per item dicotomici, tuttavia, la correlazione di Pearson non è la scelta più appropriata: le risposte 0/1 non sono variabili continue, e applicare Pearson significherebbe ignorare la natura del dato.
 
-**#### Correlazione tetracorica**
+#### **Correlazione tetracorica**
 
 La stessa logica della correlazione policorica si applica al caso più semplice in cui le variabili sono **dicotomiche** (0/1): con una sola categoria di confine, rimane un'unica soglia $\tau_i$.
 
