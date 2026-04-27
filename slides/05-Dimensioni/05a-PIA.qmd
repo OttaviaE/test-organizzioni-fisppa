@@ -18,112 +18,129 @@ execute:
   echo: true
   warning: false
   message: false
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 # Test di prestazione tipica: il Big Five
 
-Per gli esempi che seguono utilizziamo il file [`dataB.Rdata`](slides/05-Dimensioni/data/dataB.Rdata){download="dataB.RData"}, che contiene le risposte al questionario di personalità **Big Five** (test di prestazione tipica) somministrato a 19.709 partecipanti online. Gli item sono stati valutati su una scala a cinque punti (1 = *Completamente in disaccordo*, 3 = *Né d'accordo né in disaccordo*, 5 = *Completamente d'accordo*), dove il valore NA indica una risposta omessa.
+Per gli esempi che seguono utilizziamo il file
+[`dataB.Rdata`](slides/05-Dimensioni/data/dataB.Rdata){download="dataB.RData"},
+che contiene le risposte al questionario di personalità **Big Five**
+(test di prestazione tipica) somministrato a 19.709 partecipanti online.
+Gli item sono stati valutati su una scala a cinque punti (1 =
+*Completamente in disaccordo*, 3 = *Né d'accordo né in disaccordo*, 5 =
+*Completamente d'accordo*), dove il valore NA indica una risposta
+omessa.
 
-Il questionario misura i **Cinque Grandi fattori di personalità** secondo il modello di Goldberg (1992): Estroversione (E), Nevroticismo (N), Gradevolezza (A), Coscienziosità (C) e Apertura all'esperienza (O). Ciascuna scala è composta da 10 item, per un totale di 50 item.
+Il questionario misura i **Cinque Grandi fattori di personalità**
+secondo il modello di Goldberg (1992): Estroversione (E), Nevroticismo
+(N), Gradevolezza (A), Coscienziosità (C) e Apertura all'esperienza (O).
+Ciascuna scala è composta da 10 item, per un totale di 50 item.
 
-::: {.callout-note}
+::: callout-note
 ## Cos'è un test di prestazione tipica?
 
-Nei **test di prestazione tipica** non esistono risposte giuste o sbagliate: si chiede al rispondente di descrivere come *di solito* pensa, sente o si comporta.
+Nei **test di prestazione tipica** non esistono risposte giuste o
+sbagliate: si chiede al rispondente di descrivere come *di solito*
+pensa, sente o si comporta.
 :::
 
 ## Variabili socio-demografiche
 
-Il dataset include, oltre agli item del questionario, cinque variabili socio-demografiche:
+Il dataset include, oltre agli item del questionario, cinque variabili
+socio-demografiche:
 
 | Variabile | Descrizione | Codifica |
-|-----------|-------------|----------|
+|-----------------------|---------------------------|---------------------|
 | `race` | Gruppo etnico (menu a tendina) | 1 = Multirazziale; 2 = Artico; 3 = Caucasico (Europeo); 4 = Caucasico (Indiano); 5 = Caucasico (Medio Oriente); 6 = Caucasico (Nord Africa); 7 = Australiano indigeno; 8 = Nativo Americano; 9 = Asia nord-orientale; 10 = Pacifico; 11 = Asia sud-orientale; 12 = Africa occidentale/Etiopia; 13 = Altro (0 = mancante) |
-| `age` | Età (inserita come testo; esclusi i partecipanti con età < 13 anni) | Variabile continua |
+| `age` | Età (inserita come testo; esclusi i partecipanti con età \< 13 anni) | Variabile continua |
 | `engnat` | Madrelingua inglese? | 1 = Sì; 2 = No (0 = mancante) |
 | `gender` | Genere (menu a tendina) | 1 = Maschio; 2 = Femmina; 3 = Altro (0 = mancante) |
 | `hand` | Mano dominante | 1 = Destra; 2 = Sinistra; 3 = Entrambe (0 = mancante) |
 
 ## Item del questionario
 
-Di seguito sono riportati gli item suddivisi per scala. Gli item in **grassetto** sono gli **item reverse**.
+Di seguito sono riportati gli item suddivisi per scala. Gli item in
+**grassetto** sono gli **item reverse**.
 
 #### Estroversione (E)
 
-| Item | Testo originale |
-|------|----------------|
-| E1 | I am the life of the party. |
-| **E2** | I don't talk a lot. |
-| E3 | I feel comfortable around people. |
-| **E4** | I keep in the background. |
-| E5 | I start conversations. |
-| **E6** | I have little to say. |
-| E7 | I talk to a lot of different people at parties. |
-| **E8** | I don't like to draw attention to myself. |
-| E9 | I don't mind being the center of attention. |
-| **E10** | I am quiet around strangers. |
+| Item    | Testo originale                                 |
+|---------|-------------------------------------------------|
+| E1      | I am the life of the party.                     |
+| **E2**  | I don't talk a lot.                             |
+| E3      | I feel comfortable around people.               |
+| **E4**  | I keep in the background.                       |
+| E5      | I start conversations.                          |
+| **E6**  | I have little to say.                           |
+| E7      | I talk to a lot of different people at parties. |
+| **E8**  | I don't like to draw attention to myself.       |
+| E9      | I don't mind being the center of attention.     |
+| **E10** | I am quiet around strangers.                    |
 
 #### Nevroticismo (N)
 
-| Item | Testo originale |
-|------|----------------|
-| N1 | I get stressed out easily. |
+| Item   | Testo originale                |
+|--------|--------------------------------|
+| N1     | I get stressed out easily.     |
 | **N2** | I am relaxed most of the time. |
-| N3 | I worry about things. |
-| **N4** | I seldom feel blue. |
-| N5 | I am easily disturbed. |
-| N6 | I get upset easily. |
-| N7 | I change my mood a lot. |
-| N8 | I have frequent mood swings. |
-| N9 | I get irritated easily. |
-| N10 | I often feel blue. |
+| N3     | I worry about things.          |
+| **N4** | I seldom feel blue.            |
+| N5     | I am easily disturbed.         |
+| N6     | I get upset easily.            |
+| N7     | I change my mood a lot.        |
+| N8     | I have frequent mood swings.   |
+| N9     | I get irritated easily.        |
+| N10    | I often feel blue.             |
 
 #### Gradevolezza (A)
 
-| Item | Testo originale |
-|------|----------------|
-| **A1** | I feel little concern for others. |
-| A2 | I am interested in people. |
-| **A3** | I insult people. |
-| A4 | I sympathize with others' feelings. |
+| Item   | Testo originale                                 |
+|--------|-------------------------------------------------|
+| **A1** | I feel little concern for others.               |
+| A2     | I am interested in people.                      |
+| **A3** | I insult people.                                |
+| A4     | I sympathize with others' feelings.             |
 | **A5** | I am not interested in other people's problems. |
-| A6 | I have a soft heart. |
-| **A7** | I am not really interested in others. |
-| A8 | I take time out for others. |
-| A9 | I feel others' emotions. |
-| A10 | I make people feel at ease. |
+| A6     | I have a soft heart.                            |
+| **A7** | I am not really interested in others.           |
+| A8     | I take time out for others.                     |
+| A9     | I feel others' emotions.                        |
+| A10    | I make people feel at ease.                     |
 
 #### Coscienziosità (C)
 
-| Item | Testo originale |
-|------|----------------|
-| C1 | I am always prepared. |
-| **C2** | I leave my belongings around. |
-| C3 | I pay attention to details. |
-| **C4** | I make a mess of things. |
-| C5 | I get chores done right away. |
+| Item   | Testo originale                                          |
+|--------|----------------------------------------------------------|
+| C1     | I am always prepared.                                    |
+| **C2** | I leave my belongings around.                            |
+| C3     | I pay attention to details.                              |
+| **C4** | I make a mess of things.                                 |
+| C5     | I get chores done right away.                            |
 | **C6** | I often forget to put things back in their proper place. |
-| C7 | I like order. |
-| **C8** | I shirk my duties. |
-| C9 | I follow a schedule. |
-| C10 | I am exacting in my work. |
+| C7     | I like order.                                            |
+| **C8** | I shirk my duties.                                       |
+| C9     | I follow a schedule.                                     |
+| C10    | I am exacting in my work.                                |
 
 #### Apertura all'esperienza (O)
 
-| Item | Testo originale |
-|------|----------------|
-| O1 | I have a rich vocabulary. |
+| Item   | Testo originale                                 |
+|--------|-------------------------------------------------|
+| O1     | I have a rich vocabulary.                       |
 | **O2** | I have difficulty understanding abstract ideas. |
-| O3 | I have a vivid imagination. |
-| **O4** | I am not interested in abstract ideas. |
-| O5 | I have excellent ideas. |
-| **O6** | I do not have a good imagination. |
-| O7 | I am quick to understand things. |
-| O8 | I use difficult words. |
-| O9 | I spend time reflecting on things. |
-| O10 | I am full of ideas. |
+| O3     | I have a vivid imagination.                     |
+| **O4** | I am not interested in abstract ideas.          |
+| O5     | I have excellent ideas.                         |
+| **O6** | I do not have a good imagination.               |
+| O7     | I am quick to understand things.                |
+| O8     | I use difficult words.                          |
+| O9     | I spend time reflecting on things.              |
+| O10    | I am full of ideas.                             |
 
----
+------------------------------------------------------------------------
 
 ## Caricamento e preparazione dei dati
 
@@ -149,19 +166,19 @@ load("data/dataB.RData")
 str(dataB)
 ```
 
-Le prime 7 colonne sono le variabili socio-demografiche; dalla colonna 8 in poi ci sono i 50 item del questionario. Li estraiamo in un dataframe separato:
+Le prime 7 colonne sono le variabili socio-demografiche; dalla colonna 8
+in poi ci sono i 50 item del questionario. Li estraiamo in un dataframe
+separato:
 
 ```{r}
 item <- dataB[, 8:ncol(dataB)]
 ```
 
-
----
+------------------------------------------------------------------------
 
 ## Struttura dell'intero questionario
 
 Visualizziamo la matrice di correlazione dell'intero questionario:
-
 
 ```{r}
 #| fig-width: 12
@@ -175,7 +192,7 @@ corrplot(R_rec, type = "lower", tl.cex = 1, mar = c(0, 0, 1, 0))
 
 > Cosa notate di strano? Come descrivereste questa matrice?
 
----
+------------------------------------------------------------------------
 
 ```{r}
 #| fig-width: 12
@@ -203,22 +220,23 @@ R_rec <- cor(item_rec[, ordine], use = "pairwise.complete.obs")
 corrplot(R_rec, type = "lower", tl.cex = 1, mar = c(0, 0, 1, 0))
 ```
 
----
+------------------------------------------------------------------------
 
 ## Analisi della scala di Estroversione
 
-Illustriamo tutti i passaggi dell'analisi preliminare degli item usando la scala di **Estroversione** come esempio. 
+Illustriamo tutti i passaggi dell'analisi preliminare degli item usando
+la scala di **Estroversione** come esempio.
 
 Il flusso di analisi che seguiremo è questo:
 
-1. Estrazione degli item della scala
-2. Analisi dei dati mancanti
-3. Ricodifica degli item reverse
-4. Statistiche descrittive
-5. Distribuzione delle risposte
-6. Matrice di correlazione
-7. Discriminatività (correlazione item-totale corretta)
-8. Ridondanza
+1.  Estrazione degli item della scala
+2.  Analisi dei dati mancanti
+3.  Ricodifica degli item reverse
+4.  Statistiche descrittive
+5.  Distribuzione delle risposte
+6.  Matrice di correlazione
+7.  Discriminatività (correlazione item-totale corretta)
+8.  Ridondanza
 
 ### Passo 1: Estrazione degli item
 
@@ -233,7 +251,8 @@ head(itemE_orig)
 
 ### Passo 2: Analisi dei dati mancanti
 
-Prima di qualsiasi analisi è buona prassi verificare quanti dati mancanti ci sono e come sono distribuiti tra gli item.
+Prima di qualsiasi analisi è buona prassi verificare quanti dati
+mancanti ci sono e come sono distribuiti tra gli item.
 
 ```{r}
 # numero assoluto di missing per item
@@ -243,49 +262,79 @@ colSums(is.na(itemE_orig)) # sommo gli NA per colonna
 colMeans(is.na(itemE_orig))
 ```
 
-Nel nostro caso i missing sono più o meno uniformemente distribuiti tra gli item e in percentuale trascurabile. Occorre tuttavia chiedersi *perché* si sono generati. 
+Nel nostro caso i missing sono più o meno uniformemente distribuiti tra
+gli item e in percentuale trascurabile. Occorre tuttavia chiedersi
+*perché* si sono generati.
 
-::: {.callout-note}
+::: callout-note
 ## Perché il significato dei missing è diverso nei due tipi di test
 
-Nei **test di prestazione tipica**, un'omissione è ambigua: non sappiamo se il rispondente non ha capito, non voleva rispondere, o si è distratto. Nei **test di prestazione massima**, invece, un'omissione può essere interpretata come mancata conoscenza (l'item era troppo difficile).
+Nei **test di prestazione tipica**, un'omissione è ambigua: non sappiamo
+se il rispondente non ha capito, non voleva rispondere, o si è
+distratto. Nei **test di prestazione massima**, invece, un'omissione può
+essere interpretata come mancata conoscenza (l'item era troppo
+difficile).
 :::
 
-In letteratura si distinguono tre meccanismi che possono generare dati [mancanti](https://www.ncbi.nlm.nih.gov/books/NBK493614/):
+In letteratura si distinguono tre meccanismi che possono generare dati
+[mancanti](https://www.ncbi.nlm.nih.gov/books/NBK493614/):
 
-- **MCAR** (*Missing Completely at Random*): la probabilità che un dato sia mancante è **del tutto indipendente** sia **dal costrutto** misurato sia **da qualsiasi altra variabile** osservata. È il caso più favorevole e consente di procedere con la *complete-case analysis* (analizzare solo i casi completi) senza introdurre distorsioni. 
-- **MAR** (*Missing at Random*): la probabilità di missing **dipende da altre variabili osservate** (es. età, genere), ma non dal valore mancante in sé. 
-- **MNAR** (*Missing Not at Random*): la probabilità di missing **dipende dal valore non osservato stesso**, il caso più problematico, difficile da rilevare senza informazioni esterne.
+-   **MCAR** (*Missing Completely at Random*): la probabilità che un
+    dato sia mancante è **del tutto indipendente** sia **dal costrutto**
+    misurato sia **da qualsiasi altra variabile** osservata. È il caso
+    più favorevole e consente di procedere con la *complete-case
+    analysis* (analizzare solo i casi completi) senza introdurre
+    distorsioni.
+-   **MAR** (*Missing at Random*): la probabilità di missing **dipende
+    da altre variabili osservate** (es. età, genere), ma non dal valore
+    mancante in sé.
+-   **MNAR** (*Missing Not at Random*): la probabilità di missing
+    **dipende dal valore non osservato stesso**, il caso più
+    problematico, difficile da rilevare senza informazioni esterne.
 
-Nel nostro caso, con una percentuale di missing molto bassa, qualunque meccanismo sia in atto le conseguenze pratiche sono trascurabili. Procediamo con la **complete-case analysis**.
+Nel nostro caso, con una percentuale di missing molto bassa, qualunque
+meccanismo sia in atto le conseguenze pratiche sono trascurabili.
+Procediamo con la **complete-case analysis**.
 
 ### Passo 3: Ricodifica degli item reverse
 
-Prima delle statistiche descrittive è necessario ricodificare gli **item reverse**.
+Prima delle statistiche descrittive è necessario ricodificare gli **item
+reverse**.
 
-::: {.callout-important}
+::: callout-important
 ## Cosa sono gli item reverse?
 
-Gli **item reverse** sono item il cui contenuto è formulato nella direzione *opposta* al costrutto misurato. Nella scala di Estroversione, E1 (*"I am the life of the party"*) è un item diretto: chi è molto estroverso tende a essere d'accordo (punteggio = 5). Al contrario, E2 (*"I don't talk a lot"*) è reverse: chi è molto estroverso tende a essere in *disaccordo* (punteggio = 1).
+Gli **item reverse** sono item il cui contenuto è formulato nella
+direzione *opposta* al costrutto misurato. Nella scala di Estroversione,
+E1 (*"I am the life of the party"*) è un item diretto: chi è molto
+estroverso tende a essere d'accordo (punteggio = 5). Al contrario, E2
+(*"I don't talk a lot"*) è reverse: chi è molto estroverso tende a
+essere in *disaccordo* (punteggio = 1).
 
-Se non li ricodifico prima di calcolare le statistiche, tutte le analisi successive saranno distorte: la media sarà artificialmente bassa per gli item reverse anche in persone con un alto livello del tratto, e le correlazioni tra item della stessa scala risulteranno negative invece che positive.
+Se non li ricodifico prima di calcolare le statistiche, tutte le analisi
+successive saranno distorte: la media sarà artificialmente bassa per gli
+item reverse anche in persone con un alto livello del tratto, e le
+correlazioni tra item della stessa scala risulteranno negative invece
+che positive.
 :::
 
 La formula di ricodifica per una scala 1-5 è:
 
 $$x_{\text{rec}} = k_{\max} - x + k_{\min} = 6 - x$$
 
-| Risposta originale | Risposta ricodificata |
-|:---:|:---:|
-| 1 (molto in disaccordo) | 5 (molto d'accordo) |
-| 2 | 4 |
-| 3 (neutrale) | 3 (neutrale) |
-| 4 | 2 |
-| 5 (molto d'accordo) | 1 (molto in disaccordo) |
+|   Risposta originale    |  Risposta ricodificata  |
+|:-----------------------:|:-----------------------:|
+| 1 (molto in disaccordo) |   5 (molto d'accordo)   |
+|            2            |            4            |
+|      3 (neutrale)       |      3 (neutrale)       |
+|            4            |            2            |
+|   5 (molto d'accordo)   | 1 (molto in disaccordo) |
 
-Il valore neutrale (3) rimane invariato, e i poli si invertono simmetricamente.
+Il valore neutrale (3) rimane invariato, e i poli si invertono
+simmetricamente.
 
-Per la scala di Estroversione gli item reverse sono **E2, E4, E6, E8, E10** (tutti i pari):
+Per la scala di Estroversione gli item reverse sono **E2, E4, E6, E8,
+E10** (tutti i pari):
 
 ```{r}
 # seq() genera la sequenza 2, 4, 6, 8, 10
@@ -307,29 +356,52 @@ describe(itemE)
 
 Esaminiamo le colonne più rilevanti.
 
-**Dati mancanti** (colonna `n`): il numero di casi validi per ciascun item. Se `n` è inferiore a 19.709, quell'item ha dei missing.
+**Dati mancanti** (colonna `n`): il numero di casi validi per ciascun
+item. Se `n` è inferiore a 19.709, quell'item ha dei missing.
 
-**Minimo e massimo** (`min`, `max`): ci aspettiamo che tutti e cinque i punti della scala siano stati scelti almeno una volta (es. Un item con massimo osservato inferiore a 5 non sfrutta l'intera gamma di risposta).
+**Minimo e massimo** (`min`, `max`): ci aspettiamo che tutti e cinque i
+punti della scala siano stati scelti almeno una volta (es. Un item con
+massimo osservato inferiore a 5 non sfrutta l'intera gamma di risposta).
 
-**Media e deviazione standard** (`mean`, `sd`): ci aspettiamo che la media sia lontana dagli estremi e che la deviazione standard sia sufficientemente ampia. Un item in cui tutti tendono a rispondere allo stesso modo ha deviazione standard molto bassa e discrimina poco tra i rispondenti.
+**Media e deviazione standard** (`mean`, `sd`): ci aspettiamo che la
+media sia lontana dagli estremi e che la deviazione standard sia
+sufficientemente ampia. Un item in cui tutti tendono a rispondere allo
+stesso modo ha deviazione standard molto bassa e discrimina poco tra i
+rispondenti.
 
-**Skewness e curtosi** (`skew`, `kurtosis`): descrivono la forma della distribuzione. La **skewness** misura l'asimmetria: un valore positivo indica che la maggior parte delle risposte si concentra nella parte bassa della scala (coda verso destra); un valore negativo indica il contrario. La **curtosi** misura l'appiattimento: valori positivi code più sottili rispetto alla normale. Come linee guida si usano |sk| < 1 e |ku| < 1 (Muthén & Kaplan, 1985), o più liberalmente |sk| < 2 e |ku| < 7 (Curran, West & Finch, 1996).
-
+**Skewness e curtosi** (`skew`, `kurtosis`): descrivono la forma della
+distribuzione. La **skewness** misura l'asimmetria: un valore positivo
+indica che la maggior parte delle risposte si concentra nella parte
+bassa della scala (coda verso destra); un valore negativo indica il
+contrario. La **curtosi** misura l'appiattimento: valori positivi code
+più sottili rispetto alla normale. Come linee guida si usano \|sk\| \< 1
+e \|ku\| \< 1 (Muthén & Kaplan, 1985), o più liberalmente \|sk\| \< 2 e
+\|ku\| \< 7 (Curran, West & Finch, 1996).
 
 #### **Difficoltà**
 
-Nei test di prestazione tipica la **difficoltà** si reinterpreta come la **tendenza media dell'item** $p_i$.
+Nei test di prestazione tipica la **difficoltà** si reinterpreta come la
+**tendenza media dell'item** $p_i$.
 
-E' buona prassi trasformare $p_i$ in funzione degli estemi della scale, cioè otteniamo un punteggio medio normalizzato rispetto agli estremi teorici della scala:
+E' buona prassi trasformare $p_i$ in funzione degli estemi della scale,
+cioè otteniamo un punteggio medio normalizzato rispetto agli estremi
+teorici della scala:
 
 $$\pi_i = \frac{p_i - k_{\min}}{k_{\max} - k_{\min}}$$
 
-Il risultato è sempre compreso tra 0 e 1, indipendentemente dalla scala usata, il che rende gli item **confrontabili anche se provengono da scale diverse**. Più $\pi_i$ è alto, più i rispondenti hanno scelto punteggi alti su quell'item. Valori molto vicini a 0 o a 1 segnalano scarsa variabilità: quasi tutti rispondono allo stesso modo, e l'item discrimina poco.
+Il risultato è sempre compreso tra 0 e 1, indipendentemente dalla scala
+usata, il che rende gli item **confrontabili anche se provengono da
+scale diverse**. Più $\pi_i$ è alto, più i rispondenti hanno scelto
+punteggi alti su quell'item. Valori molto vicini a 0 o a 1 segnalano
+scarsa variabilità: quasi tutti rispondono allo stesso modo, e l'item
+discrimina poco.
 
-::: {.callout-important}
+::: callout-important
 ## Attenzione agli item reverse!
 
-Il calcolo di $\pi_i$ ha senso solo *dopo* la ricodifica. Prima della ricodifica, un item reverse mostrerebbe $\pi_i$ artificialmente basso anche per persone con un livello alto del tratto.
+Il calcolo di $\pi_i$ ha senso solo *dopo* la ricodifica. Prima della
+ricodifica, un item reverse mostrerebbe $\pi_i$ artificialmente basso
+anche per persone con un livello alto del tratto.
 :::
 
 Visualizziamo la differenza tra difficoltà prima e dopo la ricodifica:
@@ -341,7 +413,6 @@ p_star_orig <- (colMeans(itemE_orig, na.rm = TRUE) - 1) / (5 - 1)
 # difficoltà item dopo la trasformazione (itemE)
 p_star_rec  <- (colMeans(itemE,      na.rm = TRUE) - 1) / (5 - 1)
 ```
-
 
 ```{r}
 #| fig-width: 9
@@ -369,7 +440,8 @@ ggplot(df_pstar, aes(x = Item, y = p_star, fill = Tipo)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Dopo la ricodifica tutti gli item sono nella stessa direzione e i valori di $\pi_i$ diventano comparabili.
+Dopo la ricodifica tutti gli item sono nella stessa direzione e i valori
+di $\pi_i$ diventano comparabili.
 
 ```{r}
 #| code-fold: true
@@ -383,14 +455,18 @@ p_star_tab <- data.frame(
 p_star_tab
 ```
 
-
 ### Passo 5: Distribuzione delle risposte
 
-Calcoliamo le **distribuzioni di frequenza** per ciascun item della scala di Estroversione. Per gli item Likert questo è particolarmente utile per verificare che tutte le categorie di risposta siano state usate almeno una volta e per individuare eventuali pattern anomali (es. una categoria mai scelta, o una fortemente dominante).
+Calcoliamo le **distribuzioni di frequenza** per ciascun item della
+scala di Estroversione. Per gli item Likert questo è particolarmente
+utile per verificare che tutte le categorie di risposta siano state
+usate almeno una volta e per individuare eventuali pattern anomali (es.
+una categoria mai scelta, o una fortemente dominante).
 
 #### Frequenze per un singolo item
 
-Partiamo da E1 per capire la logica, poi vedremo come estendere il calcolo a tutti gli item contemporaneamente.
+Partiamo da E1 per capire la logica, poi vedremo come estendere il
+calcolo a tutti gli item contemporaneamente.
 
 ```{r}
 n <- nrow(dataB)  # numero totale di rispondenti
@@ -408,22 +484,27 @@ Pi_E1 <- cumsum(table(itemE$E1) / n)
 round(Pi_E1, 3)
 ```
 
-
 #### Frequenze per tutti gli item della scala
 
-Per calcolare le distribuzioni di frequenza di tutti gli item in una volta sola, usiamo la funzione `response.frequencies()` del pacchetto `psych`:
+Per calcolare le distribuzioni di frequenza di tutti gli item in una
+volta sola, usiamo la funzione `response.frequencies()` del pacchetto
+`psych`:
 
 ```{r}
 # frequenze relative per tutti gli item (una riga per categoria, una colonna per item)
 response.frequencies(itemE)
 ```
 
-Ogni colonna corrisponde a un item, ogni riga a una categoria di risposta (1–5). Il valore `miss` nella riga finale indica la proporzione di dati mancanti. Cose a cui prestare attenzione:
+Ogni colonna corrisponde a un item, ogni riga a una categoria di
+risposta (1–5). Il valore `miss` nella riga finale indica la proporzione
+di dati mancanti. Cose a cui prestare attenzione:
 
-- **Categorie mai scelte** (valore 0 in una riga): l'item non sfrutta tutta la scala di risposta
-- **Categorie quasi mai scelte**: la scala potrebbe essere troppo lunga per quel campione
-- **Asimmetrie evidenti**: quasi tutti scelgono la stessa categoria → l'item discrimina poco
-
+-   **Categorie mai scelte** (valore 0 in una riga): l'item non sfrutta
+    tutta la scala di risposta
+-   **Categorie quasi mai scelte**: la scala potrebbe essere troppo
+    lunga per quel campione
+-   **Asimmetrie evidenti**: quasi tutti scelgono la stessa categoria →
+    l'item discrimina poco
 
 ```{r}
 #| fig-width: 12
@@ -442,33 +523,41 @@ barplot(t(rf), beside = TRUE,
         args.legend = list(title = "Risposta", bty = "n"))
 ```
 
-Il grafico mostra le **frequenze relative** per ciascuna categoria di risposta, separate per item. 
-
+Il grafico mostra le **frequenze relative** per ciascuna categoria di
+risposta, separate per item.
 
 ```{r}
 describe(itemE)
 ```
 
----
-
+------------------------------------------------------------------------
 
 ### Passo 6: Matrice di correlazione
 
-La matrice di correlazione tra gli item è uno strumento fondamentale per esplorare la struttura interna di una scala. L'idea di fondo è semplice: item che misurano lo stesso costrutto dovrebbero essere **positivamente correlati** tra loro.
+La matrice di correlazione tra gli item è uno strumento fondamentale per
+esplorare la struttura interna di una scala. L'idea di fondo è semplice:
+item che misurano lo stesso costrutto dovrebbero essere **positivamente
+correlati** tra loro.
 
 #### Quale coefficiente usare?
 
-La scelta del coefficiente dipende dal numero di categorie di risposta $k$:
+La scelta del coefficiente dipende dal numero di categorie di risposta
+$k$:
 
-| Tipo di item | Coefficiente appropriato |
-|---|---|
-| Item dicotomici ($k$ = 2) | Correlazione tetracorica |
-| Item Likert con $k \leq 4$ | Correlazione policorica |
+| Tipo di item               | Coefficiente appropriato                   |
+|----------------------------|--------------------------------------------|
+| Item dicotomici ($k$ = 2)  | Correlazione tetracorica                   |
+| Item Likert con $k \leq 4$ | Correlazione policorica                    |
 | Item Likert con $k \geq 5$ | Pearson (leggera distorsione) o policorica |
 
-La correlazione di Pearson assume che i dati siano su scala continua e distribuiti normalmente. Gli item Likert sono ordinali: applicare Pearson introduce una certa distorsione, più evidente quando $k \leq 4$ o quando le distribuzioni sono molto asimmetriche. 
+La correlazione di Pearson assume che i dati siano su scala continua e
+distribuiti normalmente. Gli item Likert sono ordinali: applicare
+Pearson introduce una certa distorsione, più evidente quando $k \leq 4$
+o quando le distribuzioni sono molto asimmetriche.
 
-Dopo la ricodifica, **tutte le correlazioni tra item della stessa scala dovrebbero essere positive**. Se ne persistono di negative, significa che qualche item reverse non è stato ricodificato.
+Dopo la ricodifica, **tutte le correlazioni tra item della stessa scala
+dovrebbero essere positive**. Se ne persistono di negative, significa
+che qualche item reverse non è stato ricodificato.
 
 ```{r}
 #| fig-width: 6
@@ -488,33 +577,33 @@ R_E <- polychoric(itemE_orig)$rho
 corrplot(R_E, type = "lower", tl.cex = 0.9, mar = c(0, 0, 1, 0))
 ```
 
-
 #### **Correlazioni policoriche**
 
 ```{r}
 polychoric(itemE)
 ```
-La correlazione tra i punteggi degli item è positiva e moderata.
-Le soglie associate ad ogni categoria per ogni item sono riportate nella
-sezione with tau of..
 
+La correlazione tra i punteggi degli item è positiva e moderata. Le
+soglie associate ad ogni categoria per ogni item sono riportate nella
+sezione with tau of..
 
 ### Cosa sono le soglie $\tau$?
 
-La correlazione policorica si basa sull'idea che la risposta Likert osservata
-$Y_i \in \{1, 2, 3, 4, 5\}$ non sia altro che la versione "tagliata" di una
-variabile latente continua $Y_i^*$, distribuita normalmente con media 0 e
-varianza 1. Questa variabile latente non è mai osservata direttamente:
-rappresenta il livello del tratto sottostante (es. estroversione) di ogni
-rispondente.
+La correlazione policorica si basa sull'idea che la risposta Likert
+osservata $Y_i \in \{1, 2, 3, 4, 5\}$ non sia altro che la versione
+"tagliata" di una variabile latente continua $Y_i^*$, distribuita
+normalmente con media 0 e varianza 1. Questa variabile latente non è mai
+osservata direttamente: rappresenta il livello del tratto sottostante
+(es. estroversione) di ogni rispondente.
 
-Le **soglie** $\tau$ sono i valori sulla scala di $Y_i^*$ che separano le
-categorie di risposta:
+Le **soglie** $\tau$ sono i valori sulla scala di $Y_i^*$ che separano
+le categorie di risposta:
 
 $$Y_i = k \quad \text{se} \quad \tau_{k-1} \leq Y_i^* < \tau_k,
 \quad k = 1, \ldots, K$$
 
-Con $K = 5$ categorie ci sono **4 soglie**: $\tau_1 < \tau_2 < \tau_3 < \tau_4$.
+Con $K = 5$ categorie ci sono **4 soglie**:
+$\tau_1 < \tau_2 < \tau_3 < \tau_4$.
 
 ```{r}
 #| fig-width: 8
@@ -573,22 +662,26 @@ ggplot() +
   )
 ```
 
-```r
+``` r
 # with tau of
 #  E1  -0.72 -0.089  0.654 1.44
 ```
 
-Ogni riga riporta le 4 soglie di un item sulla scala normale standardizzata.
-Come si vede nel grafico:
+Ogni riga riporta le 4 soglie di un item sulla scala normale
+standardizzata. Come si vede nel grafico:
 
-- **$\tau < 0$**: la soglia è *sotto* la media della distribuzione normale
-- **$\tau > 0$**: la soglia è *sopra* la media
-- La **distanza tra soglie consecutive** indica quanto è "larga" quella
-  categoria: soglie vicine indicano che quella categoria copre un intervallo ristretto del tratto, e quindi discrimina poco tra i rispondenti
+-   $\tau < 0$: la soglia è *sotto* la media della distribuzione normale
+-   $\tau > 0$: la soglia è *sopra* la media
+-   La **distanza tra soglie consecutive** indica quanto è "larga"
+    quella categoria: soglie vicine indicano che quella categoria copre
+    un intervallo ristretto del tratto, e quindi discrimina poco tra i
+    rispondenti
 
 **Da dove vengono questi valori? (in pratica)**
 
-Le soglie $\tau$ sono stimate a partire dalle **frequenze cumulate osservate** nel campione. Per ogni item si calcola la proporzione di rispondenti con risposta $\leq k$...
+Le soglie $\tau$ sono stimate a partire dalle **frequenze cumulate
+osservate** nel campione. Per ogni item si calcola la proporzione di
+rispondenti con risposta $\leq k$...
 
 ```{r}
 # Frequenze relative osservate per E1 
@@ -601,41 +694,45 @@ freq_cum <- cumsum(response.frequencies(itemE)[1, ])[1:4]
 freq_cum
 ```
 
-...e quella proporzione viene tradotta nel quantile della normale standard che le corrisponde: il punto su $Y^*$ al di sotto del quale ricade esattamente quella quota della distribuzione.
+...e quella proporzione viene tradotta nel quantile della normale
+standard che le corrisponde: il punto su $Y^*$ al di sotto del quale
+ricade esattamente quella quota della distribuzione.
 
 ```{r}
 qnorm(freq_cum)  
 ```
 
+> La soglia $\tau_k$ è il quantile della normale standard corrispondente
+> alla proporzione di risposte $\leq$ k nel campione.
 
-> La soglia $\tau_k$ è il quantile della normale standard corrispondente alla proporzione di risposte $\leq$ k nel campione.
-
-
-::: {.callout-note}
+::: callout-note
 ## `pnorm()` e `qnorm()`
 
-**`pnorm()`**: Dato un valore $q$, restituisce l'area a sinistra sotto la curva, cioè $P(X \leq q)$.
+**`pnorm()`**: Dato un valore $q$, restituisce l'area a sinistra sotto
+la curva, cioè $P(X \leq q)$.
 
 ```{r}
 pnorm(0) # probabilità di ottenere un valore minore o uguale a 0
 ```
 
-**`qnorm()`**: Dato un livello di probabilità cumulata $p$, restituisce il quantile corrispondente, cioè il valore $x$ tale che $P(X \leq x) = p$. 
+**`qnorm()`**: Dato un livello di probabilità cumulata $p$, restituisce
+il quantile corrispondente, cioè il valore $x$ tale che
+$P(X \leq x) = p$.
 
 ```{r}
 qnorm(0.5) #quantile corrispondete alla probabilità cumulata 0.5
 ```
-
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Esercizio 1
 
-Per l'item E1, le soglie stimate sono: $\tau_1 = -0.72$, $\tau_2 = -0.089$, $\tau_3 = 0.654$, $\tau_4 = 1.44$.
+Per l'item E1, le soglie stimate sono: $\tau_1 = -0.72$,
+$\tau_2 = -0.089$, $\tau_3 = 0.654$, $\tau_4 = 1.44$.
 
 Quale proporzione di rispondenti ci si aspetta che abbia scelto la
-categoria **3** (cioè tra $\tau_2$ e $\tau_3$)?
-Qual'è la probabiltà di rispondere 3?
+categoria **3** (cioè tra $\tau_2$ e $\tau_3$)? Qual'è la probabiltà di
+rispondere 3?
 
 *Suggerimento:* usa `pnorm()` su entrambe le soglie.
 
@@ -644,22 +741,22 @@ Qual'è la probabiltà di rispondere 3?
 
 # output desiderato: 0.2789429
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
-::: {.callout-tip}
-## Esercizio 2 
+::: callout-tip
+## Esercizio 2
 
-Immagina un item con scala 1–5 e le seguenti **frequenze relative osservate** nel campione:
+Immagina un item con scala 1–5 e le seguenti **frequenze relative
+osservate** nel campione:
 
-| Categoria | 1    | 2    | 3    | 4    | 5    |
-|-----------|------|------|------|------|------|
+| Categoria          | 1    | 2    | 3    | 4    | 5    |
+|--------------------|------|------|------|------|------|
 | frequenza relativa | 0.08 | 0.34 | 0.32 | 0.25 | 0.01 |
 
-a. Calcola le frequenze cumulate.
-b. Applica `qnorm()` per ottenere le 4 soglie $\tau$.
+a.  Calcola le frequenze cumulate.
+b.  Applica `qnorm()` per ottenere le 4 soglie $\tau$.
 
 ```{r}
 # frequenze relative
@@ -673,17 +770,24 @@ freq_rel  <- c(0.08, 0.34, 0.32, 0.25, 0.01)
 # output desiderato: -1.4050716 -0.2018935  0.6433454  2.3263479
 
 ```
-
 :::
 
 ### Passo 7: Discriminatività
 
-La **discriminatività** misura quanto un item riesce a distinguere persone con livelli alti da persone con livelli bassi del tratto. La misura standard è la **correlazione item-totale corretta**: la correlazione tra il punteggio all'item e il punteggio totale della scala calcolato *escludendo* quell'item dal totale.
+La **discriminatività** misura quanto un item riesce a distinguere
+persone con livelli alti da persone con livelli bassi del tratto. La
+misura standard è la **correlazione item-totale corretta**: la
+correlazione tra il punteggio all'item e il punteggio totale della scala
+calcolato *escludendo* quell'item dal totale.
 
-Si dice "corretta" perché se includessimo l'item nel totale la correlazione sarebbe artificialmente gonfiata: un numero è sempre correlato con una somma di cui fa parte.
+Si dice "corretta" perché se includessimo l'item nel totale la
+correlazione sarebbe artificialmente gonfiata: un numero è sempre
+correlato con una somma di cui fa parte.
 
 ::: notes
-Assume che il tratto misurato sia unidimensionale, e dipende dal campione. **Maggiore** è l’**eterogeneità** dei livelli di abilità delle persone, maggiore è la capacità **discriminatività** degli item.
+Assume che il tratto misurato sia unidimensionale, e dipende dal
+campione. **Maggiore** è l’**eterogeneità** dei livelli di abilità delle
+persone, maggiore è la capacità **discriminatività** degli item.
 :::
 
 ```{r}
@@ -691,7 +795,9 @@ alpha_E <- psych::alpha(itemE)
 round(alpha_E$item.stats[, c("raw.r", "r.drop")], 2)
 ```
 
-Se un item ha una correlazione item-totale corretta bassa o negativa, significa che non "lavora" nella stessa direzione del test e, quindi, discrimina male il costrutto.
+Se un item ha una correlazione item-totale corretta bassa o negativa,
+significa che non "lavora" nella stessa direzione del test e, quindi,
+discrimina male il costrutto.
 
 ```{r}
 alpha_E <- psych::alpha(itemE_orig)
@@ -700,7 +806,9 @@ round(alpha_E$item.stats[, c("raw.r", "r.drop")], 2)
 
 ### Passo 8: Ridondanza
 
-Due item sono **ridondanti** se correlano troppo tra loro ($r > .70$): stanno misurando sostanzialmente la stessa cosa e uno dei due potrebbe essere rimosso senza perdita di informazione rilevante.
+Due item sono **ridondanti** se correlano troppo tra loro ($r > .70$):
+stanno misurando sostanzialmente la stessa cosa e uno dei due potrebbe
+essere rimosso senza perdita di informazione rilevante.
 
 ```{r}
 #| code-fold: true
@@ -715,49 +823,63 @@ corr_E <- corr_E[order(-corr_E$r), ]
 head(corr_E, 10)
 ```
 
+------------------------------------------------------------------------
 
----
-
-::: {.callout-tip}
+::: callout-tip
 ## Esercizio: Nevroticismo
 
-Applica la stessa procedura alla scala di **Nevroticismo** (item reverse: N2, N4):
+Applica la stessa procedura alla scala di **Nevroticismo** (item
+reverse: N2, N4):
 
-1. Estrai gli item N1–N10
-2. Analizza i dati mancanti
-3. Ricodifica gli item reverse
-4. Calcola statistiche descrittive e la difficoltà
-5. Visualizza la distribuzione delle risposte (opzionale)
-6. Calcola e visualizza la matrice di correlazione
-7. Valuta la discriminatività con `alpha()`
-8. Verifica se ci sono coppie di item ridondanti ($r > .70$)
+1.  Estrai gli item N1–N10
+2.  Analizza i dati mancanti
+3.  Ricodifica gli item reverse
+4.  Calcola statistiche descrittive e la difficoltà
+5.  Visualizza la distribuzione delle risposte (opzionale)
+6.  Calcola e visualizza la matrice di correlazione
+7.  Valuta la discriminatività con `alpha()`
+8.  Verifica se ci sono coppie di item ridondanti ($r > .70$)
 :::
-
 
 # Test di prestazione massima: abilità cognitiva
 
-Per gli esempi che seguono utilizziamo il dataset **`iqitems`**, incluso nel pacchetto `psychTools` e liberamente disponibile in R. Il dataset contiene le **risposte grezze a 16 item a scelta multipla di abilità cognitiva** somministrati online nel progetto **SAPA** (*Synthetic Aperture Personality Assessment*) da agosto a settembre 2012. Il campione comprende **1.525 partecipanti**.
+Per gli esempi che seguono utilizziamo il dataset **`iqitems`**, incluso
+nel pacchetto `psychTools` e liberamente disponibile in R. Il dataset
+contiene le **risposte grezze a 16 item a scelta multipla di abilità
+cognitiva** somministrati online nel progetto **SAPA** (*Synthetic
+Aperture Personality Assessment*) da agosto a settembre 2012. Il
+campione comprende **1.525 partecipanti**.
 
-Gli item sono stati selezionati da un pool di 80 item sviluppati per costruire misure open-source di abilità cognitiva (Condon & Revelle, 2014). Ogni item prevede tra **6 e 8 alternative di risposta**, di cui una sola corretta; le risposte degli altri sono i **distrattori**. Il valore `0` indica una risposta omessa o non valida.
+Gli item sono stati selezionati da un pool di 80 item sviluppati per
+costruire misure open-source di abilità cognitiva (Condon & Revelle,
+2014). Ogni item prevede tra **6 e 8 alternative di risposta**, di cui
+una sola corretta; le risposte degli altri sono i **distrattori**. Il
+valore `0` indica una risposta omessa o non valida.
 
-::: {.callout-note}
+::: callout-note
 ## Cos'è un test di prestazione massima?
 
-Nei **test di prestazione massima** esiste una risposta corretta e una o più risposte sbagliate (i *distrattori*). Si chiede al rispondente di fornire la **migliore prestazione possibile**: non si descrive come ci si sente o come ci si comporta, ma si risolve un problema. Esempi classici sono i test di intelligenza, i test attitudinali e gli esami scolastici.
+Nei **test di prestazione massima** esiste una risposta corretta e una o
+più risposte sbagliate (i *distrattori*). Si chiede al rispondente di
+fornire la **migliore prestazione possibile**: non si descrive come ci
+si sente o come ci si comporta, ma si risolve un problema. Esempi
+classici sono i test di intelligenza, i test attitudinali e gli esami
+scolastici.
 :::
 
 ## Item del questionario
 
-I 16 item misurano **quattro abilità cognitive di primo ordine**, che condividono un fattore generale (*g*):
+I 16 item misurano **quattro abilità cognitive di primo ordine**, che
+condividono un fattore generale (*g*):
 
-| Sottoscala             | Item                                                         | Descrizione                        |
-|------------------------|--------------------------------------------------------------|------------------------------------|
-| Ragionamento verbale   | `reason.4`, `reason.16`, `reason.17`, `reason.19`           | Domande di ragionamento di base    |
-| Serie di lettere       | `letter.7`, `letter.33`, `letter.34`, `letter.58`           | Serie alfanumeriche                |
-| Matrici                | `matrix.45`, `matrix.46`, `matrix.47`, `matrix.55`          | Completamento di matrici visive    |
-| Rotazioni spaziali     | `rotate.3`, `rotate.4`, `rotate.6`, `rotate.8`              | Rotazione mentale di figure        |
+| Sottoscala | Item | Descrizione |
+|-----------------|-----------------------------------|--------------------|
+| Ragionamento verbale | `reason.4`, `reason.16`, `reason.17`, `reason.19` | Domande di ragionamento di base |
+| Serie di lettere | `letter.7`, `letter.33`, `letter.34`, `letter.58` | Serie alfanumeriche |
+| Matrici | `matrix.45`, `matrix.46`, `matrix.47`, `matrix.55` | Completamento di matrici visive |
+| Rotazioni spaziali | `rotate.3`, `rotate.4`, `rotate.6`, `rotate.8` | Rotazione mentale di figure |
 
----
+------------------------------------------------------------------------
 
 ## Caricamento e preparazione dei dati
 
@@ -786,14 +908,20 @@ iq.keys <- c(4, 4, 4, 6,   # ragionamento verbale
 str(iqitems)
 ```
 
-I valori in ogni cella rappresentano l'alternativa scelta dal rispondente (1, 2, 3, ...); `0` = risposta omessa o non valida. La differenza fondamentale rispetto a un questionario di personalità (es. Big Five) è che qui ogni cella non contiene un punteggio Likert, ma il **codice dell'alternativa scelta** in un item a scelta multipla.
+I valori in ogni cella rappresentano l'alternativa scelta dal
+rispondente (1, 2, 3, ...); `0` = risposta omessa o non valida. La
+differenza fondamentale rispetto a un questionario di personalità (es.
+Big Five) è che qui ogni cella non contiene un punteggio Likert, ma il
+**codice dell'alternativa scelta** in un item a scelta multipla.
 
 ### Gestione dei dati mancanti
 
-Prima di procedere con le analisi, è buona prassi verificare la presenza di **dati mancanti**. Distinguiamo due tipi:
+Prima di procedere con le analisi, è buona prassi verificare la presenza
+di **dati mancanti**. Distinguiamo due tipi:
 
-- **Valore `0`**: risposta omessa o non valida, registrata esplicitamente;
-- **`NA`**: dato assente per problemi di acquisizione o codifica.
+-   **Valore `0`**: risposta omessa o non valida, registrata
+    esplicitamente;
+-   **`NA`**: dato assente per problemi di acquisizione o codifica.
 
 ```{r}
 # numero di risposte omesse (valore = 0) per item
@@ -814,35 +942,43 @@ Vediamo i dati dei casi incompleti:
 iqitems[!complete.cases(iqitems), ]
 ```
 
-Questi soggetti presentano molti `NA`, probabilmente per problemi di codifica. È opportuno rimuoverli con `na.omit()`:
+Questi soggetti presentano molti `NA`, probabilmente per problemi di
+codifica. È opportuno rimuoverli con `na.omit()`:
 
 ```{r}
 iqitems <- na.omit(iqitems)
 ```
 
-::: {.callout-note}
+::: callout-note
 ## Perché il significato dei missing è diverso nei due tipi di test
 
-Nei **test di prestazione tipica**, un'omissione è ambigua: il rispondente potrebbe non aver voluto rispondere, non aver capito l'item, o essersi distratto.
+Nei **test di prestazione tipica**, un'omissione è ambigua: il
+rispondente potrebbe non aver voluto rispondere, non aver capito l'item,
+o essersi distratto.
 
-Nei **test di prestazione massima**, invece, un'omissione ha spesso un significato più preciso: l'item era probabilmente **troppo difficile** (o il tempo era scaduto). Per questo motivo, in molti contesti i missing vengono trattati come **risposte errate** (valore = 0) prima di calcolare le statistiche.
+Nei **test di prestazione massima**, invece, un'omissione ha spesso un
+significato più preciso: l'item era probabilmente **troppo difficile**
+(o il tempo era scaduto). Per questo motivo, in molti contesti i missing
+vengono trattati come **risposte errate** (valore = 0) prima di
+calcolare le statistiche.
 :::
 
----
+------------------------------------------------------------------------
 
 ## Analisi preliminare item matrici e rotazioni
 
-Illustriamo tutti i passaggi dell’analisi preliminare degli item usando gli item Matrix e Rotation.
+Illustriamo tutti i passaggi dell’analisi preliminare degli item usando
+gli item Matrix e Rotation.
 
 Il flusso di analisi che seguiremo è questo:
 
-1. Estrazione degli item della scala
-2. Statistiche descrittive e difficoltà
-3. Analisi dei distrattori
-4. Matrice di correlazione (Ridondanza)
-5. Discriminatività (correlazione item-totale corretta)
+1.  Estrazione degli item della scala
+2.  Statistiche descrittive e difficoltà
+3.  Analisi dei distrattori
+4.  Matrice di correlazione (Ridondanza)
+5.  Discriminatività (correlazione item-totale corretta)
 
----
+------------------------------------------------------------------------
 
 ### Passo 1: Estrazione degli item
 
@@ -860,16 +996,24 @@ key <- iq.keys[9:16]
 key
 ```
 
----
+------------------------------------------------------------------------
 
 ### Passo 2: Statistiche descrittive e difficoltà
 
-Quando si analizzano item di un test di prestazione massima, la prima caratteristica da esaminare è la **difficoltà**, definita come la **proporzione di rispondenti che ha risposto correttamente**. Per calcolarla, occorre prima eseguire lo **scoring**: ogni risposta grezza viene convertita in `0` (errata) o `1` (corretta).
+Quando si analizzano item di un test di prestazione massima, la prima
+caratteristica da esaminare è la **difficoltà**, definita come la
+**proporzione di rispondenti che ha risposto correttamente**. Per
+calcolarla, occorre prima eseguire lo **scoring**: ogni risposta grezza
+viene convertita in `0` (errata) o `1` (corretta).
 
-::: {.callout-important}
+::: callout-important
 ## La difficoltà non è una qualità assoluta
 
-La difficoltà degli item dipende dal campione di rispondenti considerato: item "difficili" in un campione di bassa abilità possono risultare "facili" in un campione esperto. Questo sottolinea l'importanza della **rappresentatività del campione** rispetto alla popolazione target nella fase di validazione di una misura.
+La difficoltà degli item dipende dal campione di rispondenti
+considerato: item "difficili" in un campione di bassa abilità possono
+risultare "facili" in un campione esperto. Questo sottolinea
+l'importanza della **rappresentatività del campione** rispetto alla
+popolazione target nella fase di validazione di una misura.
 :::
 
 Un modo manuale per ottenere lo scoring è tramite `ifelse()`:
@@ -884,7 +1028,8 @@ item$matrix.46 <- ifelse(item$matrix.46 == 2, 1, 0)
 t(apply(item, 1, function(x) ifelse(x == key, 1, 0)))
 ```
 
-Il pacchetto `psych` automatizza questa trasformazione tramite `score.multiple.choice()`:
+Il pacchetto `psych` automatizza questa trasformazione tramite
+`score.multiple.choice()`:
 
 ```{r, eval=FALSE}
 # key = risposta giuata (chiave di risposta)
@@ -903,33 +1048,36 @@ item.stats <- score.multiple.choice(key = key, data = item, score = TRUE)$item.s
 item.stats
 ```
 
-::: {.callout-tip}
+::: callout-tip
 ## Come interpretare la tabella
 
 Le colonne principali sono:
 
 | Colonna | Significato |
-|---------|-------------|
-| `key`   | Risposta corretta (chiave) |
-| `mean`     | **Difficoltà**: proporzione di rispondenti corretti (0 = nessuno corretto, 1 = tutti corretti) |
-| `sd`    | Deviazione standard delle difficoltà |
-| `n`| numero di unità statistiche
+|------------------------------|------------------------------------------|
+| `key` | Risposta corretta (chiave) |
+| `mean` | **Difficoltà**: proporzione di rispondenti corretti (0 = nessuno corretto, 1 = tutti corretti) |
+| `sd` | Deviazione standard delle difficoltà |
+| `n` | numero di unità statistiche |
 | `0 ... 8` | frequenze relative |
 :::
 
----
+------------------------------------------------------------------------
 
 ### Passo 3: Analisi dei distrattori
 
 Per ciascun item vogliamo sapere:
 
-1. **Quanti rispondenti hanno scelto ciascuna alternativa?**
-2. **I distrattori sono funzionanti?** Un distrattore scelto da pochissimi (o da nessuno) può essere revisionato o rimosso.
-3. **Le alternative sono scelte in modo relativamente distribuito?** Idelamente i distrattori dovrebbero essere scelti uniformemente. 
+1.  **Quanti rispondenti hanno scelto ciascuna alternativa?**
+2.  **I distrattori sono funzionanti?** Un distrattore scelto da
+    pochissimi (o da nessuno) può essere revisionato o rimosso.
+3.  **Le alternative sono scelte in modo relativamente distribuito?**
+    Idelamente i distrattori dovrebbero essere scelti uniformemente.
 
 #### Frequenze delle alternative: grafici per item
 
 Visualizziamo la distribuzione di frequenza per ogni item:
+
 ```{r, fig.height=8, fig.width=10}
 #| code-fold: true
 
@@ -953,31 +1101,45 @@ for (i in seq_along(names(item_raw))) {
   }
 ```
 
-> La barra **blu** rappresenta la risposta corretta; le barre **grigie** sono i distrattori.
+> La barra **blu** rappresenta la risposta corretta; le barre **grigie**
+> sono i distrattori.
 
----
+------------------------------------------------------------------------
 
 ### Passo 4: Matrice di correlazione
 
-È utile esaminare le **correlazioni tra item** per individuare possibili ridondanze e verificare la coerenza interna della batteria. Per item dicotomici, tuttavia, la correlazione di Pearson non è la scelta più appropriata: le risposte 0/1 non sono variabili continue, e applicare Pearson significherebbe ignorare la natura del dato.
+È utile esaminare le **correlazioni tra item** per individuare possibili
+ridondanze e verificare la coerenza interna della batteria. Per item
+dicotomici, tuttavia, la correlazione di Pearson non è la scelta più
+appropriata: le risposte 0/1 non sono variabili continue, e applicare
+Pearson significherebbe ignorare la natura del dato.
 
 #### **Correlazione tetracorica**
 
-La stessa logica della correlazione policorica si applica al caso più semplice in cui le variabili sono **dicotomiche** (0/1): con una sola categoria di confine, rimane un'unica soglia $\tau_i$.
+La stessa logica della correlazione policorica si applica al caso più
+semplice in cui le variabili sono **dicotomiche** (0/1): con una sola
+categoria di confine, rimane un'unica soglia $\tau_i$.
 
-L'assunzione è che ogni risposta osservata $Y_i$ sia la realizzazione di una *variabile latente continua* $Y_i^*$, distribuita normalmente, osservabile solo attraverso il superamento o meno di una soglia:
+L'assunzione è che ogni risposta osservata $Y_i$ sia la realizzazione di
+una *variabile latente continua* $Y_i^*$, distribuita normalmente,
+osservabile solo attraverso il superamento o meno di una soglia:
 
 $$
 Y_i = \begin{cases} 1 & \text{se } Y_i^* \geq \tau_i \\ 0 & \text{se } Y_i^* < \tau_i \end{cases}
 $$
 
-dove $\tau_i$ è una soglia fissa (incognita). La correlazione tetracorica stima la correlazione tra le variabili latenti sottostanti:
+dove $\tau_i$ è una soglia fissa (incognita). La correlazione
+tetracorica stima la correlazione tra le variabili latenti sottostanti:
 
 $$
 r_{\text{tet}_{Y_i Y_j}} = r_{Y_i^* Y_j^*}
 $$
 
-La **regione arancione** rappresenta i rispondenti il cui livello latente supera la soglia $\tau_i$ (rispondono 1); la **regione blu** chi non la supera (risponde 0). La soglia $\tau_i$ determina la **probabilità** di rispondere 1: più è alta (spostata a destra), minore è la proporzione di risposte corrette (ie., più difficile è l'item).
+La **regione arancione** rappresenta i rispondenti il cui livello
+latente supera la soglia $\tau_i$ (rispondono 1); la **regione blu** chi
+non la supera (risponde 0). La soglia $\tau_i$ determina la
+**probabilità** di rispondere 1: più è alta (spostata a destra), minore
+è la proporzione di risposte corrette (ie., più difficile è l'item).
 
 ```{r}
 #| code-fold: true
@@ -1018,14 +1180,16 @@ lines(x, y, lwd = 2)
 ```
 
 L'area arancione corrisponde esattamente a $1 - \Phi(\tau_i)$, cioè la
-proporzione attesa di risposte 1 (lo stesso `pnorm()` che abbiamo usato per interpretare le soglie nella sezione precedente).
+proporzione attesa di risposte 1 (lo stesso `pnorm()` che abbiamo usato
+per interpretare le soglie nella sezione precedente).
 
-
-::: {.callout-tip}
-
+::: callout-tip
 ## Binomiale ($p = 1 - \Phi(\tau_i)$)
 
-Possiamo confermarlo empiricamente: se simuliamo 10.000 rispondenti da un processo binomiale con probabilità di successo $p = 1 - \Phi(\tau_i)$, la proporzione di 1 ottenuta converge all'area arancione.
+Possiamo confermarlo empiricamente: se simuliamo 10.000 rispondenti da
+un processo binomiale con probabilità di successo
+$p = 1 - \Phi(\tau_i)$, la proporzione di 1 ottenuta converge all'area
+arancione.
 
 ```{r}
 tau <- 0.5
@@ -1037,18 +1201,18 @@ p_corretto
 # Verifica empirica: proporzione di 1 su 10.000 simulazioni
 mean(rbinom(10000, size = 1, prob = p_corretto))
 ```
-
 :::
 
 #### Approssimazione della correlazione tetracorica
 
-Il punto di partenza è la tabella di contingenza $2 \times 2$ tra due item $Y_i$ e $Y_j$:
+Il punto di partenza è la tabella di contingenza $2 \times 2$ tra due
+item $Y_i$ e $Y_j$:
 
-|           | $Y_j = 0$                         | $Y_j = 1$                         |                                   |
-|-----------|-----------------------------------|-----------------------------------|-----------------------------------|
-| $Y_i = 0$ | $n_{00}$                          | $n_{01}$                          | $n_{0\bullet} = n_{00} + n_{01}$  |
-| $Y_i = 1$ | $n_{10}$                          | $n_{11}$                          | $n_{1\bullet} = n_{10} + n_{11}$  |
-|           | $n_{\bullet 0} = n_{00} + n_{10}$ | $n_{\bullet 1} = n_{01} + n_{11}$ | $n$                               |
+|   | $Y_j = 0$ | $Y_j = 1$ |   |
+|----------------|-------------------|-------------------|-------------------|
+| $Y_i = 0$ | $n_{00}$ | $n_{01}$ | $n_{0\bullet} = n_{00} + n_{01}$ |
+| $Y_i = 1$ | $n_{10}$ | $n_{11}$ | $n_{1\bullet} = n_{10} + n_{11}$ |
+|  | $n_{\bullet 0} = n_{00} + n_{10}$ | $n_{\bullet 1} = n_{01} + n_{11}$ | $n$ |
 
 A partire da qui, la correlazione tetracorica si può approssimare come:
 
@@ -1057,18 +1221,23 @@ r_{\text{tet}_{Y_i, Y_j}} \approx \cos\!\left(\frac{\pi}{1 +
 \sqrt{\dfrac{\hat{\pi}_{00}\,\hat{\pi}_{11}}{\hat{\pi}_{10}\,\hat{\pi}_{01}}}}\right)
 $$
 
-dove $\pi$ è il pi greco e il termine sotto radice è il **rapporto tra le celle concordanti** ($\hat{\pi}_{00}\,\hat{\pi}_{11}$, stessa risposta su entrambi gli item) e **discordanti** ($\hat{\pi}_{10}\,\hat{\pi}_{01}$, risposte opposte). Più questo rapporto è grande, più i due item tendono a co-occorrere, e quindi più alta è la correlazione.
-
+dove $\pi$ è il pi greco e il termine sotto radice è il **rapporto tra
+le celle concordanti** ($\hat{\pi}_{00}\,\hat{\pi}_{11}$, stessa
+risposta su entrambi gli item) e **discordanti**
+($\hat{\pi}_{10}\,\hat{\pi}_{01}$, risposte opposte). Più questo
+rapporto è grande, più i due item tendono a co-occorrere, e quindi più
+alta è la correlazione.
 
 **Esempio numerico:**
 
-Supponiamo di avere $n = 100$ rispondenti e la seguente tabella di contingenza osservata:
+Supponiamo di avere $n = 100$ rispondenti e la seguente tabella di
+contingenza osservata:
 
-|              | $Y_j = 0$ | $Y_j = 1$ | Totale |
-|--------------|-----------|-----------|--------|
-| $Y_i = 0$    | 30        | 20        | 50     |
-| $Y_i = 1$    | 10        | 40        | 50     |
-| **Totale**   | 40        | 60        | 100    |
+|            | $Y_j = 0$ | $Y_j = 1$ | Totale |
+|------------|-----------|-----------|--------|
+| $Y_i = 0$  | 30        | 20        | 50     |
+| $Y_i = 1$  | 10        | 40        | 50     |
+| **Totale** | 40        | 60        | 100    |
 
 Le proporzioni di cella sono:
 
@@ -1082,22 +1251,24 @@ $$
 r_{\text{tet}} \approx \cos\!\left(\frac{\pi}{1 + \sqrt{\dfrac{0.30 \times 0.40}{0.10 \times 0.20}}}\right) = \cos\!\left(\frac{\pi}{1 + \sqrt{6}}\right) = \cos\!\left(\frac{\pi}{3.449}\right) \approx 0.61
 $$
 
-I due item mostrano dunque una correlazione tetracorica di circa **0.61**, coerentemente con un'associazione positiva tra le variabili latenti sottostanti.
+I due item mostrano dunque una correlazione tetracorica di circa
+**0.61**, coerentemente con un'associazione positiva tra le variabili
+latenti sottostanti.
 
-::: {.callout-tip}
+::: callout-tip
 ## Esercizio: 1
 
-Supponiamo di avere $n = 100$ rispondenti e la seguente tabella di contingenza osservata:
+Supponiamo di avere $n = 100$ rispondenti e la seguente tabella di
+contingenza osservata:
 
-|              | $Y_j = 0$ | $Y_j = 1$ | Totale |
-|--------------|-----------|-----------|--------|
-| $Y_i = 0$    | 10        | 40        | 50     |
-| $Y_i = 1$    | 40        | 10        | 50     |
-| **Totale**   | 50        | 50        | 100    |
+|            | $Y_j = 0$ | $Y_j = 1$ | Totale |
+|------------|-----------|-----------|--------|
+| $Y_i = 0$  | 10        | 40        | 50     |
+| $Y_i = 1$  | 40        | 10        | 50     |
+| **Totale** | 50        | 50        | 100    |
 
-Cosa puoi dire della correlazione tra queste due variabili? 
+Cosa puoi dire della correlazione tra queste due variabili?
 :::
-
 
 #### Calcolo in R
 
@@ -1122,8 +1293,10 @@ corrplot(cor_matrix,
          mar  = c(0, 0, 1, 0))
 ```
 
-
-L'output di `tetrachoric()` riporta la stima di $\rho$ e i valori di $\tau$ (le soglie) per ciascun item. Valori di $\tau$ negativi indicano che la soglia latente è al di sotto della media della distribuzione, cioè che l'item è relativamente facile.
+L'output di `tetrachoric()` riporta la stima di $\rho$ e i valori di
+$\tau$ (le soglie) per ciascun item. Valori di $\tau$ negativi indicano
+che la soglia latente è al di sotto della media della distribuzione,
+cioè che l'item è relativamente facile.
 
 ```{r}
 tetrachoric(item_scored)
@@ -1143,24 +1316,28 @@ Relazione tra: matrix.46 e rotate.8
 draw.tetra(0.29, -0.125, 0.896)
 ```
 
-
 Relazione inventata, con correlazione negativa:
 
 ```{r}
 draw.tetra(-0.29, 0.896, 0.896)
 ```
 
-
----
+------------------------------------------------------------------------
 
 ### Passo 5: Discriminatività (correlazione item-totale corretta)
 
-La **discriminatività** misura quanto bene un singolo item distingue tra rispondenti con abilità alta e bassa. L'indice più usato è la **correlazione item-totale corretta**: correlazione tra il punteggio di ciascun item e il punteggio totale calcolato *escludendo* quell'item (per evitare correlazioni spurie).
-
+La **discriminatività** misura quanto bene un singolo item distingue tra
+rispondenti con abilità alta e bassa. L'indice più usato è la
+**correlazione item-totale corretta**: correlazione tra il punteggio di
+ciascun item e il punteggio totale calcolato *escludendo* quell'item
+(per evitare correlazioni spurie).
 
 **Correlazione punto-biseriale**
 
-Nel caso di item dicotomici, questa misura viene calcolata tramite la **correlazione punto-biseriale** ($r_{pb}$), che è la correlazione tra una variabile binaria (la risposta 0/1 al singolo item) e una variabile continua (il punteggio totale). La formula è:
+Nel caso di item dicotomici, questa misura viene calcolata tramite la
+**correlazione punto-biseriale** ($r_{pb}$), che è la correlazione tra
+una variabile binaria (la risposta 0/1 al singolo item) e una variabile
+continua (il punteggio totale). La formula è:
 
 $$
 r_{pb} = \frac{\bar{X}_1 - \bar{X}_0}{s_X} \sqrt{\frac{n_1 \, n_0}{n^2}}
@@ -1168,13 +1345,18 @@ $$
 
 dove:
 
-- $\bar{X}_1$ è il punteggio medio totale dei rispondenti che hanno risposto correttamente all'item (risposta = 1)
-- $\bar{X}_0$ è il punteggio medio totale dei rispondenti che hanno risposto in modo errato (risposta = 0)
-- $s_X$ è la deviazione standard del punteggio totale
-- $n_1$ e $n_0$ sono rispettivamente il numero di rispondenti con risposta 1 e 0
-- $n = n_1 + n_0$ è il totale dei rispondenti
+-   $\bar{X}_1$ è il punteggio medio totale dei rispondenti che hanno
+    risposto correttamente all'item (risposta = 1)
+-   $\bar{X}_0$ è il punteggio medio totale dei rispondenti che hanno
+    risposto in modo errato (risposta = 0)
+-   $s_X$ è la deviazione standard del punteggio totale
+-   $n_1$ e $n_0$ sono rispettivamente il numero di rispondenti con
+    risposta 1 e 0
+-   $n = n_1 + n_0$ è il totale dei rispondenti
 
-Intuitivamente, un item discrimina bene se chi lo risponde correttamente tende ad avere anche un punteggio totale alto: in questo caso $\bar{X}_1 \gg \bar{X}_0$ e $r_{pb}$ sarà elevata.
+Intuitivamente, un item discrimina bene se chi lo risponde correttamente
+tende ad avere anche un punteggio totale alto: in questo caso
+$\bar{X}_1 \gg \bar{X}_0$ e $r_{pb}$ sarà elevata.
 
 ```{r}
 # prendo gli item relativi a matrix
@@ -1210,18 +1392,26 @@ N <- n1+n2 # il totale
 
 ```
 
-Verifico che il valore sia simile a quanto ottengo attraverso la funzione `psych::alpha`:
+Verifico che il valore sia simile a quanto ottengo attraverso la
+funzione `psych::alpha`:
+
 ```{r}
 alpha_output <- psych::alpha(item_scored[,1:4])
 
 alpha_output$item.stats[ , c("r.drop")]
 ```
 
-In generale, si considerano accettabili valori superiori a **.20–.30**. Item con valori molto bassi o negativi sono problematici: non discriminano tra rispondenti capaci e non capaci, e potrebbero essere formulati in modo ambiguo, avere una chiave di risposta errata, o misurare qualcosa di diverso dal resto del test.
+In generale, si considerano accettabili valori superiori a **.20–.30**.
+Item con valori molto bassi o negativi sono problematici: non
+discriminano tra rispondenti capaci e non capaci, e potrebbero essere
+formulati in modo ambiguo, avere una chiave di risposta errata, o
+misurare qualcosa di diverso dal resto del test.
 
-::: {.callout-tip}
+::: callout-tip
 ## Esercizio
-Computa la correlazione item-totale corretta per matrix.46, seguendo lo script scritto sopra. 
+
+Computa la correlazione item-totale corretta per matrix.46, seguendo lo
+script scritto sopra.
 
 ```{r, echo=TRUE}
 # prendo gli item relativi a matrix
@@ -1232,19 +1422,40 @@ df <- as.data.frame(item_scored[,1:4])
 ##
 
 ```
-
 :::
 
+------------------------------------------------------------------------
 
----
-
-::: {.callout-note}
+::: callout-note
 ## Recap correlazioni
 
 | Coefficiente | Variabile 1 | Variabile 2 |
-|---|---|---|
-| Point-biserial ($r_{pb}$) | dicotomica | continua | 
-| Tetracorica ($r_{\text{tet}}$) | dicotomica (latente continua) | dicotomica (latente continua)|
-| Policorica ($r_{\text{poly}}$) | politomica (latente continua) | politomica (latente continua)|
+|------------------------|------------------------|------------------------|
+| Point-biserial ($r_{pb}$) | dicotomica | continua |
+| Tetracorica ($r_{\text{tet}}$) | dicotomica (latente continua) | dicotomica (latente continua) |
+| Policorica ($r_{\text{poly}}$) | politomica (latente continua) | politomica (latente continua) |
 :::
 
+## Riferimenti
+
+-   Lezione: Dimensionalità, item reverse, valutazione degli item
+    [slides in pdf](slides/05-Dimensioni/05-dimensioni.pdf)
+
+-   [Chiorri: strumenti
+    informatici](https://highered.mheducation.com/sites/8838656177/student_view0/strumenti_informatici.html#)
+
+-   [Chiorri: Fondamenti di psicometria e teoria e tecnica
+    psicometrica](https://chiorri.wordpress.com/2017/01/13/riferimenti-bibliografici-fondamenti-di-psicometria-e-teoria-e-tecnica-psicometrica/)
+
+-   Martinková, P., & Hladká, A. (2023). Computational Aspects of
+    Psychometric Methods: With R (1st ed.). Chapman and Hall/CRC.
+    https://doi.org/10.1201/9781003054313
+
+-   Goldberg, Lewis R. The development of markers for the Big-Five
+    factor structure. *Psychological assessment* 4.1 (1992): 26.
+
+-   <https://personality-project.org/>
+
+-   Condon, David and Revelle, William, (2014) The International
+    Cognitive Ability Resource: Development and initial validation of a
+    public-domain measure. *Intelligence*, 43, 52-64.
