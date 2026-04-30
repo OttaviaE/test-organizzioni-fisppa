@@ -12,6 +12,7 @@ format:
     show-slide-number: all
     self-contained: true
     theme: test-theme.scss
+    scrollable: true
 editor_options: 
   chunk_output_type: console
 code-annotations: hover
@@ -26,46 +27,68 @@ library(lavaan)
 library(semPlot)
 library(corrplot)
 
-data = read.delim("C:/Users/Ottavia/Documents/GitHub/test-organizzioni-fisppa/BIG5/BIG5/data.csv")
-set.seed(123)
-data = data[data$gender %in% c(1, 2), ]
-data = data[data$engnat %in% 1, ]
-data = data[data$race %in% 1, ]
-
-data$filter = sample(c(0,1), size = nrow(data)/2, replace = TRUE)
-
-
-labels = list(E =  paste0("E", 1:10),
-              N = paste0("N", 1:10),
-              A = paste0("A", 1:10),
-              O = paste0("O", 1:10),
-              C = paste0("C", 1:10))
-d = data[data$filter %in% 0, colnames(data) %in% unlist(labels)]
-
-mycor = list()
-myrev = list()
-
-for(i in 1:length(names(labels))) {
-  mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
-  names(mycor)[i] = names(labels)[i]
-  myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
-  names(myrev)[i] = names(labels)[i]
+# data = read.delim("C:/Users/Ottavia/Documents/GitHub/test-organizzioni-fisppa/BIG5/BIG5/data.csv")
+# set.seed(123)
+# data = data[data$gender %in% c(1, 2), ]
+# data = data[data$engnat %in% 1, ]
+# data = data[data$race %in% 1, ]
+# 
+# data$filter = sample(c(0,1), size = nrow(data)/2, replace = TRUE)
+# 
+# 
+# labels = list(E =  paste0("E", 1:10),
+#               N = paste0("N", 1:10),
+#               A = paste0("A", 1:10),
+#               O = paste0("O", 1:10),
+#               C = paste0("C", 1:10))
+# d = data[data$filter %in% 0, colnames(data) %in% unlist(labels)]
+# 
+# mycor = list()
+# myrev = list()
+# 
+# for(i in 1:length(names(labels))) {
+#   mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
+#   names(mycor)[i] = names(labels)[i]
+#   myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
+#   names(myrev)[i] = names(labels)[i]
+# }
+# d[, colnames(d) %in% unlist(myrev[-3])] = 6 - d[, colnames(d) %in% unlist(myrev[-3])] 
+# # nel caso di A devoisolare gli item
+# m = labels$A[!labels$A %in% myrev$A]
+# # devo fare la differenza simmetrica:gli item che sono in A ma che non sono in rev$A
+# d[, colnames(d) %in% m] = 6 - d[, colnames(d) %in% m]
+# 
+# for(i in 1:length(names(labels))) {
+#   mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
+#   names(mycor)[i] = names(labels)[i]
+#   myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
+#   names(myrev)[i] = names(labels)[i]
+# }
+# 
+# mycor = polychoric(d)
+load("data/efa-env.RData")
+plot_lambda = function(objLav, index = 1) {
+   mylambda = as.data.frame(objLav$loadings[[index]])
+mylambda$item = rownames(mylambda)
+mylambda = pivot_longer(mylambda, cols = !item)
+g = ggplot(mylambda, 
+       aes(x = name, y = item, fill = value)) + geom_tile() + 
+    scale_fill_gradient2(
+    low = "firebrick",     # valori negativi
+    mid = "white",    # zero
+    high = "midnightblue",     # valori positivi
+    midpoint = 0,     # centro = 0
+    limits = c(-1, 1) # limiti fissati
+  ) + theme_light() + 
+  theme(legend.title = element_blank(), 
+        legend.position = "top", 
+        legend.text = element_text(size = 20), 
+        axis.title = element_blank(), 
+        axis.text = element_text(size = 20), 
+        legend.key.width = unit(1.5, "cm"),
+  legend.key.height = unit(0.8, "cm"))
+  return(g)
 }
-d[, colnames(d) %in% unlist(myrev[-3])] = 6 - d[, colnames(d) %in% unlist(myrev[-3])] 
-# nel caso di A devoisolare gli item
-m = labels$A[!labels$A %in% myrev$A]
-# devo fare la differenza simmetrica:gli item che sono in A ma che non sono in rev$A
-d[, colnames(d) %in% m] = 6 - d[, colnames(d) %in% m]
-
-for(i in 1:length(names(labels))) {
-  mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
-  names(mycor)[i] = names(labels)[i]
-  myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
-  names(myrev)[i] = names(labels)[i]
-}
-
-mycor = polychoric(d)
-
 ```
 
 # Matrice di correlazione
@@ -84,7 +107,7 @@ corrplot(mycor$rho, type = "lower")
 
 ##
 
-Considerando $i = 1, \ldots I$ le variabili manifeste (item) e $p = 1, \ldots, P$ e assumendo $\theta$ come fattore latente unidimensionale:
+Considerando $i = 1, \ldots I$ le variabili manifeste (item) e $p = 1, \ldots, P$ le persone e assumendo $\theta$ come fattore latente unidimensionale:
 
 
 $$Y_{pi} = \mu_{i} + \lambda_i \theta_p + \varepsilon_{ip}$$
@@ -92,13 +115,13 @@ dove
 
 $\mu_i$: è l'intercetta per l'$i$-esimo indicatore
 
-$\theta_p$: è il livello di tratto latente *non osservator* per il $p$-esimo soggetto 
+$\theta_p$: è il livello di tratto latente *non osservato* per il $p$-esimo soggetto 
 
 $\lambda_i$: è il *factor loading* (saturazione) dell'$i$-esimo indicatore che descrive la forza della correlazione tra l'indicatore $i$ e il tratto latente $\theta$
 
 ## Più dimensioni
 
-$\theta_1, \ldots, \theta_F$, presupponendo che comunque $F < I$: 
+$\theta_1, \ldots, \theta_F$, presupponendo che $F < I$: 
 
 $$Y_{pi} = \mu_{i} + \lambda_{i1} \theta_{p1} + \ldots + \lambda_{iF} \theta_{pF} + \varepsilon_{ip}$$
 
@@ -117,6 +140,7 @@ $\theta \sim \mathcal{N}(0, 1)$ per cui  $E(\theta_p) = 0$ e $var(\theta_p) = 1$
 
 :::
 
+<br>
 
 Date queste assunzioni: 
 
@@ -136,9 +160,12 @@ Porzione della varianza della variabile manifesta che è spiegata dal fattore la
 
 * Modello multifattoriale con $F$ fattori: $h_i^2 = \sum_{f = 1}^{F} \lambda_{if}^2$
 
+* Modello multifattoriale con $\mathbf{\Phi}$ (matrice di correlazione $F \times F$): $h_i^2 = \mathbf{\lambda_i} \mathbf{\Phi} \mathbf{\lambda_i^T}$
+
 :::
 
-:::{.callout-caution icon="false"}
+
+:::{.callout-warning icon="false"}
 
 ## Unicità $u_i^2$
 
@@ -149,11 +176,20 @@ $u_i^2 = 1 -h_i^2$
 :::
 
 
-## 
+
+
+
+
+
+## Stima dei parametri vs. Inferenza
+
+<br>
 
 I parametri del modello ($\lambda_i$, $h_i^2$, $u_i^2$) possono essere stimati a partire dalla semplice matrice di correlazione osservata 
 
-Per estrarre i *factor scores* (il punteggio pesato in base ai $\lambda_i$ per ogni soggetto $p$), valutare la fit del modello e fare inferenza è necessario avere a disposizione la numerosità campionaria e i vettori delle risposte fornite ad ogni item
+<br>
+
+Per estrarre i *factor scores* (il punteggio pesato in base ai $\lambda_i$ per ogni soggetto $p$), valutare la fit del modello e fare inferenza è necessario avere a disposizione la *numerosità campionaria* e i vettori delle risposte fornite ad ogni item
 
 
 # Step preliminari 
@@ -168,7 +204,7 @@ Ci sono delle correlazioni tra gli item?
 :::{.callout-tip}
 ## Test di sfericità di Bartlett
 
-Verifica se la matrice di correlazione $\mathbf{R}$ è significativamente diversa da una matrice identità $\mathbf{I}$ (ovvero una matrice dove è prevista l'indipendenza tra tutte le variabili).
+Verifica se la matrice di correlazione $\mathbf{R}$ è significativamente diversa da una matrice identità $\mathbf{I}$ (ovvero una matrice dove è prevista la non correlazione tra tutte le variabili).
 
 $H_0: \mathbf{R} = \mathbf{I} \qquad H_1: \mathbf{R} \neq \mathbf{I}$
 
@@ -178,7 +214,8 @@ con $n$ ampiezza campionaria, $I$ numero di item e $|\mathbf{R}|$ determinante d
 
 ## Un esempio {.smaller}
 
-$n = 50$
+
+$n = 50$; $I = 2$
 
 :::: {.columns}
 
@@ -206,17 +243,24 @@ $\chi^2 = - (n-1 - \dfrac{2I + 5}{6}) \ln |\mathbf{R}| =  - (50-1 - \dfrac{2\cdo
 
 $\dfrac{I(I-1)}{2} = \dfrac{2(2-1)}{2} = 1$
 
-$p$-value$ = `r 1-pchisq(21.2, 1)`$
+<br>
+
+$p$-value $= `r 1- pchisq(21.2, 1)`$
 
 
+## Item Big Five
 
-## 
+$n = `r nrow(d)`$; $I = `r ncol(d)`$ 
+
 
 ```{r}
 #| echo: false
 cortest.bartlett(mycor$rho, n = nrow(d))
 
 ```
+
+
+
 
 
 ##
@@ -250,6 +294,8 @@ $KMO > .90$: Ottimo, $KMO > .70$: Accettabile
 
 
 ## Un esempio {.smaller}
+
+$I = 3$
 
 ::::{.columns}
 
@@ -301,7 +347,9 @@ $\sum p_{ij}^2 = 0.59^2 + 0.30^2 + 0.16^2 \approx 0.47$
 $$KMO = \frac{\sum r_{ij}^2}{\sum r_{ij}^2 + \sum p_{ij}^2} = \frac{0.77}{0.77 + 0.47} \approx 0.62$$
 
 
-##
+## Item Big Five
+
+$n = `r nrow(d)`$; $I = `r ncol(d)`$ 
 
 ```{r}
 #| echo: false
@@ -322,11 +370,11 @@ Di quante dimensioni latenti ho bisogno per spiegare le relazioni?
 
 :::
 
-|Metodo|	Logica|
-|:------ |---------:|
-|Kaiser (eigenvalue > 1)|	soglia fissa|
-|Scree | plot	giudizio visivo |
-|Parallel analysis|	confronto con dati casuali|
+|Metodo|	Logica| Autore
+|:------ |--------- |------:|
+|Kaiser (eigenvalue > 1)|	soglia fissa| Kaiser (1960)|
+|Scree  plot |	giudizio visivo (il gomito) | Cattell (1966) |
+|Parallel analysis|	Confronto con dati casuali| Horn (1965)|
 |MAP |	minimizzazione del residuo|
 
 
@@ -335,19 +383,20 @@ Di quante dimensioni latenti ho bisogno per spiegare le relazioni?
 :::{.callout-note icon="false"}
 ## Eigenvalue (Autovalore)
 
-Misura quanta della varianzaz totale della matrice di correlazione è catturata da ogni fattore $f$
+Misura quanta della varianza totale della matrice di correlazione è catturata da ogni fattore $f$
 
 Viene estratto un numero $f^*$ di fattori latenti per ogni autovalore $\geq 1$ (Metodo di Kaiser, 1960) $\rightarrow$ seleziona i fattori che spiegano più varianza di una singola variabile standardizzata.
 :::
 
-### 
+### {.scrollable}
 
 :::{.panel-tabset}
 ## Autovalori 
 
 ```{r}
 #| echo: false
-
+#| fig-align: center
+#| out-width: 50%
 eigen(mycor$rho)$values
 ```
 
@@ -362,6 +411,9 @@ mycolors[myeigen>=1] = "firebrick"
 plot(eigen(mycor$rho)$values, pch = 19, col = mycolors, 
      cex = 2, main = "Grafico degli autovalori", cex.main=2)
 abline(h=1, lwd=2)
+legend(x = 30, y = 10, legend = c("< 1", ">= 1"), 
+       fill = c("black", "firebrick"),
+       cex = 3, bty ="n")
 ```
 :::
 
@@ -418,7 +470,7 @@ Sceglie la soluzione che permette di *minimizzare* la varianza residua
 ::::{.columns}
 
 :::{.column width=50%}
-$$MAP(f) = \dfrac{1}{m} \sum_{i \ne j} r_{ij}^{(f)}^2$$
+$$MAP(f) = \dfrac{1}{m} \sum_{i \neq j} {r_{ij}^{(f)}}^2$$
 $m$: Numero di coppie di variabili 
 
 $r_{ij}^{(f)}$ correlazione parziale tra ogni coppia di variabili dopo aver estratto $f$ fattori
@@ -434,6 +486,8 @@ $$f^* = \arg \min_f MAP(f)$$
 
 :::
 
+
+##
 
 ```{r}
 #| echo: false
@@ -474,11 +528,11 @@ Penalizzano modelli troppo complessi
 
 ## Test $\chi^2$ (Goodness-of-fit)
 
-Basato sulla verosimiglianza $\mathcal{L}$ ottenuta dal confronto tra la matrice di covarianza osservata e la matrice di covarianza attesa ($cov$) secondo il modello fattoriale ($\hat{cov}$)
+Basato sulla verosimiglianza $\mathcal{L}$ ottenuta dal confronto tra la matrice di covarianza osservata  ($cov$) e la matrice di covarianza attesa ($\hat{cov}$) secondo il modello fattoriale 
 
 $H_0$: $cov = \hat{cov}$
 
-$df$: Numero di elementi nella matrice di covarianza $-$ numnero di parametri stimati (saturazioni, correlazioni tra fattori ecc.)
+$df$: Numero di elementi **unici** nella matrice di covarianza $-$ numero di parametri stimati (saturazioni, correlazioni tra fattori ecc.)
 
 Molto sensibile all'ampiezza campionaria! **Non** deve essere l'unica statistica a guidare la scelta del modello 
 
@@ -499,7 +553,7 @@ $E(\chi^2) = df$ $\rightarrow$ più è piccolo il valore di RMSEA, minore è l'e
 
 $RMSEA < .10$ fit accettabile 
 
-$RMSEA < ..05$ fit ottima
+$RMSEA < .05$ fit ottima
 
 :::
 
@@ -507,7 +561,6 @@ $RMSEA < ..05$ fit ottima
 
 ## 
 
-Viene definito indice comparativo ma non con lo stesso significato degli indici di entropia (AIC e BIC)
 
 :::{.callout-tip icon="false"}
 
@@ -529,9 +582,12 @@ $CFI \geq .95$ Valori ottimali
 :::{.callout-caution}
 ## Attenzione!!!
 
-Il CFI è un indice che è stato pensato per modelli confermativi 
+Pensato per **modelli confermativi**
 
 In EFA viene usato in senso compartivo, nel senso di vedere come cambia la fit del modelo in base al numero di fattori inseriti nel modello fattoriale
+
+
+Viene definito indice comparativo ma non con lo stesso significato degli indici di entropia (AIC e BIC)
 :::
 
 ## Oltre gli indici 
@@ -548,10 +604,10 @@ Per valutare la buona fit di un modello fattoriale esplorativo vanno tenuti a me
 ```{r}
 #| echo: false
 #| warning: false
-efa2 = efa(d, nfactors = 4:6, rotation = "oblimin", 
-               estimator = "WLSMV", 
-               ordered = colnames(d))
-b =summary(efa2, fit.measures = "all")
+# efa2 = efa(d, nfactors = 4:6, rotation = "oblimin", 
+#                estimator = "WLSMV", 
+#                ordered = colnames(d))
+# b =summary(efa2, fit.measures = "all")
 b
 ```
 
@@ -576,35 +632,9 @@ Riporta la model comparison tra i modelli:
 
 `rmsea`: Interpretato sia in maniera comparativa che assoluta
 
-## Soluzione a 4 fattori 
-
-:::{.panel-tabset}
-## Varianza spiegata 
-
-```{r}
-#| echo: false 
-
-b$model.list$nf4$efa$sumsq.table[[1]]
-```
-
-## 
-
-```{r}
-#| echo: false
-
-residuals(efa2$nf4)$cov
-```
 
 
-:::
 
-Sum of sq (obliq) loadings: Somma dei quadrati dei loadings fattoriali
-
-Proportion of total: Proporzione della varianza spiegata DAI FATTORI LATENTI (somma a 1)
-
-Proportion var: Percentuale di varianza totale osservata spiegata da ogni fattore 
-
-Cumulative var: Varianza totale spegata cumulativa 
 
 ## 
 
@@ -622,14 +652,149 @@ b$model.list$nf5$efa$sumsq.table[[1]]
 b$model.list$nf6$efa$sumsq.table[[1]]
 ```
 
-L'aggiunta del 6 fattore non aggiunge molto al modello: Parsimonia!
+
+## Soluzione a 4 fattori 
+
+:::{.panel-tabset}
+## Varianza spiegata 
+
+```{r}
+#| echo: false 
+
+b$model.list$nf4$efa$sumsq.table[[1]]
+```
+
+## Residui
+
+```{r}
+#| echo: false
+
+corrplot(residuals(efa2$nf4)$cov, type = "lower", diag = FALSE, 
+         method = "shade")
+```
+
+## $\lambda_i$
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 70%
+library(knitr)
+
+
+plot_lambda(efa2, index = 1)
+# kable(apply(efa2$loadings$nf4, 2, round, digits = 2))
+```
+
+##  $\mathbf{\Phi}$
+
+```{r}
+#| echo: false
+
+corrplot(lavInspect(efa2$nf4, "cor.lv"), 
+         type = "lower", diag = F, method = "shade")
+
+```
+
+
+:::
+
+## Soluzione a 5 fattori 
+
+:::{.panel-tabset}
+## Varianza spiegata 
+
+```{r}
+#| echo: false 
+
+b$model.list$nf5$efa$sumsq.table[[1]]
+```
+
+## Residui
+
+```{r}
+#| echo: false
+
+corrplot(residuals(efa2$nf5)$cov, type = "lower", diag = FALSE, method = "shade")
+```
+
+## $\lambda_i$
+
+```{r}
+#| echo: false
+library(knitr)
+plot_lambda(efa2, index = 2)
+```
+
+## $\mathbf{\Phi}$
+
+```{r}
+#| echo: false
+
+corrplot(lavInspect(efa2$nf5, "cor.lv"), 
+         type = "lower", diag = F, method = "shade")
+```
 
 
 
+:::
 
-# Matrice delle saturazioni 
+## Soluzione a 6 fattori 
+
+:::{.panel-tabset}
+## Varianza spiegata 
+
+```{r}
+#| echo: false 
+
+b$model.list$nf6$efa$sumsq.table[[1]]
+```
+
+## Residui
+
+```{r}
+#| echo: false
+
+corrplot(residuals(efa2$nf6)$cov, type = "lower", diag = FALSE, method = "shade")
+```
+
+## $\lambda_i$
+
+```{r}
+#| echo: false
+library(knitr)
+plot_lambda(efa2, index = 3)
+```
+
+##  $\mathbf{\Phi}$
+
+```{r}
+#| echo: false
+
+corrplot(lavInspect(efa2$nf6, "cor.lv"), 
+         type = "lower", diag = F, method = "shade")
+
+```
 
 
-# ispezione dei residui 
+
+:::
+
 
 # Factor scores
+
+## 
+
+Sono i livelli della variabile latente stimati in base al modello fattoriale 
+
+<br>
+
+Si possono estrarre dai modelli esplorativi, MA: 
+
+<br>
+
+* Sono instabili: Dipendono da una serie di decisioni prese (e.g., il tipo di rotazione)
+* Non rappresentano realmente la variabile latente
+* Non possono essere usati per fare infereneze, ma solo a scopi esplorativi 
+
+
