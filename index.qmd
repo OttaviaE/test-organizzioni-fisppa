@@ -89,3 +89,5 @@ Scoring bidr [file html](bidr/bidr-scoring.html)
 Analisi Fattoriale Esplorativa -- Exploratory Factor Analysis (EFA) [slides in html](slides/06-EFA/06a-EFA-live.html)
 
 Esercitazione [file html](ERI/esercitazione-efa.html)
+
+Scoring [file html](ERI/eri-scoring.html)
