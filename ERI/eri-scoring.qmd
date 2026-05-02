@@ -1,0 +1,77 @@
+---
+title: "ERI"
+format: 
+  html: 
+   self-contained: true
+   toc: true
+   toc-location: left
+   theme: simplex
+execute: 
+  echo: false
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Costrutto 
+
+ERI misura la percezione di "ingiustizia" percepita in ambiente lavorativo. Misura tre dimensioni distinte:
+
+:::{.callout-note icon="false"}
+## **Effort**
+
+Misura l’insieme delle richieste e obblighi lavorativi a cui l’individuo è esposto, che implicano dispendio di energia fisica e/o mentale (e.g., carico di lavoro, pressione temporale, responsabilità)
+
+
+:::
+ 
+ 
+:::{.callout-tip icon="false"}
+## **Overcommitment**
+
+Misura di uno stile motivazionale intrinseco caratterizzato da eccessivo impegno, bisogno di approvazione e difficoltà a distaccarsi dal lavoro.
+
+:::
+
+
+:::{.callout-caution icon="false"}
+## **Reward**
+
+Misura i benefici ricevuti in cambio dello sforzo lavorativo (effort): 
+
+*Stima 
+*Status 
+*Ricompensa materiale
+:::
+
+# Scoring
+
+
+:::{.callout-note icon="false" collapse=true}
+## **Effort**
+
+eri05, eri22, eri11, eri01, eri07, eri04
+
+
+
+:::
+ 
+ 
+:::{.callout-tip icon="false" collapse=true}
+## **Overcommitment**
+
+eri18, eri23, **eri17**, eri02, eri06, eri08
+
+:::
+
+
+:::{.callout-caution icon="false" collapse=true}
+## **Reward**
+
+eri14, **eri09**, **eri20**, **eri13**, eri12, eri03, eri16, eri10, eri21, eri15, **eri19**
+
+
+:::
+
+Gli item in grassetto sono gli item reverse

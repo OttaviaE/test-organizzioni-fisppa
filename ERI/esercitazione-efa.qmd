@@ -230,7 +230,7 @@ VSS(mat$rho, plot = FALSE)
 ## Confronto tra modelli
 
 ```{r}
-efaM = efa(data, nfactors = 2:4, rotation = "oblimin",
+efaM = efa(data, nfactors = 2:4, rotation = "varimax",
                estimator = "WLSMV",
                ordered = colnames(data))
 b =summary(efaM, fit.measures = "all")
@@ -239,8 +239,6 @@ b$fit.table
 
 
 ## Varianza spiegata e correlazione tra fattori
-
-
 
 
 ```{r}
