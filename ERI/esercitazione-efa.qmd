@@ -1,0 +1,323 @@
+---
+title: "Esercitazione-EFA"
+author: "Ottavia"
+format: 
+  html: 
+   self-contained: true
+   toc: true
+   toc-location: left
+   theme: lux
+execute: 
+  echo: false
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+library(MASS)
+library(tidyverse)
+library(lavaan)
+library(psych)
+library(corrplot)
+
+plot_lambda = function(objLav, index = 1) {
+   mylambda = as.data.frame(objLav$loadings[[index]])
+mylambda$item = rownames(mylambda)
+mylambda = pivot_longer(mylambda, cols = !item)
+g = ggplot(mylambda, 
+       aes(x = name, y = item, fill = value)) + geom_tile() + 
+    scale_fill_gradient2(
+    low = "firebrick",     # valori negativi
+    mid = "white",    # zero
+    high = "midnightblue",     # valori positivi
+    midpoint = 0,     # centro = 0
+    limits = c(-1, 1) # limiti fissati
+  ) + theme_light() + 
+  theme(legend.title = element_blank(), 
+        legend.position = "top", 
+        legend.text = element_text(size = 20), 
+        axis.title = element_blank(), 
+        axis.text = element_text(size = 20), 
+        legend.key.width = unit(1.5, "cm"),
+  legend.key.height = unit(0.8, "cm"))
+  return(g)
+}
+
+library(MASS)
+
+set.seed(123)
+n <- 400   
+
+# -------------------------
+# 1. FATTORI LATENTI (OBLIQUI + un 4° debole)
+# -------------------------
+Sigma_f <- matrix(c(1.00, 0.30, 0.25, 0.20,
+                    0.30, 1.00, 0.28, 0.15,
+                    0.25, 0.28, 1.00, 0.18,
+                    0.20, 0.15, 0.18, 1.00), 4, 4)
+
+F_lat <- mvrnorm(n, mu = rep(0,4), Sigma = Sigma_f)
+colnames(F_lat) <- c("Effort","Reward","Overcommitment","Method")
+
+# -------------------------
+# 2. LOADINGS (più sporchi)
+# -------------------------
+Lambda <- matrix(0, 23, 4)
+rownames(Lambda) <- paste0("eri",1:23)
+colnames(Lambda) <- colnames(F_lat)
+
+# Effort
+Lambda[c(5,22,11,1,7,4),"Effort"] <- c(.70,.60,.55,.65,.50,.45)
+Lambda[c(11,7),"Overcommitment"] <- c(.20,.15)
+
+# Reward
+Lambda[c(14,9,20,13,12,3,16,10,21,15,19),"Reward"] <- 
+  c(.70,.60,.55,.50,.58,.52,.55,.48,.57,.45,.50)
+
+Lambda[c(9,16,15),"Effort"] <- c(.20,.15,.25)
+
+# Overcommitment
+Lambda[c(18,23,17,2,6,8),"Overcommitment"] <- 
+  c(.70,.65,.55,.60,.50,.48)
+
+Lambda[c(17,6),"Reward"] <- c(.15,.20)
+
+# -------------------------
+# 2b. QUARTO FATTORE "SPURIO"
+# -------------------------
+# carica poco ma su molti item → genera ambiguità
+method_items <- sample(1:23, 10)
+
+Lambda[method_items,"Method"] <- runif(10, .20, .35)
+
+# -------------------------
+# 3. ERRORI (con correlazioni locali)
+# -------------------------
+set.seed(456)
+
+uniqueness <- runif(23, 0.50, 0.80)
+
+# item molto rumorosi
+uniqueness[c(10,21,15)] <- c(0.85,0.80,0.82)
+
+E <- matrix(rnorm(n*23), n, 23)
+
+# correlazioni tra errori (local dependence)
+E[,c(5,7)]  <- E[,c(5,7)] %*% matrix(c(1,.4,.4,1),2,2)
+E[,c(14,16)]<- E[,c(14,16)] %*% matrix(c(1,.3,.3,1),2,2)
+
+E <- sweep(E, 2, sqrt(uniqueness), "*")
+
+# -------------------------
+# 4. DATI CONTINUI
+# -------------------------
+X_cont <- F_lat %*% t(Lambda) + E
+colnames(X_cont) <- rownames(Lambda)
+
+# -------------------------
+# 5. TRASFORMAZIONE LIKERT (NON uniforme!)
+# -------------------------
+X_likert <- sapply(1:23, function(j){
+  
+  x <- X_cont[,j]
+  
+  # soglie diverse per item → skew diversi
+  thresholds <- sort(rnorm(4, mean = c(-1, -0.2, 0.4, 1.2), sd = 0.3))
+  
+  cut(x,
+      breaks = c(-Inf, thresholds, Inf),
+      labels = 1:5)
+})
+
+X_likert <- as.data.frame(X_likert)
+colnames(X_likert) <- paste0("eri",1:23)
+
+data <- data.frame(lapply(X_likert, as.integer))
+
+mat = polychoric(data)
+```
+
+
+# Introduzione
+
+La scala che segue è stata sviluppata nel contesto del modello "Effort-Reward Imbalance", ovvero lo scollamento tra quello che è lo sforzo percepito che viene messo in atto e le ricompense ricevute. 
+
+Dato il testo degli item e le soluzioni sotto riportate: 
+
+* Trovare la soluzione fattoriale migliore considerando, oltre agli indici di fit, i principi di causazione, parsimonia e soluzione semplice
+* Provare a dare una definizione ai fattori sulla base dei contenuti degli item
+* Pensare a degli altri costrutti da misurare che potrebbero correlare con i costrutti misurati dal questionario
+
+:::{.callout-caution}
+## Attenzione!
+
+Nei risultati che vedrete in seguito, gli eventuali item reverse sono già girati dalla parte giusta
+
+:::
+
+# Item 
+
+<iframe src="ERI_reformatted.pdf" width="100%" height="600px"></iframe>
+
+# Correlazione 
+
+```{r}
+corrplot(mat$rho, type = "lower")
+```
+
+# Step preliminari 
+
+## Bartlett
+
+```{r}
+cortest.bartlett(mat$rho, n = nrow(data))
+```
+## KMO 
+
+```{r}
+KMO(mat$rho)
+```
+
+# Numero di fattori 
+
+
+## Autovalori
+
+```{r}
+#| fig-column: margin
+
+
+myeigen = eigen(mat$rho)$values
+myeigen
+
+
+mycolors = rep("black", length(myeigen))
+mycolors[myeigen>=1] = "firebrick"
+plot(myeigen, pch = 19, col = mycolors, 
+     cex = 2, main = "Grafico degli autovalori", cex.main=2)
+abline(h=1, lwd=2)
+legend(x = 12, y = 5, legend = c("< 1", ">= 1"), 
+       fill = c("black", "firebrick"),
+       cex = 3, bty ="n")
+```
+
+## Metodi grafici 
+
+```{r}
+#| layout-nrow: 2
+#| label: fig-Numfactor
+#| fig-cap: Numero di fattori da estrarre 
+#| fig-subcap: 
+#|   - "Scree-Plot"
+#|   - "Parallel"
+#| column: screen-inset-shaded
+
+
+scree(mat$rho, pc = FALSE)
+fa.parallel(mat$rho, n.obs = nrow(data), 
+            fa = "fa", fm="wls")
+```
+
+## MAP 
+
+```{r}
+VSS(mat$rho, plot = FALSE)
+```
+# EFA 
+
+## Confronto tra modelli
+
+```{r}
+efaM = efa(data, nfactors = 2:4, rotation = "oblimin",
+               estimator = "WLSMV",
+               ordered = colnames(data))
+b =summary(efaM, fit.measures = "all")
+b$fit.table
+```
+
+
+## Varianza spiegata e correlazione tra fattori
+
+
+
+
+```{r}
+#| layout-ncol: 2
+#| layout-nrow: 3
+#| column: screen
+b$model.list$nf2$efa$sumsq.table[[1]]
+lavInspect(efaM$nf2, "cor.lv")
+
+b$model.list$nf3$efa$sumsq.table[[1]]
+lavInspect(efaM$nf3, "cor.lv")
+
+b$model.list$nf4$efa$sumsq.table[[1]]
+lavInspect(efaM$nf3, "cor.lv")
+```
+
+
+## Due fattori 
+
+```{r}
+#| layout-ncol: 2
+#| layout-nrow: 2
+#| column: screen-inset-shaded
+#| label: fig-2F
+#| fig-cap: "Soluzione a due fattori"
+#| fig-subcap: 
+#|   - "Saturazioni"
+#|   - "Rappresentazione grafica saturazioni"
+#|   - "Residui"
+
+efaM$nf2
+plot_lambda(efaM, 1)
+corrplot(residuals(efaM$nf2)$cov, type = "lower", diag = FALSE, 
+         method = "shade")
+```
+
+
+
+
+## Tre fattori 
+
+```{r}
+#| layout-ncol: 2
+#| layout-nrow: 2
+#| column: screen-inset-shaded
+#| label: fig-3F
+#| fig-cap: "Soluzione a due fattori"
+#| fig-subcap: 
+#|   - "Saturazioni"
+#|   - "Rappresentazione grafica saturazioni"
+#|   - "Residui"
+
+efaM$nf3
+plot_lambda(efaM, 2)
+corrplot(residuals(efaM$nf3)$cov, type = "lower", diag = FALSE, 
+         method = "shade")
+```
+
+
+## Quattro fattori 
+
+```{r}
+#| layout-ncol: 2
+#| layout-nrow: 2
+#| column: screen-inset-shaded
+#| label: fig-4F
+#| fig-cap: "Soluzione a due fattori"
+#| fig-subcap: 
+#|   - "Saturazioni"
+#|   - "Rappresentazione grafica saturazioni"
+#|   - "Residui"
+
+efaM$nf4
+plot_lambda(efaM, 3)
+corrplot(residuals(efaM$nf4)$cov, type = "lower", diag = FALSE, 
+         method = "shade")
+```
+
+
+
