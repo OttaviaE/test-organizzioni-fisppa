@@ -6,7 +6,7 @@ format:
    self-contained: true
    toc: true
    toc-location: left
-   theme: lux
+   theme: sandstone
 execute: 
   echo: false
   message: false
