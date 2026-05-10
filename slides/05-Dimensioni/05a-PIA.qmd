@@ -1,7 +1,7 @@
 ---
-title: "Analisi Preliminare degli Item"
-subtitle: "Esercitazione pratica e richiami alla teoria"
-author: "Margherita Calderan"
+title: "Analisi Preliminare degli Item: Esercitazione pratica e richiami alla teoria"
+subtitle: "Test per le organizzazioni - A.A. 2025/2026"
+author: "Margherita Calderan & Ottavia M. Epifania"
 date: today
 format:
   html:

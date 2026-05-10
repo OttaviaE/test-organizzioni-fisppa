@@ -91,3 +91,7 @@ Analisi Fattoriale Esplorativa -- Exploratory Factor Analysis (EFA) [slides in h
 Esercitazione [file html](ERI/esercitazione-efa.html)
 
 Scoring [file html](ERI/eri-scoring.html)
+
+## Modulo 6b
+
+Analisi Fattoriale Esplorativa: Esercitazione pratica e richiami alla teoria [file html](slides/06-EFA/06b-EFA.html)

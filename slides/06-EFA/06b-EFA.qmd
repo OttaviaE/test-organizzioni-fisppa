@@ -1,0 +1,1739 @@
+---
+title: "Analisi Fattoriale Esplorativa"
+subtitle: "Test per le organizzazioni - A.A. 2025/2026"
+author: "Margherita Calderan & Ottavia M. Epifania"
+date: today
+format:
+  html:
+    page-layout: full
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    number-sections: true
+    embed-resources: true
+    theme: cosmo
+    css: custom-style.css
+lang: it
+execute:
+  echo: true
+  warning: false
+  message: false
+editor:
+  markdown:
+    wrap: 72
+---
+
+Nella prima parte della lezione faremo un recap degli argomenti trattati
+la volta scorsa (con qualche approfondimento), nella seconda parte
+proveremo a svolgere l'analisi fattoriale esplorativa attraverso il
+pacchetto `lavaan`.
+
+::: callout-note
+## Fonti
+
+Parte della lezione è stata adattata dai seguenti materiali disponibili
+online:
+
+-   Dispensa [Testing
+    psicologico](https://ccaudek.github.io/testing_psicologico/) by
+    Corrado Caudek
+-   Brown, Anna. (2023). Psychometrics in Exercises using R and RStudio. Textbook and data resource. Available from <https://bookdown.org/annabrown/psychometricsR>.
+
+-   [Lezione](slides/06-EFA/06-EFA-live.html): Modulo 6a: Exploratory
+    Factor Analysis - EFA
+
+Altri riferimenti utili sono:
+
+-   Petersen, I. T. (2026). Principles of psychological assessment: With
+    applied examples in R. Version 1.0.9. University of Iowa Libraries.
+    <https://isaactpetersen.github.io/Principles-Psychological-Assessment>.
+    <https://doi.org/10.25820/work.007199>
+
+-   Martinková, P., & Hladká, A. (2023). Computational Aspects of
+    Psychometric Methods: With R (1st ed.). Chapman and Hall/CRC.
+    <https://doi.org/10.1201/9781003054313>
+:::
+
+```{r}
+#| include: false
+
+library(psych)
+
+data(bfi, package = "psych")
+items <- bfi[, 1:25]
+
+# Item reverse (A1, C4, C5, E1, E2, O2, O5)
+rev_items <- c("A1", "C4", "C5", "E1", "E2", "O2", "O5")
+items_rec <- items
+items_rec[, rev_items] <- 7 - items_rec[, rev_items]
+
+ordine <- c(paste0("A", 1:5), paste0("C", 1:5), paste0("E", 1:5),
+            paste0("N", 1:5), paste0("O", 1:5))
+R_ord  <- polychoric(items_rec[, ordine])$rho
+R_full <- R_ord
+
+items_EN <- items_rec[, c(paste0("E", 1:5), paste0("N", 1:5))]
+R_EN  <- polychoric(items_EN)$rho
+n_obs <- sum(complete.cases(items_EN))
+
+# modelli che utilizzeremo dopo
+fit_unrot <- fa(R_EN, nfactors = 2, fm = "minres", rotate = "none",n.obs = n_obs)
+fit_varimax <- fa(R_EN, nfactors = 2, fm = "minres", rotate = "varimax", n.obs = n_obs)
+fit_oblimin <- fa(R_EN, nfactors = 2, fm = "minres", rotate = "oblimin", n.obs = n_obs)
+
+```
+
+::: {.callout-tip collapse="true"}
+
+## R studio pkg
+
+```{r setup}
+#| echo: true
+
+# se non avete il pacchetto -> install.packages("nomepacchetto")
+# e poi...
+library(psych)
+library(corrplot)
+library(ggplot2)
+library(patchwork)
+library(tidyverse)
+library(lavaan)
+
+# impostazione grafica 
+set_theme(theme_bw(base_size = 14))
+```
+:::
+
+::: {.callout-important collapse="true"}
+## Notazione utilizzata in questa lezione
+
+| Simbolo | Significato |
+|------------------|------------------------------------------------------|
+| $n$ | Numero di soggetti |
+| $s$ | Indice del soggetto ($s = 1, \ldots, n$) |
+| $p$ | Numero di item (variabili osservate) |
+| $i$ | Indice dell'item generico ($i = 1, \ldots, p$) |
+| $k$ | Secondo indice di item, usato nelle formule di covarianza tra coppie ($k \neq i$) |
+| $Y_{si}$ | Risposta del soggetto $s$ all'item $i$ |
+| $m$ | Numero di fattori comuni ($m \ll p$) |
+| $j$ | Indice del fattore ($j = 1, \ldots, m$) |
+| $\mu_i$ | Intercetta (media) dell'item $i$ |
+| $\theta_{sj}$ | Punteggio latente del soggetto $s$ sul fattore $j$ |
+| $\lambda_{ij}$ | Saturazione fattoriale dell'item $i$ sul fattore $j$ |
+| $\varepsilon_{si}$ | Errore specifico del soggetto $s$ sull'item $i$ |
+| $\psi_i$ | Varianza dell'errore specifico dell'item $i$ (unicità) |
+| $h_i^2$ | Comunalità dell'item $i$ |
+| $\mathbf{R}$ | Matrice di correlazione osservata ($p \times p$) |
+| $\hat{\mathbf{R}}$ | Matrice di correlazione riprodotta dal modello |
+| $\boldsymbol{\Lambda}$ | Matrice dei loading ($p \times m$) |
+| $\boldsymbol{\Phi}$ | Matrice di correlazione tra i fattori ($m \times m$; $= \mathbf{I}$ se ortogonali) |
+| $\boldsymbol{\Psi}$ | Matrice diagonale delle unicità ($p \times p$) |
+:::
+
+# Introduzione
+
+L'**analisi fattoriale esplorativa** parte da una matrice di
+correlazioni $p \times p$ tra $p$ variabili osservate e cerca una
+matrice $p \times m$ di **saturazioni fattoriali** ($\lambda$) che
+spieghi le correlazioni tramite $m \ll p$ fattori comuni latenti.
+
+La matrice di correlazione policorica dei 25 item mostra una struttura a
+**blocchi**: gli item della stessa scala correlano molto tra loro,
+mentre le correlazioni tra scale diverse sono più basse.
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 8
+corrplot(R_ord,
+         method      = "shade",
+         type        = "lower",
+         diag        = TRUE,
+         tl.cex      = 0.85,
+         tl.col      = "black",
+         title       = "Correlazioni policoriche — 25 item Big Five",
+         mar         = c(0, 0, 2, 0),
+         addgrid.col = "white"
+)
+text(-1.5, 22.5, "A", col = "#E69F00", cex = 1.4, font = 2)
+text(-1.5, 17.5, "C", col = "#56B4E9", cex = 1.4, font = 2)
+text(-1.5, 12.5, "E", col = "#009E73", cex = 1.4, font = 2)
+text(-1.5,  7.5, "N", col = "#CC79A7", cex = 1.4, font = 2)
+text(-1.5,  2.5, "O", col = "#D55E00", cex = 1.4, font = 2)
+```
+
+La domanda centrale è: **perché** questi blocchi emergono?
+
+# Il modello monofattoriale
+
+Gli item non correlano direttamente tra loro, ma perché sono tutti
+influenzati da una stessa variabile latente (il fattore $\theta$).
+
+Per $i = 1, \ldots, p$ item e $s = 1, \ldots, n$ soggetti, il modello
+**monofattoriale** è:
+
+$$
+Y_{si} = \mu_i + \lambda_i \,\theta_s + \varepsilon_{si}
+$$
+
+dove:
+
+-   $\mu_i$ è l'intercetta dell'item $i$;
+-   $\theta_s$ è il punteggio latente del soggetto $s$ sul fattore
+    comune;
+-   $\lambda_i$ è la **saturazione fattoriale** dell'item $i$: indica
+    quanto fortemente ***il fattore influenza quell'item***;
+-   $\varepsilon_{si}$ è l'errore specifico (tutto ciò che non
+    appartiene al fattore comune).
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 5
+n_items   <- 5
+nodes_obs <- data.frame(
+  x = seq(0.5, 4.5, length.out = n_items),
+  y = rep(0.8, n_items),
+  label = paste0("Y", 1:n_items)
+)
+node_lat  <- data.frame(x = 2.5, y = 2.2, label = "θ")
+nodes_err <- data.frame(
+  x = seq(0.5, 4.5, length.out = n_items),
+  y = rep(0.1, n_items),
+  label = paste0("ε", 1:n_items)
+)
+lambdas <- c(0.80, 0.75, 0.70, 0.65, 0.60)
+
+ggplot() +
+  geom_segment(
+    data = nodes_obs,
+    aes(x = 2.5, y = 2.05, xend = x, yend = 0.97),
+    arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+    color = "darkorange", linewidth = 1
+  ) +
+  geom_label(
+    data = data.frame(
+      x     = (nodes_obs$x + 2.5) / 2 + c(-0.30, -0.15, 0, 0.15, 0.30),
+      y     = (nodes_obs$y + 2.2) / 2 + c( 0.10,  0.05, 0,-0.05,-0.10),
+      label = paste0("λ", 1:n_items, " = ", lambdas)
+    ),
+    aes(x = x, y = y, label = label),
+    size = 3.2, fill = "white", color = "darkorange", label.size = 0.2
+  ) +
+  geom_segment(
+    data = nodes_err,
+    aes(x = x, y = 0.25, xend = x, yend = 0.63),
+    arrow = arrow(length = unit(0.2, "cm"), type = "closed"),
+    color = "grey50", linewidth = 0.8
+  ) +
+  geom_point(data = nodes_obs, aes(x = x, y = y),
+             size = 16, shape = 22, fill = "steelblue", color = "navy") +
+  geom_text(data = nodes_obs, aes(x = x, y = y, label = label),
+            color = "white", fontface = "bold", size = 4) +
+  geom_point(data = node_lat, aes(x = x, y = y),
+             size = 20, shape = 21, fill = "gold",
+             color = "darkorange", stroke = 2) +
+  geom_text(data = node_lat, aes(x = x, y = y, label = label),
+            size = 7, fontface = "bold") +
+  geom_point(data = nodes_err, aes(x = x, y = y),
+             size = 10, shape = 21, fill = "grey80", color = "grey50") +
+  geom_text(data = nodes_err, aes(x = x, y = y, label = label),
+            size = 3, color = "grey30") +
+  annotate("text", x = 0.05, y = 2.2, label = "Fattore latente",
+           hjust = 0, size = 3.5, color = "darkorange", fontface = "italic") +
+  annotate("text", x = 0.05, y = 1, label = "Item osservati",
+           hjust = 0, size = 3.5, color = "navy",       fontface = "italic") +
+  annotate("text", x = 0.05, y = 0.1, label = "Errori",
+           hjust = 0, size = 3.5, color = "grey50",     fontface = "italic") +
+  xlim(-0.1, 5.5) + ylim(-0.1, 2.7) +
+  theme_void(base_size = 13)
+```
+
+| Assunzione | Notazione |
+|------------------------------|------------------------------------------|
+| (Convenzione) Item centrati e standardizzati | $\mathbb{E}(Y_i) = 0$ |
+| Il fattore comune è standardizzato | $\mathbb{E}(\theta) = 0$, $\mathbb{V}(\theta) = 1$ |
+| Gli errori hanno media nulla e varianza $\psi_i$ | $\mathbb{E}(\varepsilon_i) = 0$, $\mathbb{V}(\varepsilon_i) = \psi_i$ |
+| Errori tra loro incorrelati | $\mathrm{Cov}(\varepsilon_i, \varepsilon_k) = 0$ per $i \neq k$ |
+| Errori incorrelati con il fattore | $\mathrm{Cov}(\varepsilon_i, \theta) = 0$ |
+
+Date queste ipotesi, l’interdipendenza (cioè le correlazioni) fra le
+variabili osservate è interamente spiegata dal singolo fattore
+(**indipendenza locale**/**indipendenza condizionale**): una volta noto
+il valore del fattore $\theta$, le risposte agli item non si influenzano
+a vicenda,
+$$P(Y_i, Y_k \mid \theta) = P(Y_i \mid \theta) \cdot P(Y_k \mid \theta).$$
+
+:::::: callout-tip
+## Esempio
+
+::::: columns
+::: column
+<br/> La correlazione tra due item è spuria: nasce perché entrambi
+dipendono da $\theta$.
+
+La relazione tra consumo di gelati e violenza, ad esempio, è dovuta alla
+causa comune "temperatura", non a un legame diretto.
+:::
+
+::: column
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 2
+nodes_obs2 <- data.frame(x = c(1, 4), y = rep(0.55, 2),
+                         label = c("Gelati", "Violenza"))
+node_lat2  <- data.frame(x = 2.5, y = 1.1, label = "Temperatura")
+ggplot() +
+  geom_segment(data = nodes_obs2,
+               aes(x = 2.5, y = 1.05, xend = c(1.3, 3.7), yend = 0.65),
+               arrow = arrow(length = unit(0.2, "cm")),
+               color = "forestgreen", linewidth = 0.9) +
+  geom_point(data = nodes_obs2, aes(x = x, y = y),
+             size = 22, color = "steelblue") +
+  geom_text(data = nodes_obs2, aes(x = x, y = y, label = label),
+            color = "white", fontface = "bold", size = 3.5) +
+  geom_point(data = node_lat2, aes(x = x, y = y),
+             size = 20, shape = 21, fill = "gold",
+             color = "darkorange", stroke = 2) +
+  geom_text(data = node_lat2, aes(x = x, y = y, label = label),
+            size = 4.5, fontface = "bold") +
+  xlim(0.3, 4.7) + ylim(0.2, 1.4) +
+  theme_void(base_size = 12)
+```
+:::
+:::::
+::::::
+
+## Comunalità e unicità
+
+Sotto le assunzioni del modello, la varianza di $Y_i$ si scompone in due
+parti:
+
+$$
+\underbrace{\mathbb{V}(Y_i)}_{= 1 \text{ se std.}} =
+\underbrace{h_i^2}_{\text{comunalità}} +
+\underbrace{\psi_i}_{\text{unicità}}
+$$
+
+**Unicità**. Varianza **non** spiegata dai fattori comuni:
+$\psi_i = 1 - h_i^2$
+
+**Comunalità**. Varianza spiegata dai fattori comuni:
+$h_i^2 = \lambda_i^2$
+
+::: callout-important
+## Comunalità - multifattoriale
+
+-   Con $m$ fattori ortogonali: $h_i^2 = \sum_{j=1}^m \lambda_{ij}^2$.
+-   Con $m$ fattori correlati:
+    $h_i^2 = \boldsymbol{\lambda}_i \,\boldsymbol{\Phi}\, \boldsymbol{\lambda}_i^\mathsf{T},$
+
+con
+${\lambda}_i = ({\lambda}_{i1},{\lambda}_{i2}, \dots, {\lambda}_{im})$ e
+$\mathbf{\Phi}$ (matrice di correlazione $m \times m$)
+:::
+
+## La tetrade
+
+Spearman osservò che le prestazioni scolastiche (Classics, English,
+Math, …) correlano tutte tra loro, quindi ipotizzò l'estistenza di un
+**fattore generale** $g$ (intelligenza) latente...
+
+$$
+\begin{array}{ccccc}
+\hline
+& y_c & y_e & y_m & y_p \\
+\hline
+y_c & 1.00 & 0.78 & 0.70 & 0.66 \\
+y_e &      & 1.00 & 0.64 & 0.54 \\
+y_m &      &      & 1.00 & 0.45 \\
+y_p &      &      &      & 1.00 \\
+\hline
+\end{array}
+$$
+
+Se esiste un fattore comune $\theta$, allora $y_i$ e $y_k$, una volta
+controllato $\theta$, devono risultare **condizionalmente
+indipendenti**. La correlazione parziale vale zero quando:
+
+$$
+r_{ik} = r_{i\theta} \cdot r_{k\theta}
+= \lambda_i \cdot \lambda_k
+$$
+
+Questa condizione implica che ogni correlazione osservata è scomponibile
+come prodotto di due saturazioni.
+
+::: {.callout-note collapse="true"}
+## Esempio in R - Correlazione parziale
+
+```{r}
+set.seed(123)
+n  <- 1000
+f  <- rnorm(n, 24, 12) # fattore latente
+y1 <- 10 + 7 * f + rnorm(n, 0, 50) # osservate funzione della latente
+y2 <-  3 + 2 * f + rnorm(n, 0, 50)
+
+Y  <- cbind(y1, y2, f) #variabili osservate e latente
+round(cor(Y), 3)    # correlazioni semplici
+```
+
+```{r}
+fm1 <- lm(y1 ~ f) # controllo per il fattore
+fm2 <- lm(y2 ~ f)
+round(cor(fm1$res, fm2$res), 3)   # correlazione parziale
+```
+
+La correlazione tra $y_1$ e $y_2$ era interamente dovuta all'effetto
+condiviso di $f$.
+
+Senza bisogno di guardare i residui, avendo le correlazioni tra una
+variabile comune $f$ e tra le $y$, la correlazione parziale si può
+ottenere:
+
+$$
+r_{12 \mid f} =
+\frac{r_{12} - r_{1f}\,r_{2f}}{\sqrt{(1 - r_{1f}^2)(1 - r_{2f}^2)}}
+$$
+
+```{r}
+R <- cor(Y)
+R
+
+# formula
+(R[1, 2] - R[1, 3] * R[2, 3]) / 
+  sqrt((1 - R[1, 3]^2) * (1- R[2, 3]^2)) 
+```
+:::
+
+Se $r_{ij} = \lambda_i \lambda_j$ per ogni coppia, possiamo ricavare i
+loading dalle sole correlazioni osservate.
+
+$$
+\begin{array}{ccccc}
+\hline
+& y_c & y_e & y_m & y_p \\
+\hline
+y_c & 1.00 & 0.78 & 0.70 & 0.66 \\
+y_e &      & 1.00 & 0.64 & 0.54 \\
+y_m &      &      & 1.00 & 0.45 \\
+y_p &      &      &      & 1.00 \\
+\hline
+\end{array}
+$$
+
+Per tre variabili $c$, $e$, $m$:
+
+$$
+\lambda_m = \sqrt{\frac{r_{cm} \cdot r_{em}}{r_{ce}}}
+$$
+
+
+Applicando questa formula con diverse terne si ottengono **stime multiple** dello stesso loading:
+
+$$
+\hat\lambda_m = \sqrt{\frac{0.70 \times 0.64}{0.78}} \approx 0.76,
+\qquad
+\hat\lambda_m = \sqrt{\frac{0.78 \times 0.45}{0.66}} \approx 0.69,
+\qquad
+\hat\lambda_m = \sqrt{\frac{0.64 \times 0.45}{0.54}} \approx 0.73
+$$
+
+Se tutte le stime sono coerenti, il modello a un fattore è plausibile.
+Se divergono, servono almeno due fattori.
+
+::: {.callout-tip collapse="true"}
+## Derivazione
+
+Assumi tre variabili $c,e,m$. Dal modello a un fattore:
+
+$$
+r_{cm}=\lambda_c\lambda_m,\qquad
+r_{em}=\lambda_e\lambda_m,\qquad
+r_{ce}=\lambda_c\lambda_e.
+$$
+
+Moltiplica le prime due:
+
+$$
+r_{cm}r_{em}
+=
+(\lambda_c\lambda_m)(\lambda_e\lambda_m)
+=
+\lambda_c\lambda_e\lambda_m^2.
+$$
+
+Ora dividi per la terza:
+
+$$
+\frac{r_{cm}r_{em}}{r_{ce}}
+=
+\frac{\lambda_c\lambda_e\lambda_m^2}{\lambda_c\lambda_e}
+=
+\lambda_m^2,
+$$
+
+quindi
+
+$$
+\lambda_m=\sqrt{\frac{r_{cm}r_{em}}{r_{ce}}}.
+$$
+:::
+
+### Struttura dei loadings
+
+Formalmente, se hai $p$ item e 1 fattore, la matrice dei loadings è un
+vettore colonna:
+
+$$
+\Lambda =
+\begin{bmatrix}
+\lambda_1\\
+\lambda_2\\
+\vdots\\
+\lambda_p
+\end{bmatrix}
+$$
+
+e quindi
+
+$$
+\Lambda \Lambda^\mathsf{T}
+=
+\begin{bmatrix}
+\lambda_1^2 & \lambda_1\lambda_2 & \cdots & \lambda_1\lambda_p\\
+\lambda_2\lambda_1 & \lambda_2^2 & \cdots & \lambda_2\lambda_p\\
+\vdots & \vdots & \ddots & \vdots\\
+\lambda_p\lambda_1 & \lambda_p\lambda_2 & \cdots & \lambda_p^2
+\end{bmatrix}.
+$$
+
+La diagonale contiene le **comunalità** degli item, mentre fuori
+diagonale compaiono le **covarianze riprodotte** tra item.
+
+Per ottenere la matrice di covarianza **teorica** del modello bisogna
+aggiungere la matrice delle **unicità** $\Psi = \operatorname{diag}(\psi_1, \psi_2, \ldots, \psi_p)$:
+
+$$
+\Sigma = \Lambda \Lambda^\mathsf{T} + \Psi
+=
+\begin{bmatrix}
+\lambda_1^2 + \psi_1 & \lambda_1\lambda_2 & \cdots & \lambda_1\lambda_p\\
+\lambda_2\lambda_1 & \lambda_2^2 + \psi_2 & \cdots & \lambda_2\lambda_p\\
+\vdots & \vdots & \ddots & \vdots\\
+\lambda_p\lambda_1 & \lambda_p\lambda_2 & \cdots & \lambda_p^2 + \psi_p
+\end{bmatrix}.
+$$
+
+Il termine $\psi_i$ rappresenta la varianza **specifica** (o unicità) dell'item $i$,
+cioè la quota di varianza non spiegata dal fattore comune.
+
+| Elemento | Formula | Interpretazione |
+|---|---|---|
+| Diagonale $\sigma_{ii}$ | $\lambda_i^2 + \psi_i$ | Varianza totale = comunalità + unicità |
+| Fuori diagonale $\sigma_{ij}$ | $\lambda_i \lambda_j$ | Covarianza riprodotta tra item $i$ e $j$ |
+
+
+Quindi $\Lambda\Lambda^\mathsf{T}$ da sola riproduce correttamente le
+covarianze fuori diagonale, ma sulla diagonale contiene solo le
+**comunalità** $\lambda_i^2$, ovvero la quota di varianza spiegata dal
+fattore comune. Aggiungere $\Psi$ completa la decomposizione:
+varianza totale = parte comune + parte specifica.
+
+
+Dato che le variabili sono standardizzate (varianza = 1), la matrice
+di correlazione riprodotta dal modello è:
+
+$$
+R = \Lambda \Lambda^\mathsf{T} + \Psi
+$$
+
+con $\psi_i = 1 - \lambda_i^2$ sulla diagonale, così che
+$\sigma_{i} = \lambda_i^2 + (1 - \lambda_i^2) = 1$.
+Le correlazioni riprodotte fuori diagonale sono semplicemente
+$\hat{r}_{ij} = \lambda_i \lambda_j$.
+
+::: {.callout-note collapse="true"}
+
+## Verifica in R
+
+```{r}
+Spearman <- matrix(c(
+  1.00, 0.78, 0.70, 0.66,
+  0.78, 1.00, 0.64, 0.54,
+  0.70, 0.64, 1.00, 0.45,
+  0.66, 0.54, 0.45, 1.00
+), byrow = TRUE, ncol = 4,
+dimnames = list(c("C","E","M","P"), c("C","E","M","P")))
+
+Spearman
+
+# funzione del pacchetto stats R base
+fm <- factanal(covmat = Spearman, factors = 1) #specifico matrice e fattori
+fm
+```
+
+La somma dei quadrati delle saturazioni fornisce la varianza totale
+spiegata dal fattore:
+
+$$
+\sum_i \lambda_i^2 = \text{SS loadings} = 2.587
+$$
+
+Ciascun $\lambda_i^2$ è la comunalità del singolo item:
+$C^2 + E^2 + M^2 + P^2$, il risultato è visualizzato in
+`SS loadings 2.587`.
+
+```{r}
+# loadings
+C <- 0.956  
+E <- 0.819  
+M <- 0.735  
+P <- 0.679  
+
+# total variance
+C^2 + E^2 + M^2 + P^2
+```
+
+La `Proportion Var` ci dice quanto della varianza è spiegata dal
+fattore. Assumendo variabili standardizzate, la varianza totale attesa è
+$4$ e quindi $2.587 / 4 \approx 0.647$.
+
+```{r}
+# proportion of variance
+(C^2 + E^2 + M^2 + P^2)/4
+```
+
+La **comunalità** di ciascun item è $h_i^2 = 1 - \text{uniqueness}$,
+cioè la quota di varianza spiegata dal/i fattore/i comuni.
+
+Nel caso **monofattoriale**, coincide con $\lambda_i^2$, quindi il loading si
+recupera come radice quadrata della comunalità.
+
+```{r}
+comm <- 1 - fm$uniquenesses   # comunalità: quanto il fattore spiega quell'item?
+
+tab <- data.frame(
+  loading     = sqrt(comm),      # solo con 1 fattore!
+  communality = comm,            # h² = λ²  (quota spiegata)
+  uniqueness  = fm$uniquenesses  # ψ = 1 - h² (quota residua)
+)
+
+tab$prop_var_item <- comm / 4   # contributo di ciascun item
+                                 # alla Proportion Var totale
+tab
+```
+
+```{r}
+# se sommo i contributi ho la varianza totale spiegata dal fattore
+sum(tab$prop_var_item) 
+```
+
+Si può anche ricostruire esplicitamente la matrice di correlazione
+riprodotta $\hat{R} = \Lambda\Lambda^\mathsf{T} + \Psi$ e confrontarla
+con quella osservata:
+
+```{r}
+lambda <- sqrt(comm)  # vettore dei loadings (1 fattore)
+Psi    <- diag(fm$uniquenesses)   # matrice diagonale delle unicità
+
+R_hat <- lambda %*% t(lambda) + Psi  # matrice riprodotta
+
+# aggiungo i nomi alle colonne e righe
+rownames(R_hat) <- colnames(R_hat) <- c("C","E","M","P")
+
+round(R_hat, 3)# correlazioni riprodotte dal modello
+
+round(Spearman - R_hat, 3)  # residui (differenze dalla matrice osservata)
+```
+
+:::
+
+# Il modello multifattoriale
+
+
+Con $m$ fattori comuni e $p$ variabili, il modello è:
+
+$$
+\mathbf{Y}_s = \boldsymbol{\mu} +
+\boldsymbol{\Lambda}\,\boldsymbol{\theta}_s + \boldsymbol{\varepsilon}_s
+$$
+
+In forma scalare: 
+$$
+Y_{si} = \mu_i + \lambda_{i1}\theta_{s1} + \cdots + \lambda_{im}\theta_{sm}
++ \varepsilon_{si}
+$$
+
+
+La **matrice di covarianza teorica** risulta:
+
+-   **Fattori ortogonali** ($\boldsymbol{\Phi} = \mathbf{I}$):
+    $\boldsymbol{\Sigma} = \boldsymbol{\Lambda}\boldsymbol{\Lambda}^\mathsf{T} + \boldsymbol{\Psi}$
+
+-   **Fattori obliqui** ($\boldsymbol{\Phi} \neq \mathbf{I}$):
+    $\boldsymbol{\Sigma} = \boldsymbol{\Lambda}\boldsymbol{\Phi}\boldsymbol{\Lambda}^\mathsf{T} + \boldsymbol{\Psi}$
+
+dove $\boldsymbol{\Phi}$ è la matrice di correlazioni tra i fattori, e
+$\boldsymbol{\Psi}$ la matrice diagonale delle unicità ($p \times p$).
+
+
+## Esempio applicato
+
+Dati di 250 pazienti con 4 scale di Neuroticismo (N1–N4) e 4 di
+Estroversione (E1–E4).
+
+```{r}
+#| code-fold: true
+
+varnames <- c("N1","N2","N3","N4","E1","E2","E3","E4")
+cors <- '
+  1.000
+  0.767  1.000
+  0.731  0.709  1.000
+  0.778  0.738  0.762  1.000
+ -0.351 -0.302 -0.356 -0.318  1.000
+ -0.316 -0.280 -0.300 -0.267  0.675  1.000
+ -0.296 -0.289 -0.297 -0.296  0.634  0.651  1.000
+ -0.282 -0.254 -0.292 -0.245  0.534  0.593  0.566  1.000
+'
+psychot_cor_mat <- getCov(cors, names = varnames)
+psychot_cor_mat
+```
+
+### EFA a 2 fattori con rotazione ortogonale
+
+```{r}
+n_brown <- 250
+
+efa_ort <- factanal(
+  covmat   = psychot_cor_mat,
+  factors  = 2,
+  rotation = "varimax",
+  n.obs    = n_brown
+)
+efa_ort
+```
+
+::: callout-note
+
+## Esercizio
+
+Partendo dai loading calcola con R (o con la calcolatrice o a mano) le quantità:
+
+1. `SS loadings`, 
+2. `Proportion Var` 
+3. `Cumulative Var` 
+4. `communalità` (vedi sopra)
+5. `unicità` (controlla che il risultato sia come quello riportato in `efa_ort$uniquenesses`)
+
+```{r}
+lambda <- efa_ort$loadings[1:8,1:2]
+lambda
+
+# ...
+```
+
+:::
+
+**Matrice riprodotta e residui**
+
+```{r}
+# loadings * trasposto(loadings) + diagonale unicità
+Rr <- lambda %*% t(lambda) + diag(efa_ort$uniqueness)
+round(Rr, 2)
+```
+
+```{r}
+round(psychot_cor_mat - Rr, 3)   # residui: idealmente prossimi a 0
+```
+
+**Visualizzaione**:
+
+```{r}
+fa.diagram(lambda)
+```
+
+
+### EFA con rotazione obliqua
+
+```{r}
+efa_obl <- fa(psychot_cor_mat, nfactors = 2, n.obs = n_brown,
+              rotate = "oblimin")
+```
+
+
+::: {.callout-note collapse="true"}
+
+## Interpretazione output
+
+```{r}
+efa_obl
+```
+
+Il modello è stato stimato con il metodo **minres** (minimum residual) su una matrice di correlazione (`psychot_cor_mat`), con **2 fattori** e **250 osservatori**. La rotazione usata è **oblimin**, una rotazione obliqua che permette ai fattori di essere correlati tra loro.
+
+**Pattern Matrix (Carichi Fattoriali)**
+
+La tabella mostra i carichi standardizzati (pattern matrix) degli 8 item sui 2 fattori. La struttura è estremamente semplice: ogni item carica quasi esclusivamente su un solo fattore.
+
+| Item | MR1  | MR2   | h²   | u²   |
+|------|------|-------|------|------|
+| N1   | 0.88 | −0.02 | 0.78 | 0.22 |
+| N2   | 0.85 |  0.01 | 0.72 | 0.28 |
+| N3   | 0.83 | −0.04 | 0.71 | 0.29 |
+| N4   | 0.90 |  0.03 | 0.78 | 0.22 |
+| E1   | −0.05 | 0.77 | 0.63 | 0.37 |
+| E2   |  0.03 | 0.86 | 0.71 | 0.29 |
+| E3   |  0.00 | 0.79 | 0.63 | 0.37 |
+| E4   | −0.01 | 0.70 | 0.49 | 0.51 |
+
+: Pattern Matrix {.striped .hover}
+
+MR1 cattura gli item N1–N4 (probabilmente **Nevroticismo**), MR2 cattura E1–E4 (probabilmente **Estroversione**).
+
+- **h²** (*communality*): quota di varianza dell'item spiegata dai fattori 
+- **u²** (*uniqueness*): varianza residua non spiegata (= 1 − h²)
+- **com** (*complexity*): tutti = 1, ogni item satura puramente su un solo fattore
+
+**Varianza Spiegata**
+
+| Indice                  | MR1  | MR2  |
+|-------------------------|------|------|
+| SS Loadings             | 3.00 | 2.45 |
+| Proportion Var          | 0.37 | 0.31 |
+| Cumulative Var          | 0.37 | 0.68 |
+| Proportion Explained    | 0.55 | 0.45 |
+| Cumulative Proportion   | 0.55 | 1.00 |
+
+I due fattori spiegano congiuntamente il **68% della varianza totale** degli item. 
+
+**Correlazione tra Fattori**
+
+$$r_{\text{MR1, MR2}} = -0.43$$
+
+I fattori risultano **correlati negativamente**, il che è teoricamente sensato per Nevroticismo ed Estroversione.
+
+**Indici di Fit del Modello**
+
+Tutti gli indici indicano un ottimo adattamento del modello ai dati:
+
+| Indice | Valore | Soglia consigliata |
+|--------|--------|--------------------|
+| RMSR | 0.01 | < 0.05 |
+| Likelihood $\chi^2$ | 9.65 (*p* = 0.72) | *p* > 0.05 |
+| TLI | 1.006 | > 0.95 |
+| RMSEA | 0.00 [90% CI: 0, 0.047] | < 0.05 |
+| BIC | −62.12 | Più basso = meglio |
+
+Il test $\chi^2$ non significativo indica che il modello a 2 fattori **non viene rifiutato**: i residui sono compatibili con l'errore casuale.
+
+:::
+
+
+**Correlazione tra i fattori**:
+
+```{r}
+round(efa_obl$Phi, 3)
+
+Phi <- efa_obl$Phi
+```
+
+**Lamdba e unicità**:
+
+```{r}
+lambda_obl <- matrix(efa_obl$loadings[, 1:2], nrow = 8)
+lambda_obl
+
+Psi_obl <- diag(efa_obl$uniquenesses)
+Psi_obl
+```
+
+**Matrice riprodotta**:
+
+```{r}
+R_hat_obl <- lambda_obl %*% Phi %*% t(lambda_obl) + Psi_obl
+
+round(R_hat_obl, 2)
+```
+
+
+**Residui**
+
+```{r}
+round(psychot_cor_mat - R_hat_obl, 2)
+```
+
+**Visualizzazione**
+
+```{r}
+fa.diagram(efa_obl) # qui al posto di lambda mettiamo il modello
+```
+
+
+
+# Determinare il numero di fattori
+
+L'EFA è *esplorativa*: non impone a priori quanti fattori estrarre.
+
+## Autovalori e Scree plot
+
+Prima di stimare il modello EFA si analizza la **matrice di correlazione
+$\mathbf{R}$** per capire quanta struttura latente contiene. Uno strumento
+utile è la sua scomposizione in autovalori e autovettori:
+
+$$\mathbf{R}\,\mathbf{v} = e\,\mathbf{v}$$
+
+dove $\mathbf{v}$ è un **autovettore** (una direzione nello spazio degli
+item lungo cui la matrice si limita a *scalare* i vettori senza ruotarli) 
+e $e$ è il corrispondente **autovalore**, il fattore di scala: ci dice
+quanta varianza totale è concentrata lungo quella direzione. Per una
+matrice di correlazione la somma di tutti gli autovalori è uguale a $p$
+(uno per item standardizzato).
+
+Gli autovettori individuano le direzioni di **massima varianza in ordine
+decrescente**: il primo autovettore punta nella direzione in cui i dati
+variano di più (il "fattore generale" comune a tutti gli item), il secondo
+nella direzione di massima varianza *residua* ortogonale al primo, e così
+via.
+
+Per capire meglio è utile rappresentarli geometricamente, consideriamo il caso più
+semplice: **2 item** e correlazione variabile. Ogni partecipante è un
+punto nello spazio bidimensionale definito dai due item; la *forma* di
+questa nuvola dipende interamente dalla correlazione $r$.
+
+
+```{r}
+#| echo: false
+#| fig-width: 15
+#| fig-height: 5
+#| fig-cap: >
+#|   Quattro scenari di correlazione tra 2 item (n = 200).
+#|   Le frecce indicano i due assi principali; la loro lunghezza è
+#|   proporzionale a √e. Con r = 0 la nuvola è circolare e i due
+#|   autovalori sono uguali. All'aumentare di |r| il primo asse cattura
+#|   sempre più varianza a scapito del secondo.
+
+set.seed(42)
+
+n <- 200
+
+make_panel <- function(rho, label) {
+  S   <- matrix(c(1, rho, rho, 1), 2, 2)
+  L   <- chol(S)
+  raw <- matrix(rnorm(n * 2), n, 2) %*% L
+  df_pts <- data.frame(x = raw[, 1], y = raw[, 2])
+
+  ev  <- eigen(S)
+  eig <- ev$values
+  vec <- ev$vectors
+
+  scale_arrow <- 1.4
+  arr <- data.frame(
+  x     = c(0, 0),
+  y     = c(0, 0),
+  xend  = c(vec[1,1] * sqrt(eig[1]), vec[1,2] * sqrt(eig[2])) * scale_arrow,
+  yend  = c(vec[2,1] * sqrt(eig[1]), vec[2,2] * sqrt(eig[2])) * scale_arrow,
+  Asse  = factor(c("Asse 1", "Asse 2")),
+  Label = c(paste0("Asse 1  (e = ", round(eig[1], 2), ")"),
+            paste0("Asse 2  (e = ", round(eig[2], 2), ")"))
+)
+
+  ggplot(df_pts, aes(x, y)) +
+    geom_point(alpha = .3, color = "steelblue", size = 1.5) +
+    geom_segment(data = arr,
+                 aes(x = x, y = y, xend = xend, yend = yend, color = Asse),
+                 linewidth = 2,
+                 arrow = arrow(length = unit(0.3, "cm"), type = "closed")) +
+    scale_color_manual(values = c("Asse 1" = "firebrick",
+                                  "Asse 2" = "darkorange"),
+                       labels = setNames(arr$Label, arr$Asse),
+                       name   = NULL) +
+    coord_equal(xlim = c(-3.2, 3.2), ylim = c(-3.2, 3.2)) +
+    labs(title = label,
+         x = "Item 1", y = "Item 2") +
+    theme(legend.position = "bottom",
+          legend.text = element_text(size = 12),
+          plot.title = element_text(face = "bold", size = 18))
+}
+
+p_0 <- make_panel( 0.00, "r = 0")
+p_pos  <- make_panel( 0.70, "r = 0.70")
+p_neg  <- make_panel(-0.70, "r = −0.70")
+p_high <- make_panel( 0.95, "r = 0.95")
+
+(p_0 | p_pos | p_neg | p_high)
+```
+
+L'**Asse 1** (rosso) cattura ciò che i due item hanno in comune: punta
+sempre lungo la diagonale positiva quando $r > 0$, lungo quella negativa
+quando $r < 0$. L'**Asse 2** (arancione) è sempre ortogonale al primo e
+cattura la varianza residua non condivisa. Con $r = 0.95$ l'Asse 2 è
+quasi scomparso ($e_2 = 0.05$): un solo fattore basterebbe a descrivere
+quasi tutta la struttura.
+
+Gli autovalori ci dicono quindi ***quanti*** fattori estrarre.
+
+### Criterio di Kaiser
+
+Trattenere i fattori con autovalore $\geq 1$ (cioè che spiegano più varianza di un singolo item standardizzato). Utile come prima indicazione, ma tende a *sovrastimare* il numero di fattori.
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4.5
+eig_full <- eigen(R_full)$values
+n_it     <- length(eig_full)
+df_eig   <- data.frame(
+  Fattore    = 1:n_it,
+  Autovalore = eig_full,
+  Colore     = ifelse(eig_full >= 1, "≥ 1 (Kaiser)", "< 1")
+)
+df_eig$var_pct <- round(eig_full / n_it * 100, 1)
+
+ggplot(df_eig, aes(x = Fattore, y = Autovalore, color = Colore)) +
+  geom_hline(yintercept = 1, linetype = "dashed",
+             linewidth = 0.8, color = "grey40") +
+  geom_line(color = "grey60", linewidth = 0.9) +
+  geom_point(size = 5, show.legend = FALSE) +
+  geom_text(aes(label = paste0(var_pct, "%")), color = "black",
+            vjust = .8, hjust = .15, size = 3, fontface = "bold") +
+  annotate("text", x = n_it - 1.5, y = 1.2,
+           label = "Soglia Kaiser = 1", size = 3.5,
+           color = "grey40", hjust = 1) +
+  scale_color_manual(
+    values = c("≥ 1 (Kaiser)" = "steelblue", "< 1" = "grey70"),
+    name = NULL) +
+  scale_x_continuous(breaks = 1:n_it) +
+  labs(
+    title    = "Scree plot (25 item Big Five)",
+    subtitle = "Ogni etichetta = % di varianza totale spiegata da quel fattore",
+    x = "Numero del fattore", y = "Autovalore"
+  ) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(face = "bold"))
+```
+
+Lo **scree plot** mostra il "gomito" dopo il quale gli autovalori calano
+gradualmente: si trattengono i fattori prima del gomito.
+
+### Parallel Analysis
+
+Confronta gli autovalori osservati con la distribuzione degli autovalori
+attesi da **dati completamente casuali** (stessa dimensione del
+dataset). Si trattengono solo i fattori il cui autovalore reale supera
+il 95° percentile della distribuzione casuale:
+
+$$
+\text{soglia}_k = \hat{q}_{0.95}
+\!\left(\lambda^{\text{rand}}_{k,1}, \ldots, \lambda^{\text{rand}}_{k,B}\right)
+$$
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 5
+set.seed(42)
+n_r <- nrow(items_rec); n_c <- ncol(items_rec); B <- 500
+
+eig_real <- eigen(R_full)$values
+eig_rand <- replicate(B, {
+  eigen(cor(matrix(rnorm(n_r * n_c), nrow = n_r)))$values
+})
+eig_p95  <- apply(eig_rand, 1, quantile, probs = 0.95)
+eig_mean <- rowMeans(eig_rand)
+n_retain <- sum(eig_real > eig_p95)
+
+df_pa <- data.frame(f = 1:n_c, reale = eig_real, casuale = eig_p95)
+
+ggplot(df_pa, aes(x = f)) +
+  geom_ribbon(aes(ymin = eig_mean, ymax = eig_p95),
+              fill = "tomato", alpha = 0.12) +
+  geom_line(aes(y = casuale), color = "tomato",
+            linewidth = 1.2, linetype = "dashed") +
+  geom_line(aes(y = reale), color = "grey60", linewidth = 0.9) +
+  geom_point(aes(y = reale,
+                 shape = reale > casuale, color = reale > casuale), size = 4) +
+  scale_color_manual(
+    values = c("TRUE" = "steelblue", "FALSE" = "grey50"),
+    labels = c("TRUE" = "Autovalore reale", "FALSE" = "Rumore"),
+    name = NULL) +
+  scale_shape_manual(
+    values = c("TRUE" = 19, "FALSE" = 1),
+    labels = c("TRUE" = "Autovalore reale", "FALSE" = "Rumore"),
+    name = NULL) +
+  annotate("text", x = n_c - 1, y = max(eig_p95) * 0.9,
+           label = paste0("95° pct. dati casuali"),
+           color = "tomato", size = 3.2, hjust = 1) +
+  scale_x_continuous(breaks = seq(1, n_c, by = 2)) +
+  labs(
+    title    = "Parallel Analysis (25 item Big Five)",
+    subtitle = "Trattenere i fattori in cui la linea blu è sopra la soglia rossa",
+    x = "Numero di fattori", y = "Autovalore"
+  ) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(face = "bold"))
+```
+
+### Minimum Average Partial (MAP)
+
+Il MAP misura la **correlazione residua media** rimasta tra gli item
+dopo aver rimosso via via 1, 2, 3, … fattori:
+
+::::{.columns}
+
+:::{.column width=50%}
+$$MAP(f) = \dfrac{1}{p(p-1)} \sum_{i \neq j} {r_{ij}^{(f)}}^2$$
+:::
+
+:::{.column width=50%}
+$$f^* = \arg \min_f MAP(f)$$
+:::
+::::
+
+$p(p-1)$: Numero di coppie di variabili 
+
+$r_{ij}^{(f)}$ correlazione parziale tra ogni coppia di variabili dopo aver estratto $f$ fattori
+
+**Si sceglie** $f$ che minimizza MAP($f$): troppo
+pochi fattori → correlazioni residue ancora alte; troppi fattori → i
+nuovi fattori inseguono rumore e MAP risale.
+
+```{r}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4.5
+vss_fit  <- VSS(x = R_full, n = 12, rotate = "oblimin",
+                fm = "minres", plot = FALSE, n.obs = nrow(items_rec))
+map_vals <- vss_fit$map
+f_seq    <- seq_along(map_vals)
+f_star   <- which.min(map_vals)
+
+df_map <- data.frame(f = f_seq, map = map_vals) |>
+  mutate(zona = case_when(
+    f <  f_star ~ "Fattori mancanti",
+    f == f_star ~ "Ottimale",
+    f >  f_star ~ "Fattori in eccesso"
+  ))
+
+ggplot(df_map, aes(x = f, y = map)) +
+  geom_line(color = "grey70", linewidth = 1) +
+  geom_point(aes(color = zona, size = zona)) +
+  geom_text(aes(label = round(map, 3)),
+            vjust = -0.9, size = 3.0, fontface = "bold") +
+  scale_color_manual(
+    values = c("Fattori mancanti"   = "tomato",
+               "Ottimale"           = "forestgreen",
+               "Fattori in eccesso" = "steelblue"),
+    name = NULL) +
+  scale_size_manual(
+    values = c("Fattori mancanti"   = 4,
+               "Ottimale"           = 7,
+               "Fattori in eccesso" = 4),
+    guide = "none") +
+  geom_vline(xintercept = f_star, linetype = "dotted",
+             color = "forestgreen", linewidth = 1.2) +
+  annotate("text", x = f_star + 0.3, y = max(map_vals, na.rm = TRUE) * 0.85,
+           label = paste0("f* = ", f_star, "\n(minimo MAP)"),
+           color = "forestgreen", fontface = "bold", hjust = 0, size = 4) +
+  scale_x_continuous(breaks = f_seq) +
+  labs(
+    x = "Numero di fattori (f)", y = "MAP(f)"
+  ) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(face = "bold"))
+```
+
+::: callout-note
+## Tre criteri a confronto
+
+| Criterio | Logica | Tendenza |
+|------------------------|------------------------|------------------------|
+| Kaiser ($\lambda \geq 1$) | Autovalore ≥ varianza di 1 item | Sovrastima |
+| Parallel Analysis | Autovalore reale \> autovalore casuale (95°pct) | Più conservativo |
+| MAP | Minimizza la correlazione residua | Generalmente accurato |
+
+In pratica, **usarli insieme**: se concordano, la scelta è robusta.
+:::
+
+------------------------------------------------------------------------
+
+# Estrazione e rotazione
+
+## L'estrazione: dalla matrice $\mathbf{R}$ ai loadings
+
+Estrarre i fattori significa trovare $\boldsymbol{\Lambda}$ che
+minimizza la differenza tra $\mathbf{R}$ osservata e la matrice
+ricostruita dal modello $\hat{\mathbf{R}}$.
+
+### I loadings: cosa sono geometricamente
+
+Una volta estratti, i **loadings** descrivono la struttura: quanto
+ciascun item è correlato con ciascun fattore latente. Geometricamente,
+si rappresentano gli item come **punti** in uno spazio dove gli assi
+*sono* i fattori. Con **1 fattore** lo spazio è monodimensionale: il
+loading è semplicemente la *coordinata* dell'item su quell'unico asse.
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 1.5
+
+cols_items <- c("firebrick", "darkorange", "steelblue4")
+
+df1 <- data.frame(
+  loading_F1 = c(0.85, 0.50, 0.10),
+  label      = c("Item_A", "Item_B", "Item_C")
+)
+
+ggplot(df1, aes(x = loading_F1, y = 0, color = label)) +
+  annotate("segment", x = -0.1, xend = 1.1, y = 0, yend = 0,
+           color = "firebrick", linewidth = 1.4) +
+  annotate("text", x = 1.08, y = 0.08, label = "F1",
+           color = "firebrick", fontface = "bold", size = 5) +
+  annotate("segment", x = c(0, 0.5, 1), xend = c(0, 0.5, 1),
+           y = -0.04, yend = 0.04, color = "grey50", linewidth = 0.6) +
+  annotate("text", x = c(0, 0.5, 1), y = -0.12,
+           label = c("0", "0.5", "1"), size = 3, color = "grey50") +
+  geom_point(size = 6, shape = 17) +
+  geom_text(aes(label = paste0(label, "\n(λ = ", loading_F1, ")")),
+            vjust = -0.9, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = setNames(cols_items, df1$label)) +
+  coord_cartesian(xlim = c(-0.15, 1.25), ylim = c(-0.28, 0.35)) +
+  labs(x = NULL, y = NULL) +
+  theme_void(base_size = 11) +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", hjust = 0.5))
+```
+
+Con **2 fattori** lo spazio diventa bidimensionale (F1 $\times$ F2):
+ogni item ha due coordinate, e la proiezione ortogonale del punto su
+ciascun asse dà il loading corrispondente. Un loading alto su F1
+significa che il punto cade vicino all'asse F1 (e lontano da F2);
+un **cross-loading** si verifica quando un punto è equidistante da
+entrambi gli assi.
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 5
+
+df2 <- data.frame(
+  F1    = c(0.85, 0.10, 0.55),
+  F2    = c(0.10, 0.80, 0.55),
+  label = c("Item_A", "Item_B", "Item_C")
+)
+
+ggplot(df2) +
+  annotate("segment", x = -0.05, xend = 1.1, y = 0, yend = 0,
+           color = "firebrick", linewidth = 1.4) +
+  annotate("segment", x = 0, xend = 0, y = -0.05, yend = 1.1,
+           color = "darkorange", linewidth = 1.4) +
+  annotate("text", x = 1.08, y = 0.06, label = "F1",
+           color = "firebrick", fontface = "bold", size = 5) +
+  annotate("text", x = 0.06, y = 1.08, label = "F2",
+           color = "darkorange", fontface = "bold", size = 5) +
+  geom_segment(data = df2,
+               aes(x = F1, y = F2, xend = F1, yend = 0, color = label),
+               linetype = "dashed", linewidth = 1.0) +
+  geom_segment(data = df2,
+               aes(x = F1, y = F2, xend = 0, yend = F2, color = label),
+               linetype = "dotted", linewidth = 1.0) +
+  geom_point(aes(x = F1, y = F2, color = label), size = 6, shape = 17) +
+  geom_text(aes(x = F1, y = F2, label = label, color = label),
+            hjust = -0.12, size = 3.2, lineheight = 0.9) +
+  geom_text(aes(x = F1, y = -0.09,
+                label = paste0("λ=", F1), color = label), size = 2.8) +
+  geom_text(aes(x = -0.11, y = F2,
+                label = paste0("λ=", F2), color = label), size = 2.8) +
+  scale_color_manual(values = setNames(cols_items, df2$label)) +
+  coord_equal(xlim = c(-0.25, 1.28), ylim = c(-0.20, 1.1)) +
+  labs(x = NULL, y = NULL) +
+  theme_void(base_size = 11) +
+  theme(legend.position = "none")
+```
+
+::: callout-warning
+## Autovalori vs. loadings
+
+Gli **autovalori iniziali** (scree plot, Kaiser) sono proprietà della
+matrice $\mathbf{R}$ prima della stima del modello. I `loadings` stimati
+misurano l'associazione tra ogni item e il fattore; la loro somma dei
+quadrati (**SS Loadings** = $\sum_i \hat{\lambda}_{ik}^2$) indica quanta
+varianza comune cattura ciascun fattore. 
+:::
+
+
+## Rotazione
+
+Lavoriamo sugli item E + N del dataset `bfi`:
+
+```{r}
+fit_efa_EN <- fa(R_EN, nfactors = 2, fm = "minres",
+                 rotate = "none", n.obs = n_obs)
+round(fit_efa_EN$loadings[,], 3)
+```
+
+
+Prima della rotazione, il primo fattore tende ad essere **generale**
+(tutti gli item caricano nella stessa direzione); il secondo separa
+parzialmente i cluster, ma gli assi non sono ancora allineati ai dati.
+
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 5.5
+library(ggrepel)
+
+L_nr <- fit_efa_EN$loadings[,]
+df_nr <- data.frame(
+  item  = rownames(L_nr),
+  F1    = L_nr[, 1],
+  F2    = L_nr[, 2],
+  scala = substr(rownames(L_nr), 1, 1)
+)
+
+ggplot(df_nr, aes(x = F1, y = F2, label = item, color = scala)) +
+  annotate("segment", x = -0.8, xend = 0.9, y = 0, yend = 0,
+           color = "navy", linewidth = 1.6,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = 0.87, y = -0.07, label = "F1",
+           color = "navy", fontface = "bold", size = 5) +
+  geom_point(size = 3, alpha = .8) +
+  geom_text_repel(size = 3.2, show.legend = FALSE) +
+  scale_color_manual(values = c("E" = "#009E73", "N" = "#CC79A7"),
+                     name = NULL) +
+  coord_fixed(xlim = c(-0.85, 0.95), ylim = c(-0.55, 0.65)) +
+  theme_void(base_size = 18) +
+  theme(panel.grid      = element_blank(),
+        axis.text       = element_blank(),
+        axis.title      = element_blank(),
+        legend.position = "bottom")
+```
+
+:::
+::: {.column}
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 5.5
+
+ggplot(df_nr, aes(x = F1, y = F2, label = item, color = scala)) +
+  annotate("segment", x = -0.85, xend = 0.9, y = 0, yend = 0,
+           color = "navy", linewidth = 1.6,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("segment", x = 0, xend = 0, y = -0.55, yend = 0.65,
+           color = "navy", linewidth = 1.6,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = 0.87, y = -0.07, label = "F1",
+           color = "navy", fontface = "bold", size = 5) +
+  annotate("text", x = 0.08, y = 0.60, label = "F2",
+           color = "navy", fontface = "bold", size = 5) +
+  geom_point(size = 3, alpha = .8) +
+  geom_text_repel(size = 3.2, show.legend = FALSE) +
+  scale_color_manual(values = c("E" = "#009E73", "N" = "#CC79A7"),
+                     name = NULL) +
+  coord_fixed(xlim = c(-0.85, 0.95), ylim = c(-0.55, 0.65)) +
+  theme_void(base_size = 18) +
+  theme(panel.grid      = element_blank(),
+        axis.text       = element_blank(),
+        axis.title      = element_blank(),
+        legend.position = "bottom")
+```
+
+:::
+::::
+
+La soluzione non ruotata è spesso difficile da interpretare. La
+**rotazione** trasforma gli assi per ottenere la **simple structure**:
+ogni item carica alto su un solo fattore e vicino a zero sugli altri.
+Concretamente, ruotare gli assi equivale a cambiare il sistema di
+riferimento: i punti non si spostano, ma le loro coordinate
+(= i loadings) cambiano. 
+
+
+```{r}
+#| echo: false
+#| fig-width: 13
+#| fig-height: 5.5
+
+# ── Varimax ───────────────────────────────────────────────────────────────
+L_var <- fit_varimax$loadings[,]
+df_var <- data.frame(
+  item  = rownames(L_var),
+  F1    = L_var[, 1],
+  F2    = L_var[, 2],
+  scala = substr(rownames(L_var), 1, 1)
+)
+
+# F1 punta verso N (MR1 alto), F2 verso E (MR2 alto)
+theta_v <- atan2(mean(df_var$F2[df_var$scala == "N"]),
+                 mean(df_var$F1[df_var$scala == "N"]))
+f1x_v <- cos(theta_v);        f1y_v <- sin(theta_v)
+f2x_v <- cos(theta_v + pi/2); f2y_v <- sin(theta_v + pi/2)
+
+p_var <- ggplot(df_var, aes(x = F1, y = F2, label = item, color = scala)) +
+  annotate("segment", x = -0.4, xend = 1.0, y = -0.4, yend = -0.4,
+           color = "grey70", linewidth = 0.8, linetype = "dashed") +
+  annotate("segment", x = -0.4, xend = -0.4, y = -0.4, yend = 0.85,
+           color = "grey70", linewidth = 0.8, linetype = "dashed") +
+  annotate("segment", x = 0, xend = f1x_v, y = 0, yend = f1y_v,
+           color = "firebrick", linewidth = 2.0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("segment", x = 0, xend = f2x_v, y = 0, yend = f2y_v,
+           color = "firebrick", linewidth = 2.0,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = f1x_v + 0.05, y = f1y_v - 0.05,
+           label = "F1", color = "firebrick", fontface = "bold", size = 4) +
+  annotate("text", x = f2x_v - 0.05, y = f2y_v + 0.06,
+           label = "F2", color = "firebrick", fontface = "bold", size = 4) +
+  annotate("text", x = 0.18, y = 0.18, label = "90°",
+           color = "firebrick", size = 3.5) +
+  geom_point(size = 3, alpha = .8) +
+  geom_text_repel(size = 3.2, show.legend = FALSE) +
+  scale_color_manual(values = c("E" = "#009E73", "N" = "#CC79A7"),
+                     name = NULL) +
+  coord_fixed(xlim = c(-0.4, 1.0), ylim = c(-0.4, 0.85)) +
+  labs(title    = "Varimax (ortogonale)") +
+    theme_void(base_size = 18) +
+  theme(plot.title      = element_text(face = "bold"),
+        plot.subtitle   = element_text(size = 9, color = "grey40"),
+        panel.grid      = element_blank(),
+        axis.text       = element_blank(),
+        axis.title      = element_blank(),
+        legend.position = "bottom")
+
+# ── Oblimin ───────────────────────────────────────────────────────────────
+L_obl <- fit_oblimin$loadings[,]
+phi   <- fit_oblimin$Phi[2,1]
+ang_deg <- round(acos(phi) * 180 / pi)  # ≈ 103°
+
+df_obl <- data.frame(
+  item  = rownames(L_obl),
+  F1    = L_obl[, 1],
+  F2    = L_obl[, 2],
+  scala = substr(rownames(L_obl), 1, 1)
+)
+
+theta1 <- atan2(mean(df_obl$F2[df_obl$scala == "N"]),
+                mean(df_obl$F1[df_obl$scala == "N"]))
+theta2 <- atan2(mean(df_obl$F2[df_obl$scala == "E"]),
+                mean(df_obl$F1[df_obl$scala == "E"]))
+f1x_o <- cos(theta1); f1y_o <- sin(theta1)
+f2x_o <- cos(theta2); f2y_o <- sin(theta2)
+t_arc  <- seq(theta1, theta2, length.out = 60)
+df_arc <- data.frame(x = 0.32 * cos(t_arc), y = 0.32 * sin(t_arc))
+ang_mid <- (theta1 + theta2) / 2
+
+p_obl <- ggplot(df_obl, aes(x = F1, y = F2, label = item, color = scala)) +
+  annotate("segment", x = -0.4, xend = 1.0, y = -0.4, yend = -0.4,
+           color = "grey70", linewidth = 0.8, linetype = "dashed") +
+  annotate("segment", x = -0.4, xend = -0.4, y = -0.4, yend = 0.85,
+           color = "grey70", linewidth = 0.8, linetype = "dashed") +
+  geom_path(data = df_arc, aes(x = x, y = y),
+            inherit.aes = FALSE, color = "grey30", linewidth = 0.8) +
+  annotate("text",
+           x = 0.42 * cos(ang_mid), y = 0.42 * sin(ang_mid),
+           label = paste0(ang_deg, "°"),
+           size = 3.8, fontface = "bold", color = "grey30") +
+  annotate("segment", x = 0, xend = f1x_o, y = 0, yend = f1y_o,
+           color = "#CC79A7", linewidth = 2.2,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = f1x_o + 0.05, y = f1y_o - 0.05,
+           label = "F1", color = "#CC79A7", fontface = "bold", size = 4) +
+  annotate("segment", x = 0, xend = f2x_o, y = 0, yend = f2y_o,
+           color = "#009E73", linewidth = 2.2,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = f2x_o - 0.05, y = f2y_o + 0.06,
+           label = "F2", color = "#009E73", fontface = "bold", size = 4) +
+  geom_point(size = 3, alpha = .8) +
+  geom_text_repel(size = 3.2, show.legend = FALSE) +
+  scale_color_manual(values = c("E" = "#009E73", "N" = "#CC79A7"),
+                     name = NULL) +
+  coord_fixed(xlim = c(-0.4, 1.0), ylim = c(-0.4, 0.85)) +
+  labs(title    = "Oblimin (obliqua)") +
+  theme_void(base_size = 18) +
+  theme(plot.title      = element_text(face = "bold"),
+        plot.subtitle   = element_text(size = 9, color = "grey40"),
+        panel.grid      = element_blank(),
+        axis.text       = element_blank(),
+        axis.title      = element_blank(),
+        legend.position = "bottom")
+
+p_var | p_obl
+```
+
+
+```{r}
+data.frame(item = c("E1","E2","E3","E4","E5","N1","N2","N3","N4","N5"),
+           orto = unname(fit_varimax$loadings[,]),
+           obli = unname(fit_oblimin$loadings[,]))
+```
+
+
+::: {.callout-tip collapse="true"}
+## Pattern matrix e Structure matrix (rotazione obliqua)
+
+Con una rotazione **ortogonale** (es. varimax) i fattori sono incorrelati
+per costruzione: esiste una sola matrice di loadings. Con una rotazione
+**obliqua** (es. oblimin) i fattori possono correlare tra loro, e questo
+introduce tre quantità distinte:
+
+- $\boldsymbol{\Lambda}$ ($p \times m$) — **pattern matrix**: l'effetto
+  diretto del fattore $j$ sull'item $i$, al netto degli altri fattori
+- $\boldsymbol{\Phi}$ ($m \times m$) — **matrice di correlazione tra
+  fattori**: quanto i fattori si assomigliano tra loro
+- $\boldsymbol{S} = \boldsymbol{\Lambda}\boldsymbol{\Phi}$ ($p \times m$)
+  — **structure matrix**: la correlazione totale tra item $i$ e fattore $j$
+
+$\boldsymbol{\Phi}$ ha 1 sulla diagonale e correlazioni $\phi_{jj'}$
+fuori diagonale. Con rotazione ortogonale $\boldsymbol{\Phi} = \mathbf{I}$
+per costruzione.
+
+### Structure matrix $\boldsymbol{S}$
+
+Ogni elemento $s_{ij}$ è la **correlazione totale** tra l'item $i$ e il
+fattore $j$. Risponde alla domanda:
+
+> *"Quanto si muove insieme l'item $i$ con il fattore $j$, considerando
+> anche le relazioni tra i fattori?"*
+
+$$\boldsymbol{S} = \boldsymbol{\Lambda}\,\boldsymbol{\Phi}$$
+
+L'elemento $s_{ij}$ include due contributi: l'effetto diretto del fattore
+$j$ sull'item $i$ (il pattern loading $\lambda_{ij}$) più gli effetti
+indiretti degli altri fattori $j'$, mediati dalla loro correlazione
+$\phi_{jj'}$ con il fattore $j$:
+
+$$s_{ij} = \lambda_{ij} + \sum_{j' \neq j} \lambda_{ij'}\,\phi_{j'j}$$
+
+Se $\boldsymbol{\Phi} = \mathbf{I}$ (fattori ortogonali),
+$\boldsymbol{S} = \boldsymbol{\Lambda}$: le due matrici coincidono.
+
+
+### Esempio con i dati E + N
+
+```{r}
+fit_oblimin <- fa(R_EN, nfactors = 2, fm = "minres",
+                  rotate = "oblimin", n.obs = n_obs)
+
+# Pattern matrix — effetti diretti, output di default di fa()
+L_pattern <- fit_oblimin$loadings[,]
+round(L_pattern, 3)
+
+# Phi — correlazione tra i fattori (m × m)
+round(fit_oblimin$Phi, 3)
+
+# Structure matrix — correlazioni totali item-fattore (p × m)
+L_structure <- L_pattern %*% fit_oblimin$Phi
+round(L_structure, 3)
+```
+
+:::
+
+
+# Esercitazione pratica
+
+::: callout-important
+Adattato dal libro: Brown, Anna. (2023). Psychometrics in Exercises using R and RStudio. Textbook and data resource. Available from https://bookdown.org/annabrown/psychometricsR.
+:::
+
+L'obiettivo di questo esercizio è condurre un'**Analisi Fattoriale Esplorativa (EFA)** su risposte politomiche utilizzando il pacchetto `lavaan`.
+
+
+## Il questionario CHI-ESQ (versione genitori)
+
+Nel 2002, la *Commission for Health Improvement* nel Regno Unito ha sviluppato l'**Experience of Service Questionnaire (CHI-ESQ)** per misurare le esperienze degli utenti con i Servizi di Salute Mentale dell'Infanzia e dell'Adolescenza (CAMHS). Il questionario esiste in due versioni: una per ragazzi più grandi e adolescenti, e una per genitori/caregiver di bambini che hanno ricevuto trattamento. Utilizzeremo la versione per genitori/caregiver.
+
+La versione parentale del CHI-ESQ è composta da 12 domande:
+
+1. I feel that the people who have seen my child listened to me
+2. It was easy to talk to the people who have seen my child
+3. I was treated well by the people who have seen my child
+4. My views and worries were taken seriously
+5. I feel the people here know how to help with the problem I came for
+6. I have been given enough explanation about the help available here
+7. I feel that the people who have seen my child are working together to help with the problem(s)
+8. The facilities here are comfortable (e.g. waiting area)
+9. The appointments are usually at a convenient time (e.g. don’t interfere with work, school)
+10. It is quite easy to get to the place where the appointments are
+11. If a friend needed similar help, I would recommend that he or she come here
+12. Overall, the help I have received here is good
+
+Le risposte utilizzano tre categorie ordinate: **"Certamente vero"** — **"Parzialmente vero"** — **"Non vero"** (codificate 1–2–3).
+
+Il campione è composto da N = 530 genitori che riportano esperienze con un singolo servizio CAMHS (Brown, Ford, Deighton & Wolpert, 2014).
+
+
+### Passo 0. Carica pacchetti e dati
+
+Scarica il file [CHI_ESQ.RData](https://ottaviae.github.io/test-organizzioni-fisppa/slides/06-EFA/data/CHI_ESQ.RData){download="CHI_ESQ.RData"}.
+Crea un nuovo script in cui digiterai tutti i comandi.
+
+```{r}
+#| label: carica-dati
+#| message: false
+
+# pacchetti
+library(lavaan)
+library(psych)
+
+# dati
+load("~/test-organizzioni-fisppa/slides/06-EFA/data/CHI_ESQ.RData")
+dat <- CHI_ESQ # rinomino
+```
+
+
+
+### Passo 1. Esame dell'idoneità dei dati all'analisi fattoriale
+
+Prima di svolgere l'EFA, è sempre utile esaminare le correlazioni tra le variabili.
+
+```{r}
+#| label: correlazioni
+polychoric(dat)
+```
+
+::: {.callout-tip}
+## DOMANDA 1
+Esamina attentamente le correlazioni, cosa noti?
+:::
+
+
+Calcola ora l'indice **Kaiser-Meyer-Olkin (KMO)**, la misura di adeguatezza campionaria (MSA dei dati per l’analisi fattoriale prendendo in considerazione le correlazioni parziali degli item):
+
+```{r}
+#| label: kmo
+KMO(dat)
+```
+
+::: {.callout-tip}
+## DOMANDA 1
+Interpreta il risultato.
+:::
+
+
+### Passo 2. Determinazione del numero di fattori
+
+Per determinare il numero di fattori, utilizziamo la **parallel analysis** del pacchetto `psych` come strumento esplorativo, con il metodo di stima predefinito (`fm = "minres"`) e visualizzando gli autovalori.
+
+```{r}
+#| label: parallel
+#| message: false
+
+fa.parallel(dat, fa = "fa")
+```
+
+::: {.callout-tip}
+## DOMANDA 2
+Esamina lo scree plot. Cosa suggerisce? Perchè lo suggerisce? 
+E se invece guardassimo alla soglia di Keiser?
+:::
+
+
+E se guardassimo i MAP?
+
+```{r}
+R <- polychoric(dat)$rho
+VSS(R, plot = FALSE, n.obs = nrow(dat), n = 3,
+    rotate = "oblimin")
+```
+
+
+---
+
+### Passo 3. Modello EFA a 1 fattore
+
+In `lavaan`, l'EFA si specifica con la funzione `efa()`, per dati ordinali è importante aggiungere l'argomento `ordered = TRUE`.
+
+```{r}
+#| label: efa1
+#| warning: false
+# Modello EFA a 1 fattore
+fit1 <- efa(data = dat,
+            nfactors = 1,
+            ordered = TRUE)
+
+summary(fit1, fit.measures = TRUE)
+```
+
+::: {.callout-tip}
+## DOMANDA 3
+Sulla base degli indici di fit, il modello a 1 fattore si adatta adeguatamente ai dati? Quali indici suggeriscono un adattamento accettabile e quali lo rifiutano?
+
+Guarda anche gli Eigenvalues, cosa potresti aggiungere all'interpretazione?
+:::
+
+---
+
+### Passo 4. Modello EFA a 2 fattori
+
+```{r}
+#| label: efa2
+#| warning: false
+# Modello EFA a 2 fattori (rotazione obliqua oblimin, default)
+fit2 <- efa(data = dat,
+            nfactors  = 2,
+            rotation = "oblimin",
+            ordered   = TRUE)
+
+summary(fit2, fit.measures = TRUE)
+```
+
+
+Ora confronta gli indici dei due modelli:
+```{r}
+#| label: lrt
+fit <- efa(data = dat, nfactors = 1:2, ordered = TRUE, rotation = "oblimin")
+summary(fit)
+```
+
+::: {.callout-tip}
+## DOMANDA 4
+Confronta gli indici di fit del modello a 2 fattori con quelli del modello a 1 fattore. 
+:::
+
+
+Per valutare la buona fit di un modello fattoriale esplorativo vanno tenuti a mente anche i principi di:
+
+- **Causazione**: Varianza spiegata da/dai fattore/i latenti
+- **Parsimonia**: Non aggiungere fattori non necessari
+- **Struttura semplice**: Almeno 3 item per fattore e nessun cross-loading
+
+::: {.callout-tip}
+## DOMANDA 5
+Quali item caricano prevalentemente sul Fattore 1 e quali sul Fattore 2? Proponi un'etichetta interpretativa per ciascun fattore, considerando il contenuto degli item. Interpreta poi la correlazione tra i fattori latenti: cosa implica riguardo alla struttura della soddisfazione misurata dal CHI-ESQ?
+:::
+
+
+
+### Passo 5. Confronto con la rotazione ortogonale (varimax)
+
+Per confronto, specifica una rotazione ortogonale **varimax**, che vincola i fattori a essere non correlati:
+
+```{r}
+#| label: varimax
+#| warning: false
+fit2_varimax <- efa(data = CHI_ESQ,
+                    nfactors   = 2,
+                    ordered    = TRUE,
+                    rotation   = "varimax")
+
+summary(fit2_varimax)
+```
+
+
+
+::: {.callout-tip}
+## DOMANDA 6
+Confronta i carichi fattoriali della soluzione varimax con quelli della soluzione oblimin. Quale soluzione produce item più *factorially simple* (che caricano chiaramente su un solo fattore)? Quale è più facile da interpretare?
+:::
+
+
+
