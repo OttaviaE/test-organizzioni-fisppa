@@ -95,3 +95,6 @@ Scoring [file html](ERI/eri-scoring.html)
 ## Modulo 6b
 
 Analisi Fattoriale Esplorativa: Esercitazione pratica e richiami alla teoria [file html](slides/06-EFA/06b-EFA.html)
+
+- Dati da [scaricare](slides/06-EFA/data/CHI_ESQ.Rdata){download="CHI_ESQ.Rdata"}
+

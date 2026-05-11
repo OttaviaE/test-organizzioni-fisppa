@@ -1574,7 +1574,7 @@ Il campione è composto da N = 530 genitori che riportano esperienze con un sing
 
 ### Passo 0. Carica pacchetti e dati
 
-Scarica il file [CHI_ESQ.RData](https://github.com/OttaviaE/test-organizzioni-fisppa/blob/main/slides/06-EFA/data/CHI_ESQ.Rdata){download="CHI_ESQ.RData"}.
+Scarica il file [CHI_ESQ.RData](slides/06-EFA/data/CHI_ESQ.Rdata){download="CHI_ESQ.RData"}.
 Crea un nuovo script in cui digiterai tutti i comandi.
 
 ```{r}
