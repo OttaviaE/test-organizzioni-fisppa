@@ -132,11 +132,6 @@ set_theme(theme_bw(base_size = 14))
 
 # Introduzione
 
-L'**analisi fattoriale esplorativa** parte da una matrice di
-correlazioni $p \times p$ tra $p$ variabili osservate e cerca una
-matrice $p \times m$ di **saturazioni fattoriali** ($\lambda$) che
-spieghi le correlazioni tramite $m \ll p$ fattori comuni latenti.
-
 La matrice di correlazione policorica dei 25 item mostra una struttura a
 **blocchi**: gli item della stessa scala correlano molto tra loro,
 mentre le correlazioni tra scale diverse sono più basse.
@@ -163,6 +158,12 @@ text(-1.5,  2.5, "O", col = "#D55E00", cex = 1.4, font = 2)
 ```
 
 La domanda centrale è: **perché** questi blocchi emergono?
+
+L'**analisi fattoriale esplorativa** parte da una matrice di
+correlazioni $p \times p$ tra $p$ variabili osservate e cerca una
+matrice $p \times m$ di **saturazioni fattoriali** ($\lambda$) che
+spieghi le correlazioni tramite $m \ll p$ fattori comuni latenti.
+
 
 # Il modello monofattoriale
 
@@ -531,8 +532,8 @@ cioè la quota di varianza non spiegata dal fattore comune.
 
 | Elemento | Formula | Interpretazione |
 |---|---|---|
-| Diagonale $\sigma_{ii}$ | $\lambda_i^2 + \psi_i$ | Varianza totale = comunalità + unicità |
-| Fuori diagonale $\sigma_{ij}$ | $\lambda_i \lambda_j$ | Covarianza riprodotta tra item $i$ e $j$ |
+| Diagonale | $\lambda_i^2 + \psi_i$ | Varianza totale = comunalità + unicità |
+| Fuori diagonale | $\lambda_i \lambda_j$ | Covarianza riprodotta tra item $i$ e $j$ |
 
 
 Quindi $\Lambda\Lambda^\mathsf{T}$ da sola riproduce correttamente le
