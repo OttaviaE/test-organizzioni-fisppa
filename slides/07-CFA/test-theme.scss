@@ -1,0 +1,56 @@
+/*-- scss:defaults --*/
+
+// colors
+$body-bg: 	#f9f9f5 !default;
+$body-color: 	#282828 !default;
+$link-color: 	#00564d !default;
+$selection-bg: #26351c !default;
+$presentation-font-size-root:	35px;
+
+// headings
+$presentation-heading-color: 	#00564d !default;
+$presentation-h1-color: #00564d !default;
+$presentation-h1-font-size: 1.5em;
+$presentation-h2-font-size: 1.3em;
+$presentation-h3-font-size: 1.2em;
+
+$callout-style-font-size: 1.1em;
+$callout-style-font-weight: 400;
+
+$slide-logo-size: 50px;
+
+
+/*-- scss:rules --*/
+
+/*-- scss:rules --*/
+
+/* Allarga il blocco codice */
+.reveal pre {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.75em;   // più piccolo → riallinea colonne
+  line-height: 1.3;
+  padding: 0.8em 1em;
+  border-radius: 10px;
+  overflow-x: auto;    // evita rotture → scroll orizzontale
+}
+
+/* Codice */
+.reveal pre code {
+  font-size: 1em;
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  white-space: pre;    // 🔥 CRUCIALE: evita wrap automatico
+}
+
+/* Output R */
+.reveal .cell-output {
+  font-size: 0.8em;    // leggermente più piccolo del testo slide
+  line-height: 1.35;
+}
+
+/* Output testuale */
+.reveal .cell-output pre {
+  width: 100%;
+  overflow-x: auto;
+  white-space: pre;    // 🔥 mantiene allineamento colonne
+}

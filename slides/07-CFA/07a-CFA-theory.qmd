@@ -1,0 +1,668 @@
+---
+title: "Modulo 7a: Confirmatory Factor Analysis - CFA"
+subititle: "Test per le organizzaizoni"
+author: "Ottavia M. Epifania, Margherita Calderan"
+format: 
+  html: 
+   page-layout: full
+   toc: true
+   toc-location: left
+   toc-depth: 3
+   number-sections: true
+   embed-resources: true
+   self-contained: true
+   theme: test-theme.scss
+editor_options: 
+  chunk_output_type: console
+code-annotations: hover
+lang: it
+execute:
+  echo: false
+  warning: false
+  message: false
+editor:
+  markdown:
+    wrap: 72
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(ltm)
+library(psych)
+library(MASS)
+library(lavaan)
+library(semPlot)
+library(corrplot)
+
+load("data/efa-env.RData")
+defa = d
+d = data[data$filter %in% 1, colnames(data) %in% unlist(labels)]
+
+mycor = list()
+myrev = list()
+
+for(i in 1:length(names(labels))) {
+  mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
+  names(mycor)[i] = names(labels)[i]
+  myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
+  names(myrev)[i] = names(labels)[i]
+}
+d[, colnames(d) %in% unlist(myrev[-3])] = 6 - d[, colnames(d) %in% unlist(myrev[-3])]
+# nel caso di A devoisolare gli item
+m = labels$A[!labels$A %in% myrev$A]
+# devo fare la differenza simmetrica:gli item che sono in A ma che non sono in rev$A
+d[, colnames(d) %in% m] = 6 - d[, colnames(d) %in% m]
+
+for(i in 1:length(names(labels))) {
+  mycor[[i]] = cor(d[, colnames(d) %in% labels[[i]]])
+  names(mycor)[i] = names(labels)[i]
+  myrev[[i]] = names(mycor[[i]][,1][mycor[[i]][,1]< 0])
+  names(myrev)[i] = names(labels)[i]
+}
+
+mycor = polychoric(d)
+plot_lambda = function(objLav, index = 1) {
+   mylambda = as.data.frame(objLav$loadings[[index]])
+mylambda$item = rownames(mylambda)
+mylambda = pivot_longer(mylambda, cols = !item)
+g = ggplot(mylambda, 
+       aes(x = name, y = item, fill = value)) + geom_tile() + 
+    scale_fill_gradient2(
+    low = "firebrick",     # valori negativi
+    mid = "white",    # zero
+    high = "midnightblue",     # valori positivi
+    midpoint = 0,     # centro = 0
+    limits = c(-1, 1) # limiti fissati
+  ) + theme_light() + 
+  theme(legend.title = element_blank(), 
+        legend.position = "top", 
+        legend.text = element_text(size = 20), 
+        axis.title = element_blank(), 
+        axis.text = element_text(size = 16), 
+        legend.key.width = unit(1.5, "cm"),
+  legend.key.height = unit(0.8, "cm"))
+  return(g)
+}
+mycolorsI = rep(c("#E69F00",
+"#56B4E9",
+"#009E73",
+"#CC79A7",
+"#D55E00"), each = 10)
+mycolorsF = factor(unique(mycolorsI), 
+                   levels = c("#009E73","#CC79A7", "#E69F00",  "#56B4E9", "#D55E00"))
+```
+
+# La soluzione migliore trovata con EFA: 
+
+
+
+:::: {.columns}
+
+:::{.column width=50%}
+
+```{r}
+#| warning: false
+#| message: false
+plot_lambda(efa2, 2) + 
+    theme(axis.text.y = element_text(colour = mycolorsI) )
+```
+
+
+:::
+
+:::{.column width=50%}
+
+```{r}
+corrplot(lavInspect(efa2$nf5, "cor.lv"), 
+         type = "lower",  diag        = TRUE,
+         method="shade",
+         tl.cex      = 0.85,
+         tl.col      = "black",
+         title       = "Correlazioni policoriche — 25 item Big Five",
+         mar         = c(0, 0, 2, 0),
+         addgrid.col = "white")
+```
+
+:::
+
+
+::::
+
+
+con $n = `r nrow(d)`$
+
+```{r}
+#| out-width: 60%
+#| fig-align: center
+tempVar = data.frame(b$model.list$nf5$efa$sumsq.table[[1]][2,1:5])
+colnames(tempVar) = "val"
+
+ggplot(tempVar, 
+       aes(x = rownames(tempVar), y = val, size = val, color = rownames(tempVar))) + geom_point() + 
+    scale_size_continuous(range = c(3,6)) + ylim(0, .5) + 
+  scale_color_manual(values = unique(mycolorsI)) + theme_light() + 
+  theme(legend.position = "none", 
+        axis.title = element_blank(), 
+        axis.text = element_text(size = 22)) + 
+  ggtitle(paste("Totale varianza spiegata: ", round(b$model.list$nf5$efa$sumsq.table[[1]][3, "total"]*100, 2), "%, suddivisa in:") )
+```
+
+
+# CFA 
+
+Permette di testare delle ipotesi specificando a priori un modello dove vengono esplicitate: 
+
+* Le relazioni indicatore -- fattore latente
+* I rapporti tra i fattori latenti 
+
+
+:::{.callout-note}
+## Ipotesi sotto esame 
+
+Ogni indicatore è la realizzazione di un singolo e specifico fattore latente 
+
+Ogni indicatore satura su una specifica dimensione latente **definita a priori sulla base di un modello teorico**
+:::
+
+##
+
+:::{.callout-tip}
+
+## Il modello teorico
+
+$$\mathbf{Y}_p = \mathbf{\mu} + \mathbf{\Lambda} \mathbf{\theta}_p + \varepsilon_p$$
+con 
+
+$\mathbf{Y}_p$: Vettore delle risposte a tutti gli $I$ indicatori della persona $p$ 
+
+$\mathbf{\mu}$: Vettore dei valori medi attesi di tutti gli $I$ indicatori 
+
+$\mathbf{\lambda}$: Matrice $I \times F$ delle saturazioni degli $I$ item sulle $F$ dimensioni latenti  
+
+$\mathbf{\theta}_p$: Vettore dei factors scores -- ovvero dei livelli latenti attesi -- sulle $F$ dimensioni latenti per la persona $p$
+
+:::
+
+# Analisi delle strutture di covarianza Joreskog (1969)
+
+
+::::{.columns}
+
+:::{.column width=50%}
+Matrice di covarianza **osservata**
+
+$$S$$
+
+:::
+
+
+
+:::{.column width=50%}
+
+Matrice di covarianza **attesa** sulla base del modello teorico 
+
+
+$$\Sigma(\zeta)$$
+
+con $\zeta$ che contiene tutti i paraemtri del modello (saturazioni, varianze, covarianze, errori specifici)
+
+
+:::
+
+::::
+
+:::{.callout-caution}
+## OBIETTIVO
+
+Stimare i parametri a partire dalla matrice di covarianza osservata in modo che: 
+
+$S \approx \Sigma(\zeta)$
+
+:::
+
+# Statistiche di fit per modelli CFA 
+
+## $\chi^2$ 
+
+
+$H_0$: $S = \Sigma(\zeta)$
+
+$df = \dfrac{I(I+1)}{2} - t$, dove $I$ è il numero di indicatori e $t$ il numero di parameteri liberi che si va a stimare nel modello
+
+Se $I = 4$, la matrice di covariana è: 
+
+$$
+S =
+\begin{pmatrix}
+s_{11} & s_{12} & s_{13} & s_{14} \\
+s_{12} & s_{22} & s_{23} & s_{24} \\
+s_{13} & s_{23} & s_{33} & s_{34} \\
+s_{14} & s_{24} & s_{34} & s_{44}
+\end{pmatrix}
+$$
+Ovvero ci sono $\dfrac{4(4+1)}{2} = 10$ elementi unici, ovvero le 4 varianze nella diagonale principale ($s_{11}$, $s_{22}$, $s_{33}$, $s_{44}$) e le 6 covarianze o nel triangolo inferiore O nel triangolo superiore
+
+Dati questi dati, posso stimare **AL MASSIMO** 9 parametri 
+
+### La logica dei $df$  {#sec-df}
+
+:::{.callout-note}
+## $df > 0$ (Overidentified)
+
+Il modello è testabile perché c'è più informazione nei dati di quanto richiesto dal modello
+
+La matrice di covarianza $S$ non può essere riprodotta perfettamente da $\Sigma(\zeta)$: Il modello è falsificabile
+
+:::
+
+:::{.callout-warning}
+## $df = 0$ (Just identified)
+
+Situazione al limite dove il numero di parametri è uguale ai dati empirici. 
+
+La matrice di covarianza $S$ può perfettamente essere riprotta da $\Sigma(\zeta)$
+
+Il modello non è falsificabile
+:::
+
+
+:::{.callout-caution}
+## $df < 0$ (Underidentified)
+
+Ci sono più parametri che informazione disponibile
+
+Diversi set di parametri possono essere usati per $\Sigma(\zeta)$ (sistema indeterminato, non esiste una soluzione unica) 
+
+:::
+
+
+## Root mean square error of approximation (RMSEA)
+
+Indice di fit assoluto basato sul $\chi^2$: 
+
+$RMSEA = \dfrac{\chi^2 -df}{df(n-1)}$
+
+
+$E(\chi^2) = df$ $\rightarrow$ più è piccolo il valore di RMSEA, minore è l'errore, migliore è il modello 
+
+$RMSEA < .10$ fit accettabile 
+
+$RMSEA < .05$ fit ottima
+
+## Comparative Fit Index (CFI)
+
+Confronta la performance del modello target ($T$) e di un modello baseline ($B$) in cui tutte le covarianze sono fissate a 0 (non c'è correlazione tra le variabili manifeste) e le varianze sono stimate liberamente a partire dai dati: 
+
+$$CFI = \dfrac{(\chi_B^2 - df_B) - (\chi_T^2 - df_T)}{(\chi_B^2 - df_B)}$$
+
+Se il modello $T$ è correttamente specificato: $(\chi_T^2 - df_T) \approx 0 \rightarrow CFI \approx 1$
+
+$CFI \geq .90$ Valori accettabili 
+
+$CFI \geq .95$ Valori ottimali 
+
+
+## Tucker-Lewis Index
+
+Stesso identico principio del CFI ma basato su $\chi_{N}^2 = \chi^2/df$ ($\chi_{N}^2 \to 1$ quando $\chi^2 = df$): 
+
+$$TLI = \dfrac{(\chi_B^2/df_B) - (\chi_T^2/df_T)}{\chi_B^2/df_B -1}$$
+
+$CFI \geq .90$ Valori accettabili 
+
+$CFI \geq .95$ Valori ottimali 
+
+
+# Scalare e contare i parametri 
+
+## Scalare i parametri {#sec-scala}
+
+Per ogni variabile latente: Stima della varianza
+
+Se il modello lo prevede: Stima delle covarianze delle variabili latenti 
+
+Per ogni item: Saturazione e la varianza specifica (varianza residua)
+
+Rimane il problema di fissare la scala per l'interpretazione delle saturazioni sulla variabile latente: 
+
+* Metodo Indicatore-Variabile Latente
+* Metodo della standardizzazione della variabile latente
+
+:::{.callout-warning}
+## 
+
+Sono matematicamente equivalenti e si può passare da una all'altra senza problemi!
+
+Non cambia la fit del modello, non cambia il numero di parametri stimati $\zeta$, cambia la scala e l'interpretazione delle saturazioni (e delle covarianze)
+
+$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}$$
+:::
+
+### Metodo Indicatore-Variabile Latente
+
+Per stimare la varianza della variabile latente e le saturazioni degli item per quella variabile latente, si fissa una saturazione (solitamente quella del primo item): 
+
+$$\lambda_{1} = 1$$ 
+
+La variabile latente $\theta$ assume la scala del primo item
+
+La varianza $Var(\theta)$ viene stimata liberamente (e influenza l'interpretazione delle saturazioni)
+
+
+$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}$$
+
+:::{.callout-note}
+## Conteggio dei parametri: 
+
+* Saturazioni: $I - \theta$
+* Varianze residue per ogni indicatore: $I$
+* Per le variabili latenti: $\dfrac{\theta (\theta+1)}{2}$ (una varianza per ogni $\theta$ e le covarianze)
+
+
+$$|\zeta| = I + (I-1) + \dfrac{\theta (\theta+1)}{2}$$
+:::
+
+
+
+
+
+
+### Metodo della standardizzazione della variabile latente
+
+Per stimare le saturazioni degli idnicatore su una variabile latente, viene fissata la varianza della variabile latente: 
+
+$$Var(\theta) = 1$$
+Vengono stimati tutti i $\lambda_i$ relativi a quella variabile latente
+
+I $\lambda_i$ si possono interpretare come venivano interpretati in EFA (ovvero come correlazioni variabile latente-indicatore)
+
+Al posto delle covarianze tra fattori: correlazioni
+
+
+$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}$$
+
+:::{.callout-note}
+## Conteggio dei parametri: 
+
+* Saturazioni: $I$
+* Varianze residue per ogni indicatore: $I$
+* Per le variabili latenti: $\dfrac{\theta (\theta-1)}{2}$ (covarianze tra i $\theta$)
+
+$$|\zeta| = 2I + \dfrac{\theta (\theta-1)}{2}$$
+
+:::
+
+# Big Five 
+
+:::{.callout-caution collapse=true}
+## NB 
+
+Sto usando solo gli item di due scale per rendere l'esposizione più chiara
+:::
+
+## Indicatore-LV
+
+### Stima e conteggio dei parametri
+
+```{r}
+#| echo: false
+
+
+model = paste(paste0("N =~ ", paste(labels$N, collapse = " + ")),
+paste0("C =~ ", paste(labels$C, collapse = " + ")), sep = "\n")
+
+m = cfa(model, data=d[, colnames(d) %in% c(labels$N, labels$C)])
+
+parTable(m)
+```
+
+| Simbolo | Significato|
+|:-------|-----------:|
+|`=~`| Factor loading (saturazione $\lambda_i$)|
+|`~~`| Varianza/covarianza|
+|`user = 1`| Parametro stimato stabilito dall'utente|
+|`user = 0`| Parametro stimato NON stabilito dall'utente|
+|`ustart = 1`| Constraint sulla stima dei parametri - Non vengono stimati, vengono stabiliti a priorio per settare la metrica|
+|`free = 0`| Parametri che non vengono stimati |
+|`free |= 0`| Parametri che vengono stimati |
+|`start`| Valore iniziale del parametro usato come punto di partenza della stima |
+|`est`| Stima ottenuta attraverso gli algoritmi di ottimizzazione |
+
+
+
+Andando sull'ultima riga, in corrispondenza della colonna `free` si vede che vengono stimati 41 parametri liberi (|$\zeta$|): 
+
+* $I = 20$, quindi $\Lambda = 18 \times 2$
+* $I = 20$, quindi $\Phi_{\varepsilon} = 20 \times 1$
+* $\theta = 2$, quindi $\dfrac{\theta (\theta+1)}{2} = 3$ (le due varianze e la covarianza)
+
+
+
+### Fit del modello 
+
+```{r}
+summary(m, fit.measures = TRUE)
+```
+
+
+## Standardizzazione-LV
+
+### Stima e conteggio dei parametri 
+
+
+```{r}
+#| echo: false
+
+m1 = cfa(model, data=d[, colnames(d) %in% c(labels$N, labels$C)], std.lv = TRUE)
+
+parTable(m1)
+```
+
+Anche in questo caso, in corrispondenza della colonna  `free` nell'ultima riga si vede che vengono stimati 41 parametri liberi (|$\zeta$|): 
+
+* $I = 20$, quindi $\Lambda = 20 \times 2$
+* $I = 20$, quindi $\Phi_{\varepsilon} = 20 \times 1$
+* $\theta = 2$, quindi $\dfrac{\theta (\theta-1)}{2} = 1$ (solo la covarianza tra N e C)
+
+
+
+### Fit del modello 
+
+```{r}
+summary(m1, fit.measures = TRUE)
+```
+
+
+## Confronto
+
+```{r}
+#| layout-ncol: 2
+#| column: screen
+#| label: fig-semPaths
+#| fig-cap: "Modello Fattoriale Confermativo"
+#| fig-subcap: 
+#|   - "Metodo Indicatore-LV"
+#|   - "Standardizzazione-LV"
+library(semPlot)
+semPaths(m, what = "est", style = "OpenMx", layout="tree2", groups = list(labels$C, labels$N), color = c("royalblue", "darkorange"), 
+         edge.color = c(rep("darkorange", 10), rep("royalblue", 10)))
+semPaths(m1, what = "est", style = "OpenMx", layout="tree2", groups = list(labels$C, labels$N), color = c("royalblue", "darkorange"), 
+         edge.color = c(rep("darkorange", 10), rep("royalblue", 10)))
+```
+
+
+# Violazione normalità/linearità 
+
+Quando non si hanno a disposizone degli item che permettano di sostenere la linearità e normalità dei punteggi: 
+
+* Matrice di correlazione policorica (se $k \geq$ 3$)
+* Matrice di correlazione tetracorica (se $k = 2$)
+
+dove $k$ indica il numero di categorie di risposta 
+
+## Correlazione tetracorica e le soglie
+
+Le risposte agli item $Y_i$ sono la realizzazione di una *variabile latente* $Y_i^*$
+
+$Y_i^*$ è continua e distribuita normalmente.. $Y_i$ no! 
+
+$$Y_i =
+\begin{cases}
+1 & \text{se } Y_i^* \geq \tau_i \\
+0 & \text{se } Y_i^* < \tau_i
+\end{cases}
+$$
+
+dove $\tau_i$ è una soglia fissa (incognita) da cui dipende la risposta positiva
+
+\pause
+
+$$r_{\text{tet}_{Y_i Y_j}} = r_{Y_i^* Y_j^*}$$
+
+
+
+:::: {.columns}
+
+:::{.column width=40%}
+\small
+```{r}
+#| echo: false
+
+b = tetrachoric(table(LSAT[,1], LSAT[,2]))
+tetrachoric(table(LSAT[,1], LSAT[,2]))
+
+```
+
+:::
+
+:::{.column width=60%}
+```{r}
+#| echo: false
+#| fig-align: center
+#| out-width: 100%
+
+
+draw.tetra(r = b$rho, t1 = b$tau[1], t2 = b$tau[2])
+```
+
+:::
+::::
+
+:::{.callout-caution}
+## Attenzione!
+
+In questo caso, vanno considerati come parametri del modello anche le soglie stimate per ogni item
+
+Ma le soglie fanno parte anche dell'informazione iniziale a disposizione per stimare i parametri!
+:::
+
+## Conteggio dell'informazione 
+
+Avendo $I = 4$ con $k=5$, la matrice di covarianza è:
+
+$$
+S =
+\begin{pmatrix}
+s_{11} & s_{12} & s_{13} & s_{14} \\
+s_{12} & s_{22} & s_{23} & s_{24} \\
+s_{13} & s_{23} & s_{33} & s_{34} \\
+s_{14} & s_{24} & s_{34} & s_{44}
+\end{pmatrix}
+$$
+Ma considerando il caso di variabili categoriali e quindi la correlazione policorica: 
+
+$$
+S =
+\begin{pmatrix}
+1 & s_{12} & s_{13} & s_{14} \\
+s_{12} & 1 & s_{23} & s_{24} \\
+s_{13} & s_{23} & 1 & s_{34} \\
+s_{14} & s_{24} & s_{34} & 1
+\end{pmatrix}
+$$
+
+Perché le variabili osservate sono prese come realizzazione di variabili latenti standardizzate. Di conseguenza, $S$ diventa una matrice di correlazione. 
+
+Il numero di parametri unici in $S$ è 
+
+$$\dfrac{I(I-1)}{2}$$
+In questo caso, sono i 6 elementi nel traingolo inferiore (o nel triangolo superiore)
+
+Nella quantità di informazione, vanno contate anche le soglie per ogni item 
+
+$$\sum_{i = 1}^{I} (k_i -1)$$
+
+L'informazione totale in caso di item considerati a livello ordinale è quindi
+
+$$\dfrac{I(I-1)}{2} + \sum_{i = 1}^{I} (k_i -1)$$
+
+
+Nell'esempio di prima, con $I = 4$ e $k = 5$: 
+
+$$\dfrac{4(4-1)}{2} + \sum_{i = 1}^{4} (5 -1) = 6 + 4 \times 4 = 10$$
+
+Il discorso del calcolo dei gradi di libertà e della loro logica è come quello in @sec-df
+
+:::{.callout-note}
+## NB
+
+Per la matrice tetracorica vale lo stesso identico discorso, dove però $k = 2$
+
+:::
+
+## Conteggio dei parametri 
+
+Si applica la stessa metodologia per scalare e interpretare i parametri di quella presentata in @sec-scala, ovvero 
+
+* Metodo indicatore-LV: La saturazione del primo item di ogni dimensione viene usato per scalare sia la variabile latente sia le saturazioni di tutti gli altri item 
+* Metodo della standardizzazione della LV: Vengono standardizzate le variabili latenti, creando una scala comune per l'interpretazione delle saturazioni 
+
+Il tipo di scalatura non influisce sul numero totale di parametri stimati (ma su quali parametri vengono stimati). 
+
+Nel caso della correlazioni basate sulle soglie (policoriche o tetracoriche), il conteggio dei parametri deve includere anche il conteggio delle soglie
+
+$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi, \tau\}$$
+
+dove $\tau = I \times k-1$ è la matrice item per soglia
+
+QUi devo mettere:; 
+
+la formula per ricavare la quantità di informazione dai dati 
+
+La logica con cui vengono stimati i parametri (più che la stima in sè, il conteggio)
+
+Riporto anche una matrice policorica per far vedere le soglie (magari con meno item)
+
+```{r}
+polychoric(d[,colnames(d) %in% c(labels$C[1:5], labels$N[1:5])])
+```
+
+
+```{r}
+mord = cfa(model, data=d[, colnames(d) %in% c(labels$N, labels$C)], 
+           ordered = c(labels$N, labels$C))
+parTable(mord)
+```
+
+18 + 1 + 80 + 20
+
+
+
+# Attendbilità 
+
+## 
+
+Definizione secondo CTT e implciazioni della bassa reliability 
+
+Fromula di spearman brown
+
+Stima dell'attendbilità 
+
+Test retest, split half 
+, forme parallele, alpha di cronbach
+
+# Validità 
+
+## 
+
+Riprendi dalle slide che già avevi fatto e integra con il libro 
