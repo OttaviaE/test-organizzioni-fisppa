@@ -164,7 +164,6 @@ Ogni indicatore è la realizzazione di un singolo e specifico fattore latente
 Ogni indicatore satura su una specifica dimensione latente **definita a priori sulla base di un modello teorico**
 :::
 
-##
 
 :::{.callout-tip}
 
@@ -173,13 +172,16 @@ Ogni indicatore satura su una specifica dimensione latente **definita a priori s
 $$\mathbf{Y}_p = \mathbf{\mu} + \mathbf{\Lambda} \mathbf{\theta}_p + \varepsilon_p$$
 con 
 
-$\mathbf{Y}_p$: Vettore delle risposte a tutti gli $I$ indicatori della persona $p$ 
+$\mathbf{Y}_p \in \mathbb{R}^{I \times 1}$: Vettore delle risposte a tutti gli $I$ indicatori della persona $p$ 
 
-$\mathbf{\mu}$: Vettore dei valori medi attesi di tutti gli $I$ indicatori 
+$\boldsymbol{\mu} \in \mathbb{R}^{I \times 1}$: Vettore dei valori medi attesi di tutti gli $I$ indicatori 
 
-$\mathbf{\lambda}$: Matrice $I \times F$ delle saturazioni degli $I$ item sulle $F$ dimensioni latenti  
+$\mathbf{\Lambda} \in \mathbb{R}^{I \times F}$: Matrice $I \times F$ delle saturazioni degli $I$ item sulle $F$ dimensioni latenti  
 
-$\mathbf{\theta}_p$: Vettore dei factors scores -- ovvero dei livelli latenti attesi -- sulle $F$ dimensioni latenti per la persona $p$
+$\boldsymbol{\theta}_p \in \mathbb{R}^{F \times 1}$: Vettore dei factors scores -- ovvero dei livelli latenti attesi -- sulle $F$ dimensioni latenti per la persona $p$
+
+
+$\boldsymbol{\varepsilon}_p \in \mathbb{R}^{I \times 1}$: vettore degli errori/residui associati agli indicatori della persona p
 
 :::
 
@@ -216,7 +218,7 @@ con $\zeta$ che contiene tutti i paraemtri del modello (saturazioni, varianze, c
 
 Stimare i parametri a partire dalla matrice di covarianza osservata in modo che: 
 
-$S \approx \Sigma(\zeta)$
+$$S \approx \Sigma(\zeta)$$
 
 :::
 
@@ -234,13 +236,17 @@ Se $I = 4$, la matrice di covariana è:
 $$
 S =
 \begin{pmatrix}
-s_{11} & s_{12} & s_{13} & s_{14} \\
-s_{12} & s_{22} & s_{23} & s_{24} \\
-s_{13} & s_{23} & s_{33} & s_{34} \\
-s_{14} & s_{24} & s_{34} & s_{44}
+\mathbf{s_{11}} & \color{pink}{s_{12}} & \color{pink}{s_{13}} & \color{pink}{s_{14}} \\
+\color{blue}{s_{21}} & \mathbf{s_{22}} & \color{pink}{s_{23}} & \color{pink}{s_{24}} \\
+\color{blue}{s_{31}} & \color{blue}{s_{32}} & \mathbf{s_{33}} & \color{pink}{s_{34}} \\
+\color{blue}{s_{41}} & \color{blue}{s_{42}} & \color{blue}{s_{43}} & \mathbf{s_{44}}
 \end{pmatrix}
 $$
-Ovvero ci sono $\dfrac{4(4+1)}{2} = 10$ elementi unici, ovvero le 4 varianze nella diagonale principale ($s_{11}$, $s_{22}$, $s_{33}$, $s_{44}$) e le 6 covarianze o nel triangolo inferiore O nel triangolo superiore
+
+Ci sono $\dfrac{I(I+1)}{2} = \dfrac{4(4+1)}{2} = 10$ elementi unici: 
+
+* 4 varianze nella diagonale principale (in grassetto)
+* 6 covarianze o nel triangolo inferiore (in blu) O nel triangolo superiore (in rosa)
 
 Dati questi dati, posso stimare **AL MASSIMO** 9 parametri 
 
@@ -249,7 +255,7 @@ Dati questi dati, posso stimare **AL MASSIMO** 9 parametri
 :::{.callout-note}
 ## $df > 0$ (Overidentified)
 
-Il modello è testabile perché c'è più informazione nei dati di quanto richiesto dal modello
+Il modello è testabile perché c'è *più informazione nei dati* di quanto richiesto dal modello
 
 La matrice di covarianza $S$ non può essere riprodotta perfettamente da $\Sigma(\zeta)$: Il modello è falsificabile
 
@@ -317,11 +323,43 @@ $CFI \geq .95$ Valori ottimali
 
 ## Scalare i parametri {#sec-scala}
 
-Per ogni variabile latente: Stima della varianza
+Parametri stimati: 
 
-Se il modello lo prevede: Stima delle covarianze delle variabili latenti 
+:::{.callout-note}
+## Variabile latenti $\theta_p$
 
-Per ogni item: Saturazione e la varianza specifica (varianza residua)
+$$\mathbf{\Phi} = \operatorname{Var}(\boldsymbol{\theta}_p)
+\in \mathbb{R}^{F \times F}$$
+
+Matrice delle varianze e covarianze delle \(F\) variabili latenti
+
+Se il modello prevede \(F\) fattori ortogonali, allora
+
+
+$$\phi_{ij} = 0
+\qquad \forall i \neq j$$
+
+e quindi $\mathbf{\Phi}$ è una matrice diagonale.
+
+
+:::
+
+
+:::{.callout-tip}
+## Indicatori
+
+$$\mathbf{\Lambda} \in \mathbb{R}^{I \times F}$$
+e
+
+$$\boldsymbol{\varepsilon}_p =
+\begin{pmatrix}
+\varepsilon_{1p} \\
+\varepsilon_{2p} \\
+\vdots \\
+\varepsilon_{Ip}
+\end{pmatrix}$$
+:::
+
 
 Rimane il problema di fissare la scala per l'interpretazione delle saturazioni sulla variabile latente: 
 
@@ -335,7 +373,7 @@ Sono matematicamente equivalenti e si può passare da una all'altra senza proble
 
 Non cambia la fit del modello, non cambia il numero di parametri stimati $\zeta$, cambia la scala e l'interpretazione delle saturazioni (e delle covarianze)
 
-$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}$$
+$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}$$
 :::
 
 ### Metodo Indicatore-Variabile Latente
@@ -349,17 +387,17 @@ La variabile latente $\theta$ assume la scala del primo item
 La varianza $Var(\theta)$ viene stimata liberamente (e influenza l'interpretazione delle saturazioni)
 
 
-$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}$$
+$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}$$
 
 :::{.callout-note}
 ## Conteggio dei parametri: 
 
-* Saturazioni: $I - \theta$
+* Saturazioni: $I - F$
 * Varianze residue per ogni indicatore: $I$
-* Per le variabili latenti: $\dfrac{\theta (\theta+1)}{2}$ (una varianza per ogni $\theta$ e le covarianze)
+* Per le variabili latenti: $\dfrac{F (F+1)}{2}$ (una varianza per ogni $\theta$ e le covarianze)
 
 
-$$|\zeta| = I + (I-1) + \dfrac{\theta (\theta+1)}{2}$$
+$$|\zeta| = I + (I-F) + \dfrac{F (F+1)}{2}$$
 :::
 
 
@@ -379,16 +417,17 @@ I $\lambda_i$ si possono interpretare come venivano interpretati in EFA (ovvero 
 Al posto delle covarianze tra fattori: correlazioni
 
 
-$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}$$
+
+$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}$$
 
 :::{.callout-note}
 ## Conteggio dei parametri: 
 
 * Saturazioni: $I$
 * Varianze residue per ogni indicatore: $I$
-* Per le variabili latenti: $\dfrac{\theta (\theta-1)}{2}$ (covarianze tra i $\theta$)
+* Per le variabili latenti: $\dfrac{F (F-1)}{2}$ (covarianze tra i $\theta$)
 
-$$|\zeta| = 2I + \dfrac{\theta (\theta-1)}{2}$$
+$$|\zeta| = 2I + \dfrac{F (F-1)}{2}$$
 
 :::
 
@@ -422,9 +461,9 @@ parTable(m)
 |`~~`| Varianza/covarianza|
 |`user = 1`| Parametro stimato stabilito dall'utente|
 |`user = 0`| Parametro stimato NON stabilito dall'utente|
-|`ustart = 1`| Constraint sulla stima dei parametri - Non vengono stimati, vengono stabiliti a priorio per settare la metrica|
+|`ustart = 1`| Constraint sulla stima dei parametri - Non vengono stimati, vengono stabiliti a priori per settare la metrica|
 |`free = 0`| Parametri che non vengono stimati |
-|`free |= 0`| Parametri che vengono stimati |
+|`free != 0`| Parametri che vengono stimati |
 |`start`| Valore iniziale del parametro usato come punto di partenza della stima |
 |`est`| Stima ottenuta attraverso gli algoritmi di ottimizzazione |
 
@@ -432,10 +471,11 @@ parTable(m)
 
 Andando sull'ultima riga, in corrispondenza della colonna `free` si vede che vengono stimati 41 parametri liberi (|$\zeta$|): 
 
-* $I = 20$, quindi $\Lambda = 18 \times 2$
-* $I = 20$, quindi $\Phi_{\varepsilon} = 20 \times 1$
-* $\theta = 2$, quindi $\dfrac{\theta (\theta+1)}{2} = 3$ (le due varianze e la covarianza)
+* $I = 20$, quindi $\Lambda = I - F = 18$
+* $I = 20$, quindi $\varepsilon_p = 20$
+* $\theta = 2$, quindi $\dfrac{F (F+1)}{2} = \dfrac{2(2+1)}{2} = 3$ (le due varianze e la covarianza)
 
+$$|\zeta| = 18 + 20 + 3 = 41$$
 
 
 ### Fit del modello 
@@ -460,10 +500,12 @@ parTable(m1)
 
 Anche in questo caso, in corrispondenza della colonna  `free` nell'ultima riga si vede che vengono stimati 41 parametri liberi (|$\zeta$|): 
 
-* $I = 20$, quindi $\Lambda = 20 \times 2$
-* $I = 20$, quindi $\Phi_{\varepsilon} = 20 \times 1$
-* $\theta = 2$, quindi $\dfrac{\theta (\theta-1)}{2} = 1$ (solo la covarianza tra N e C)
+* $I = 20$, quindi $\Lambda = 20$
+* $I = 20$, quindi $\varepsilon_p = 20$
+* $F = 2$, quindi $\dfrac{F (F-1)}{2} = \dfrac{2 (2-1)}{2}  1$ (solo la covarianza tra N e C)
 
+
+$$|\zeta| = 20 + 20 + 3 = 1$$
 
 
 ### Fit del modello 
@@ -495,7 +537,7 @@ semPaths(m1, what = "est", style = "OpenMx", layout="tree2", groups = list(label
 
 Quando non si hanno a disposizone degli item che permettano di sostenere la linearità e normalità dei punteggi: 
 
-* Matrice di correlazione policorica (se $k \geq$ 3$)
+* Matrice di correlazione policorica (se $k \geq 3$)
 * Matrice di correlazione tetracorica (se $k = 2$)
 
 dove $k$ indica il numero di categorie di risposta 
@@ -564,9 +606,9 @@ $$
 S =
 \begin{pmatrix}
 s_{11} & s_{12} & s_{13} & s_{14} \\
-s_{12} & s_{22} & s_{23} & s_{24} \\
-s_{13} & s_{23} & s_{33} & s_{34} \\
-s_{14} & s_{24} & s_{34} & s_{44}
+s_{21} & s_{22} & s_{23} & s_{24} \\
+s_{31} & s_{32} & s_{33} & s_{34} \\
+s_{41} & s_{42} & s_{43} & s_{44}
 \end{pmatrix}
 $$
 Ma considerando il caso di variabili categoriali e quindi la correlazione policorica: 
@@ -575,9 +617,9 @@ $$
 S =
 \begin{pmatrix}
 1 & s_{12} & s_{13} & s_{14} \\
-s_{12} & 1 & s_{23} & s_{24} \\
-s_{13} & s_{23} & 1 & s_{34} \\
-s_{14} & s_{24} & s_{34} & 1
+s_{21} & 1 & s_{23} & s_{24} \\
+s_{31} & s_{32} & 1 & s_{34} \\
+s_{41} & s_{42} & s_{43} & 1
 \end{pmatrix}
 $$
 
@@ -599,7 +641,7 @@ $$\dfrac{I(I-1)}{2} + \sum_{i = 1}^{I} (k_i -1)$$
 
 Nell'esempio di prima, con $I = 4$ e $k = 5$: 
 
-$$\dfrac{4(4-1)}{2} + \sum_{i = 1}^{4} (5 -1) = 6 + 4 \times 4 = 10$$
+$$\dfrac{4(4-1)}{2} + \sum_{i = 1}^{4} (5 -1) = 6 + 4 \times 4 = 22$$
 
 Il discorso del calcolo dei gradi di libertà e della loro logica è come quello in @sec-df
 
@@ -621,48 +663,211 @@ Il tipo di scalatura non influisce sul numero totale di parametri stimati (ma su
 
 Nel caso della correlazioni basate sulle soglie (policoriche o tetracoriche), il conteggio dei parametri deve includere anche il conteggio delle soglie
 
-$$\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi, \tau\}$$
+$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi, \tau\}$$
 
-dove $\tau = I \times k-1$ è la matrice item per soglia
 
-QUi devo mettere:; 
+dove $\tau = I (k - 1)$ è la matrice item per soglia
 
-la formula per ricavare la quantità di informazione dai dati 
-
-La logica con cui vengono stimati i parametri (più che la stima in sè, il conteggio)
-
-Riporto anche una matrice policorica per far vedere le soglie (magari con meno item)
+### Matrice policorica
 
 ```{r}
 polychoric(d[,colnames(d) %in% c(labels$C[1:5], labels$N[1:5])])
 ```
 
+:::{.callout-note}
+## Calcolo dell'informazione
+
+$$I = 10 \qquad k = 5$$
+$$\dfrac{I(I-1)}{2} + \sum_{i = 1}^I (k_i -1) = \dfrac{10(10-1)}{2} + \sum_{i = 1}^{10} (5 -1) = 85$$
+
+:::
+
+
 
 ```{r}
 mord = cfa(model, data=d[, colnames(d) %in% c(labels$N, labels$C)], 
            ordered = c(labels$N, labels$C))
+
+```
+
+
+
+## Parametri stimati
+
+IL numero totale di parametri stimati rimane uguale ma va teneuto conto del metodo di scala delle variabili latenti usato. 
+
+Il conteggio generale dei parametri è uguale a quello presentato in @sec-scala. 
+
+In entrambi i casi, vanno aggiunti i parametri relativi alle soglie
+
+:::{.callout-caution}
+## Attenzione!!
+
+Siccome il modello è ordinale (ovvero i dati osservati sono la realizzazione di variabili latenti con varianza nota) **non vengono stimate le varianze d'errore degli item**
+:::
+
+$$\tau = I(k-1)$$
+
+Nell'esempio con $I = 20$ item con $k = 5$ dove vengono specificato $F = 2$ fattori latenti (di seguito viene riportato il caso in cui viene scalato con metodo indicatore-variabile latente): 
+
+$$(20-2) + \dfrac{2(2+1)}{2} + 20(5-1) = 101$$
+
+```{r}
 parTable(mord)
 ```
 
-18 + 1 + 80 + 20
+## Fit del modello 
 
+```{r}
+summary(mord, fit.measures = TRUE)
+```
 
 
 # Attendbilità 
 
-## 
+:::{.callout-caution}
+## Disclaimer
 
-Definizione secondo CTT e implciazioni della bassa reliability 
+Tutto il discorso che segue sull'attendbilità e sulla sua valutazione riguarda la Classical Test Theory
+:::
 
-Fromula di spearman brown
 
-Stima dell'attendbilità 
+Grado in cui una procedura di misurazione produce lo stesso risultato in prove ripetute
+	
+$$
+X = V + E
+$$
 
-Test retest, split half 
-, forme parallele, alpha di cronbach
+$X$: misura rilevata\\
+$V$: parte vera\\
+$E$: errore: fluttuazioni casuali oppure costante e sistematico
+	
+L'attendibilità di una misura è la proporzione di $X$ che non riflette l'errore di misurazione: 
 
-# Validità 
+$$
+\rho = \dfrac{V}{V + E}
+$${#eq-rho}
 
-## 
+Problema: Non è possibile conoscere $V$ (non lo osserviamo mai) $\rightarrow$ Non è effettivmente possibile stimare l'attendibilità di una misura a partire dalla definizione in @eq-rho
 
-Riprendi dalle slide che già avevi fatto e integra con il libro 
+Vengono utilizzate delle metodologie che perettono di approssimare il calcolo di $V$: 
+
+:::{.callout-note}
+## Attendibilità test-retest
+
+Viene somministrato lo stesso test allo stesso gruppo di soggetti in due momenti distinti (solitamente vengono fatti passare almeno 3 mesi)
+
+Si calcola il coefficiente di correlazione tra i punteggi ottenuti nelle due somministrazioni
+
+**coefficiente di stabilità**
+:::
+
+
+:::{.callout-note}
+## Forme parallele
+
+Vengono somministrate due versioni dello stesso test che possono essere considerate equivalenti allo stesso gruppo di persone 
+
+Il contenuto, la formulazione degli item e degli eventuali distrattori devono essere pressapoco identici 
+
+Si calcola la correlazione tra i punteggi ottenuti ai due test
+
+**coefficiente di equivalenza**
+:::
+
+
+:::{.callout-note}
+## Split-Half
+
+Si basa sulla somministrazione di una singola misura che viene suddivisa in due metà equivalenti (in termini di copertura del dominio di contenuto)
+
+Viene calcolata la correlazione tra i punteggi che si ottengono dalle due metà $\rightarrow$ attendibilità che si osserverebbe su una misura lunga la metà dell'originale!
+
+Viene impiegato il coefficiente di Spearman-Brown  per calcolare l'attendbilità complessiva dell'intera misura
+
+**coefficiente di coerenza interna**
+:::
+
+## $\alpha$ di Cronbach
+
+è la misura di attendibilità sicuramente più conosciuta e usata 
+
+Interamente basata sulla correlazione tra gli item
+
+$$\alpha = \dfrac{I}{I-1} \left( 1- \dfrac{\sum_{i = 1}^I \sigma_{X_i}^2}{\sigma_X^2}\right)$$
+
+dove
+
+$X = \sum_{i = 1}^I X_i$: punteggio totale al test 
+
+$\sigma_X^2$: varianza del punteggio totale
+
+$\sigma_{X_i}^2$: varianze degli item
+
+### Cut off
+
+|$\alpha$	| Interpretazione  |
+|:-----:|:---------|
+|$<.70$|inaccettabile|
+|$.70−.79$|	accettabile|
+|$.80−.89$ |	buona |
+|$\geq 90$ |	eccellente|
+
+
+:::{.callout-caution}
+## Attenzione!
+
+Il valore di $\alpha$ aumenta all'aumentare del numero di item, indipendentemente dal fatto che siano utili o meno
+
+Non si accorge della multidimensionalità: Può essere alto anche se la scala misura più costrutti diversi
+:::
+
+## Big Five
+
+```{r}
+#| warning: false
+alpha1 = alpha(d[, colnames(d) %in% c(labels$N, labels$C)])
+alpha1$total
+```
+
+
+Sbagliato!! 
+
+In maniera corretta: 
+
+```{r}
+alpha1 = alpha(d[, colnames(d) %in% c(labels$N)])
+alpha1$total
+alpha1 = alpha(d[, colnames(d) %in% c(labels$C)])
+alpha1$total
+```
+
+
+### $\alpha$ se l'item è eliminato 
+
+Misura del contributo di ogni singolo item alla **coerenza interna** (non è un giudizio assoluto sulla bontà dell'item o su quanto contirbuisce alla misurazione del contrutto)
+
+$$\Delta \alpha = \alpha_{(-i)} - \alpha$$
+
+Se: 
+
+$\Delta \alpha \geq .05$: L'item probabilmente non contribuisce alla coerenza interna 
+
+$ 0 < \Delta \alpha .02$: Va bene così 
+
+$ \Delta \alpha < 0 $: Togliere l'item peggiora la coerenza interna della scala
+
+Sapendo che 
+
+```{r}
+alpha1$total
+```
+
+le statistiche relativamente ad $\alpha_{(-1)}$ sono: 
+
+```{r}
+apply(alpha1$alpha.drop[, c("raw_alpha", "std.alpha", "alpha se")], 2, round, digit = 2)
+```
+
+
+

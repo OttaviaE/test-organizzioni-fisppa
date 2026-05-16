@@ -2284,10 +2284,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#la-soluzione-migliore-trovata-con-efa" id="toc-la-soluzione-migliore-trovata-con-efa" class="nav-link active" data-scroll-target="#la-soluzione-migliore-trovata-con-efa"><span class="header-section-number">1</span> La soluzione migliore trovata con EFA:</a></li>
-  <li><a href="#cfa" id="toc-cfa" class="nav-link" data-scroll-target="#cfa"><span class="header-section-number">2</span> CFA</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.1</span> </a></li>
-  </ul></li>
+  <li><a href="#cfa" id="toc-cfa" class="nav-link" data-scroll-target="#cfa"><span class="header-section-number">2</span> CFA</a></li>
   <li><a href="#analisi-delle-strutture-di-covarianza-joreskog-1969" id="toc-analisi-delle-strutture-di-covarianza-joreskog-1969" class="nav-link" data-scroll-target="#analisi-delle-strutture-di-covarianza-joreskog-1969"><span class="header-section-number">3</span> Analisi delle strutture di covarianza Joreskog (1969)</a></li>
   <li><a href="#statistiche-di-fit-per-modelli-cfa" id="toc-statistiche-di-fit-per-modelli-cfa" class="nav-link" data-scroll-target="#statistiche-di-fit-per-modelli-cfa"><span class="header-section-number">4</span> Statistiche di fit per modelli CFA</a>
   <ul class="collapse">
@@ -2325,15 +2322,23 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#correlazione-tetracorica-e-le-soglie" id="toc-correlazione-tetracorica-e-le-soglie" class="nav-link" data-scroll-target="#correlazione-tetracorica-e-le-soglie"><span class="header-section-number">7.1</span> Correlazione tetracorica e le soglie</a></li>
   <li><a href="#conteggio-dellinformazione" id="toc-conteggio-dellinformazione" class="nav-link" data-scroll-target="#conteggio-dellinformazione"><span class="header-section-number">7.2</span> Conteggio dell’informazione</a></li>
-  <li><a href="#conteggio-dei-parametri-2" id="toc-conteggio-dei-parametri-2" class="nav-link" data-scroll-target="#conteggio-dei-parametri-2"><span class="header-section-number">7.3</span> Conteggio dei parametri</a></li>
+  <li><a href="#conteggio-dei-parametri-2" id="toc-conteggio-dei-parametri-2" class="nav-link" data-scroll-target="#conteggio-dei-parametri-2"><span class="header-section-number">7.3</span> Conteggio dei parametri</a>
+  <ul class="collapse">
+  <li><a href="#matrice-policorica" id="toc-matrice-policorica" class="nav-link" data-scroll-target="#matrice-policorica"><span class="header-section-number">7.3.1</span> Matrice policorica</a></li>
+  </ul></li>
+  <li><a href="#parametri-stimati" id="toc-parametri-stimati" class="nav-link" data-scroll-target="#parametri-stimati"><span class="header-section-number">7.4</span> Parametri stimati</a></li>
+  <li><a href="#fit-del-modello-2" id="toc-fit-del-modello-2" class="nav-link" data-scroll-target="#fit-del-modello-2"><span class="header-section-number">7.5</span> Fit del modello</a></li>
   </ul></li>
   <li><a href="#attendbilità" id="toc-attendbilità" class="nav-link" data-scroll-target="#attendbilità"><span class="header-section-number">8</span> Attendbilità</a>
   <ul class="collapse">
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">8.1</span> </a></li>
-  </ul></li>
-  <li><a href="#validità" id="toc-validità" class="nav-link" data-scroll-target="#validità"><span class="header-section-number">9</span> Validità</a>
+  <li><a href="#alpha-di-cronbach" id="toc-alpha-di-cronbach" class="nav-link" data-scroll-target="#alpha-di-cronbach"><span class="header-section-number">8.1</span> <span class="math inline">\(\alpha\)</span> di Cronbach</a>
   <ul class="collapse">
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">9.1</span> </a></li>
+  <li><a href="#cut-off" id="toc-cut-off" class="nav-link" data-scroll-target="#cut-off"><span class="header-section-number">8.1.1</span> Cut off</a></li>
+  </ul></li>
+  <li><a href="#big-five-1" id="toc-big-five-1" class="nav-link" data-scroll-target="#big-five-1"><span class="header-section-number">8.2</span> Big Five</a>
+  <ul class="collapse">
+  <li><a href="#alpha-se-litem-è-eliminato" id="toc-alpha-se-litem-è-eliminato" class="nav-link" data-scroll-target="#alpha-se-litem-è-eliminato"><span class="header-section-number">8.2.1</span> <span class="math inline">\(\alpha\)</span> se l’item è eliminato</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -2424,8 +2429,6 @@ Ipotesi sotto esame
 <p>Ogni indicatore satura su una specifica dimensione latente <strong>definita a priori sulla base di un modello teorico</strong></p>
 </div>
 </div>
-<section id="section" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.1</span> </h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2437,13 +2440,13 @@ Il modello teorico
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[\mathbf{Y}_p = \mathbf{\mu} + \mathbf{\Lambda} \mathbf{\theta}_p + \varepsilon_p\]</span> con</p>
-<p><span class="math inline">\(\mathbf{Y}_p\)</span>: Vettore delle risposte a tutti gli <span class="math inline">\(I\)</span> indicatori della persona <span class="math inline">\(p\)</span></p>
-<p><span class="math inline">\(\mathbf{\mu}\)</span>: Vettore dei valori medi attesi di tutti gli <span class="math inline">\(I\)</span> indicatori</p>
-<p><span class="math inline">\(\mathbf{\lambda}\)</span>: Matrice <span class="math inline">\(I \times F\)</span> delle saturazioni degli <span class="math inline">\(I\)</span> item sulle <span class="math inline">\(F\)</span> dimensioni latenti</p>
-<p><span class="math inline">\(\mathbf{\theta}_p\)</span>: Vettore dei factors scores – ovvero dei livelli latenti attesi – sulle <span class="math inline">\(F\)</span> dimensioni latenti per la persona <span class="math inline">\(p\)</span></p>
+<p><span class="math inline">\(\mathbf{Y}_p \in \mathbb{R}^{I \times 1}\)</span>: Vettore delle risposte a tutti gli <span class="math inline">\(I\)</span> indicatori della persona <span class="math inline">\(p\)</span></p>
+<p><span class="math inline">\(\boldsymbol{\mu} \in \mathbb{R}^{I \times 1}\)</span>: Vettore dei valori medi attesi di tutti gli <span class="math inline">\(I\)</span> indicatori</p>
+<p><span class="math inline">\(\mathbf{\Lambda} \in \mathbb{R}^{I \times F}\)</span>: Matrice <span class="math inline">\(I \times F\)</span> delle saturazioni degli <span class="math inline">\(I\)</span> item sulle <span class="math inline">\(F\)</span> dimensioni latenti</p>
+<p><span class="math inline">\(\boldsymbol{\theta}_p \in \mathbb{R}^{F \times 1}\)</span>: Vettore dei factors scores – ovvero dei livelli latenti attesi – sulle <span class="math inline">\(F\)</span> dimensioni latenti per la persona <span class="math inline">\(p\)</span></p>
+<p><span class="math inline">\(\boldsymbol{\varepsilon}_p \in \mathbb{R}^{I \times 1}\)</span>: vettore degli errori/residui associati agli indicatori della persona p</p>
 </div>
 </div>
-</section>
 </section>
 <section id="analisi-delle-strutture-di-covarianza-joreskog-1969" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Analisi delle strutture di covarianza Joreskog (1969)</h1>
@@ -2468,7 +2471,7 @@ OBIETTIVO
 </div>
 <div class="callout-body-container callout-body">
 <p>Stimare i parametri a partire dalla matrice di covarianza osservata in modo che:</p>
-<p><span class="math inline">\(S \approx \Sigma(\zeta)\)</span></p>
+<p><span class="math display">\[S \approx \Sigma(\zeta)\]</span></p>
 </div>
 </div>
 </section>
@@ -2482,12 +2485,17 @@ OBIETTIVO
 <p><span class="math display">\[
 S =
 \begin{pmatrix}
-s_{11} &amp; s_{12} &amp; s_{13} &amp; s_{14} \\
-s_{12} &amp; s_{22} &amp; s_{23} &amp; s_{24} \\
-s_{13} &amp; s_{23} &amp; s_{33} &amp; s_{34} \\
-s_{14} &amp; s_{24} &amp; s_{34} &amp; s_{44}
+\mathbf{s_{11}} &amp; \color{pink}{s_{12}} &amp; \color{pink}{s_{13}} &amp; \color{pink}{s_{14}} \\
+\color{blue}{s_{21}} &amp; \mathbf{s_{22}} &amp; \color{pink}{s_{23}} &amp; \color{pink}{s_{24}} \\
+\color{blue}{s_{31}} &amp; \color{blue}{s_{32}} &amp; \mathbf{s_{33}} &amp; \color{pink}{s_{34}} \\
+\color{blue}{s_{41}} &amp; \color{blue}{s_{42}} &amp; \color{blue}{s_{43}} &amp; \mathbf{s_{44}}
 \end{pmatrix}
-\]</span> Ovvero ci sono <span class="math inline">\(\dfrac{4(4+1)}{2} = 10\)</span> elementi unici, ovvero le 4 varianze nella diagonale principale (<span class="math inline">\(s_{11}\)</span>, <span class="math inline">\(s_{22}\)</span>, <span class="math inline">\(s_{33}\)</span>, <span class="math inline">\(s_{44}\)</span>) e le 6 covarianze o nel triangolo inferiore O nel triangolo superiore</p>
+\]</span></p>
+<p>Ci sono <span class="math inline">\(\dfrac{I(I+1)}{2} = \dfrac{4(4+1)}{2} = 10\)</span> elementi unici:</p>
+<ul>
+<li>4 varianze nella diagonale principale (in grassetto)</li>
+<li>6 covarianze o nel triangolo inferiore (in blu) O nel triangolo superiore (in rosa)</li>
+</ul>
 <p>Dati questi dati, posso stimare <strong>AL MASSIMO</strong> 9 parametri</p>
 <section id="sec-df" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="sec-df"><span class="header-section-number">4.1.1</span> La logica dei <span class="math inline">\(df\)</span></h3>
@@ -2501,7 +2509,7 @@ s_{14} &amp; s_{24} &amp; s_{34} &amp; s_{44}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Il modello è testabile perché c’è più informazione nei dati di quanto richiesto dal modello</p>
+<p>Il modello è testabile perché c’è <em>più informazione nei dati</em> di quanto richiesto dal modello</p>
 <p>La matrice di covarianza <span class="math inline">\(S\)</span> non può essere riprodotta perfettamente da <span class="math inline">\(\Sigma(\zeta)\)</span>: Il modello è falsificabile</p>
 </div>
 </div>
@@ -2564,9 +2572,46 @@ s_{14} &amp; s_{24} &amp; s_{34} &amp; s_{44}
 <h1 data-number="5"><span class="header-section-number">5</span> Scalare e contare i parametri</h1>
 <section id="sec-scala" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-scala"><span class="header-section-number">5.1</span> Scalare i parametri</h2>
-<p>Per ogni variabile latente: Stima della varianza</p>
-<p>Se il modello lo prevede: Stima delle covarianze delle variabili latenti</p>
-<p>Per ogni item: Saturazione e la varianza specifica (varianza residua)</p>
+<p>Parametri stimati:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Variabile latenti <span class="math inline">\(\theta_p\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\mathbf{\Phi} = \operatorname{Var}(\boldsymbol{\theta}_p)
+\in \mathbb{R}^{F \times F}\]</span></p>
+<p>Matrice delle varianze e covarianze delle (F) variabili latenti</p>
+<p>Se il modello prevede (F) fattori ortogonali, allora</p>
+<p><span class="math display">\[\phi_{ij} = 0
+\qquad \forall i \neq j\]</span></p>
+<p>e quindi <span class="math inline">\(\mathbf{\Phi}\)</span> è una matrice diagonale.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Indicatori
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\mathbf{\Lambda} \in \mathbb{R}^{I \times F}\]</span> e</p>
+<p><span class="math display">\[\boldsymbol{\varepsilon}_p =
+\begin{pmatrix}
+\varepsilon_{1p} \\
+\varepsilon_{2p} \\
+\vdots \\
+\varepsilon_{Ip}
+\end{pmatrix}\]</span></p>
+</div>
+</div>
 <p>Rimane il problema di fissare la scala per l’interpretazione delle saturazioni sulla variabile latente:</p>
 <ul>
 <li>Metodo Indicatore-Variabile Latente</li>
@@ -2584,7 +2629,7 @@ Avviso
 <div class="callout-body-container callout-body">
 <p>Sono matematicamente equivalenti e si può passare da una all’altra senza problemi!</p>
 <p>Non cambia la fit del modello, non cambia il numero di parametri stimati <span class="math inline">\(\zeta\)</span>, cambia la scala e l’interpretazione delle saturazioni (e delle covarianze)</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}\]</span></p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}\]</span></p>
 </div>
 </div>
 <section id="metodo-indicatore-variabile-latente" class="level3" data-number="5.1.1">
@@ -2593,7 +2638,7 @@ Avviso
 <p><span class="math display">\[\lambda_{1} = 1\]</span></p>
 <p>La variabile latente <span class="math inline">\(\theta\)</span> assume la scala del primo item</p>
 <p>La varianza <span class="math inline">\(Var(\theta)\)</span> viene stimata liberamente (e influenza l’interpretazione delle saturazioni)</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}\]</span></p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2605,11 +2650,11 @@ Conteggio dei parametri:
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Saturazioni: <span class="math inline">\(I - \theta\)</span></li>
+<li>Saturazioni: <span class="math inline">\(I - F\)</span></li>
 <li>Varianze residue per ogni indicatore: <span class="math inline">\(I\)</span></li>
-<li>Per le variabili latenti: <span class="math inline">\(\dfrac{\theta (\theta+1)}{2}\)</span> (una varianza per ogni <span class="math inline">\(\theta\)</span> e le covarianze)</li>
+<li>Per le variabili latenti: <span class="math inline">\(\dfrac{F (F+1)}{2}\)</span> (una varianza per ogni <span class="math inline">\(\theta\)</span> e le covarianze)</li>
 </ul>
-<p><span class="math display">\[|\zeta| = I + (I-1) + \dfrac{\theta (\theta+1)}{2}\]</span></p>
+<p><span class="math display">\[|\zeta| = I + (I-F) + \dfrac{F (F+1)}{2}\]</span></p>
 </div>
 </div>
 </section>
@@ -2619,7 +2664,7 @@ Conteggio dei parametri:
 <p><span class="math display">\[Var(\theta) = 1\]</span> Vengono stimati tutti i <span class="math inline">\(\lambda_i\)</span> relativi a quella variabile latente</p>
 <p>I <span class="math inline">\(\lambda_i\)</span> si possono interpretare come venivano interpretati in EFA (ovvero come correlazioni variabile latente-indicatore)</p>
 <p>Al posto delle covarianze tra fattori: correlazioni</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi\}\]</span></p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2633,9 +2678,9 @@ Conteggio dei parametri:
 <ul>
 <li>Saturazioni: <span class="math inline">\(I\)</span></li>
 <li>Varianze residue per ogni indicatore: <span class="math inline">\(I\)</span></li>
-<li>Per le variabili latenti: <span class="math inline">\(\dfrac{\theta (\theta-1)}{2}\)</span> (covarianze tra i <span class="math inline">\(\theta\)</span>)</li>
+<li>Per le variabili latenti: <span class="math inline">\(\dfrac{F (F-1)}{2}\)</span> (covarianze tra i <span class="math inline">\(\theta\)</span>)</li>
 </ul>
-<p><span class="math display">\[|\zeta| = 2I + \dfrac{\theta (\theta-1)}{2}\]</span></p>
+<p><span class="math display">\[|\zeta| = 2I + \dfrac{F (F-1)}{2}\]</span></p>
 </div>
 </div>
 </section>
@@ -2644,7 +2689,7 @@ Conteggio dei parametri:
 <section id="big-five" class="level1 page-columns page-full" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Big Five</h1>
 <div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2653,7 +2698,7 @@ NB
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Sto usando solo gli item di due scale per rendere l’esposizione più chiara</p>
 </div>
@@ -2785,14 +2830,14 @@ NB
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>ustart = 1</code></td>
-<td style="text-align: right;">Constraint sulla stima dei parametri - Non vengono stimati, vengono stabiliti a priorio per settare la metrica</td>
+<td style="text-align: right;">Constraint sulla stima dei parametri - Non vengono stimati, vengono stabiliti a priori per settare la metrica</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>free = 0</code></td>
 <td style="text-align: right;">Parametri che non vengono stimati</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>free |= 0</code></td>
+<td style="text-align: left;"><code>free != 0</code></td>
 <td style="text-align: right;">Parametri che vengono stimati</td>
 </tr>
 <tr class="even">
@@ -2807,10 +2852,11 @@ NB
 </table>
 <p>Andando sull’ultima riga, in corrispondenza della colonna <code>free</code> si vede che vengono stimati 41 parametri liberi (|<span class="math inline">\(\zeta\)</span>|):</p>
 <ul>
-<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Lambda = 18 \times 2\)</span></li>
-<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Phi_{\varepsilon} = 20 \times 1\)</span></li>
-<li><span class="math inline">\(\theta = 2\)</span>, quindi <span class="math inline">\(\dfrac{\theta (\theta+1)}{2} = 3\)</span> (le due varianze e la covarianza)</li>
+<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Lambda = I - F = 18\)</span></li>
+<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\varepsilon_p = 20\)</span></li>
+<li><span class="math inline">\(\theta = 2\)</span>, quindi <span class="math inline">\(\dfrac{F (F+1)}{2} = \dfrac{2(2+1)}{2} = 3\)</span> (le due varianze e la covarianza)</li>
 </ul>
+<p><span class="math display">\[|\zeta| = 18 + 20 + 3 = 41\]</span></p>
 </section>
 <section id="fit-del-modello" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="fit-del-modello"><span class="header-section-number">6.1.2</span> Fit del modello</h3>
@@ -3024,10 +3070,11 @@ Variances:
 </div>
 <p>Anche in questo caso, in corrispondenza della colonna <code>free</code> nell’ultima riga si vede che vengono stimati 41 parametri liberi (|<span class="math inline">\(\zeta\)</span>|):</p>
 <ul>
-<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Lambda = 20 \times 2\)</span></li>
-<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Phi_{\varepsilon} = 20 \times 1\)</span></li>
-<li><span class="math inline">\(\theta = 2\)</span>, quindi <span class="math inline">\(\dfrac{\theta (\theta-1)}{2} = 1\)</span> (solo la covarianza tra N e C)</li>
+<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Lambda = 20\)</span></li>
+<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\varepsilon_p = 20\)</span></li>
+<li><span class="math inline">\(F = 2\)</span>, quindi <span class="math inline">\(\dfrac{F (F-1)}{2} = \dfrac{2 (2-1)}{2}  1\)</span> (solo la covarianza tra N e C)</li>
 </ul>
+<p><span class="math display">\[|\zeta| = 20 + 20 + 3 = 1\]</span></p>
 </section>
 <section id="fit-del-modello-1" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="fit-del-modello-1"><span class="header-section-number">6.2.2</span> Fit del modello</h3>
@@ -3186,7 +3233,7 @@ Figura 1: Modello Fattoriale Confermativo
 <h1 data-number="7"><span class="header-section-number">7</span> Violazione normalità/linearità</h1>
 <p>Quando non si hanno a disposizone degli item che permettano di sostenere la linearità e normalità dei punteggi:</p>
 <ul>
-<li>Matrice di correlazione policorica (se <span class="math inline">\(k \geq\)</span> 3$)</li>
+<li>Matrice di correlazione policorica (se <span class="math inline">\(k \geq 3\)</span>)</li>
 <li>Matrice di correlazione tetracorica (se <span class="math inline">\(k = 2\)</span>)</li>
 </ul>
 <p>dove <span class="math inline">\(k\)</span> indica il numero di categorie di risposta</p>
@@ -3249,18 +3296,18 @@ Attenzione!
 S =
 \begin{pmatrix}
 s_{11} &amp; s_{12} &amp; s_{13} &amp; s_{14} \\
-s_{12} &amp; s_{22} &amp; s_{23} &amp; s_{24} \\
-s_{13} &amp; s_{23} &amp; s_{33} &amp; s_{34} \\
-s_{14} &amp; s_{24} &amp; s_{34} &amp; s_{44}
+s_{21} &amp; s_{22} &amp; s_{23} &amp; s_{24} \\
+s_{31} &amp; s_{32} &amp; s_{33} &amp; s_{34} \\
+s_{41} &amp; s_{42} &amp; s_{43} &amp; s_{44}
 \end{pmatrix}
 \]</span> Ma considerando il caso di variabili categoriali e quindi la correlazione policorica:</p>
 <p><span class="math display">\[
 S =
 \begin{pmatrix}
 1 &amp; s_{12} &amp; s_{13} &amp; s_{14} \\
-s_{12} &amp; 1 &amp; s_{23} &amp; s_{24} \\
-s_{13} &amp; s_{23} &amp; 1 &amp; s_{34} \\
-s_{14} &amp; s_{24} &amp; s_{34} &amp; 1
+s_{21} &amp; 1 &amp; s_{23} &amp; s_{24} \\
+s_{31} &amp; s_{32} &amp; 1 &amp; s_{34} \\
+s_{41} &amp; s_{42} &amp; s_{43} &amp; 1
 \end{pmatrix}
 \]</span></p>
 <p>Perché le variabili osservate sono prese come realizzazione di variabili latenti standardizzate. Di conseguenza, <span class="math inline">\(S\)</span> diventa una matrice di correlazione.</p>
@@ -3271,7 +3318,7 @@ s_{14} &amp; s_{24} &amp; s_{34} &amp; 1
 <p>L’informazione totale in caso di item considerati a livello ordinale è quindi</p>
 <p><span class="math display">\[\dfrac{I(I-1)}{2} + \sum_{i = 1}^{I} (k_i -1)\]</span></p>
 <p>Nell’esempio di prima, con <span class="math inline">\(I = 4\)</span> e <span class="math inline">\(k = 5\)</span>:</p>
-<p><span class="math display">\[\dfrac{4(4-1)}{2} + \sum_{i = 1}^{4} (5 -1) = 6 + 4 \times 4 = 10\]</span></p>
+<p><span class="math display">\[\dfrac{4(4-1)}{2} + \sum_{i = 1}^{4} (5 -1) = 6 + 4 \times 4 = 22\]</span></p>
 <p>Il discorso del calcolo dei gradi di libertà e della loro logica è come quello in <a href="#sec-df" class="quarto-xref">Sezione 4.1.1</a></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -3296,12 +3343,10 @@ NB
 </ul>
 <p>Il tipo di scalatura non influisce sul numero totale di parametri stimati (ma su quali parametri vengono stimati).</p>
 <p>Nel caso della correlazioni basate sulle soglie (policoriche o tetracoriche), il conteggio dei parametri deve includere anche il conteggio delle soglie</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \Theta_{\varepsilon}, \Phi, \tau\}\]</span></p>
-<p>dove <span class="math inline">\(\tau = I \times k-1\)</span> è la matrice item per soglia</p>
-<p>QUi devo mettere:;</p>
-<p>la formula per ricavare la quantità di informazione dai dati</p>
-<p>La logica con cui vengono stimati i parametri (più che la stima in sè, il conteggio)</p>
-<p>Riporto anche una matrice policorica per far vedere le soglie (magari con meno item)</p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi, \tau\}\]</span></p>
+<p>dove <span class="math inline">\(\tau = I (k - 1)\)</span> è la matrice item per soglia</p>
+<section id="matrice-policorica" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="matrice-policorica"><span class="header-section-number">7.3.1</span> Matrice policorica</h3>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: polychoric(x = d[, colnames(d) %in% c(labels$C[1:5], labels$N[1:5])])
@@ -3332,6 +3377,42 @@ C4 -1.23 -0.59  0.081 0.87
 C5 -0.67  0.01  0.665 1.38</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Calcolo dell’informazione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[I = 10 \qquad k = 5\]</span> <span class="math display">\[\dfrac{I(I-1)}{2} + \sum_{i = 1}^I (k_i -1) = \dfrac{10(10-1)}{2} + \sum_{i = 1}^{10} (5 -1) = 85\]</span></p>
+</div>
+</div>
+</section>
+</section>
+<section id="parametri-stimati" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="parametri-stimati"><span class="header-section-number">7.4</span> Parametri stimati</h2>
+<p>IL numero totale di parametri stimati rimane uguale ma va teneuto conto del metodo di scala delle variabili latenti usato.</p>
+<p>Il conteggio generale dei parametri è uguale a quello presentato in <a href="#sec-scala" class="quarto-xref">Sezione 5.1</a>.</p>
+<p>In entrambi i casi, vanno aggiunti i parametri relativi alle soglie</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attenzione!!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Siccome il modello è ordinale (ovvero i dati osservati sono la realizzazione di variabili latenti con varianza nota) <strong>non vengono stimate le varianze d’errore degli item</strong></p>
+</div>
+</div>
+<p><span class="math display">\[\tau = I(k-1)\]</span></p>
+<p>Nell’esempio con <span class="math inline">\(I = 20\)</span> item con <span class="math inline">\(k = 5\)</span> dove vengono specificato <span class="math inline">\(F = 2\)</span> fattori latenti (di seguito viene riportato il caso in cui viene scalato con metodo indicatore-variabile latente):</p>
+<p><span class="math display">\[(20-2) + \dfrac{2(2+1)}{2} + 20(5-1) = 101\]</span></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>     id lhs  op rhs user block group free ustart exo label plabel  start    est
@@ -3668,24 +3749,400 @@ C5 -0.67  0.01  0.665 1.38</code></pre>
 165 0.000</code></pre>
 </div>
 </div>
-<p>18 + 1 + 80 + 20</p>
+</section>
+<section id="fit-del-modello-2" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="fit-del-modello-2"><span class="header-section-number">7.5</span> Fit del modello</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 30 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                       101
+
+  Number of observations                           498
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                              1007.367     994.065
+  Degrees of freedom                               169         169
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.087
+  Shift parameter                                           67.554
+    simple second-order correction                                
+
+Model Test Baseline Model:
+
+  Test statistic                             17488.238    7449.890
+  Degrees of freedom                               190         190
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  2.383
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.952       0.886
+  Tucker-Lewis Index (TLI)                       0.946       0.872
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.761
+  Robust Tucker-Lewis Index (TLI)                            0.731
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.100       0.099
+  90 Percent confidence interval - lower         0.094       0.093
+  90 Percent confidence interval - upper         0.106       0.105
+  P-value H_0: RMSEA &lt;= 0.050                    0.000       0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000       1.000
+                                                                  
+  Robust RMSEA                                               0.112
+  90 Percent confidence interval - lower                     0.105
+  90 Percent confidence interval - upper                     0.119
+  P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
+  P-value H_0: Robust RMSEA &gt;= 0.080                         1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.085       0.085
+
+Parameter Estimates:
+
+  Parameterization                               Delta
+  Standard errors                           Robust.sem
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  N =~                                                
+    N1                1.000                           
+    N2                0.726    0.042   17.176    0.000
+    N3                0.895    0.036   24.775    0.000
+    N4                0.503    0.057    8.898    0.000
+    N5                0.729    0.044   16.701    0.000
+    N6                1.032    0.035   29.367    0.000
+    N7                1.107    0.036   30.713    0.000
+    N8                1.173    0.037   32.006    0.000
+    N9                0.915    0.038   24.204    0.000
+    N10               0.953    0.041   23.310    0.000
+  C =~                                                
+    C1                1.000                           
+    C2                1.059    0.085   12.429    0.000
+    C3                0.743    0.078    9.470    0.000
+    C4                1.370    0.094   14.592    0.000
+    C5                1.070    0.083   12.837    0.000
+    C6                1.246    0.090   13.811    0.000
+    C7                0.911    0.081   11.264    0.000
+    C8                0.972    0.086   11.309    0.000
+    C9                1.002    0.079   12.658    0.000
+    C10               0.777    0.086    9.037    0.000
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  N ~~                                                
+    C                -0.159    0.021   -7.529    0.000
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    N1|t1            -1.183    0.073  -16.173    0.000
+    N1|t2            -0.475    0.059   -8.113    0.000
+    N1|t3             0.111    0.056    1.969    0.049
+    N1|t4             0.729    0.062   11.761    0.000
+    N2|t1            -0.936    0.066  -14.147    0.000
+    N2|t2            -0.101    0.056   -1.790    0.073
+    N2|t3             0.628    0.060   10.388    0.000
+    N2|t4             1.474    0.085   17.310    0.000
+    N3|t1            -1.683    0.097  -17.303    0.000
+    N3|t2            -1.000    0.068  -14.766    0.000
+    N3|t3            -0.515    0.059   -8.730    0.000
+    N3|t4             0.312    0.057    5.453    0.000
+    N4|t1            -1.430    0.083  -17.227    0.000
+    N4|t2            -0.646    0.061  -10.648    0.000
+    N4|t3             0.040    0.056    0.716    0.474
+    N4|t4             0.803    0.063   12.686    0.000
+    N5|t1            -0.951    0.067  -14.304    0.000
+    N5|t2            -0.328    0.057   -5.720    0.000
+    N5|t3             0.249    0.057    4.383    0.000
+    N5|t4             1.060    0.069   15.285    0.000
+    N6|t1            -0.951    0.067  -14.304    0.000
+    N6|t2            -0.228    0.057   -4.026    0.000
+    N6|t3             0.382    0.058    6.609    0.000
+    N6|t4             1.017    0.068   14.916    0.000
+    N7|t1            -1.124    0.071  -15.778    0.000
+    N7|t2            -0.296    0.057   -5.185    0.000
+    N7|t3             0.208    0.057    3.668    0.000
+    N7|t4             0.832    0.064   13.017    0.000
+    N8|t1            -0.736    0.062  -11.846    0.000
+    N8|t2             0.010    0.056    0.179    0.858
+    N8|t3             0.475    0.059    8.113    0.000
+    N8|t4             1.105    0.071   15.640    0.000
+    N9|t1            -1.235    0.075  -16.478    0.000
+    N9|t2            -0.459    0.058   -7.849    0.000
+    N9|t3             0.167    0.057    2.953    0.003
+    N9|t4             0.897    0.065   13.749    0.000
+    N10|t1           -0.875    0.065  -13.507    0.000
+    N10|t2           -0.060    0.056   -1.074    0.283
+    N10|t3            0.431    0.058    7.406    0.000
+    N10|t4            1.025    0.068   14.991    0.000
+    C1|t1            -1.536    0.088  -17.378    0.000
+    C1|t2            -0.703    0.062  -11.420    0.000
+    C1|t3             0.223    0.057    3.936    0.000
+    C1|t4             1.173    0.073   16.109    0.000
+    C2|t1            -0.875    0.065  -13.507    0.000
+    C2|t2            -0.182    0.057   -3.221    0.001
+    C2|t3             0.301    0.057    5.274    0.000
+    C2|t4             0.890    0.065   13.669    0.000
+    C3|t1            -2.196    0.147  -14.890    0.000
+    C3|t2            -1.417    0.082  -17.195    0.000
+    C3|t3            -0.736    0.062  -11.846    0.000
+    C3|t4             0.228    0.057    4.026    0.000
+    C4|t1            -1.235    0.075  -16.478    0.000
+    C4|t2            -0.585    0.060   -9.780    0.000
+    C4|t3             0.081    0.056    1.432    0.152
+    C4|t4             0.868    0.065   13.426    0.000
+    C5|t1            -0.665    0.061  -10.906    0.000
+    C5|t2             0.010    0.056    0.179    0.858
+    C5|t3             0.665    0.061   10.906    0.000
+    C5|t4             1.376    0.081   17.083    0.000
+    C6|t1            -0.868    0.065  -13.426    0.000
+    C6|t2            -0.203    0.057   -3.579    0.000
+    C6|t3             0.270    0.057    4.740    0.000
+    C6|t4             0.890    0.065   13.669    0.000
+    C7|t1            -1.749    0.102  -17.168    0.000
+    C7|t2            -1.115    0.071  -15.709    0.000
+    C7|t3            -0.254    0.057   -4.472    0.000
+    C7|t4             0.533    0.059    8.993    0.000
+    C8|t1            -1.643    0.095  -17.355    0.000
+    C8|t2            -0.944    0.066  -14.225    0.000
+    C8|t3             0.040    0.056    0.716    0.474
+    C8|t4             0.736    0.062   11.846    0.000
+    C9|t1            -1.302    0.077  -16.807    0.000
+    C9|t2            -0.562    0.060   -9.431    0.000
+    C9|t3             0.187    0.057    3.311    0.001
+    C9|t4             0.860    0.064   13.345    0.000
+    C10|t1           -2.012    0.125  -16.076    0.000
+    C10|t2           -1.115    0.071  -15.709    0.000
+    C10|t3           -0.136    0.056   -2.417    0.016
+    C10|t4            0.729    0.062   11.761    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .N1                0.435                           
+   .N2                0.702                           
+   .N3                0.547                           
+   .N4                0.857                           
+   .N5                0.700                           
+   .N6                0.399                           
+   .N7                0.308                           
+   .N8                0.223                           
+   .N9                0.527                           
+   .N10               0.487                           
+   .C1                0.664                           
+   .C2                0.623                           
+   .C3                0.814                           
+   .C4                0.370                           
+   .C5                0.615                           
+   .C6                0.478                           
+   .C7                0.721                           
+   .C8                0.683                           
+   .C9                0.663                           
+   .C10               0.797                           
+    N                 0.565    0.033   17.260    0.000
+    C                 0.336    0.042    8.024    0.000</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="attendbilità" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Attendbilità</h1>
-<section id="section-2" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="section-2"><span class="header-section-number">8.1</span> </h2>
-<p>Definizione secondo CTT e implciazioni della bassa reliability</p>
-<p>Fromula di spearman brown</p>
-<p>Stima dell’attendbilità</p>
-<p>Test retest, split half , forme parallele, alpha di cronbach</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Disclaimer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tutto il discorso che segue sull’attendbilità e sulla sua valutazione riguarda la Classical Test Theory</p>
+</div>
+</div>
+<p>Grado in cui una procedura di misurazione produce lo stesso risultato in prove ripetute</p>
+<p><span class="math display">\[
+X = V + E
+\]</span></p>
+<p><span class="math inline">\(X\)</span>: misura rilevata\ <span class="math inline">\(V\)</span>: parte vera\ <span class="math inline">\(E\)</span>: errore: fluttuazioni casuali oppure costante e sistematico</p>
+<p>L’attendibilità di una misura è la proporzione di <span class="math inline">\(X\)</span> che non riflette l’errore di misurazione:</p>
+<p><span id="eq-rho"><span class="math display">\[
+\rho = \dfrac{V}{V + E}
+\tag{1}\]</span></span></p>
+<p>Problema: Non è possibile conoscere <span class="math inline">\(V\)</span> (non lo osserviamo mai) <span class="math inline">\(\rightarrow\)</span> Non è effettivmente possibile stimare l’attendibilità di una misura a partire dalla definizione in <a href="#eq-rho" class="quarto-xref">Equazione 1</a></p>
+<p>Vengono utilizzate delle metodologie che perettono di approssimare il calcolo di <span class="math inline">\(V\)</span>:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attendibilità test-retest
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Viene somministrato lo stesso test allo stesso gruppo di soggetti in due momenti distinti (solitamente vengono fatti passare almeno 3 mesi)</p>
+<p>Si calcola il coefficiente di correlazione tra i punteggi ottenuti nelle due somministrazioni</p>
+<p><strong>coefficiente di stabilità</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Forme parallele
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vengono somministrate due versioni dello stesso test che possono essere considerate equivalenti allo stesso gruppo di persone</p>
+<p>Il contenuto, la formulazione degli item e degli eventuali distrattori devono essere pressapoco identici</p>
+<p>Si calcola la correlazione tra i punteggi ottenuti ai due test</p>
+<p><strong>coefficiente di equivalenza</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Split-Half
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si basa sulla somministrazione di una singola misura che viene suddivisa in due metà equivalenti (in termini di copertura del dominio di contenuto)</p>
+<p>Viene calcolata la correlazione tra i punteggi che si ottengono dalle due metà <span class="math inline">\(\rightarrow\)</span> attendibilità che si osserverebbe su una misura lunga la metà dell’originale!</p>
+<p>Viene impiegato il coefficiente di Spearman-Brown per calcolare l’attendbilità complessiva dell’intera misura</p>
+<p><strong>coefficiente di coerenza interna</strong></p>
+</div>
+</div>
+<section id="alpha-di-cronbach" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="alpha-di-cronbach"><span class="header-section-number">8.1</span> <span class="math inline">\(\alpha\)</span> di Cronbach</h2>
+<p>è la misura di attendibilità sicuramente più conosciuta e usata</p>
+<p>Interamente basata sulla correlazione tra gli item</p>
+<p><span class="math display">\[\alpha = \dfrac{I}{I-1} \left( 1- \dfrac{\sum_{i = 1}^I \sigma_{X_i}^2}{\sigma_X^2}\right)\]</span></p>
+<p>dove</p>
+<p><span class="math inline">\(X = \sum_{i = 1}^I X_i\)</span>: punteggio totale al test</p>
+<p><span class="math inline">\(\sigma_X^2\)</span>: varianza del punteggio totale</p>
+<p><span class="math inline">\(\sigma_{X_i}^2\)</span>: varianze degli item</p>
+<section id="cut-off" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="cut-off"><span class="header-section-number">8.1.1</span> Cut off</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\alpha\)</span></th>
+<th style="text-align: left;">Interpretazione</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(&lt;.70\)</span></td>
+<td style="text-align: left;">inaccettabile</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(.70−.79\)</span></td>
+<td style="text-align: left;">accettabile</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(.80−.89\)</span></td>
+<td style="text-align: left;">buona</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\geq 90\)</span></td>
+<td style="text-align: left;">eccellente</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attenzione!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il valore di <span class="math inline">\(\alpha\)</span> aumenta all’aumentare del numero di item, indipendentemente dal fatto che siano utili o meno</p>
+<p>Non si accorge della multidimensionalità: Può essere alto anche se la scala misura più costrutti diversi</p>
+</div>
+</div>
 </section>
 </section>
-<section id="validità" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Validità</h1>
-<section id="section-3" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="section-3"><span class="header-section-number">9.1</span> </h2>
-<p>Riprendi dalle slide che già avevi fatto e integra con il libro</p>
+<section id="big-five-1" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="big-five-1"><span class="header-section-number">8.2</span> Big Five</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Some items ( C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 ) were negatively correlated with the first principal component and 
+probably should be reversed.  
+To do this, run the function again with the &#39;check.keys=TRUE&#39; option</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> raw_alpha std.alpha   G6(smc) average_r      S/N        ase     mean        sd
+  0.705802 0.7049413 0.8016712 0.1067104 2.389156 0.01959568 3.205723 0.4828887
+   median_r
+ 0.02863595</code></pre>
+</div>
+</div>
+<p>Sbagliato!!</p>
+<p>In maniera corretta:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> raw_alpha std.alpha  G6(smc) average_r      S/N         ase     mean        sd
+ 0.8676442 0.8659247 0.876357  0.392411 6.458495 0.008709927 3.094177 0.8677234
+  median_r
+ 0.3870844</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> raw_alpha std.alpha   G6(smc) average_r      S/N        ase     mean        sd
+ 0.8142006 0.8127849 0.8118898 0.3027204 4.341448 0.01218387 3.317269 0.7298349
+  median_r
+ 0.3030961</code></pre>
+</div>
+</div>
+<section id="alpha-se-litem-è-eliminato" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="alpha-se-litem-è-eliminato"><span class="header-section-number">8.2.1</span> <span class="math inline">\(\alpha\)</span> se l’item è eliminato</h3>
+<p>Misura del contributo di ogni singolo item alla <strong>coerenza interna</strong> (non è un giudizio assoluto sulla bontà dell’item o su quanto contirbuisce alla misurazione del contrutto)</p>
+<p><span class="math display">\[\Delta \alpha = \alpha_{(-i)} - \alpha\]</span></p>
+<p>Se:</p>
+<p><span class="math inline">\(\Delta \alpha \geq .05\)</span>: L’item probabilmente non contribuisce alla coerenza interna</p>
+<p>$ 0 &lt; $: Va bene così</p>
+<p>$ &lt; 0 $: Togliere l’item peggiora la coerenza interna della scala</p>
+<p>Sapendo che</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> raw_alpha std.alpha   G6(smc) average_r      S/N        ase     mean        sd
+ 0.8142006 0.8127849 0.8118898 0.3027204 4.341448 0.01218387 3.317269 0.7298349
+  median_r
+ 0.3030961</code></pre>
+</div>
+</div>
+<p>le statistiche relativamente ad <span class="math inline">\(\alpha_{(-1)}\)</span> sono:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    raw_alpha std.alpha alpha se
+C1       0.80      0.79     0.01
+C2       0.80      0.80     0.01
+C3       0.81      0.81     0.01
+C4       0.79      0.79     0.01
+C5       0.79      0.79     0.01
+C6       0.79      0.79     0.01
+C7       0.80      0.80     0.01
+C8       0.80      0.80     0.01
+C9       0.79      0.79     0.01
+C10      0.81      0.80     0.01</code></pre>
+</div>
+</div>
+</section>
 </section>
 </section>
 
