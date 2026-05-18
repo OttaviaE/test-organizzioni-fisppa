@@ -2298,10 +2298,11 @@ window.Quarto = {
   </ul></li>
   <li><a href="#scalare-e-contare-i-parametri" id="toc-scalare-e-contare-i-parametri" class="nav-link" data-scroll-target="#scalare-e-contare-i-parametri"><span class="header-section-number">5</span> Scalare e contare i parametri</a>
   <ul class="collapse">
-  <li><a href="#sec-scala" id="toc-sec-scala" class="nav-link" data-scroll-target="#sec-scala"><span class="header-section-number">5.1</span> Scalare i parametri</a>
+  <li><a href="#contare-i-parametri" id="toc-contare-i-parametri" class="nav-link" data-scroll-target="#contare-i-parametri"><span class="header-section-number">5.1</span> Contare i parametri</a></li>
+  <li><a href="#sec-scala" id="toc-sec-scala" class="nav-link" data-scroll-target="#sec-scala"><span class="header-section-number">5.2</span> Scalare i parametri</a>
   <ul class="collapse">
-  <li><a href="#metodo-indicatore-variabile-latente" id="toc-metodo-indicatore-variabile-latente" class="nav-link" data-scroll-target="#metodo-indicatore-variabile-latente"><span class="header-section-number">5.1.1</span> Metodo Indicatore-Variabile Latente</a></li>
-  <li><a href="#metodo-della-standardizzazione-della-variabile-latente" id="toc-metodo-della-standardizzazione-della-variabile-latente" class="nav-link" data-scroll-target="#metodo-della-standardizzazione-della-variabile-latente"><span class="header-section-number">5.1.2</span> Metodo della standardizzazione della variabile latente</a></li>
+  <li><a href="#metodo-indicatore-variabile-latente" id="toc-metodo-indicatore-variabile-latente" class="nav-link" data-scroll-target="#metodo-indicatore-variabile-latente"><span class="header-section-number">5.2.1</span> Metodo Indicatore-Variabile Latente</a></li>
+  <li><a href="#metodo-della-standardizzazione-della-variabile-latente" id="toc-metodo-della-standardizzazione-della-variabile-latente" class="nav-link" data-scroll-target="#metodo-della-standardizzazione-della-variabile-latente"><span class="header-section-number">5.2.2</span> Metodo della standardizzazione della variabile latente</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#big-five" id="toc-big-five" class="nav-link" data-scroll-target="#big-five"><span class="header-section-number">6</span> Big Five</a>
@@ -2457,7 +2458,7 @@ Il modello teorico
 </div><div class="column" style="width:50%;">
 <p>Matrice di covarianza <strong>attesa</strong> sulla base del modello teorico</p>
 <p><span class="math display">\[\Sigma(\zeta)\]</span></p>
-<p>con <span class="math inline">\(\zeta\)</span> che contiene tutti i paraemtri del modello (saturazioni, varianze, covarianze, errori specifici)</p>
+<p>con <span class="math inline">\(\zeta\)</span> che contiene tutti i parametri del modello (saturazioni, varianze, covarianze, errori specifici)</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -2480,7 +2481,7 @@ OBIETTIVO
 <section id="chi2" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="chi2"><span class="header-section-number">4.1</span> <span class="math inline">\(\chi^2\)</span></h2>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(S = \Sigma(\zeta)\)</span></p>
-<p><span class="math inline">\(df = \dfrac{I(I+1)}{2} - t\)</span>, dove <span class="math inline">\(I\)</span> è il numero di indicatori e <span class="math inline">\(t\)</span> il numero di parameteri liberi che si va a stimare nel modello</p>
+<p><span class="math inline">\(df = \dfrac{I(I+1)}{2} - t\)</span>, dove <span class="math inline">\(I\)</span> è il numero di indicatori e <span class="math inline">\(t\)</span> il numero di parameteri liberi che si va a stimare nel modello contenuti in <span class="math inline">\(\zeta\)</span></p>
 <p>Se <span class="math inline">\(I = 4\)</span>, la matrice di covariana è:</p>
 <p><span class="math display">\[
 S =
@@ -2570,8 +2571,8 @@ S =
 </section>
 <section id="scalare-e-contare-i-parametri" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Scalare e contare i parametri</h1>
-<section id="sec-scala" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sec-scala"><span class="header-section-number">5.1</span> Scalare i parametri</h2>
+<section id="contare-i-parametri" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="contare-i-parametri"><span class="header-section-number">5.1</span> Contare i parametri</h2>
 <p>Parametri stimati:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2585,8 +2586,8 @@ Variabile latenti <span class="math inline">\(\theta_p\)</span>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[\mathbf{\Phi} = \operatorname{Var}(\boldsymbol{\theta}_p)
 \in \mathbb{R}^{F \times F}\]</span></p>
-<p>Matrice delle varianze e covarianze delle (F) variabili latenti</p>
-<p>Se il modello prevede (F) fattori ortogonali, allora</p>
+<p>Matrice delle varianze e covarianze delle <span class="math inline">\(F\)</span> variabili latenti</p>
+<p>Se il modello prevede <span class="math inline">\(F\)</span> fattori ortogonali, allora</p>
 <p><span class="math display">\[\phi_{ij} = 0
 \qquad \forall i \neq j\]</span></p>
 <p>e quindi <span class="math inline">\(\mathbf{\Phi}\)</span> è una matrice diagonale.</p>
@@ -2610,8 +2611,12 @@ Indicatori
 \vdots \\
 \varepsilon_{Ip}
 \end{pmatrix}\]</span></p>
+<p>Quella che poi viene stimata è la varianza <span class="math inline">\(Var(\varepsilon_i)\)</span></p>
 </div>
 </div>
+</section>
+<section id="sec-scala" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-scala"><span class="header-section-number">5.2</span> Scalare i parametri</h2>
 <p>Rimane il problema di fissare la scala per l’interpretazione delle saturazioni sulla variabile latente:</p>
 <ul>
 <li>Metodo Indicatore-Variabile Latente</li>
@@ -2628,17 +2633,17 @@ Avviso
 </div>
 <div class="callout-body-container callout-body">
 <p>Sono matematicamente equivalenti e si può passare da una all’altra senza problemi!</p>
-<p>Non cambia la fit del modello, non cambia il numero di parametri stimati <span class="math inline">\(\zeta\)</span>, cambia la scala e l’interpretazione delle saturazioni (e delle covarianze)</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}\]</span></p>
+<p>Non cambia la fit del modello, non cambia il numero di parametri stimati in <span class="math inline">\(\zeta\)</span> (ma cambiano i parametri che vengono stimati), cambia la <em>scala</em> e l’<em>interpretazione</em> delle saturazioni (e delle covarianze)</p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi\}\]</span></p>
 </div>
 </div>
-<section id="metodo-indicatore-variabile-latente" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="metodo-indicatore-variabile-latente"><span class="header-section-number">5.1.1</span> Metodo Indicatore-Variabile Latente</h3>
+<section id="metodo-indicatore-variabile-latente" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="metodo-indicatore-variabile-latente"><span class="header-section-number">5.2.1</span> Metodo Indicatore-Variabile Latente</h3>
 <p>Per stimare la varianza della variabile latente e le saturazioni degli item per quella variabile latente, si fissa una saturazione (solitamente quella del primo item):</p>
 <p><span class="math display">\[\lambda_{1} = 1\]</span></p>
 <p>La variabile latente <span class="math inline">\(\theta\)</span> assume la scala del primo item</p>
 <p>La varianza <span class="math inline">\(Var(\theta)\)</span> viene stimata liberamente (e influenza l’interpretazione delle saturazioni)</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}\]</span></p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi\}\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2658,13 +2663,13 @@ Conteggio dei parametri:
 </div>
 </div>
 </section>
-<section id="metodo-della-standardizzazione-della-variabile-latente" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="metodo-della-standardizzazione-della-variabile-latente"><span class="header-section-number">5.1.2</span> Metodo della standardizzazione della variabile latente</h3>
-<p>Per stimare le saturazioni degli idnicatore su una variabile latente, viene fissata la varianza della variabile latente:</p>
+<section id="metodo-della-standardizzazione-della-variabile-latente" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="metodo-della-standardizzazione-della-variabile-latente"><span class="header-section-number">5.2.2</span> Metodo della standardizzazione della variabile latente</h3>
+<p>Per stimare le saturazioni degli indicatori su una variabile latente, viene fissata la varianza della variabile latente:</p>
 <p><span class="math display">\[Var(\theta) = 1\]</span> Vengono stimati tutti i <span class="math inline">\(\lambda_i\)</span> relativi a quella variabile latente</p>
 <p>I <span class="math inline">\(\lambda_i\)</span> si possono interpretare come venivano interpretati in EFA (ovvero come correlazioni variabile latente-indicatore)</p>
 <p>Al posto delle covarianze tra fattori: correlazioni</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}\]</span></p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi\}\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2853,7 +2858,7 @@ NB
 <p>Andando sull’ultima riga, in corrispondenza della colonna <code>free</code> si vede che vengono stimati 41 parametri liberi (|<span class="math inline">\(\zeta\)</span>|):</p>
 <ul>
 <li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Lambda = I - F = 18\)</span></li>
-<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\varepsilon_p = 20\)</span></li>
+<li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(Var(\varepsilon_i) = 20\)</span></li>
 <li><span class="math inline">\(\theta = 2\)</span>, quindi <span class="math inline">\(\dfrac{F (F+1)}{2} = \dfrac{2(2+1)}{2} = 3\)</span> (le due varianze e la covarianza)</li>
 </ul>
 <p><span class="math display">\[|\zeta| = 18 + 20 + 3 = 41\]</span></p>
@@ -3072,9 +3077,9 @@ Variances:
 <ul>
 <li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\Lambda = 20\)</span></li>
 <li><span class="math inline">\(I = 20\)</span>, quindi <span class="math inline">\(\varepsilon_p = 20\)</span></li>
-<li><span class="math inline">\(F = 2\)</span>, quindi <span class="math inline">\(\dfrac{F (F-1)}{2} = \dfrac{2 (2-1)}{2}  1\)</span> (solo la covarianza tra N e C)</li>
+<li><span class="math inline">\(F = 2\)</span>, quindi <span class="math inline">\(\dfrac{F (F-1)}{2} = \dfrac{2 (2-1)}{2} = 1\)</span> (solo la covarianza tra N e C)</li>
 </ul>
-<p><span class="math display">\[|\zeta| = 20 + 20 + 3 = 1\]</span></p>
+<p><span class="math display">\[|\zeta| = 20 + 20 + 1 = 41\]</span></p>
 </section>
 <section id="fit-del-modello-1" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="fit-del-modello-1"><span class="header-section-number">6.2.2</span> Fit del modello</h3>
@@ -3312,7 +3317,7 @@ s_{41} &amp; s_{42} &amp; s_{43} &amp; 1
 \]</span></p>
 <p>Perché le variabili osservate sono prese come realizzazione di variabili latenti standardizzate. Di conseguenza, <span class="math inline">\(S\)</span> diventa una matrice di correlazione.</p>
 <p>Il numero di parametri unici in <span class="math inline">\(S\)</span> è</p>
-<p><span class="math display">\[\dfrac{I(I-1)}{2}\]</span> In questo caso, sono i 6 elementi nel traingolo inferiore (o nel triangolo superiore)</p>
+<p><span class="math display">\[\dfrac{I(I-1)}{2}\]</span> In questo caso, sono i 6 elementi nel triangolo inferiore (o nel triangolo superiore)</p>
 <p>Nella quantità di informazione, vanno contate anche le soglie per ogni item</p>
 <p><span class="math display">\[\sum_{i = 1}^{I} (k_i -1)\]</span></p>
 <p>L’informazione totale in caso di item considerati a livello ordinale è quindi</p>
@@ -3336,15 +3341,15 @@ NB
 </section>
 <section id="conteggio-dei-parametri-2" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="conteggio-dei-parametri-2"><span class="header-section-number">7.3</span> Conteggio dei parametri</h2>
-<p>Si applica la stessa metodologia per scalare e interpretare i parametri di quella presentata in <a href="#sec-scala" class="quarto-xref">Sezione 5.1</a>, ovvero</p>
+<p>Si applica la stessa metodologia per scalare e interpretare i parametri di quella presentata in <a href="#sec-scala" class="quarto-xref">Sezione 5.2</a>, ovvero</p>
 <ul>
-<li>Metodo indicatore-LV: La saturazione del primo item di ogni dimensione viene usato per scalare sia la variabile latente sia le saturazioni di tutti gli altri item</li>
-<li>Metodo della standardizzazione della LV: Vengono standardizzate le variabili latenti, creando una scala comune per l’interpretazione delle saturazioni</li>
+<li><strong>Metodo indicatore-LV</strong>: La saturazione del primo item di ogni dimensione viene usato per scalare sia la variabile latente sia le saturazioni di tutti gli altri item</li>
+<li><strong>Metodo della standardizzazione della LV</strong>: Vengono standardizzate le variabili latenti, creando una scala comune per l’interpretazione delle saturazioni</li>
 </ul>
 <p>Il tipo di scalatura non influisce sul numero totale di parametri stimati (ma su quali parametri vengono stimati).</p>
 <p>Nel caso della correlazioni basate sulle soglie (policoriche o tetracoriche), il conteggio dei parametri deve includere anche il conteggio delle soglie</p>
-<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi, \tau\}\]</span></p>
-<p>dove <span class="math inline">\(\tau = I (k - 1)\)</span> è la matrice item per soglia</p>
+<p><span class="math display">\[\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi, \tau\}\]</span></p>
+<p>dove <span class="math inline">\(\tau\)</span> è la matrice item per soglia</p>
 <section id="matrice-policorica" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="matrice-policorica"><span class="header-section-number">7.3.1</span> Matrice policorica</h3>
 <div class="cell">
@@ -3395,7 +3400,7 @@ Calcolo dell’informazione
 <section id="parametri-stimati" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="parametri-stimati"><span class="header-section-number">7.4</span> Parametri stimati</h2>
 <p>IL numero totale di parametri stimati rimane uguale ma va teneuto conto del metodo di scala delle variabili latenti usato.</p>
-<p>Il conteggio generale dei parametri è uguale a quello presentato in <a href="#sec-scala" class="quarto-xref">Sezione 5.1</a>.</p>
+<p>Il conteggio generale dei parametri è uguale a quello presentato in <a href="#sec-scala" class="quarto-xref">Sezione 5.2</a>.</p>
 <p>In entrambi i casi, vanno aggiunti i parametri relativi alle soglie</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -3410,7 +3415,7 @@ Attenzione!!
 <p>Siccome il modello è ordinale (ovvero i dati osservati sono la realizzazione di variabili latenti con varianza nota) <strong>non vengono stimate le varianze d’errore degli item</strong></p>
 </div>
 </div>
-<p><span class="math display">\[\tau = I(k-1)\]</span></p>
+<p><span class="math display">\[\tau = I\times(k-1)\]</span></p>
 <p>Nell’esempio con <span class="math inline">\(I = 20\)</span> item con <span class="math inline">\(k = 5\)</span> dove vengono specificato <span class="math inline">\(F = 2\)</span> fattori latenti (di seguito viene riportato il caso in cui viene scalato con metodo indicatore-variabile latente):</p>
 <p><span class="math display">\[(20-2) + \dfrac{2(2+1)}{2} + 20(5-1) = 101\]</span></p>
 <div class="cell">
@@ -4115,8 +4120,8 @@ To do this, run the function again with the &#39;check.keys=TRUE&#39; option</co
 <p><span class="math display">\[\Delta \alpha = \alpha_{(-i)} - \alpha\]</span></p>
 <p>Se:</p>
 <p><span class="math inline">\(\Delta \alpha \geq .05\)</span>: L’item probabilmente non contribuisce alla coerenza interna</p>
-<p>$ 0 &lt; $: Va bene così</p>
-<p>$ &lt; 0 $: Togliere l’item peggiora la coerenza interna della scala</p>
+<p><span class="math inline">\(0 &lt; \Delta \alpha .02\)</span>: Va bene così</p>
+<p>$&lt; 0 $: Togliere l’item peggiora la coerenza interna della scala</p>
 <p>Sapendo che</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">

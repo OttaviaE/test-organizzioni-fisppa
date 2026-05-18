@@ -206,7 +206,7 @@ Matrice di covarianza **attesa** sulla base del modello teorico
 
 $$\Sigma(\zeta)$$
 
-con $\zeta$ che contiene tutti i paraemtri del modello (saturazioni, varianze, covarianze, errori specifici)
+con $\zeta$ che contiene tutti i parametri del modello (saturazioni, varianze, covarianze, errori specifici)
 
 
 :::
@@ -229,7 +229,7 @@ $$S \approx \Sigma(\zeta)$$
 
 $H_0$: $S = \Sigma(\zeta)$
 
-$df = \dfrac{I(I+1)}{2} - t$, dove $I$ è il numero di indicatori e $t$ il numero di parameteri liberi che si va a stimare nel modello
+$df = \dfrac{I(I+1)}{2} - t$, dove $I$ è il numero di indicatori e $t$ il numero di parameteri liberi che si va a stimare nel modello contenuti in $\zeta$
 
 Se $I = 4$, la matrice di covariana è: 
 
@@ -321,7 +321,7 @@ $CFI \geq .95$ Valori ottimali
 
 # Scalare e contare i parametri 
 
-## Scalare i parametri {#sec-scala}
+## Contare i parametri 
 
 Parametri stimati: 
 
@@ -331,9 +331,9 @@ Parametri stimati:
 $$\mathbf{\Phi} = \operatorname{Var}(\boldsymbol{\theta}_p)
 \in \mathbb{R}^{F \times F}$$
 
-Matrice delle varianze e covarianze delle \(F\) variabili latenti
+Matrice delle varianze e covarianze delle $F$ variabili latenti
 
-Se il modello prevede \(F\) fattori ortogonali, allora
+Se il modello prevede $F$ fattori ortogonali, allora
 
 
 $$\phi_{ij} = 0
@@ -358,7 +358,13 @@ $$\boldsymbol{\varepsilon}_p =
 \vdots \\
 \varepsilon_{Ip}
 \end{pmatrix}$$
+
+Quella che poi viene stimata è la varianza $Var(\varepsilon_i)$
 :::
+
+
+## Scalare i parametri {#sec-scala}
+
 
 
 Rimane il problema di fissare la scala per l'interpretazione delle saturazioni sulla variabile latente: 
@@ -371,9 +377,9 @@ Rimane il problema di fissare la scala per l'interpretazione delle saturazioni s
 
 Sono matematicamente equivalenti e si può passare da una all'altra senza problemi!
 
-Non cambia la fit del modello, non cambia il numero di parametri stimati $\zeta$, cambia la scala e l'interpretazione delle saturazioni (e delle covarianze)
+Non cambia la fit del modello, non cambia il numero di parametri stimati in $\zeta$ (ma cambiano i parametri che vengono stimati), cambia la *scala* e l'*interpretazione* delle saturazioni (e delle covarianze)
 
-$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}$$
+$$\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi\}$$
 :::
 
 ### Metodo Indicatore-Variabile Latente
@@ -387,7 +393,7 @@ La variabile latente $\theta$ assume la scala del primo item
 La varianza $Var(\theta)$ viene stimata liberamente (e influenza l'interpretazione delle saturazioni)
 
 
-$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}$$
+$$\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi\}$$
 
 :::{.callout-note}
 ## Conteggio dei parametri: 
@@ -407,7 +413,7 @@ $$|\zeta| = I + (I-F) + \dfrac{F (F+1)}{2}$$
 
 ### Metodo della standardizzazione della variabile latente
 
-Per stimare le saturazioni degli idnicatore su una variabile latente, viene fissata la varianza della variabile latente: 
+Per stimare le saturazioni degli indicatori su una variabile latente, viene fissata la varianza della variabile latente: 
 
 $$Var(\theta) = 1$$
 Vengono stimati tutti i $\lambda_i$ relativi a quella variabile latente
@@ -418,7 +424,7 @@ Al posto delle covarianze tra fattori: correlazioni
 
 
 
-$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi\}$$
+$$\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi\}$$
 
 :::{.callout-note}
 ## Conteggio dei parametri: 
@@ -472,7 +478,7 @@ parTable(m)
 Andando sull'ultima riga, in corrispondenza della colonna `free` si vede che vengono stimati 41 parametri liberi (|$\zeta$|): 
 
 * $I = 20$, quindi $\Lambda = I - F = 18$
-* $I = 20$, quindi $\varepsilon_p = 20$
+* $I = 20$, quindi $Var(\varepsilon_i) = 20$
 * $\theta = 2$, quindi $\dfrac{F (F+1)}{2} = \dfrac{2(2+1)}{2} = 3$ (le due varianze e la covarianza)
 
 $$|\zeta| = 18 + 20 + 3 = 41$$
@@ -502,10 +508,10 @@ Anche in questo caso, in corrispondenza della colonna  `free` nell'ultima riga s
 
 * $I = 20$, quindi $\Lambda = 20$
 * $I = 20$, quindi $\varepsilon_p = 20$
-* $F = 2$, quindi $\dfrac{F (F-1)}{2} = \dfrac{2 (2-1)}{2}  1$ (solo la covarianza tra N e C)
+* $F = 2$, quindi $\dfrac{F (F-1)}{2} = \dfrac{2 (2-1)}{2} = 1$ (solo la covarianza tra N e C)
 
 
-$$|\zeta| = 20 + 20 + 3 = 1$$
+$$|\zeta| = 20 + 20 + 1 = 41$$
 
 
 ### Fit del modello 
@@ -628,7 +634,7 @@ Perché le variabili osservate sono prese come realizzazione di variabili latent
 Il numero di parametri unici in $S$ è 
 
 $$\dfrac{I(I-1)}{2}$$
-In questo caso, sono i 6 elementi nel traingolo inferiore (o nel triangolo superiore)
+In questo caso, sono i 6 elementi nel triangolo inferiore (o nel triangolo superiore)
 
 Nella quantità di informazione, vanno contate anche le soglie per ogni item 
 
@@ -656,17 +662,17 @@ Per la matrice tetracorica vale lo stesso identico discorso, dove però $k = 2$
 
 Si applica la stessa metodologia per scalare e interpretare i parametri di quella presentata in @sec-scala, ovvero 
 
-* Metodo indicatore-LV: La saturazione del primo item di ogni dimensione viene usato per scalare sia la variabile latente sia le saturazioni di tutti gli altri item 
-* Metodo della standardizzazione della LV: Vengono standardizzate le variabili latenti, creando una scala comune per l'interpretazione delle saturazioni 
+* **Metodo indicatore-LV**: La saturazione del primo item di ogni dimensione viene usato per scalare sia la variabile latente sia le saturazioni di tutti gli altri item 
+* **Metodo della standardizzazione della LV**: Vengono standardizzate le variabili latenti, creando una scala comune per l'interpretazione delle saturazioni 
 
 Il tipo di scalatura non influisce sul numero totale di parametri stimati (ma su quali parametri vengono stimati). 
 
 Nel caso della correlazioni basate sulle soglie (policoriche o tetracoriche), il conteggio dei parametri deve includere anche il conteggio delle soglie
 
-$$\zeta = \{\Lambda, \boldsymbol{\varepsilon_p}, \Phi, \tau\}$$
+$$\zeta = \{\Lambda, \boldsymbol{Var(\varepsilon_i)}, \Phi, \tau\}$$
 
 
-dove $\tau = I (k - 1)$ è la matrice item per soglia
+dove $\tau$ è la matrice item per soglia
 
 ### Matrice policorica
 
@@ -706,7 +712,7 @@ In entrambi i casi, vanno aggiunti i parametri relativi alle soglie
 Siccome il modello è ordinale (ovvero i dati osservati sono la realizzazione di variabili latenti con varianza nota) **non vengono stimate le varianze d'errore degli item**
 :::
 
-$$\tau = I(k-1)$$
+$$\tau = I\times(k-1)$$
 
 Nell'esempio con $I = 20$ item con $k = 5$ dove vengono specificato $F = 2$ fattori latenti (di seguito viene riportato il caso in cui viene scalato con metodo indicatore-variabile latente): 
 
@@ -825,7 +831,6 @@ Non si accorge della multidimensionalità: Può essere alto anche se la scala mi
 ## Big Five
 
 ```{r}
-#| warning: false
 alpha1 = alpha(d[, colnames(d) %in% c(labels$N, labels$C)])
 alpha1$total
 ```
@@ -853,9 +858,9 @@ Se:
 
 $\Delta \alpha \geq .05$: L'item probabilmente non contribuisce alla coerenza interna 
 
-$ 0 < \Delta \alpha .02$: Va bene così 
+$0 < \Delta \alpha .02$: Va bene così 
 
-$ \Delta \alpha < 0 $: Togliere l'item peggiora la coerenza interna della scala
+$\Delta \alpha < 0 $: Togliere l'item peggiora la coerenza interna della scala
 
 Sapendo che 
 
