@@ -98,3 +98,7 @@ Analisi Fattoriale Esplorativa: Esercitazione pratica e richiami alla teoria [fi
 
 - Dati da [scaricare](slides/06-EFA/data/CHI_ESQ.RData){download="CHI_ESQ.RData"}
 
+# Modulo 7 
+
+Introduzione all'Analisi Fattoriale Confermativa -- Confirmatory Factor Analysis (CFA) [file html](slides/07-CFA/07a-CFA-theory.html)
+
